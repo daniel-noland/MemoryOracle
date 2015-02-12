@@ -1,0 +1,301 @@
+<html>
+   <head>
+      <title>Memory Oracle</title>
+      <!-- <link rel="stylesheet" href="lib/jquery-ui/jquery-ui.min.css"> -->
+      <script src="lib/jquery-ui/external/jquery/jquery.js"></script>
+      <script src="lib/jquery-ui/jquery-ui.min.js"></script>
+      <!-- <link href="css/css/bootstrap.min.css" rel="stylesheet" /> -->
+      <!-- <link href="css/css/bootstrap-theme.min.css" rel="stylesheet" /> -->
+      <!-- <script src="css/js/bootstrap.min.js" type="text/javascript"></script> -->
+      <link href="jqbootstrap/less/style.min.custom.css" rel="stylesheet" />
+      <style type="text/css">
+
+         body {
+            height: auto !important;
+         }
+
+         #right-dock {
+            width: 40%;
+            position: absolute;
+            right: 0px;
+            height: 90%;
+         }
+
+         #bottom-dock {
+            width: 58%;
+            position: absolute;
+            height: 40%;
+            left: 0px !important;
+            bottom: 0px !important;
+         }
+
+         .docked-view {
+            overflow: scroll;
+            height: 70%;
+            max-height: 70%;
+            overflow-y: scroll;
+         }
+
+         #io {
+            bottom: 0px !important;
+         }
+
+         #debug {
+            width: 50%;
+            right: 0px;
+            top: 0px;
+            height: 100%;
+            float: right;
+         }
+
+         .input {
+            left: 0px;
+            float: bottom;
+            bottom: 0px !important;
+         }
+
+         .output {
+            left: 0px;
+            top: 0px;
+            min-height: 70% !important;
+            max-height: 70% !important;
+            overflow-y: scroll;
+            overflow-x: auto;
+         }
+
+         #program {
+            width: 50%;
+            overflow-y: scroll;
+            left: 0px;
+            top: 0px;
+            float: left;
+         }
+
+         #debug-input {
+         }
+
+         #debug-output {
+         }
+
+         .node {
+            opacity: 0.5;
+         }
+
+         .node:hover {
+            opacity: 1;
+         }
+
+         #main {
+            border: 1px solid;
+            border-radius: 1em;
+            width: 960px;
+         }
+
+      </style>
+      <!-- <link rel="stylesheet" href="lib/highlight/styles/default.css"> -->
+      <script src="lib/highlight/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   </head>
+   <body>
+      <div id="banner">
+         <h1 id="title">Memory Oracle</h1>
+      </div>
+      <div id="top-dock">
+      </div>
+      <div class="dock" id="right-dock">
+         <!-- This should all be dynamicaly generated so that the layout -->
+         <!-- and features can be easily changed. -->
+         <div class="docked-view-header">Source View</div>
+         <div class="docked-view view-sourcecode">
+            <pre>
+               <code class="cpp" id="source-code"></code>
+            </pre>
+         </div>
+         <div class="docked-view-header">Local View</div>
+         <div id="view-locals">
+            <p>
+               Local vars
+            </p>
+         </div>
+         <div class="docked-view-header">Stack View</div>
+         <div id="view-stack">
+            <p>
+               Stack frames
+            </p>
+         </div>
+         <div class="docked-view-header">Trace View</div>
+         <div id="view-trace">
+            <p>
+               Stack trace
+            </p>
+         </div>
+      </div>
+      <div id="bottom-dock">
+         <div id="io">
+            <div id="debug">
+               <h3>Debugger IO</h3>
+               <div class="output" id="debug-output">
+                  <pre>
+                     <code id="debug-output-text">
+eax            0xf7f870a0       0xf7f870a0
+ecx            0x3b53fb35       0x3b53fb35
+edx            0xffffc9e4       0xffffc9e4
+ebx            0xf7f85000       0xf7f85000
+esp            0xffffc9bc       0xffffc9bc
+ebp            0x0      0x0
+esi            0x0      0x0
+edi            0x80488d0        0x80488d0
+eip            0x80489cd        0x80489cd <main>
+eflags         0x296    [ PF AF SF IF ]
+cs             0x23     0x23
+ss             0x2b     0x2b
+ds             0x2b     0x2b
+es             0x2b     0x2b
+fs             0x0      0x0
+gs             0x63     0x63
+                     </code>
+                  </pre>
+               </div>
+               <div class="input" id="debug-input">
+                  <input type="text" id="debug-input-textarea" name="debug-input-textarea" />
+               </div>
+            </div>
+            <div id="program">
+               <h3>Program IO</h3>
+               <div class="output" id="program-output">
+                  <pre>
+                     <code id="program-output-text">
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+                     </code>
+                  </pre>
+               </div>
+               <div class="input" id="program-input">
+                  <textarea id="program-input-textarea" name="program-input-textarea"></textarea>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="left-dock"></div>
+      <div id="main">
+         <div id="viz"></div>
+      </div>
+      <script type="text/javascript">
+         $(function() {
+            $( ".dock" ).accordion({
+               collapsible: true,
+               header: ".docked-view-header"
+            });
+         });
+         jQuery.get('https://gist.githubusercontent.com/daniel-noland/92e5332a3d945db7d98e/raw/0b2c745b72376395175a9b754db4104ecc006d71/shift.cpp', function(data) {
+            $( "#source-code" ).html(data);
+            //$("#source-code").attr("class", $("#source-code").attr("class").replace(/\bui-.*?\b/g, '');
+            $('#source-code').each(function(i, block) {
+               hljs.highlightBlock(block);
+            });
+         });
+      </script>
+      <!-- Improved force directed layout tool from D3 gallery -->
+      <script>
+
+         function name(d) { return d.name; }
+         function group(d) { return d.group; }
+
+         var color = d3.scale.category10();
+         function colorByGroup(d) { return color(group(d)); }
+
+         var width = 960,
+            height = 500;
+
+         var svg = d3.select('#viz')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+         var node, link;
+
+         var voronoi = d3.geom.voronoi()
+            .x(function(d) { return d.x; })
+            .y(function(d) { return d.y; })
+            .clipExtent([[-10, -10], [width+10, height+10]]);
+
+         function recenterVoronoi(nodes) {
+            var shapes = [];
+            voronoi(nodes).forEach(function(d) {
+               if ( !d.length ) return;
+               var n = [];
+               d.forEach(function(c){
+                     n.push([ c[0] - d.point.x, c[1] - d.point.y ]);
+               });
+               n.point = d.point;
+               shapes.push(n);
+            });
+            return shapes;
+         }
+
+         var force = d3.layout.force()
+            .charge(-2000)
+            .friction(0.3)
+            .linkDistance(50)
+            .size([width, height]);
+
+         force.on('tick', function() {
+            node.attr('transform', function(d) { return 'translate('+d.x+','+d.y+')'; })
+               .attr('clip-path', function(d) { return 'url(#clip-'+d.index+')'; });
+
+            link.attr('x1', function(d) { return d.source.x; })
+               .attr('y1', function(d) { return d.source.y; })
+               .attr('x2', function(d) { return d.target.x; })
+               .attr('y2', function(d) { return d.target.y; });
+
+            var clip = svg.selectAll('.clip')
+               .data( recenterVoronoi(node.data()), function(d) { return d.point.index; } );
+
+            clip.enter().append('clipPath')
+               .attr('id', function(d) { return 'clip-'+d.point.index; })
+               .attr('class', 'clip');
+            clip.exit().remove()
+
+            clip.selectAll('path').remove();
+            clip.append('path')
+               .attr('d', function(d) { return 'M'+d.join(',')+'Z'; });
+         });
+
+         d3.json('https://gist.githubusercontent.com/daniel-noland/fa0eb7add3897d8d1955/raw/cacd42a2d3380480708ff1b3e01be2ff79007d22/miserables.json', function(err, data) {
+
+            data.nodes.forEach(function(d, i) {
+               d.id = i;
+            });
+
+            link = svg.selectAll('.link')
+               .data( data.links )
+               .enter().append('line')
+               .attr('class', 'link')
+               .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+            node = svg.selectAll('.node')
+               .data( data.nodes )
+               .enter().append('g')
+               .attr('title', name)
+               .attr('class', 'node')
+               .call( force.drag );
+
+            node.append('circle')
+               .attr('r', 30)
+               .attr('fill', colorByGroup)
+               .attr('fill-opacity', 0.5);
+
+            node.append('circle')
+               .attr('r', 4)
+               .attr('stroke', 'black');
+
+            force
+               .nodes( data.nodes )
+               .links( data.links )
+               .start();
+         });
+      </script>
+      <script type="text/javascript" src="websockettest.js"></script>
+   </body>
+</html>
