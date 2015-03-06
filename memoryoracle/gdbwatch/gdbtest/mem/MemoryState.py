@@ -40,7 +40,7 @@ class MemoryState(object):
             s.fetch_lazy()
             self._valueDict[addr] = {
                 "name": name,
-                "is_optomized_out": s.is_optimized_out,
+                "is_optimized_out": s.is_optimized_out,
                 "type": s.type.name,
                 "stripped_type": s.type.strip_typedefs().name,
                 "dynamic_type": s.dynamic_type.name,
@@ -83,4 +83,5 @@ class MemoryState(object):
 m = MemoryState()
 state = m.serialize_locals()
 m._pp.pprint(state)
+print(json.dumps(state))
 

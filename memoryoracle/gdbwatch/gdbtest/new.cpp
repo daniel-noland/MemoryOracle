@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
    int a[5] = { 1, 2, 3, 4, 5 };
    float b[2][2] = { {1 ,2}, {3, 4} };
    MyOtherStruct exx;
-   exx.a = new MyStruct[10];
+   exx.a = new MyStruct[5];
    exx.b = 2;
    exx.a[0] = MyStruct();
    exx.a[0].b = 3;
