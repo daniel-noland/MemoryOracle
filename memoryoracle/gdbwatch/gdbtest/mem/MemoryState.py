@@ -7,8 +7,9 @@ import ast
 import pickle
 import json
 import pprint
+import exceptions
 
-gdb.execute("start", False, False)
+# gdb.execute("start", False, False)
 
 class MemoryState(object):
 
@@ -69,6 +70,13 @@ class MemoryState(object):
                 self._valueDict[addr]["value"] = str(s)
 
 
+    def __getitem__(self, key):
+        if key in self._arrayDict:
+            return self._arrayDict[key]
+        if key in self._structDict:
+            return self._structDict[key]
+        return self._valueDict[key]
+
     def serialize_locals(self):
         self._get_local_vars()
         for k, v in self.gdbVars.items():
@@ -76,12 +84,56 @@ class MemoryState(object):
 
         return (self._valueDict, self._structDict, self._arrayDict)
 
+    def watch_locals(self):
+        self.serialize_locals()
+
+
     def __str__(self):
         self._pp.pprint(self.serialize_locals())
 
-# pp.pprint(serialize_locals())
+
+m = MemoryState()
+m.serialize_locals()
+
+class TrackPoint(gdb.Breakpoint):
+    def stop(self):
+        addr = self.expression
+        val = gdb.parse_and_eval(addr)
+        toUpdate = m._valueDict.pop(addr[1:])["name"]
+        m._serialize_value(val, toUpdate)
+        print(m._valueDict[str(val.address)])
+        return False
+
+
 m = MemoryState()
 state = m.serialize_locals()
-m._pp.pprint(state)
-print(json.dumps(state))
 
+watchPoints = list()
+
+for c in state:
+    for k in c.keys():
+        print(k)
+        try:
+            if " " not in k:
+                w = TrackPoint("*" + k, gdb.BP_WATCHPOINT, gdb.WP_WRITE, True, False)
+                watchPoints.append(w)
+        except gdb.error as e:
+            print(e)
+
+
+def event_stop(event):
+    global m
+    global updated
+    global update
+
+    while len(updated):
+        addr = updated.pop()
+        val = gdb.parse_and_eval(updated.pop())
+        toUpdate = m._valueDict.pop(addr[1:])["name"]
+        m._serialize_value(val, toUpdate)
+        print(m._valueDict[str(val.address)])
+        print("event type: stop")
+    update = updated
+
+
+gdb.events.stop.connect(event_stop)

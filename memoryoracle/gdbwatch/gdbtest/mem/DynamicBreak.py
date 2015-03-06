@@ -6,9 +6,14 @@
 import gdb
 import signal
 import re
+import threading
 
 #-----------------------------------------------------------------------
 #Archs
+
+# TODO: Update all arch classes to use gdb.Architecture checks instead of this
+# hack
+
 class arch_x86_32(object):
     def is_current(self):
         if gdb.execute("info reg", True, True).find("eax") >= 0:
@@ -26,18 +31,17 @@ class arch_x86_32(object):
 
 class arch_x86_64(object):
     def is_current(self):
-        if gdb.execute("info reg", True, True).find("rax") >= 0:
-            return True
-        return False
+        return gdb.newest_frame().architecture().name() == "i386:x86-64"
+
     def get_arg(self, num):
         if num == 0:
-            return long(gdb.parse_and_eval("$rdi"))
+            return long(gdb.newest_frame().read_register("rdi"))
         elif num == 1:
-            return long(gdb.parse_and_eval("$rsi"))
+            return long(gdb.newest_frame().read_register("rsi"))
         else:
             raise Exception("get_arg %d is not supported." %num)
     def get_ret(self):
-        return long(gdb.parse_and_eval("$rax"))
+        return long(gdb.newest_frame().read_register("rax"))
 
 class arch_arm(object):
     def is_current(self):
@@ -81,17 +85,14 @@ class DynamicBreak(gdb.Breakpoint):
 class DynamicBreakAlloc(DynamicBreak):
     def stop(self):
         size = arch.get_arg(0)
-        print("start size" + str(size))
         fin = DynamicBreakAllocFinish()
-        self._heap_track(arch.get_ret(), size)
+        return False
 
 
 class DynamicBreakAllocFinish(gdb.FinishBreakpoint):
     def stop(self):
         print("finish return " + str(hex(arch.get_ret())))
-        # gdb.execute("continue")
-        # DynamicBreak._disable_finish_enable()
-        # self._heap_track(arch.get_ret(), size)
+        return False
 
 
 class DynamicBreakCalloc(DynamicBreak):

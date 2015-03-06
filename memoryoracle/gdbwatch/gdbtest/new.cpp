@@ -13,17 +13,23 @@ struct MyOtherStruct {
    MyOtherStruct* cc;
 };
 
+int func(int a) {
+   return a + 2;
+}
+
 int main(int argc, char *argv[]) {
    /* int* a; */
    /* int* b = new int[10]; */
    /* int c = 3; */
    int a[5] = { 1, 2, 3, 4, 5 };
    float b[2][2] = { {1 ,2}, {3, 4} };
+   double* c = new double[10];
    MyOtherStruct exx;
    exx.a = new MyStruct[5];
    exx.b = 2;
    exx.a[0] = MyStruct();
    exx.a[0].b = 3;
+   exx.a[0].b = func(4);
    exx.cc = &exx;
    exx.a[0].c = &exx;
    /* exx.a[1].a = &c; */
@@ -31,5 +37,6 @@ int main(int argc, char *argv[]) {
    /* *a = 42; */
    /* b = nullptr; */
    delete[] exx.a;
+   delete[] c;
    return 0;
 }
