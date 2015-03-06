@@ -9,15 +9,16 @@ import json
 import pprint
 import exceptions
 
-# gdb.execute("start", False, False)
-
 class MemoryState(object):
 
+    values = dict()
+    structs = dict()
+    arrays = dict()
+    gdbVars = dict()
+    _pp = pprint.PrettyPrinter(indent=3)
+
     def __init__(self):
-        self._pp = pprint.PrettyPrinter(indent=3)
-        self._valueDict = dict()
-        self._structDict = dict()
-        self._arrayDict = dict()
+        pass
 
     @staticmethod
     def struct_to_dict(s):
@@ -26,20 +27,23 @@ class MemoryState(object):
         else:
             return s
 
-    def _get_local_vars(self):
+    @staticmethod
+    def get_local_vars(self):
         localString = gdb.execute("info locals", False, True)
         transform = re.sub(r'([a-zA-Z_][0-9a-zA-Z_:]*) \= .*\n', r"'\1', ", localString)
         if transform[-2:] is ", ":
             transform = transform[:-2]
         transform = "(" + transform + ")"
         localVars = ast.literal_eval(transform)
-        self.gdbVars = { v: gdb.parse_and_eval(v) for v in localVars }
+        MemoryState.gdbVars = \
+            { v: gdb.parse_and_eval(v) for v in localVars }
 
-    def _serialize_value(self, s, name):
+    @staticmethod
+    def serialize_value(s, name):
         addr = str(s.address)
-        if addr not in self._valueDict:
+        if addr not in self.values:
             s.fetch_lazy()
-            self._valueDict[addr] = {
+            MemoryState.values[addr] = {
                 "name": name,
                 "is_optimized_out": s.is_optimized_out,
                 "type": s.type.name,
@@ -47,93 +51,101 @@ class MemoryState(object):
                 "dynamic_type": s.dynamic_type.name,
             }
             if s.type.code == gdb.TYPE_CODE_STRUCT:
-                self._structDict[addr] = self._valueDict.pop(addr)
+                MemoryState.structs[addr] = MemoryState.values.pop(addr)
                 for f in s.type.fields():
-                    self._serialize_value(s[f.name], name + "." + f.name)
-                self._valueDict[addr]["value"] = str(s.address)
+                    MemoryState.serialize_value(s[f.name], name + "." + f.name)
+                MemoryState.values[addr]["value"] = str(s.address)
             elif s.type.code == gdb.TYPE_CODE_ARRAY:
-                self._arrayDict[addr] = self._valueDict.pop(addr)
-                self._arrayDict[addr]["range"] = s.type.range()
-                self._arrayDict[addr]["target_type"] = s.type.target().name
+                MemoryState.arrays[addr] = MemoryState.values.pop(addr)
+                MemoryState.arrays[addr]["range"] = s.type.range()
+                MemoryState.arrays[addr]["target_type"] = s.type.target().name
                 for i in range(s.type.range()[1] + 1):
-                    self._serialize_value(s[i], name + "[" + str(i) + "]" )
+                    MemoryState.serialize_value(s[i], name + "[" + str(i) + "]" )
             elif s.type.code == gdb.TYPE_CODE_PTR:
                 try:
-                    self._valueDict[addr]["value"] = str(s)
-                    self._serialize_value(s.dereference(), "(*" + name + ")")
+                    MemoryState.values[addr]["value"] = \
+                            MemoryState.val_to_string(name)
+                    MemoryState.serialize_value(s.dereference(), "(*" + name + ")")
                 except gdb.MemoryError as e:
                     if str(s) == "0x0":
-                        self._valueDict[addr]["value"] = "nullptr"
+                        MemoryState.values[addr]["value"] = "nullptr"
                     else:
-                        self._valueDict[addr]["value"] = str(e)
+                        MemoryState.values[addr]["value"] = \
+                                MemoryState.val_to_string(name)
             else:
-                self._valueDict[addr]["value"] = str(s)
+                MemoryState.values[addr]["value"] = \
+                        MemoryState.val_to_string(name)
+
+    @staticmethod
+    def update(s = None, name = None):
+        addr = str(s.address)
+        if s is not None and name is not None:
+            if s.type.code == gdb.TYPE_CODE_STRUCT:
+                MemoryState.structs.pop(addr)
+                for f in s.type.fields():
+                    MemoryState.update(s[f.name], name + "." + f.name)
 
 
-    def __getitem__(self, key):
-        if key in self._arrayDict:
-            return self._arrayDict[key]
-        if key in self._structDict:
-            return self._structDict[key]
-        return self._valueDict[key]
+        elif s is not None
+            raise Exception("Can not update without variable name")
 
-    def serialize_locals(self):
-        self._get_local_vars()
-        for k, v in self.gdbVars.items():
-            self._serialize_value(v, k)
+        else:
+            # back up the old dicts
+            oldValues = MemoryState.values
+            oldArrays = MemoryState.arrays
+            oldStructs = MemoryState.structs
 
-        return (self._valueDict, self._structDict, self._arrayDict)
+            # clear the dicts
+            MemoryState.values = dict()
+            MemoryState.arrays = dict()
+            MemoryState.structs = dict()
 
-    def watch_locals(self):
-        self.serialize_locals()
+            # refill the dicts
+            MemoryState.serialize_locals()
 
+            # update
+            oldValues.update(MemoryState.values)
+            oldArrays.update(MemoryState.arrays)
+            oldStructs.update(MemoryState.structs)
 
-    def __str__(self):
-        self._pp.pprint(self.serialize_locals())
-
-
-m = MemoryState()
-m.serialize_locals()
-
-class TrackPoint(gdb.Breakpoint):
-    def stop(self):
-        addr = self.expression
-        val = gdb.parse_and_eval(addr)
-        toUpdate = m._valueDict.pop(addr[1:])["name"]
-        m._serialize_value(val, toUpdate)
-        print(m._valueDict[str(val.address)])
-        return False
+            # restore
+            MemoryState.values = oldValues
+            MemoryState.arrays = oldArrays
+            MemoryState.structs = oldStructs
 
 
-m = MemoryState()
-state = m.serialize_locals()
+    @staticmethod
+    def val_to_string(name):
+        v = gdb.parse_and_eval(name)
+        # get gdb to print the value
+        gdbPrint = gdb.execute("print " + name, False, True)
+        # strip off noise at the start
+        ansSections = gdbPrint[:-1].split(" = ")[1:]
+        return " ".join(ansSections)
 
-watchPoints = list()
+    @staticmethod
+    def __getitem__(key):
+        if key in MemoryState.arrays:
+            return MemoryState.arrays[key]
+        if key in MemoryState.structs:
+            return MemoryState.structs[key]
+        return MemoryState.values[key]
 
-for c in state:
-    for k in c.keys():
-        print(k)
-        try:
-            if " " not in k:
-                w = TrackPoint("*" + k, gdb.BP_WATCHPOINT, gdb.WP_WRITE, True, False)
-                watchPoints.append(w)
-        except gdb.error as e:
-            print(e)
+    @staticmethod
+    def serialize_locals():
+        MemoryState._get_local_vars()
+        for k, v in MemoryState.gdbVars.items():
+            MemoryState.serialize_value(v, k)
 
+    @staticmethod
+    def watch_locals():
+        MemoryState.serialize_locals()
 
-def event_stop(event):
-    global m
-    global updated
-    global update
-
-    while len(updated):
-        addr = updated.pop()
-        val = gdb.parse_and_eval(updated.pop())
-        toUpdate = m._valueDict.pop(addr[1:])["name"]
-        m._serialize_value(val, toUpdate)
-        print(m._valueDict[str(val.address)])
-        print("event type: stop")
-    update = updated
-
-
-gdb.events.stop.connect(event_stop)
+    @staticmethod
+    def display():
+        print("Structs:")
+        MemoryState._pp.pprint(MemoryState.structs)
+        print("Arrays:")
+        MemoryState._pp.pprint(MemoryState.values)
+        print("Values:")
+        MemoryState._pp.pprint(MemoryState.values)

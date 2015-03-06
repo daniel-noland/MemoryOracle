@@ -1,3 +1,5 @@
+#include <string>
+
 struct MyStruct;
 struct MyOtherStruct;
 
@@ -24,6 +26,7 @@ int main(int argc, char *argv[]) {
    int a[5] = { 1, 2, 3, 4, 5 };
    float b[2][2] = { {1 ,2}, {3, 4} };
    double* c = new double[10];
+   std::string h = "hello, world";
    MyOtherStruct exx;
    exx.a = new MyStruct[5];
    exx.b = 2;
