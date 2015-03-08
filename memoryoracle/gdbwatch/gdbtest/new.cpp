@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
    /* int* b = new int[10]; */
    /* int c = 3; */
    int a[5] = { 1, 2, 3, 4, 5 };
-   float b[2][2] = { {1 ,2}, {3, 4} };
+   float b[2][2] = { {1 ,2.17}, {3.14, 4} };
    double* c = new double[10];
    std::string h = "hello, world";
    MyOtherStruct exx;
