@@ -25,9 +25,10 @@ class StateWatcher(gdb.Breakpoint):
         addr = self.expression
         val = gdb.parse_and_eval(addr)
         try:
-            d = State.get(addr[1:])
-            name = d["val"]["name"]
-            State.update(val, name)
+            names = State.get(addr[1:]).keys()
+            for name in names:
+                State.update(val, name)
+
         except Exception as e:
             traceback.print_exc()
             print("ERROR: could not find address " + addr[1:])
@@ -61,6 +62,44 @@ class State(object):
 
     _intType = gdb.lookup_type("int")
 
+    _classifications = { "array": set(), "struct": set(), "pointer": set() }
+
+    @staticmethod
+    def _basic_serialize(v, name, addr, repo, updateTracker, parent = None, parentClassification = None):
+
+        # if (parent is not None and parentClassification is None:
+        #     raise Exception("No parent classification!")
+
+        v.fetch_lazy()
+
+        if addr not in updateTracker:
+            updateTracker.add(addr)
+            if addr not in repo:
+                repo[addr] = {
+                    name: {
+                        "type": { State._extract_class(v.type) },
+                        "parents": State._classifications,
+                    }
+                }
+                if parentClassification is not None:
+                    if parent not in repo[addr][name]["parents"][parentClassification]:
+                        repo[addr][name]["parents"][parentClassification].add(parent)
+                        return True
+                    else:
+                        return False
+            else:
+                if name in repo[addr]:
+                    repo[addr][name]["type"].add(State._extract_class(v.type))
+                    repo[addr][name]["parents"][parentClassification].add(parent)
+                    return False
+                else:
+                    repo[addr][name] = {
+                            "type": { State._extract_class(v.type) },
+                            "parents": { parentClassification: { parent } } \
+                                    if parentClassification else classifications
+                        }
+                    return True
+
     @staticmethod
     def _true_type(name):
         v = gdb.parse_and_eval(name)
@@ -85,7 +124,6 @@ class State(object):
             length = int(atyp.group(2)[1:-1])
             print("int was actually a " + typ + "[" + str(length) + "]")
             return gdb.lookup_type(typ).array(length - 1)
-
         else:
             return gdb.lookup_type("int")
 
@@ -128,56 +166,46 @@ class State(object):
             { v: gdb.parse_and_eval(v) for v in localVars }
 
     @staticmethod
-    def _serialize_value(s, name, addr, parent = None):
-        if addr not in State._updatedValues:
-            State._updatedValues.add(addr)
-            s.fetch_lazy()
-            val = State.val_to_string(name)
-            State.values[addr] = {
-                "name": name,
-                "type": State._extract_class(s.type),
-                "value": val,
-                "parents": { parent } if parent else set()
-                }
-            strip = s.type.strip_typedefs()
-            if strip != s.type:
-                State.values[addr]["stripped_type"] = strip.name
-            dynamic = s.dynamic_type
-            if dynamic != s.type:
-                State.values[addr]["dynamic_type"] = dynamic.name
-        else:
-            State.values[addr]["parents"].add(parent)
+    def _serialize_value(s, name, addr, parent = None, parentClassification = None):
+        State._basic_serialize(s, name, addr, State.values, State._updatedValues,
+            parent = parent,
+            parentClassification = parentClassification)
+
+        # State._updatedValues.add(addr)
+        val = State.val_to_string(name)
+        State.values[addr][name]["value"] = val
+        strip = s.type.strip_typedefs()
+        if strip != s.type:
+            State.values[addr][name]["stripped_type"] = strip.name
+        dynamic = s.dynamic_type
+        if dynamic != s.type:
+            State.values[addr][name]["dynamic_type"] = dynamic.name
 
     @staticmethod
-    def _serialize_struct(s, name, addr, parent = None):
+    def _serialize_struct(s, name, addr, parent = None, parentClassification = None):
         if addr not in State._updatedStructs:
-            State._updatedStructs.add(addr)
-            typ = State._extract_class(s.type)
-            State.structs[addr] = {
-                "name": name,
-                "type": typ,
-                "parents": { parent } if parent else set()
-                }
-            State.structs[addr]["children"] = \
+            c = State._basic_serialize(s, name, addr, State.structs,
+                    State._updatedStructs,
+                    parent = parent,
+                    parentClassification = parentClassification)
+            State.structs[addr][name]["children"] = \
                 { f.name: State.get_address(s[f.name]) for f in s.type.fields() }
             for f in s.type.fields():
                 State.serialize(s[f.name], name + "." + f.name, parent = addr)
-        else:
-            State.structs[addr]["parents"].add(parent)
-
 
     @staticmethod
-    def _serialize_array(s, name, addr, parent = None):
+    def _serialize_array(s, name, addr, parent = None, parentClassification = None):
+
         if addr not in State._updatedArrays:
-            State._updatedArrays.add(addr)
-            State.arrays[addr] = {
-                "name": name,
-                "type": State._extract_class(s.type),
-                "parents": { parent } if parent else set()
-                }
-            State.arrays[addr]["range"] = s.type.range()
+
+            c = State._basic_serialize(s, name, addr, State.arrays,
+                    State._updatedArrays,
+                    parent = parent,
+                    parentClassification = parentClassification)
+
+            State.arrays[addr][name]["range"] = s.type.range()
             targetType = State._extract_target_type(s.type)
-            State.arrays[addr]["target_type"] = targetType
+            State.arrays[addr][name]["target_type"] = targetType
             immediateTarget = s.type.target().name
             if immediateTarget is None:
                 try:
@@ -189,18 +217,22 @@ class State(object):
                     print("Likely found an array of pointers in " + name)
                     State._updatedPointers.discard(addr)
             length = s.type.range()[1] - s.type.range()[0] + 1
-            State.arrays[addr]["children"] = \
+            State.arrays[addr][name]["children"] = \
                 { i: State.get_address(s[i]) for i in range(length) }
             for i in range(length):
-                State.serialize(s[i], name + "[" + str(i) + "]", parent = addr)
-        else:
-            State.arrays[addr]["parents"].add(parent)
-
+                State.serialize(s[i], name + "[" + str(i) + "]",
+                    parent = addr,
+                    parentClassification = "array")
 
 
     @staticmethod
-    def _serialize_pointer(s, name, addr, parent = None):
+    def _serialize_pointer(s, name, addr, parent = None, parentClassification = None):
         if addr not in State._updatedPointers:
+
+            c = State._basic_serialize(s, name, addr, State.pointers,
+                    State._updatedPointers,
+                    parent = parent,
+                    parentClassification = parentClassification)
             State._updatedPointers.add(addr)
             try:
                 val = State.val_to_string(name)
@@ -212,25 +244,27 @@ class State(object):
                     "parents": { parent } if parent else set()
                     }
                 State.sources[val] = addr
-                State.serialize(s.dereference(), "(*" + name + ")", parent = addr)
+                State.serialize(s.dereference(), "(*" + name + ")", parent = addr,
+                        parentClassification = "pointer")
             except gdb.MemoryError as e:
                 print(e)
         else:
-            State.pointers[addr]["parents"].add(parent)
+            if parent:
+                State.pointers[addr][name]["parents"][parentClassification].add(parent)
 
     @staticmethod
-    def _serialize_int(s, name, addr, parent = None):
+    def _serialize_int(s, name, addr, parent = None, parentClassification = None):
         typ = State._true_type(name)
         v = s.cast(typ)
         if typ == State._intType:
-            State._serialize_value(v, name, addr, parent = parent)
+            State._serialize_value(v, name, addr, parent = parent,
+                    parentClassification = parentClassification)
         else:
-            print("Casting to " + str(typ))
-            print("Result of cast is " + str(v))
-            State.serialize(v, name, parent = parent, address = addr)
+            State.serialize(v, name, parent = addr, address = addr,
+                    parentClassification = parentClassification)
 
     @staticmethod
-    def serialize(s, name, parent = None, address = None):
+    def serialize(s, name, parent = None, address = None, parentClassification = None):
 
         if address is None:
             addr = State.get_address(s)
@@ -239,17 +273,24 @@ class State(object):
 
         if s.type.code == gdb.TYPE_CODE_PTR:
             print("Found " + name + " as pointer")
-            State._serialize_pointer(s, name, addr, parent = parent)
+            State._serialize_pointer(s, name, addr,
+                    parent = parent,
+                    parentClassification = parentClassification)
 
         elif s.type.code == gdb.TYPE_CODE_ARRAY:
             print("Found " + name + " as array")
             if parent is None:
                 p = addr
-            State._serialize_array(s, name, addr, parent = parent)
+            State._serialize_array(s, name, addr,
+                    parent = parent,
+                    parentClassification = "array")
 
         elif s.type.code == gdb.TYPE_CODE_STRUCT:
             print("Found " + name + " as struct")
-            State._serialize_struct(s, name, addr, parent = parent)
+            State._serialize_struct(s, name, addr,
+                    parent = parent,
+                    parentClassification = parentClassification
+                    )
 
         elif s.type.code == gdb.TYPE_CODE_INT:
             print("Found " + name + " as int")
@@ -258,7 +299,9 @@ class State(object):
             #     print(name + " was actually a pointer")
             #     State.serialize(sStar, "*" + name)
             # except Exception as e:
-            State._serialize_int(s, name, addr, parent = parent)
+            State._serialize_int(s, name, addr,
+                    parent = parent,
+                    parentClassification = parentClassification)
 
         else:
             print("Found " + name + " as value")
