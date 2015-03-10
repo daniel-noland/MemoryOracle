@@ -33,14 +33,14 @@
 // ## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               @gray-base;
+@body-bg:               @dark-yellow;
 //** Global text color on `<body>`.
 @_text-color-dark:      darken(multiply(@body-bg, @brand-primary), 25%);
 @_text-color-light:     lighten(screen(@body-bg, @brand-primary), 25%);
 @text-color:            contrast(@body-bg, @_text-color-dark, @_text-color-light);
 
 //** Global textual link color.
-@link-color:            @brand-primary;
+@link-color:            @dark-green;
 //** Link hover color set via `darken()` function.
 @_link-hover-color-dark: darken(@link-color, 15%);
 @_link-hover-color-light: lighten(@link-color, 15%);
