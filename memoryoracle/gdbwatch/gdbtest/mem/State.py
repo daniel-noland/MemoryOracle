@@ -26,7 +26,7 @@ class StateWatcher(gdb.Breakpoint):
         addr = self.expression
         val = State.name_to_val(addr)
         try:
-            names = State.get(addr[1:])["val"].keys()
+            names = State.get_serial(val = val).keys()
             for name in names:
                 State.update(val, name)
 
@@ -51,6 +51,7 @@ class State(object):
     _updatedStructs = set()
     _updatedArrays = set()
     _updatedPointers = set()
+    _updatedNames = set()
 
     _pp = pprint.PrettyPrinter(indent=3)
 
@@ -67,6 +68,12 @@ class State(object):
 
     @staticmethod
     def _basic_serialize(v, name, addr, repo, updateTracker, parent = None, parentClassification = None):
+
+
+        if name in State._updatedNames:
+            return False
+        else:
+            State._updatedNames.add(name)
 
         if parent is not None and parentClassification is None:
             raise Exception("No parent classification!")
@@ -109,7 +116,7 @@ class State(object):
         atyp = State._arrayFinder.match(str(v.type))
         if atyp:
             typ = atyp.group(1)
-            print("Type: " + typ)
+            print(name + " type: " + typ)
             dims = map(int, atyp.group(2)[1:-1].split("]["))
             print("dims: " + str(dims) )
             t = gdb.lookup_type(typ)
@@ -162,6 +169,7 @@ class State(object):
         localVars = ast.literal_eval(transform)
         State.gdbVars = \
             { v: State.name_to_val(v) for v in localVars }
+        print(State.gdbVars)
 
     @staticmethod
     def _serialize_value(s, name, addr, parent = None, parentClassification = None):
@@ -189,7 +197,7 @@ class State(object):
             State.structs[addr][name]["children"] = \
                 { f.name: State.get_address(s[f.name]) for f in s.type.fields() }
             for f in s.type.fields():
-                State.serialize(s[f.name], name + "." + f.name, parent = addr,
+                State.serialize(name + "." + f.name, parent = addr,
                         parentClassification = "struct")
 
     @staticmethod
@@ -217,7 +225,7 @@ class State(object):
             # State.arrays[addr][name]["children"] = \
             #     { i: State.get_address(s[i]) for i in range(length) }
             for i in range(length):
-                State.serialize(s[i], name + "[" + str(i) + "]",
+                State.serialize(name + "[" + str(i) + "]",
                     parent = addr,
                     parentClassification = "array")
 
@@ -235,7 +243,7 @@ class State(object):
                 val = State.name_to_valstring(name)
                 val = State._addressFixer.sub("", val)
                 State.pointers[addr][name]["value"] = val
-                State.serialize(s.dereference(), "(*" + name + ")",
+                State.serialize("(*" + name + ")",
                         parent = addr,
                         parentClassification = "pointer")
             except gdb.MemoryError as e:
@@ -250,20 +258,25 @@ class State(object):
         typ = State._true_type(name)
         v = s.cast(typ)
         if typ.code == gdb.TYPE_CODE_PTR:
-            State.serialize(v, name, parent = addr, address = addr,
+            State._serialize_pointer(v, name, addr, parent = addr,
                     parentClassification = "pointer")
         elif typ.code == gdb.TYPE_CODE_ARRAY:
-            State.serialize(v, name, parent = addr, address = addr,
+            State._serialize_array(v, name, addr, parent = addr,
                     parentClassification = "array")
-        elif typ.code == gdb.TYPE_CODE_INT:
-            State._serialize_value(v, name, addr, parent = parent,
+        elif typ.code == gdb.TYPE_CODE_STRUCT:
+            State._serialize_struct(v, name, addr, parent = parent,
                     parentClassification = parentClassification)
+        # elif typ.code == gdb.TYPE_CODE_INT:
+        #     State._serialize_value(v, name, addr, parent = parent,
+        #             parentClassification = parentClassification)
         else:
-            State._serialize_int(v, "(*" + name + ")", addr, parent = parent,
+            State._serialize_value(v, name, addr, parent = parent,
                     parentClassification = parentClassification)
 
     @staticmethod
-    def serialize(s, name, parent = None, address = None, parentClassification = None):
+    def serialize(name, parent = None, address = None, parentClassification = None):
+
+        s = State.name_to_val(name)
 
         if address is None:
             addr = State.get_address(s)
@@ -285,8 +298,7 @@ class State(object):
         elif s.type.code == gdb.TYPE_CODE_STRUCT:
             State._serialize_struct(s, name, addr,
                     parent = parent,
-                    parentClassification = parentClassification
-                    )
+                    parentClassification = parentClassification)
 
         elif s.type.code == gdb.TYPE_CODE_INT:
             State._serialize_int(s, name, addr,
@@ -296,32 +308,43 @@ class State(object):
         else:
             State._serialize_value(s, name, addr,
                     parent = parent,
-                    parentClassification = parentClassification
-                    )
+                    parentClassification = parentClassification)
 
         State.watch_memory(addr)
 
     @staticmethod
-    def _clear_updated():
-        State._updatedValues.clear()
-        State._updatedStructs.clear()
-        State._updatedArrays.clear()
-        State._updatedPointers.clear()
+    def _clear_updated(addr = None):
+        if addr:
+            State._updatedValues.pop(addr)
+            State._updatedStructs.pop(addr)
+            State._updatedArrays.pop(addr)
+            State._updatedPointers.pop(addr)
+        else:
+            State._updatedValues.clear()
+            State._updatedStructs.clear()
+            State._updatedArrays.clear()
+            State._updatedPointers.clear()
 
 
     @staticmethod
-    def update(s = None, name = None):
+    def update(s = None, name = None, classification = None):
 
         if s is not None and name is None:
             raise Exception("Can not update without variable name")
 
         elif s is not None and name is not None:
             State._clear_updated()
-            addr = State.get_address(s)
-            State.serialize(s, name)
+            if name in State._updatedNames:
+                return
+            else:
+                State._updatedNames.add(name)
+
+            State.serialize(name)
+
+            State._updatedNames.pop(name)
 
         else:
-            State._updates.clear()
+            State._clear_updated()
             # back up the old dicts
             oldValues = State.values
             oldArrays = State.arrays
@@ -407,10 +430,44 @@ class State(object):
             raise Exception("---unknown address---")
 
     @staticmethod
+    def get_serial(val = None, address = None, code = None):
+
+        if code is not None and address is None:
+            raise Exception("Can not get_serial from code without address")
+
+        if code is None and address is not None:
+            raise Exception("Can not get_serial from address without type code")
+
+        addr = address if address is not None else State.get_address(val)
+        cl = code if code is not None else val.type.code
+
+        print("looking for address " + addr)
+
+        if cl == gdb.TYPE_CODE_PTR:
+            ret = State.pointers[addr]
+        elif cl == gdb.TYPE_CODE_STRUCT:
+            ret = State.structs[addr]
+        elif cl == gdb.TYPE_CODE_ARRAY:
+            ret = State.arrays[addr]
+        elif cl == gdb.TYPE_CODE_INT:
+            ret = State.structs.get(addr, None)
+            if not ret:
+                ret = State.arrays.get(addr, None)
+            if not ret:
+                ret = State.pointers.get(addr, None)
+            if not ret:
+                ret = State.values.get(addr, None)
+        else:
+            ret = State.values.get(addr, None)
+
+        return ret
+
+
+    @staticmethod
     def serialize_locals():
         State.get_local_vars()
         for k, v in State.gdbVars.items():
-            State.serialize(v, k)
+            State.serialize(k)
 
     @staticmethod
     def display():
