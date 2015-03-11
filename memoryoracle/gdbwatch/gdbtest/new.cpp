@@ -16,13 +16,16 @@ struct MyOtherStruct {
 };
 
 int func(int a) {
-   return a + 2;
+   int b = a;
+   b += 4;
+   return b + 2;
 }
 
 int main(int argc, char *argv[]) {
    /* int* a; */
    /* int* b = new int[10]; */
    /* int c = 3; */
+   int aa = 4;
    int a[5] = { 1, 2, 3, 4, 5 };
    float b[2][2] = { {1 ,2.17}, {3.14, 4} };
    double* c = new double[10];

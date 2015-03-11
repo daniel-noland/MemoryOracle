@@ -23,12 +23,21 @@ class StateWatcher(gdb.Breakpoint):
         self.silent = True
 
     def stop(self):
-        addr = self.expression
-        val = State.name_to_val(addr)
         try:
-            names = State.get_serial(val = val).keys()
+            frameName = str(gdb.selected_frame())
+            addr = self.expression
+            state = State._instances.get(frameName, None)
+
+            if not state:
+                state = State()
+                c = state.serialize_locals()
+                if not c:
+                    return False
+
+            val = state.name_to_val(addr)
+            names = state.get_serial(val = val).keys()
             for name in names:
-                State.update(val, name)
+                state.update(val, name)
 
         except Exception as e:
             traceback.print_exc()
@@ -38,20 +47,6 @@ class StateWatcher(gdb.Breakpoint):
         return False
 
 class State(object):
-
-    values = dict()
-    structs = dict()
-    arrays = dict()
-    gdbVars = dict()
-    watchers = dict()
-    sources = dict()
-    pointers = dict()
-
-    _updatedValues = set()
-    _updatedStructs = set()
-    _updatedArrays = set()
-    _updatedPointers = set()
-    _updatedNames = set()
 
     _pp = pprint.PrettyPrinter(indent=3)
 
@@ -66,21 +61,41 @@ class State(object):
 
     _classifications = { "array": set(), "struct": set(), "pointer": set() }
 
-    @staticmethod
-    def _basic_serialize(v, name, addr, repo, updateTracker, parent = None, parentClassification = None):
+    _instances = dict()
+
+    def __init__(self):
+        self.frame = gdb.newest_frame()
+        self.frameName = str(self.frame)
+        self.frames = dict()
+        self.values = dict()
+        self.structs = dict()
+        self.arrays = dict()
+        self.symbols = dict()
+        self.localVariables = dict()
+        self.watchers = dict()
+        self.pointers = dict()
+
+        self._updatedValues = set()
+        self._updatedStructs = set()
+        self._updatedArrays = set()
+        self._updatedPointers = set()
+        self._updatedNames = set()
+
+        State._instances[self.frameName] = self
 
 
-        if name in State._updatedNames:
+    def _basic_serialize(self, v, name, addr, repo, updateTracker, parent = None, parentClassification = None):
+
+        if name in self._updatedNames:
             return False
         else:
-            State._updatedNames.add(name)
+            self._updatedNames.add(name)
 
         if parent is not None and parentClassification is None:
             raise Exception("No parent classification!")
 
-        v.fetch_lazy()
-
         if addr not in updateTracker:
+            v.fetch_lazy()
             updateTracker.add(addr)
             if addr not in repo:
                 repo[addr] = {
@@ -110,15 +125,12 @@ class State(object):
                         }
                     return True
 
-    @staticmethod
-    def _true_type(name):
-        v = State.name_to_val(name)
+    def _true_type(self, name):
+        v = self.name_to_val(name)
         atyp = State._arrayFinder.match(str(v.type))
         if atyp:
             typ = atyp.group(1)
-            print(name + " type: " + typ)
             dims = map(int, atyp.group(2)[1:-1].split("]["))
-            print("dims: " + str(dims) )
             t = gdb.lookup_type(typ)
             for dim in dims:
                 t = t.array(dim - 1)
@@ -152,221 +164,212 @@ class State(object):
             return State._extract_target_type(t.target())
         return t.name
 
-    @staticmethod
-    def struct_to_dict(s):
-        if s.type.code == gdb.TYPE_CODE_STRUCT:
-            return { f.name: State.struct_to_dict(s[f.name]) for f in s.type.fields() }
+    def get_local_vars(self):
+        print("Getting local vars for frame " + str(self.frame) + " " + self.frame.name())
+        if self.frame.is_valid():
+            try:
+                block = self.frame.block()
+                self.symbols = { str(sym) : sym for sym in block }
+                self.localVariables = { str(sym): sym.value(self.frame) for sym in block }
+                return True
+            except RuntimeError as e:
+                block = None
+                self.symbols = dict()
+                self.localVariables = dict()
+                return False
         else:
-            return s
+            raise Exception("Frame no longer valid")
 
-    @staticmethod
-    def get_local_vars():
-        localString = gdb.execute("info locals", False, True)
-        transform = re.sub(r'([a-zA-Z_][0-9a-zA-Z_:]*) \= .*\n', r"'\1', ", localString)
-        if transform[-2:] is ", ":
-            transform = transform[:-2]
-        transform = "(" + transform + ")"
-        localVars = ast.literal_eval(transform)
-        State.gdbVars = \
-            { v: State.name_to_val(v) for v in localVars }
-        print(State.gdbVars)
-
-    @staticmethod
-    def _serialize_value(s, name, addr, parent = None, parentClassification = None):
-        State._basic_serialize(s, name, addr, State.values, State._updatedValues,
+    def _serialize_value(self, s, name, addr, parent = None, parentClassification = None):
+        c = self._basic_serialize(s, name, addr, self.values, self._updatedValues,
             parent = parent,
             parentClassification = parentClassification)
 
-        # State._updatedValues.add(addr)
-        val = State.name_to_valstring(name)
-        State.values[addr][name]["value"] = val
-        strip = s.type.strip_typedefs()
-        if strip != s.type:
-            State.values[addr][name]["stripped_type"] = strip.name
-        dynamic = s.dynamic_type
-        if dynamic != s.type:
-            State.values[addr][name]["dynamic_type"] = dynamic.name
+        if c:
+            # State._updatedValues.add(addr)
+            val = State.name_to_valstring(name)
+            self.values[addr][name]["value"] = val
+            strip = s.type.strip_typedefs()
+            if strip != s.type:
+                self.values[addr][name]["stripped_type"] = strip.name
+            dynamic = s.dynamic_type
+            if dynamic != s.type:
+                self.values[addr][name]["dynamic_type"] = dynamic.name
 
-    @staticmethod
-    def _serialize_struct(s, name, addr, parent = None, parentClassification = None):
-        if addr not in State._updatedStructs:
-            c = State._basic_serialize(s, name, addr, State.structs,
-                    State._updatedStructs,
+    def _serialize_struct(self, s, name, addr, parent = None, parentClassification = None):
+        if addr not in self._updatedStructs:
+            c = self._basic_serialize(s, name, addr, self.structs,
+                    self._updatedStructs,
                     parent = parent,
                     parentClassification = parentClassification)
-            State.structs[addr][name]["children"] = \
-                { f.name: State.get_address(s[f.name]) for f in s.type.fields() }
-            for f in s.type.fields():
-                State.serialize(name + "." + f.name, parent = addr,
-                        parentClassification = "struct")
+            if c:
+                self.structs[addr][name]["children"] = \
+                    { f.name: self.get_address(s[f.name]) for f in s.type.fields() }
+                for f in s.type.fields():
+                    self.serialize(name + "." + f.name, parent = addr,
+                            parentClassification = "struct")
 
-    @staticmethod
-    def _serialize_array(s, name, addr, parent = None, parentClassification = None):
+    def _serialize_array(self, s, name, addr, parent = None, parentClassification = None):
 
-        if addr not in State._updatedArrays:
+        if addr not in self._updatedArrays:
 
-            c = State._basic_serialize(s, name, addr, State.arrays,
-                    State._updatedArrays,
+            c = self._basic_serialize(s, name, addr, self.arrays,
+                    self._updatedArrays,
                     parent = parent,
                     parentClassification = parentClassification)
 
-            State.arrays[addr][name]["range"] = s.type.range()
+            if not c:
+                return
+
+            self.arrays[addr][name]["range"] = s.type.range()
             targetType = State._extract_target_type(s.type)
-            State.arrays[addr][name]["target_type"] = targetType
+            self.arrays[addr][name]["target_type"] = targetType
             immediateTarget = s.type.target().name
             if immediateTarget is None:
                 # TODO: use codes instead of try catch
                 try:
                     r = s.type.target().range()
-                    State._updatedArrays.remove(addr)
+                    self._updatedArrays.remove(addr)
                 except gdb.error as e:
-                    State._updatedPointers.discard(addr)
+                    self._updatedPointers.discard(addr)
             length = s.type.range()[1] - s.type.range()[0] + 1
             # State.arrays[addr][name]["children"] = \
             #     { i: State.get_address(s[i]) for i in range(length) }
             for i in range(length):
-                State.serialize(name + "[" + str(i) + "]",
+                self.serialize(name + "[" + str(i) + "]",
                     parent = addr,
                     parentClassification = "array")
 
 
-    @staticmethod
-    def _serialize_pointer(s, name, addr, parent = None, parentClassification = None):
-        if addr not in State._updatedPointers:
+    def _serialize_pointer(self, s, name, addr, parent = None, parentClassification = None):
+        if addr not in self._updatedPointers:
 
-            c = State._basic_serialize(s, name, addr, State.pointers,
-                    State._updatedPointers,
+            c = self._basic_serialize(s, name, addr, self.pointers,
+                    self._updatedPointers,
                     parent = parent,
                     parentClassification = parentClassification)
-            State._updatedPointers.add(addr)
+            self._updatedPointers.add(addr)
             try:
                 val = State.name_to_valstring(name)
                 val = State._addressFixer.sub("", val)
-                State.pointers[addr][name]["value"] = val
-                State.serialize("(*" + name + ")",
+                self.pointers[addr][name]["value"] = val
+                self.serialize("(*" + name + ")",
                         parent = addr,
                         parentClassification = "pointer")
             except gdb.MemoryError as e:
                 pass
         else:
             if parent:
-                State.pointers[addr][name]["parents"][parentClassification].add(
+                self.pointers[addr][name]["parents"][parentClassification].add(
                         parent)
 
-    @staticmethod
-    def _serialize_int(s, name, addr, parent = None, parentClassification = None):
-        typ = State._true_type(name)
+    def _serialize_int(self, s, name, addr, parent = None, parentClassification = None):
+        typ = self._true_type(name)
         v = s.cast(typ)
         if typ.code == gdb.TYPE_CODE_PTR:
-            State._serialize_pointer(v, name, addr, parent = addr,
+            self._serialize_pointer(v, name, addr, parent = addr,
                     parentClassification = "pointer")
         elif typ.code == gdb.TYPE_CODE_ARRAY:
-            State._serialize_array(v, name, addr, parent = addr,
+            self._serialize_array(v, name, addr, parent = addr,
                     parentClassification = "array")
         elif typ.code == gdb.TYPE_CODE_STRUCT:
-            State._serialize_struct(v, name, addr, parent = parent,
+            self._serialize_struct(v, name, addr, parent = parent,
                     parentClassification = parentClassification)
-        # elif typ.code == gdb.TYPE_CODE_INT:
-        #     State._serialize_value(v, name, addr, parent = parent,
-        #             parentClassification = parentClassification)
         else:
-            State._serialize_value(v, name, addr, parent = parent,
+            self._serialize_value(v, name, addr, parent = parent,
                     parentClassification = parentClassification)
 
-    @staticmethod
-    def serialize(name, parent = None, address = None, parentClassification = None):
+    def serialize(self, name, parent = None, address = None, parentClassification = None):
 
-        s = State.name_to_val(name)
+        s = self.name_to_val(name)
 
         if address is None:
-            addr = State.get_address(s)
+            addr = self.get_address(s)
         else:
             addr = address
 
         if s.type.code == gdb.TYPE_CODE_PTR:
-            State._serialize_pointer(s, name, addr,
+            self._serialize_pointer(s, name, addr,
                     parent = parent,
                     parentClassification = parentClassification)
 
         elif s.type.code == gdb.TYPE_CODE_ARRAY:
             if parent is None:
                 p = addr
-            State._serialize_array(s, name, addr,
+            self._serialize_array(s, name, addr,
                     parent = addr,
                     parentClassification = "array")
 
         elif s.type.code == gdb.TYPE_CODE_STRUCT:
-            State._serialize_struct(s, name, addr,
+            self._serialize_struct(s, name, addr,
                     parent = parent,
                     parentClassification = parentClassification)
 
         elif s.type.code == gdb.TYPE_CODE_INT:
-            State._serialize_int(s, name, addr,
+            self._serialize_int(s, name, addr,
                     parent = parent,
                     parentClassification = parentClassification)
 
         else:
-            State._serialize_value(s, name, addr,
+            self._serialize_value(s, name, addr,
                     parent = parent,
                     parentClassification = parentClassification)
 
-        State.watch_memory(addr)
+        self.watch_memory(addr)
 
-    @staticmethod
-    def _clear_updated(addr = None):
+    def _clear_updated(self, addr = None):
         if addr:
-            State._updatedValues.pop(addr)
-            State._updatedStructs.pop(addr)
-            State._updatedArrays.pop(addr)
-            State._updatedPointers.pop(addr)
+            self._updatedValues.pop(addr)
+            self._updatedStructs.pop(addr)
+            self._updatedArrays.pop(addr)
+            self._updatedPointers.pop(addr)
         else:
-            State._updatedValues.clear()
-            State._updatedStructs.clear()
-            State._updatedArrays.clear()
-            State._updatedPointers.clear()
+            self._updatedValues.clear()
+            self._updatedStructs.clear()
+            self._updatedArrays.clear()
+            self._updatedPointers.clear()
 
 
-    @staticmethod
-    def update(s = None, name = None, classification = None):
+    def update(self, s = None, name = None, classification = None):
 
         if s is not None and name is None:
             raise Exception("Can not update without variable name")
 
         elif s is not None and name is not None:
-            State._clear_updated()
-            if name in State._updatedNames:
+            self._clear_updated()
+            if name in self._updatedNames:
                 return
             else:
-                State._updatedNames.add(name)
+                self._updatedNames.add(name)
 
-            State.serialize(name)
+            self.serialize(name)
 
-            State._updatedNames.pop(name)
+            self._updatedNames.discard(name)
 
         else:
-            State._clear_updated()
+            self._clear_updated()
             # back up the old dicts
-            oldValues = State.values
-            oldArrays = State.arrays
-            oldStructs = State.structs
+            oldValues = self.values
+            oldArrays = self.arrays
+            oldStructs = self.structs
 
             # clear the dicts
-            State.values = dict()
-            State.arrays = dict()
-            State.structs = dict()
+            self.values = dict()
+            self.arrays = dict()
+            self.structs = dict()
 
             # refill the dicts
-            State.serialize_locals()
+            self.serialize_locals()
 
             # update
-            oldValues.update(State.values)
-            oldArrays.update(State.arrays)
-            oldStructs.update(State.structs)
+            oldValues.update(self.values)
+            oldArrays.update(self.arrays)
+            oldStructs.update(self.structs)
 
             # restore
-            State.values = oldValues
-            State.arrays = oldArrays
-            State.structs = oldStructs
+            self.values = oldValues
+            self.arrays = oldArrays
+            self.structs = oldStructs
 
     @staticmethod
     def name_to_valstring(name):
@@ -382,19 +385,18 @@ class State(object):
                     gdb.execute("up", False, False)
                 except Exception as e:
                     while count != 0:
-                        print(gdb.execute("down", False, False))
+                        gdb.execute("down", False, False)
                         --count
                     return "----unknown value----"
                 ++count
 
         while count != 0:
-            print(gdb.execute("down", False, False))
+            gdb.execute("down", False, False)
 
         ansSections = gdbPrint[:-1].split(" = ")[1:]
         return " ".join(ansSections)
 
-    @staticmethod
-    def name_to_val(name):
+    def name_to_val(self, name):
         count = 0
         while True:
             try:
@@ -406,31 +408,30 @@ class State(object):
                     ++count
                 except Exception as e:
                     while count != 0:
-                        print(gdb.execute("down", False, False))
+                        gdb.execute("down", False, False)
                         --count
                     raise(e)
                 ++count
 
         while count != 0:
-            print(gdb.execute("down", False, False))
+            gdb.execute("down", False, False)
 
         return val
 
-    @staticmethod
-    def get(key):
-        if key in State.pointers:
-            return { "val": State.pointers[key], "found_in": "pointers" }
-        elif key in State.arrays:
-            return { "val": State.arrays[key], "found_in": "arrays" }
-        elif key in State.structs:
-            return { "val": State.structs[key], "found_in": "structs" }
-        elif key in State.values:
-            return { "val": State.values[key], "found_in": "values" }
-        else:
-            raise Exception("---unknown address---")
+    # @staticmethod
+    # def get(key):
+    #     if key in State.pointers:
+    #         return { "val": State.pointers[key], "found_in": "pointers" }
+    #     elif key in State.arrays:
+    #         return { "val": State.arrays[key], "found_in": "arrays" }
+    #     elif key in State.structs:
+    #         return { "val": State.structs[key], "found_in": "structs" }
+    #     elif key in State.values:
+    #         return { "val": State.values[key], "found_in": "values" }
+    #     else:
+    #         raise Exception("---unknown address---")
 
-    @staticmethod
-    def get_serial(val = None, address = None, code = None):
+    def get_serial(self, val = None, address = None, code = None):
 
         if code is not None and address is None:
             raise Exception("Can not get_serial from code without address")
@@ -438,55 +439,52 @@ class State(object):
         if code is None and address is not None:
             raise Exception("Can not get_serial from address without type code")
 
-        addr = address if address is not None else State.get_address(val)
+        addr = address if address is not None else self.get_address(val)
         cl = code if code is not None else val.type.code
 
-        print("looking for address " + addr)
-
         if cl == gdb.TYPE_CODE_PTR:
-            ret = State.pointers[addr]
+            ret = self.pointers[addr]
         elif cl == gdb.TYPE_CODE_STRUCT:
-            ret = State.structs[addr]
+            ret = self.structs[addr]
         elif cl == gdb.TYPE_CODE_ARRAY:
-            ret = State.arrays[addr]
+            ret = self.arrays[addr]
         elif cl == gdb.TYPE_CODE_INT:
-            ret = State.structs.get(addr, None)
+            ret = self.structs.get(addr, None)
             if not ret:
-                ret = State.arrays.get(addr, None)
+                ret = self.arrays.get(addr, None)
             if not ret:
-                ret = State.pointers.get(addr, None)
+                ret = self.pointers.get(addr, None)
             if not ret:
-                ret = State.values.get(addr, None)
+                ret = self.values.get(addr, None)
         else:
-            ret = State.values.get(addr, None)
+            ret = self.values.get(addr, None)
 
         return ret
 
 
-    @staticmethod
-    def serialize_locals():
-        State.get_local_vars()
-        for k, v in State.gdbVars.items():
-            State.serialize(k)
+    def serialize_locals(self):
+        self._updatedNames.clear()
+        self.get_local_vars()
+        for k in self.localVariables:
+            self.serialize(k)
 
-    @staticmethod
-    def display():
+    def display(self):
         print("Structs:")
-        State._pp.pprint(State.structs)
+        self._pp.pprint(self.structs)
         print("Arrays:")
-        State._pp.pprint(State.arrays)
+        self._pp.pprint(self.arrays)
         print("Values:")
-        State._pp.pprint(State.values)
+        self._pp.pprint(self.values)
         print("Pointers:")
-        State._pp.pprint(State.pointers)
+        self._pp.pprint(self.pointers)
 
-    @staticmethod
-    def watch_memory(addr):
+    def watch_memory(self, addr):
         try:
-            State.watchers[addr] = StateWatcher(addr)
+            self.watchers[addr] = StateWatcher(addr)
         except gdb.error as e:
             # TODO: figure out a better way to watch the other addresses
             print(e)
 
 
-State.serialize_locals()
+s = State()
+s.serialize_locals()
