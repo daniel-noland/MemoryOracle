@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
    int aa = 4;
    int a[5] = { 1, 2, 3, 4, 5 };
    float b[2][2] = { {1 ,2.17}, {3.14, 4} };
+   float d[2][3][2] = { {1 ,2.17, 3.14}, {0, 4} };
    double* c = new double[10];
    std::string h = "hello, world";
    MyOtherStruct exx;

@@ -132,19 +132,12 @@ d3.json('json.json', function(err, data) {
     //  .call( force.drag );
     node = gnodes.append("circle")
        .attr('title', name)
-       .attr("r", 15)
+       .attr("r", 5)
        .attr("class", "node");
 
-       console.log(data);
-    var label = gnodes.append("text").text(function(d) {
+    var label = gnodes.append("foreignObject").html(function(d) {
        if(data[d.id]) {
           var names = [];
-          console.log(data[d.id]);
-          if(data[d.id].values) {
-             $.each(data[d.id].values, function(ob, v) {
-                names.push(ob);
-             });
-          }
           if(data[d.id].pointers) {
              $.each(data[d.id].pointers, function(ob, v) {
                 names.push(ob);
@@ -160,10 +153,21 @@ d3.json('json.json', function(err, data) {
                 names.push(ob);
              });
           }
-          return names;
+          if(data[d.id].values) {
+             $.each(data[d.id].values, function(ob, v) {
+                if(v.value) {
+                   names.push(ob + " = " + v.value);
+                }
+             });
+          }
+          return '<div>' + names + '<\/div>';
        }
        return "---no name---";
     });
+
+    $("foreignObject").attr("width", 200);
+    $("foreignObject").attr("height", 200);
+
 
     node.append('circle')
         .attr('r', 30)
@@ -239,26 +243,35 @@ function assemble_graph(source, value) {
    // parents.arrays = [];
    $.each(value, function(k, v) {
       var n2;
+      if(k == "b") {
+         console.log(v);
+      }
       if(v.parents) {
          if (v.parents.pointer) {
             n2 = v.parents.pointer.set[0];
-            nodeSet.add(v.parents.pointer.set[0]);
-            if( source != n2) {
-               edgeSet.add([source, n2]);
+            if (n2) {
+               nodeSet.add(v.parents.pointer.set[0]);
+               if( source != n2) {
+                  edgeSet.add([n2, source]);
+               }
             }
          }
          if (v.parents.struct) {
             n2 = v.parents.struct.set[0];
-            nodeSet.add(v.parents.struct.set[0]);
-            if( source != n2) {
-               edgeSet.add([source, n2]);
+            if (n2) {
+               nodeSet.add(v.parents.struct.set[0]);
+               if( source != n2) {
+                  edgeSet.add([n2, source]);
+               }
             }
          }
          if (v.parents.array) {
             n2 = v.parents.array.set[0];
-            nodeSet.add(v.parents.array.set[0]);
-            if( source != n2) {
-               edgeSet.add([source, n2]);
+            if (n2) {
+               nodeSet.add(v.parents.array.set[0]);
+               if( source != n2) {
+                  edgeSet.add([n2, source]);
+               }
             }
          }
       }

@@ -139,10 +139,10 @@ class State(object):
             if k in d1:
                 typ1 = type(d1[k])
                 typ = type(v)
-                multiTypes = set([ type(int()), type(long()), type(str("")), type(float(0.)) ])
-                if typ1 == type(set()) and typ in multiTypes:
-                    d1[k].add(v)
-                    return
+                # multiTypes = set([ type(int()), type(long()), type(str("")), type(float(0.)) ])
+                # if typ1 == type(set()) and typ in multiTypes:
+                #     d1[k].add(v)
+                #     return
 
                 if typ1 != typ:
                     raise Exception("Not compat dict " + str(typ1) + " != " + str(typ) + "," + str(d1[k]) + " <merged " + str(d2[k]))
@@ -152,15 +152,16 @@ class State(object):
                 elif typ == type(dict()):
                     State._merge_dicts(d1[k], d2[k])
                 elif typ == type(list()):
-                    d1[k] += v
+                    d1[k] += d2[k]
                 elif typ == type(str("")):
-                    d1[k] = set([v, d1[k]])
+                    d1[k] = d2[k]
                 elif typ == type(tuple()):
-                    d1[k] = v
+                    d1[k] = d2[k]
                 else:
-                    d1[k] = set([d1[k], d2[k]])
+                    d1[k] = d2[k]
             else:
-                d1[k] = v
+                d1[k] = d2[k]
+            print(d1[k])
 
     @staticmethod
     def display_global():
@@ -174,7 +175,7 @@ class State(object):
         v = self.values.get(addr, None)
         s = self.structs.get(addr, None)
         a = self.arrays.get(addr, None)
-        p = self.arrays.get(addr, None)
+        p = self.pointers.get(addr, None)
 
         updateDict = dict()
 
@@ -191,7 +192,8 @@ class State(object):
             State._objectDictionary[addr] = updateDict
         else:
             # State._pp.pprint(State._objectDictionary)
-            State._merge_dicts(State._objectDictionary[addr], updateDict)
+            State._objectDictionary[addr].update(updateDict)
+            # State._merge_dicts(State._objectDictionary[addr], updateDict)
 
     def _basic_serialize(self, v, name, addr, repo, updateTracker, parent = None, parentClassification = None):
 
@@ -406,10 +408,9 @@ class State(object):
                     parentClassification = parentClassification)
 
         elif s.type.code == gdb.TYPE_CODE_ARRAY:
-            if parent is None:
-                p = addr
+            p = addr if parent is None else parent
             self._serialize_array(s, name, addr,
-                    parent = addr,
+                    parent = p,
                     parentClassification = "array")
 
         elif s.type.code == gdb.TYPE_CODE_STRUCT:
