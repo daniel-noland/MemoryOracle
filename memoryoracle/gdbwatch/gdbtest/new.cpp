@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 struct MyStruct;
 struct MyOtherStruct;
@@ -16,9 +17,17 @@ struct MyOtherStruct {
 };
 
 int func(int a) {
-   int b = a;
-   b += 4;
-   return b + 2;
+   if (a == 0 || a == 1) {
+      return 1;
+   }
+   int b = func(a - 1);
+   int c = func(a - 2);
+   return a + b + c;
+}
+
+int punc(int a) {
+   int b = 3;
+   return b*a;
 }
 
 int main(int argc, char *argv[]) {
@@ -35,7 +44,8 @@ int main(int argc, char *argv[]) {
    exx.b = 2;
    exx.a[0] = MyStruct();
    exx.a[0].b = 3;
-   exx.a[0].b = func(4);
+   exx.a[0].b = func(aa);
+   std::cout << exx.a[0].b << std::endl;
    exx.cc = &exx;
    exx.a[0].c = &exx;
    /* exx.a[1].a = &c; */
