@@ -32,36 +32,36 @@ class StateFinish(gdb.FinishBreakpoint):
 
 class StateWatcher(gdb.Breakpoint):
 
-    def __init__(self, addr):
+    def __init__(self, addr, name):
         super(StateWatcher, self).__init__("*" + addr,
                 gdb.BP_WATCHPOINT,
                 gdb.WP_WRITE,
                 True,
                 False)
         self.silent = True
+        self.name = name
 
     def stop(self):
+        frameName = str(gdb.selected_frame())
+        addr = self.expression[1:]
+        state = State._instances.get(frameName, None)
+
+        if not state:
+            state = State()
+            c = state.serialize_locals()
+            if not c:
+                return False
+
         try:
-            frameName = str(gdb.selected_frame())
-            addr = self.expression
-            state = State._instances.get(frameName, None)
-
-            if not state:
-                state = State()
-                c = state.serialize_locals()
-                if not c:
-                    return False
-
-            val = state.name_to_val(addr)
+            val = state.name_to_val(self.name)
             names = state.get_serial(val = val).keys()
             for name in names:
                 state.update(val, name)
 
         except Exception as e:
             traceback.print_exc()
-            print("ERROR: could not find address " + addr[1:])
-            print("ERROR: val = " + str(val))
-            # State.serialize(val, addr)
+            state.serialize(self.name, address = addr)
+            print("ERROR: could not find address " + addr)
         return False
 
 class StateCatch(gdb.Breakpoint):
@@ -69,7 +69,7 @@ class StateCatch(gdb.Breakpoint):
     trackedFrames = dict()
 
     def __init__(self, breakCond, frame = None):
-        super(StateWatcher, self).__init__(breakCond, internal=True)
+        super(StateCatch, self).__init__(breakCond, internal=True)
         self.silent = True
         self.frame = str(frame) if frame else str(gdb.selected_frame())
 
@@ -220,7 +220,6 @@ class State(object):
                 if parentClassification is not None:
                     if parent not in repo[addr][name]["parents"][parentClassification]:
                         repo[addr][name]["parents"][parentClassification].add(parent)
-                        return True
                     else:
                         return False
                 return True
@@ -230,8 +229,6 @@ class State(object):
                     repo[addr][name]["frames"].add(self.frameName)
                     if parent:
                         repo[addr][name]["parents"][parentClassification].add(parent)
-                        return True
-                    return False
                 else:
                     repo[addr][name] = {
                             "type": { State._extract_class(v.type) },
@@ -239,7 +236,7 @@ class State(object):
                                     if parent else deepcopy(State._classifications),
                             "frames": { self.frameName },
                         }
-                    return True
+                return True
 
     def _true_type(self, name):
         v = self.name_to_val(name)
@@ -428,7 +425,7 @@ class State(object):
                     parent = parent,
                     parentClassification = parentClassification)
 
-        self.watch_memory(addr)
+        self.watch_memory(addr, name)
         self._add_to_global_track(addr)
 
     def _clear_updated(self, addr = None):
@@ -542,9 +539,9 @@ class State(object):
         print("Pointers:")
         self._pp.pprint(self.pointers)
 
-    def watch_memory(self, addr):
+    def watch_memory(self, addr, name):
         try:
-            self.watchers[addr] = StateWatcher(addr)
+            self.watchers[addr] = StateWatcher(addr, name)
         except gdb.error as e:
             # TODO: figure out a better way to watch the other addresses
             print(e)
@@ -557,9 +554,15 @@ class StateSerializer(json.JSONEncoder):
         return json.JSONEncoder.default(self, StateSerializer.equal_fix(obj))
 
 def stopped(event):
-    s = State()
-    s.serialize_locals()
-    with open("json.json", "w") as outfile:
-        json.dump(State.global_state(), outfile, cls=StateSerializer)
+    state = State()
+    state.serialize_locals()
+    with open("arrays.json", "w") as outfile:
+        json.dump(state.arrays, outfile, cls=StateSerializer)
+    with open("pointers.json", "w") as outfile:
+        json.dump(state.pointers, outfile, cls=StateSerializer)
+    with open("structs.json", "w") as outfile:
+        json.dump(state.structs, outfile, cls=StateSerializer)
+    with open("values.json", "w") as outfile:
+        json.dump(state.values, outfile, cls=StateSerializer)
 
 gdb.events.stop.connect(stopped)
