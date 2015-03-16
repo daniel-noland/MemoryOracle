@@ -1,0 +1,106 @@
+digraph {
+
+rankdir = BT;
+ratio = "compress"
+
+Description
+SimpleDescription
+AddressableDescription
+ExternalDescriptionDecorator
+StandardDescriptionDecorator
+
+SimpleDescription -> Description
+AddressableDescription -> SimpleDescription
+ExternalDescriptionDecorator -> Description
+StandardDescriptionDecorator -> Description
+FileDescription -> SimpleDescription
+
+Tracked
+Templateable
+Templateable -> Tracked
+ExternalDecorator
+StandardDecorator
+Frame
+Type
+ChildTypeDecorator
+Typedef
+Symbol
+TemplateDecorator
+TemplatedDecorator
+Union
+Enum
+ProgramFile
+SourceFile
+ObjectFile
+ProgramSpace
+Namespace
+
+ExternalDecorator -> Tracked
+StandardDecorator -> Tracked
+Frame -> Tracked
+Type -> Templateable
+SimpleType -> Type
+ChildTypeDecorator -> Type
+Alias -> Templateable
+Typedef -> Alias
+Symbol -> Tracked
+TemplateDecorator -> Templateable
+TemplatedDecorator -> Templateable
+Union -> Templateable
+Enum -> Type
+Namespace -> Tracked
+StronglyTypedEnum -> Enum
+ProgramFile -> Tracked
+SourceFile -> ProgramFile
+ObjectFile -> ProgramFile
+ProgramSpace -> Tracked
+
+Addressable -> Tracked
+Primative -> Addressable
+CharString -> Primative
+ConstDecorator -> Addressable
+StaticDecorator -> Addressable
+VolatileDecorator -> Addressable
+RegisterDecorator -> Addressable
+ExternDecorator -> Addressable
+ReferenceDecorator -> Addressable
+LValueDecorator -> Addressable
+RValueDecorator -> Addressable
+MemberDecorator -> Addressable
+
+Function -> Templateable
+Function -> Addressable
+Pointer -> Addressable
+Structure -> Templateable
+Structure -> Addressable
+Array -> Addressable
+
+Container
+Container -> Structure
+SLArray
+SLArray -> Container
+Bitset
+Bitset -> Container
+Deque
+Deque -> Container
+ForwardList
+ForwardList -> Container
+List
+List -> Container
+Map
+Map -> Container
+Queue
+Queue -> Container
+Set
+Set -> Container
+Stack
+Stack -> Container
+UnorderedMap
+UnorderedMap -> Container
+UnorderedSet
+UnorderedSet -> Container
+Vector
+Vector -> Container
+
+}
+

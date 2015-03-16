@@ -12,6 +12,8 @@ import exceptions
 import traceback
 from copy import deepcopy
 
+from .FrameSelector import FrameSelector
+
 class StateFinish(gdb.FinishBreakpoint):
 
     def __init__(self, frame):
@@ -96,17 +98,17 @@ class State(object):
 
     _objectDictionary = dict()
 
-    class FrameSelector(object):
-        def __init__(self, frame):
-            self.frame = frame
+    # class FrameSelector(object):
+    #     def __init__(self, frame):
+    #         self.frame = frame
 
-        def __enter__(self):
-            self.oldFrame = gdb.selected_frame()
-            self.frame.select()
+    #     def __enter__(self):
+    #         self.oldFrame = gdb.selected_frame()
+    #         self.frame.select()
 
 
-        def __exit__(self, type, value, tb):
-            self.oldFrame.select()
+    #     def __exit__(self, type, value, tb):
+    #         self.oldFrame.select()
 
     def __init__(self):
         self.frame = gdb.selected_frame()
@@ -294,7 +296,7 @@ class State(object):
 
     def _serialize_value(self, s, name, addr,
             parent = None, parentClassification = None):
-        c = self._basic_serialize(s, name, addr, self.values, self._updatedValues,
+        c = self._basic_serialize(s, name, addr,
             parent = parent,
             parentClassification = parentClassification)
 
@@ -406,9 +408,10 @@ class State(object):
 
         elif s.type.code == gdb.TYPE_CODE_ARRAY:
             p = addr if parent is None else parent
+            pClass = "array" if parent is None else parentClassification
             self._serialize_array(s, name, addr,
                     parent = p,
-                    parentClassification = "array")
+                    parentClassification = pClass)
 
         elif s.type.code == gdb.TYPE_CODE_STRUCT:
             self._serialize_struct(s, name, addr,
@@ -483,13 +486,13 @@ class State(object):
             self.structs = oldStructs
 
     def name_to_valstring(self, name):
-        with State.FrameSelector(self.frame):
+        with FrameSelector(self.frame):
             gdbPrint = gdb.execute("print " + name, False, True)
             ansSections = gdbPrint[:-1].split(" = ")[1:]
             return " ".join(ansSections)
 
     def name_to_val(self, name):
-        with State.FrameSelector(self.frame):
+        with FrameSelector(self.frame):
             return gdb.parse_and_eval(name)
 
     def get_serial(self, val = None, address = None, code = None):

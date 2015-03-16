@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+   <meta charset="utf-8">
+   <head>
+      <style>
+
+      .link {
+      stroke: #000;
+      stroke-width: 1.5px;
+      }
+
+      .node {
+      fill: #000;
+      stroke: #fff;
+      stroke-width: 1.5px;
+      }
+
+      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script type="text/javascript">
+      </script>
+   </head>
+   <body>
+      <script src="d3.js"></script>
+   <div id="viz"></div>
+    <script>
+var urls = {
+   arrays: "arrays.json",
+   pointers: "pointers.json",
+   structs: "structs.json",
+   values: "values.json"
+};
+
+var memory = { arrays: null, pointers: null, structs: null, values: null }
+
+function load(v) {
+   return $.ajax({
+      url: v + ".json"
+   })
+   .done(function( data ){
+      memory[v] = data;
+   });
+}
+function name(d) { return d.name; }
+function group(d) { return d.group; }
+
+var color = d3.scale.category10();
+//function colorByGroup(d) { return color(group(d)); }
+
+var width = 1920,
+    height = 1080;
+
+var svg = d3.select('#viz')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var node, link;
+
+var voronoi = d3.geom.voronoi()
+    .x(function(d) { return d.x; })
+    .y(function(d) { return d.y; })
+    .clipExtent([[-10, -10], [width+10, height+10]]);
+
+function recenterVoronoi(nodes) {
+    var shapes = [];
+    voronoi(nodes).forEach(function(d) {
+        if ( !d.length ) return;
+        var n = [];
+        d.forEach(function(c){
+            n.push([ c[0] - d.point.x, c[1] - d.point.y ]);
+        });
+        n.point = d.point;
+        shapes.push(n);
+    });
+    return shapes;
+}
+
+var force = d3.layout.force()
+    .charge(-2000)
+    .friction(0.3)
+    .linkDistance(50)
+    .size([width, height]);
+
+var nodeSet = new Set();
+var edgeSet = new Set();
+
+//d3.json('json.json', function(err, data) {
+function draw_graph(data) {
+
+    $.each(data, function(className, classData) {
+      //nodeSet.add(k);
+      $.each(classData, function(address, value) {
+         $.each(value, function(name, nameData) {
+            assemble_graph(address, nameData);
+         });
+      });
+    });
+    data.nodes = new Array();
+    data.links = new Array();
+    var n;
+    var n1;
+    var n2;
+    var nodeMap = new Map();
+    for ( v of edgeSet ) {
+       if(!nodeSet.has(v[0])) {
+          nodeSet.add(v[0])
+       }
+       if(!nodeSet.has(v[1])) {
+          nodeSet.add(v[1])
+       }
+    }
+    var count = 0;
+    for ( n of nodeSet ) {
+       nodeMap.set(n, count);
+       ++count;
+    }
+    for ( v of nodeSet ) {
+       n = {id: v, weight: 1};
+       data.nodes.push(n);
+    }
+    for ( v of edgeSet ) {
+       src = nodeMap.get(v[0]);
+       trg = nodeMap.get(v[1]);
+       data.links.push({source: src, target: trg, value: 1});
+    }
+
+    var gnodes = svg.selectAll('g.node')
+       .data(data.nodes)
+       .enter()
+       .append('g')
+       .classed('gnode', true)
+       .call(force.drag);
+
+    link = svg.selectAll('.link')
+        .data( data.links )
+        .enter().append('line')
+        .attr('class', 'link')
+        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+    node = gnodes.append("circle")
+       .attr('title', name)
+       .attr("r", 5)
+       .attr("class", "node");
+
+    var label = gnodes.append("foreignObject").html(function(d) {
+       var names = [];
+       if(data.pointers[d.id]) {
+          $.each(data.pointers[d.id], function(ob, v) {
+             names.push(ob);
+          });
+       }
+       if(data.arrays[d.id]) {
+          $.each(data.arrays[d.id], function(ob, v) {
+             names.push(ob);
+          });
+       }
+       if(data.structs[d.id]) {
+          $.each(data.structs[d.id], function(ob, v) {
+             names.push(ob);
+          });
+       }
+       if(data.values[d.id]) {
+          $.each(data.values[d.id], function(ob, v) {
+             names.push(ob);
+          });
+       }
+        return '<div>' + names + '<\/div>';
+    });
+
+    $("foreignObject").attr("width", 200);
+    $("foreignObject").attr("height", 200);
+
+
+    node.append('circle')
+        .attr('r', 30)
+        //.attr('fill', colorByGroup)
+        .attr('fill-opacity', 0.5);
+
+    node.append('circle')
+        .attr('r', 4)
+        .attr('stroke', 'black');
+
+force.on('tick', function() {
+  //node.attr('transform', function(d) { return 'translate('+d.x+','+d.y+')'; })
+  //    .attr('clip-path', function(d) { return 'url(#clip-'+d.index+')'; });
+
+    link.attr('x1', function(d) { return d.source.x; })
+        .attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; })
+        .attr('y2', function(d) { return d.target.y; });
+
+    gnodes.attr("transform", function(d) {
+       return "translate(" + [d.x, d.y] + ')';
+    });
+
+    var clip = svg.selectAll('.clip')
+        .data( recenterVoronoi(node.data()), function(d) { return d.point.index; } );
+
+    clip.enter().append('clipPath')
+        .attr('id', function(d) { return 'clip-'+d.point.index; })
+        .attr('class', 'clip');
+    clip.exit().remove()
+
+    clip.selectAll('path').remove();
+    clip.append('path')
+        .attr('d', function(d) { return 'M'+d.join(',')+'Z'; });
+});
+
+
+    force
+        .nodes( data.nodes )
+        .links( data.links )
+        .start();
+
+}
+
+var color = d3.scale.category10();
+
+var nodes = [],
+    links = [];
+
+var node = svg.selectAll(".node"),
+    link = svg.selectAll(".link");
+var nodeSet = new Set();
+var edgeSet = new Set();
+
+var edgeList = new Object();
+
+
+function start() {
+  link = link.data(force.links(), function(d) { return d.source.id + "-" + d.target.id; });
+  link.enter().insert("line", ".node").attr("class", "link");
+  link.exit().remove();
+
+  node = node.data(force.nodes(), function(d) { return d.id;});
+  node.enter().append("circle").attr("class", function(d) { return "node " + d.id; }).attr("r", 8);
+  node.exit().remove();
+
+  force.start();
+}
+
+function assemble_graph(source, value) {
+   var v = value;
+   var n2;
+   if(v.parents) {
+      if (v.parents.pointer) {
+         n2 = v.parents.pointer.set[0];
+         if (n2) {
+            nodeSet.add(n2);
+            edgeSet.add([n2, source]);
+         }
+      }
+      if (v.parents.struct) {
+         n2 = v.parents.struct.set[0];
+         if (n2) {
+            nodeSet.add(n2);
+            if( source != n2 ) {
+               edgeSet.add([n2, source]);
+            }
+         }
+      }
+      if (v.parents.array) {
+         n2 = v.parents.array.set[0];
+         if (n2) {
+            nodeSet.add(v.parents.array.set[0]);
+            if( source != n2 ) {
+               edgeSet.add([n2, source]);
+            }
+         }
+      }
+   }
+}
+$.when(load("arrays"), load("pointers"), load("structs"), load("values"))
+.done(function() { draw_graph(memory); });
+      </script>
+   </body>
+
+</html>
