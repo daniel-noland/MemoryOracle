@@ -5,21 +5,16 @@ File containing all classes representing memory addressable
 objects in the debugged program.
 """
 
+import gdb
 import typed
+import tracked
 import templatable
-
-
-class AddressableInit(object):
-
-    def __init__(self, method):
-        self.method = method
-
-    def __call__(self, *args):
-        obj = args[0]
-        description = args[1]
-        obj._init(description)
-        method(*args)
-        # obj.track()
+import frame
+from copy import deepcopy
+import re
+import descriptions
+import weakref
+import traceback
 
 
 class Addressable(typed.Typed):
@@ -30,11 +25,23 @@ class Addressable(typed.Typed):
     in the debugge, or that an appropriate address is specified.
     """
 
-    updatedNames = set()
+    _addressFixer = re.compile(r" .*")
+    _updatedNames = set()
 
     def _init(self, addressableDescription):
         self._address = None
         self._description =  addressableDescription
+        self._name = addressableDescription.name
+        self._object = self.description.object
+        self._type = self._object.type
+
+    @property
+    def object(self):
+        return self._object
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def index(self):
@@ -46,23 +53,19 @@ class Addressable(typed.Typed):
 
     def _basic_track(self):
 
-        if self.name in self.updatedNames:
+        if self.name in self._updatedNames:
             return False
         else:
-            self.updatedNames.add(self.name)
+            self._updatedNames.add(self.name)
 
-        if self.index not in self.updateTracker:
-            self.updateTracker.add(self.index)
+        if self.index not in self._updateTracker:
+            self._updateTracker.add(self.index)
             v = self.object
             v.fetch_lazy()
-            typeName = Addressable.extract_type_name(v.type)
             if self.index not in self.repository:
                 self.repository[self.index] = dict()
-
-            self.repository[self.index][self.name] = self.description
-            self.repository[self.index][self.name]["type"] = typeName
+            self.repository[self.index][self.name] = self.description.dict
             return True
-
         else:
             return False
 
@@ -70,11 +73,18 @@ class Addressable(typed.Typed):
         if self._basic_track():
             self._track()
             # TODO: Make sure the range on the watcher is correct
-            self._watchers[self.index] = Watcher(self)
+            self._watchers[self.index] = AddressableWatcher(self)
         else:
             if self.parent:
-                self.repository[self.index][self.name]["parents"]\
-                        [self.parent_class].add(self.parent)
+                repo = self.repository[self.index][self.name]
+                repo["parents"][self.parent_class].add(self.parent)
+
+    def update(self):
+        self._clear_updated()
+        self.track()
+
+    def _clear_updated(self):
+        self._updateTracker.discard(self.address)
 
     @property
     def watchers(self):
@@ -134,22 +144,25 @@ class Structure(Addressable, templatable.Templatable):
     """
 
     repository = dict()
+    _type_handler_code = gdb.TYPE_CODE_STRUCT
+    _updateTracker = set()
+    _watchers = dict()
 
-    @AddressableInit
     def __init__(self, structureDescription):
-        pass
+        self._init(structureDescription)
 
     def _track(self):
-        if self.index not in self.repository:
-            self.basic_track()
-            # self.repository[self.index][self.name]["children"] = \
-            #     { f.name: self.get_address(s[f.name]) for f in s.type.fields() }
-            for f in self.object.type.fields():
-                desc = AddressableDescription(name + "." + f.name,
-                        parent = self.index,
-                        parent_class = "struct")
-                childObj = MemberDecorator(Addressable.factory(desc))
-                childObj.track()
+        for f in self.object.type.fields():
+            desc = descriptions.AddressableDescription(self.name + "." + f.name,
+                    parent = self.index,
+                    parent_class = "struct")
+            # childObj = MemberDecorator(addressable_factory(desc))
+            # TODO: Use member decorator
+            childObj = addressable_factory(desc)
+            childObj.track()
+
+
+typed.register_type_handler(Structure)
 
 
 class VolatileDecorator(Addressable):
@@ -181,51 +194,19 @@ class MemberDecorator(Addressable):
     pass
 
 
-class Pointer(Addressable):
-    """
-    *Concrete* class to represent a pointer in the debugge.
-    """
-
-    repository = dict()
-    updateTracker = dict()
-
-    _type_handler_code = gdb.TYPE_CODE_PTR
-
-    @AddressableInit
-    def __init__(self, pointerDescription):
-        pass
-
-    def _track(self):
-        val = self.valstring()
-        self.repository[self.index][self.name]["value"] = self.valstring()
-        desc = AddressableDescription("(*" + self.name + ")",
-                parent = self.index,
-                parent_class = "pointer")
-        try:
-            target = Addressable.factory(desc)
-            target.track()
-        except gdb.MemoryError as e:
-            # TODO: Decorate target as invalid in this case.
-            pass
-
-
-# Register the Pointer class with the type handler
-Typed._register_type_handler(Pointer)
-
-
 class Array(Addressable):
     """
     *Concrete* class to represent an array in the debugge.
     """
 
     repository = dict()
-    updateTracker = dict()
+    _updateTracker = set()
+    _watchers = dict()
 
     _type_handler_code = gdb.TYPE_CODE_ARRAY
 
-    @AddressableInit
     def __init__(self, pointerDescription):
-        pass
+        self._init(pointerDescription)
 
     def _track(self):
         # convenience vars:
@@ -238,7 +219,7 @@ class Array(Addressable):
         # compute the type of data the array contains
         # e.g. for float[2] the answer is float
         # for float[3][2][7] the answer is float
-        repo["target_type"] = self.target_type_name()
+        repo["target_type"] = target_type_name(self.type)
 
         # compute the immediate type of data the array
         # contains.  e.g. for float[2] the answer is float.
@@ -256,7 +237,7 @@ class Array(Addressable):
         # cause an infinite loop.  *This algorithm
         # needs torture testing.*
         if immediateTarget.code == gdb.TYPE_CODE_ARRAY:
-            self.updateTracker.remove(self.index)
+            self._updateTracker.remove(self.index)
 
         # Compute the total length of the array.
 
@@ -267,39 +248,35 @@ class Array(Addressable):
         # langauge, then the algorithm should still work.
         for i in range(*repo["range"]):
             childName = self.name + "[" + str(i) + "]"
-            childDesc = AddressableDescription(
+            childDesc = descriptions.AddressableDescription(
                         childName,
                         parent = self.index,
                         parent_class = "array")
 
-            childObj = Addressable.factory(childDesc)
+            childObj = addressable_factory(childDesc)
             childObj.track()
 
 
 # Register the Array class with the type handler
-Typed._register_type_handler(Array)
+typed.register_type_handler(Array)
 
 
-class Primative(Addressable):
+class Primitive(Addressable):
     """
-    *Abstract* class to represent a primative data type in the debugge.
+    *Abstract* class to represent a primitive data type in the debugge.
 
-    Primative data types are directly printable types such as int and double.
+    Primitive data types are directly printable types such as int and double.
     """
 
     # repository = dict()
-    # updateTracker = dict()
-
-    # @AddressableInit
-    # def __init__(self, pointerDescription):
-    #     pass
+    # _updateTracker = dict()
 
     def _track(self):
         # convenience vars
         s = self.object
         repo = self.repository[self.index][self.name]
 
-        repo["value"] = self.valstring()
+        repo["value"] = self.val_string()
 
         # If the type is aliased, remove those aliases
         # and store that type
@@ -316,8 +293,119 @@ class Primative(Addressable):
         if dynamic != s.type:
             self.values[addr][name]["dynamic_type"] = dynamic.name
 
+    """
+    Get the printed value of a primitive object
+    """
+    def val_string(self):
+        with frame.FrameSelector(self.frame):
+            gdbPrint = gdb.execute("print " + self.name, False, True)
+            ansSections = gdbPrint[:-1].split(" = ")[1:]
+            return " ".join(ansSections)
 
-class CharString(Primative):
+
+class Pointer(Primitive):
+    """
+    *Concrete* class to represent a pointer in the debugge.
+    """
+
+    repository = dict()
+    _updateTracker = set()
+    _watchers = dict()
+
+    _type_handler_code = gdb.TYPE_CODE_PTR
+
+    def __init__(self, pointerDescription):
+        self._init(pointerDescription)
+
+    def _track(self):
+        # TODO: Build names using arrow op
+        val = self.val_string()
+        self.repository[self.index][self.name]["value"] = self.val_string()
+        desc = descriptions.AddressableDescription("(*" + self.name + ")",
+                parent = self.index,
+                parent_class = "pointer")
+        try:
+            target = addressable_factory(desc)
+            target.track()
+        except gdb.MemoryError as e:
+            # TODO: Decorate target as invalid in this case.
+            pass
+
+
+# Register the Pointer class with the type handler
+typed.register_type_handler(Pointer)
+
+
+class Int(Primitive):
+    """
+    *Concrete* class to represent integral types.
+    """
+
+    _updateTracker = set()
+    repository = dict()
+    _watchers = dict()
+
+    def __init__(self, intDescription):
+        self._init(intDescription)
+
+    _arrayFinder = re.compile(r"(.*) ((?:\[\d*\])+)")
+    _pointerFinder = re.compile(r"(\(.* \*\)) ")
+    _spaceFixer = re.compile(r" ")
+    _type_handler_code = gdb.TYPE_CODE_INT
+
+    def _true_type(self):
+        v = self.object
+        atyp = Int._arrayFinder.match(str(v.type))
+        if atyp:
+            typ = atyp.group(1)
+            dims = map(int, atyp.group(2)[1:-1].split("]["))
+            t = gdb.lookup_type(typ)
+            for dim in dims:
+                t = t.array(dim - 1)
+            return t
+
+        valString = self.val_string()
+        ptyp = Int._pointerFinder.match(valString)
+        if ptyp:
+            typ = Int._spaceFixer.sub("", ptyp.group(0)[1:-3])
+            return gdb.lookup_type(typ).pointer()
+
+        return False
+
+    def _track(self):
+        hidden_typ = self._true_type()
+        if isinstance(hidden_typ, gdb.Type):
+            # NOTE: I know this is a hack, but nothing I can do.
+            # The problem is that sometimes gdb thinks pointers
+            # and arrays are ints.
+            self.description._object = self.object.cast(hidden_typ)
+            obj = addressable_factory(self.description)
+            obj.track()
+        else:
+            Int.repository[self.index][self.name]["value"] = self.val_string()
+
+
+typed.register_type_handler(Int)
+
+
+class Float(Primitive):
+    """
+    *Concrete* class to represent floating point primitivies.
+    """
+    repository = dict()
+    _updateTracker = set()
+    _watchers = dict()
+
+    _type_handler_code = gdb.TYPE_CODE_FLT
+
+    def __init__(self, floatDescription):
+        self._init(floatDescription)
+
+
+typed.register_type_handler(Float)
+
+
+class CharString(Pointer):
     """
     *Concrete* class to represent an old style null terminated C string.
     """
@@ -338,9 +426,78 @@ class StaticDecorator(Addressable):
     pass
 
 
+
+class AddressableWatcher(gdb.Breakpoint):
+
+    def __init__(self, addressable):
+        self._addressable = weakref.ref(addressable)()
+        self._type_name = type_name(addressable.type)
+        addr = addressable.address
+        expression = "(" + self._type_name + ") *" + addr
+        super(AddressableWatcher, self).__init__(
+                expression,
+                gdb.BP_WATCHPOINT,
+                gdb.WP_WRITE,
+                True,
+                False)
+        self.silent = True
+
+    def stop(self):
+        try:
+            if self.addressable:
+                print("updating addressable!")
+                self.addressable.update()
+            else:
+                print("addressable is gone!")
+        except Exception as e:
+            traceback.print_exc()
+        return False
+
+    @property
+    def addressable(self):
+        return self._addressable
+
 def addressable_factory(description):
+    _stdLibChecker = re.compile("^std::.*")
+    print(description.name)
     s = description.object
-    handler = Typed._type_lookup(s.type.code)
+    print(type_name(s.type))
+    standardLib = _stdLibChecker.match(type_name(s.type))
+    description._address = s.address
+    print("Looking for " + typed.Typed.lookup[s.type.strip_typedefs().code])
+    print(s.type.strip_typedefs())
+    print(s.address)
+    handler = typed.type_lookup(s.type.strip_typedefs().code)
+    print(handler)
+    if standardLib:
+        return tracked.StandardDecorator(handler(description), toTrack = False)
     return handler(description)
 
-Addressable.factory = addressable_factory
+def get_local_vars(frm = None):
+    with frame.FrameSelector(frm) as fs:
+        f = fs.frame
+        if f.is_valid():
+            return { str(sym) for sym in f.block() }
+        else:
+            raise Exception("Frame no longer valid")
+
+def serialize_locals(frm = None):
+    Addressable._updatedNames.clear()
+    for k in get_local_vars(frm = frm):
+        desc = descriptions.AddressableDescription(k)
+        obj = addressable_factory(desc)
+        obj.track()
+
+def type_name(t, nameDecorators = ""):
+    if t.code == gdb.TYPE_CODE_PTR:
+        return type_name(t.target(), nameDecorators + "*")
+    elif t.code == gdb.TYPE_CODE_ARRAY:
+        length = str(t.range()[1] - t.range()[0] + 1)
+        return type_name(t.target(), nameDecorators + "[" + length + "]")
+    else:
+        return t.name + nameDecorators
+
+def target_type_name(t):
+    if t.code == gdb.TYPE_CODE_PTR or t.code == gdb.TYPE_CODE_ARRAY:
+        return target_type_name(t.target())
+    return t.name
