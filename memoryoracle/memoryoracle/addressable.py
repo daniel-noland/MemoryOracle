@@ -72,12 +72,14 @@ class Addressable(typed.Typed):
     def track(self):
         if self._basic_track():
             self._track()
-            # TODO: Make sure the range on the watcher is correct
             self._watchers[self.index] = AddressableWatcher(self)
         else:
             if self.parent:
-                repo = self.repository[self.index][self.name]
-                repo["parents"][self.parent_class].add(self.parent)
+
+                repo = self.repository.get(self.index,
+                        {None: None}).get(self.name)
+                if repo:
+                    rnepo["parents"][self.parent_class].add(self.parent)
 
     def update(self):
         self._clear_updated()
@@ -144,7 +146,7 @@ class Structure(Addressable, templatable.Templatable):
     """
 
     repository = dict()
-    _type_handler_code = gdb.TYPE_CODE_STRUCT
+    _typeHandlerCode = gdb.TYPE_CODE_STRUCT
     _updateTracker = set()
     _watchers = dict()
 
@@ -152,8 +154,12 @@ class Structure(Addressable, templatable.Templatable):
         self._init(structureDescription)
 
     def _track(self):
+        # if self.name[0] == "*":
+        #     name = "(" + self.name + ")"
+        # else:
+        name = self.name
         for f in self.object.type.fields():
-            desc = descriptions.AddressableDescription(self.name + "." + f.name,
+            desc = descriptions.AddressableDescription(name + "." + f.name,
                     parent = self.index,
                     parent_class = "struct")
             # childObj = MemberDecorator(addressable_factory(desc))
@@ -203,7 +209,7 @@ class Array(Addressable):
     _updateTracker = set()
     _watchers = dict()
 
-    _type_handler_code = gdb.TYPE_CODE_ARRAY
+    _typeHandlerCode = gdb.TYPE_CODE_ARRAY
 
     def __init__(self, pointerDescription):
         self._init(pointerDescription)
@@ -312,16 +318,16 @@ class Pointer(Primitive):
     _updateTracker = set()
     _watchers = dict()
 
-    _type_handler_code = gdb.TYPE_CODE_PTR
+    _typeHandlerCode = gdb.TYPE_CODE_PTR
 
     def __init__(self, pointerDescription):
         self._init(pointerDescription)
 
     def _track(self):
-        # TODO: Build names using arrow op
+        # TODO: Build better names using arrow op
         val = self.val_string()
         self.repository[self.index][self.name]["value"] = self.val_string()
-        desc = descriptions.AddressableDescription("(*" + self.name + ")",
+        desc = descriptions.AddressableDescription("*" + self.name,
                 parent = self.index,
                 parent_class = "pointer")
         try:
@@ -330,6 +336,19 @@ class Pointer(Primitive):
         except gdb.MemoryError as e:
             # TODO: Decorate target as invalid in this case.
             pass
+
+        if desc.object.type.code == gdb.TYPE_CODE_STRUCT:
+            for f in desc.object.type.fields():
+                desc2 = descriptions.AddressableDescription(self.name + "->" + f.name,
+                        parent = desc.object.address,
+                        parent_class = "struct")
+                try:
+                    target2 = addressable_factory(desc2)
+                    target2.track()
+                except gdb.MemoryError as e:
+                    # TODO: Decorate target as invalid in this case.
+                    pass
+
 
 
 # Register the Pointer class with the type handler
@@ -344,16 +363,16 @@ class Int(Primitive):
     _updateTracker = set()
     repository = dict()
     _watchers = dict()
+    _arrayFinder = re.compile(r"(.*) ((?:\[\d*\])+)")
+    _pointerFinder = re.compile(r"(\(.* \*\)) ")
+    _spaceFixer = re.compile(r" ")
+    _typeHandlerCode = gdb.TYPE_CODE_INT
 
     def __init__(self, intDescription):
         self._init(intDescription)
 
-    _arrayFinder = re.compile(r"(.*) ((?:\[\d*\])+)")
-    _pointerFinder = re.compile(r"(\(.* \*\)) ")
-    _spaceFixer = re.compile(r" ")
-    _type_handler_code = gdb.TYPE_CODE_INT
 
-    def _true_type(self):
+    def _find_hidden_type(self):
         v = self.object
         atyp = Int._arrayFinder.match(str(v.type))
         if atyp:
@@ -373,7 +392,7 @@ class Int(Primitive):
         return False
 
     def _track(self):
-        hidden_typ = self._true_type()
+        hidden_typ = self._find_hidden_type()
         if isinstance(hidden_typ, gdb.Type):
             # NOTE: I know this is a hack, but nothing I can do.
             # The problem is that sometimes gdb thinks pointers
@@ -396,7 +415,7 @@ class Float(Primitive):
     _updateTracker = set()
     _watchers = dict()
 
-    _type_handler_code = gdb.TYPE_CODE_FLT
+    _typeHandlerCode = gdb.TYPE_CODE_FLT
 
     def __init__(self, floatDescription):
         self._init(floatDescription)
@@ -445,10 +464,9 @@ class AddressableWatcher(gdb.Breakpoint):
     def stop(self):
         try:
             if self.addressable:
-                print("updating addressable!")
                 self.addressable.update()
             else:
-                print("addressable is gone!")
+                print("Addressable gone!")
         except Exception as e:
             traceback.print_exc()
         return False
@@ -459,16 +477,10 @@ class AddressableWatcher(gdb.Breakpoint):
 
 def addressable_factory(description):
     _stdLibChecker = re.compile("^std::.*")
-    print(description.name)
     s = description.object
-    print(type_name(s.type))
     standardLib = _stdLibChecker.match(type_name(s.type))
     description._address = s.address
-    print("Looking for " + typed.Typed.lookup[s.type.strip_typedefs().code])
-    print(s.type.strip_typedefs())
-    print(s.address)
     handler = typed.type_lookup(s.type.strip_typedefs().code)
-    print(handler)
     if standardLib:
         return tracked.StandardDecorator(handler(description), toTrack = False)
     return handler(description)

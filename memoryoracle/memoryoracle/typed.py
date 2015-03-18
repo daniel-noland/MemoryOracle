@@ -21,7 +21,7 @@ class Typed(tracked.Tracked):
             gdb.TYPE_CODE_ERROR: TypeDetectionError,
             }
 
-    _type_handler_code = gdb.TYPE_CODE_ERROR
+    _typeHandlerCode = gdb.TYPE_CODE_ERROR
 
     @property
     def type(self):
@@ -31,7 +31,7 @@ class Typed(tracked.Tracked):
 
     @staticmethod
     def type_handler():
-        return Typed._type_lookup(Typed._type_handler_code)
+        return Typed._type_lookup(Typed._typeHandlerCode)
 
     @property
     def type_code(self):
@@ -41,11 +41,6 @@ class Typed(tracked.Tracked):
     def gdb_type(self):
         return self.object.type
 
-    @staticmethod
-    def addressable_factory(typedDescription):
-        s = typedDescription.object
-        handler = Typed._type_lookup(s.type.code)
-        return handler(description)
     # Complete dict
     # {
     # gdb.TYPE_CODE_PTR: Pointer,
@@ -105,11 +100,12 @@ def register_type_handler(cls):
     if not issubclass(cls, Typed):
         raise ValueError("Type handler must be a Typed object")
 
-    if type_lookup(cls._type_handler_code) is None:
-        Typed._typeCodeMap[cls._type_handler_code] = cls
+    if type_lookup(cls._typeHandlerCode) is None:
+        Typed._typeCodeMap[cls._typeHandlerCode] = cls
+        print("Registered type code handler " + str(cls))
     else:
         error = "\nType code already in use!\n"
-        error += "code: " + str(cls._type_handler_code)
+        error += "code: " + str(cls._typeHandlerCode)
         error += "\nhandler: " + str(cls) + "\n"
         raise KeyError(error)
 
