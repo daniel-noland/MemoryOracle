@@ -4,23 +4,34 @@
 File containing the abstract Tracked class.
 """
 
+from uuid import uuid4 as uuid
 
+
+class Tracked(object):
 """
 *Abstract* class to represent a piece of information from the debugee
 to track.
 """
-class Tracked(object):
+
+    def _init(self, description):
+        self._id = uuid()
+        self._description = description
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError(
                 "Attempted to instantiate abstract class Tracked")
 
+    @property
+    def description(self):
+        return self._description
 
     @property
-    def index(self):
-        raise NotImplementedError(
-                "Attempted to get index of abstract class")
+    def name(self):
+        return self._name
 
+    @property
+    def id(self):
+        return self._id
 
     def track(self):
         raise NotImplementedError(
@@ -72,13 +83,6 @@ class StandardDecorator(Tracked):
             self.tracked.track()
 
 
-class Symbol(Tracked):
-    """
-    *Concrete* class to track a symbol in the debugee
-    """
-    pass
-
-
 class ProgramFile(Tracked):
     """
     *Abstract* class to track a file belonging to the debugee
@@ -100,8 +104,18 @@ class SourceFile(ProgramFile):
     pass
 
 
-class Namespace(Tracked):
+class UntrackedDecorator(Tracked):
     """
-    *Concrete* class to track a namespace defined in the debugee.
+    *Decorator* anti-class to essentially turn off the behavior of the parent.
+
+    Use this class when an object would normally be tracked, but you do not
+    wish it to be.
     """
-    pass
+
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def track(self):
+        pass
+
+

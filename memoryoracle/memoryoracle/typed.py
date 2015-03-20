@@ -109,3 +109,11 @@ def register_type_handler(cls):
         error += "\nhandler: " + str(cls) + "\n"
         raise KeyError(error)
 
+
+class ErrorType(Typed):
+    """
+    *Concrete* class to track a gdb type error
+    """
+    pass
+
+

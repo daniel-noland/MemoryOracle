@@ -47,7 +47,8 @@ int main(int argc, char *argv[]) {
    char science = 'j';
    h3 = &science;
    MyOtherStruct exx;
-   exx.a = new MyStruct[5];
+   exx.a = new MyStruct;
+   exx.a->c = &exx;
    exx.b = 2;
    exx.a[0] = MyStruct();
    exx.a[0].b = 3;

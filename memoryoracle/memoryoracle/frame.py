@@ -19,6 +19,9 @@ class Frame(tracked.Tracked):
         self.frame = gdbFrame if gdbFrame is not None else gdb.selected_frame()
         # self.track()
 
+    def __str__(self):
+        return str(self.frame)
+
     @property
     def index(self):
         return str(self.frame)

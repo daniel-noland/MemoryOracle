@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+   <meta charset="utf-8">
+   <head>
+      <style>
+
+      .link {
+         stroke: #000;
+         stroke-width: 1.5px;
+         fill: none;
+      }
+
+      .node {
+      fill: #000;
+      stroke: #fff;
+      stroke-width: 1.5px;
+      }
+
+      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script type="text/javascript">
+      </script>
+   </head>
+   <body>
+      <script src="d3.js"></script>
+      <script src="/media/js/jquery.dataTables.js"></script>
+   <div id="viz"></div>
+    <script>
+var urls = {
+   arrays: "arrays.json",
+   pointers: "pointers.json",
+   structs: "structs.json",
+   values: "values.json"
+};
+
+var memory = { arrays: null, pointers: null, structs: null, values: null }
+
+function load(v) {
+   return $.ajax({
+      url: v + ".json"
+   })
+   .done(function( data ){
+      memory[v] = data;
+   });
+}
+$.when(load("arrays"), load("pointers"), load("structs"), load("values"))
+.done(function() { organize_arrays(memory); });
+var nodeSet = new Set();
+var nodeMap = new Map();
+var arrayMap = new Map();
+var edgeSet = new Set();
+var edgeMap = new Map();
+var topLevelArrays = new Array();
+function organize_arrays(mem) {
+   var n;
+   var n1;
+   var n2;
+   $.each(mem["arrays"], function(i, v) {
+      nodeSet.add(v.id);
+      nodeMap.set(v.id, v);
+   });
+   $.each(mem["arrays"], function(i, v1) {
+      n1 = nodeMap.get(v1.id);
+      v2 = nodeMap.get(v1.parent);
+      if ( v2 ) {
+         edgeMap.set(v2.id, v1.id);
+      } else {
+         topLevelArrays.push(v1);
+      }
+   });
+   console.log(edgeMap);
+   console.log(topLevelArrays);
+}
+
+console.log(memory);
+
+    </script>
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <th>Address</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- <script type="text/javascript"> -->
+<!-- $(document).ready(function() { -->
+   <!-- $('#example').dataTable({ -->
+    <!--     "ajax": "arrays.json", -->
+    <!--     "columns": [ -->
+    <!--     { "data": "address" }, -->
+    <!--     { "data": "name" }, -->
+    <!--     { "data": "data.target_type" }, -->
+    <!--     { "data": "data.range.0" }, -->
+    <!--     { "data": "data.range.1" }, -->
+    <!--     ], -->
+   <!-- }); -->
+<!-- }); -->
+    <!-- </script> -->
+    <div id="array">Hello world</div>
+   </body>
+</html>
