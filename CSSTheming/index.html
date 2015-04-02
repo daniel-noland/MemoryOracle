@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Theme</title>
+    <link rel="stylesheet" href="DefaultTheme.css"/>
+</head>
+<body>
+<form name = "chooseStyle">
+    <select onChange="menuChoice()" name="menu">
+        <option selected value = "default">Select A Theme</option>
+        <option value = "light">Light Theme</option>
+        <option value = "dark">Dark Theme</option>
+    </select>
+</form>
+<script>
+
+    var themeColor = "default";
+    function changeCSS(cssFile) {
+
+        var cssPrev = document.getElementsByTagName("link").item(0);
+
+        var cssNew = document.createElement("link");
+        cssNew.setAttribute("href", cssFile);
+        cssNew.setAttribute("rel", "stylesheet");
+        cssNew.setAttribute("type", "text/css");
+
+
+        document.getElementsByTagName("head").item(0).replaceChild(cssNew, cssPrev);
+    }
+    function menuChoice() {
+        if (document.chooseStyle.menu.value == 'light') {
+            changeCSS('LightTheme.css');
+            themeColor = "light";
+        }
+        else if (document.chooseStyle.menu.value == 'dark') {
+            changeCSS('DarkTheme.css');
+            themeColor = "dark";
+        }
+        else if (document.chooseStyle.menu.value == 'default'){
+            changeCSS('DefaultTheme.css');
+            themeColor = "default;"
+
+        }
+    }
+
+</script>
+<BR/>
+</body>
+</html>
