@@ -11,6 +11,7 @@ import tracked
 class TypeDetectionError(Exception):
     pass
 
+
 """
 Class Typed, which represents debugee
 objects with a gdb.TYPE_CODE.

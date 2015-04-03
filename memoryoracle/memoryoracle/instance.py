@@ -30,11 +30,11 @@ class Instance(typed.Typed):
     _addressFixer = re.compile(r" .*")
     _updatedNames = set()
 
-    def _init(self, addressableDescription):
+    def _init(self, description):
         self._id = str(uuid())
         self._address = None
-        self._description =  addressableDescription
-        self._name = addressableDescription.name
+        self._description =  description
+        self._name = description.name
         self._object = self.description.object
         self._type = self._object.type
 
@@ -128,7 +128,7 @@ class Instance(typed.Typed):
     def frame(self):
         return self.description.frame
 
-    def __init__(self, addressableDescription):
+    def __init__(self, description):
         raise NotImplementedError(
                 "Attempt to init abstract class Instance")
 
@@ -153,8 +153,6 @@ class Call(Instance):
 
 
 typed.register_type_handler(Call)
-
-
 
 
 class StructureInstance(Instance):

@@ -43,7 +43,7 @@ class Schema(object):
 class Tracked(models.Model):
 
     # id = models.CharField(primary_key=True, max_length=36, default=Schema.gen_id)
-    name = models.CharField(max_length=200)
+    name = models.TextField(default=None)
 
     # @classmethod
     # def create(cls, description):
@@ -57,8 +57,6 @@ class Tracked(models.Model):
 
 
 class Program(Tracked):
-
-    path = models.TextField(default="./a.out")
 
     class Meta:
         db_table = 'program'
@@ -74,9 +72,18 @@ class Commit(Tracked):
         db_table = 'commit'
 
 
+class Executable(Tracked):
+
+    path = models.TextField(default="./a.out")
+    id_commit = models.ForeignKey(Commit)
+
+    class Meta:
+        db_table = 'executable'
+
+
 class Execution(Tracked):
 
-    id_commit = models.ForeignKey(Commit)
+    id_executable = models.ForeignKey(Executable, default=None)
 
     class Meta:
         db_table = 'execution'
