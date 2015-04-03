@@ -13,49 +13,103 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Commit',
             fields=[
-                ('id', models.CharField(serialize=False, max_length=36, primary_key=True)),
-                ('vcs_hash', models.CharField(blank=True, max_length=200)),
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
+                ('name', models.CharField(max_length=200)),
+                ('vcs_hash', models.CharField(max_length=200, unique=True)),
+                ('branch_name', models.CharField(max_length=200)),
             ],
             options={
-                'managed': False,
                 'db_table': 'commit',
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Instance',
+            name='Execution',
             fields=[
-                ('id', models.CharField(serialize=False, max_length=36, primary_key=True)),
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
+                ('name', models.CharField(max_length=200)),
+                ('id_commit', models.ForeignKey(to='memoryoracle.Commit')),
             ],
             options={
-                'managed': False,
-                'db_table': 'instance',
+                'db_table': 'execution',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Memory',
+            fields=[
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
+                ('name', models.CharField(max_length=200)),
+                ('address', models.CharField(max_length=64)),
+                ('has_symbol', models.BooleanField(default=False)),
+                ('data', models.TextField()),
+                ('id_execution', models.ForeignKey(to='memoryoracle.Execution')),
+            ],
+            options={
+                'db_table': 'memory',
+                'managed': True,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ObjectFile',
+            fields=[
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
+                ('name', models.CharField(max_length=200)),
+                ('path', models.CharField(max_length=200)),
+                ('size', models.BigIntegerField()),
+                ('id_commit', models.ForeignKey(to='memoryoracle.Commit')),
+            ],
+            options={
+                'db_table': 'object_file',
+                'managed': True,
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Program',
             fields=[
-                ('id', models.CharField(serialize=False, max_length=36, primary_key=True)),
-                ('path', models.CharField(max_length=200, unique=True)),
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
+                ('name', models.CharField(max_length=200)),
             ],
             options={
-                'managed': False,
                 'db_table': 'program',
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Value',
+            name='SourceFile',
             fields=[
-                ('id', models.CharField(serialize=False, max_length=36, primary_key=True)),
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
                 ('name', models.CharField(max_length=200)),
-                ('value', models.TextField(blank=True)),
+                ('path', models.CharField(max_length=200)),
+                ('size', models.BigIntegerField()),
+                ('lines', models.BigIntegerField()),
+                ('id_commit', models.ForeignKey(to='memoryoracle.Commit')),
             ],
             options={
-                'managed': False,
-                'db_table': 'value',
+                'db_table': 'source_file',
+                'managed': True,
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Symbol',
+            fields=[
+                ('id', models.CharField(default='26af7403-b279-458b-b23e-d29570680e90', serialize=False, primary_key=True, max_length=36)),
+                ('name', models.CharField(max_length=200)),
+                ('id_execution', models.ForeignKey(to='memoryoracle.Execution')),
+            ],
+            options={
+                'db_table': 'symbol',
+                'managed': True,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='commit',
+            name='id_program',
+            field=models.ForeignKey(to='memoryoracle.Program'),
+            preserve_default=True,
         ),
     ]

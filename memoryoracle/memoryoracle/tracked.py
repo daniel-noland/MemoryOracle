@@ -8,10 +8,10 @@ from uuid import uuid4 as uuid
 
 
 class Tracked(object):
-"""
-*Abstract* class to represent a piece of information from the debugee
-to track.
-"""
+    """
+    *Abstract* class to represent a piece of information from the debugee
+    to track.
+    """
 
     def _init(self, description):
         self._id = uuid()

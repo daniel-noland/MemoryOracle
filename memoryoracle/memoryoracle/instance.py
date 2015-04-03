@@ -386,6 +386,7 @@ class Int(Primitive):
     _spaceFixer = re.compile(r" ")
     _typeHandlerCode = gdb.TYPE_CODE_INT
 
+
     def __init__(self, intDescription):
         self._init(intDescription)
 
@@ -408,6 +409,7 @@ class Int(Primitive):
             return gdb.lookup_type(typ).pointer()
 
         return False
+
 
     def _track(self):
         # NOTE: I know this is a hack, but nothing I can do.
@@ -469,8 +471,6 @@ class Void(Instance):
     *Concrete* class to describe an object of the type void
     """
     pass
-
-
 
 
 class InstanceWatcher(gdb.Breakpoint):
