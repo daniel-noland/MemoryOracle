@@ -111,8 +111,6 @@ class TestModelProgram(unittest.TestCase, ModelTest):
         cls.dataClass.tear_down_class()
 
 
-
-
 class CommitTestData(ModelTestData):
 
     model = memoryoracle.models.Commit
@@ -146,6 +144,212 @@ class TestModelCommit(unittest.TestCase, ModelTest):
     dataClass = CommitTestData
 
     cls = memoryoracle.models.Commit
+
+
+class ExecutableTestData(ModelTestData):
+
+    model = memoryoracle.models.Executable
+
+    _depends = [CommitTestData]
+
+    @classmethod
+    def set_up_class(cls):
+        cls.set_up_depends()
+        cls.data = { x.__name__: x() for x in cls.depends() }
+        cls.argsList = [
+                {
+                    "name": ModelTestData.gen_name(),
+                    "path": ModelTestData.gen_name(),
+                    "id_commit": commit,
+                } for commit in cls.data["CommitTestData"] ]
+        cls.orms = [ cls.model.objects.create(**kwargs) for kwargs in cls.argsList ]
+
+
+class TestModelExecutable(unittest.TestCase, ModelTest):
+
+    @classmethod
+    def setUpClass(cls):
+        data = cls.dataClass.set_up_class()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dataClass.tear_down_class()
+
+    dataClass = ExecutableTestData
+
+    cls = memoryoracle.models.Executable
+
+
+class ExecutionTestData(ModelTestData):
+
+    model = memoryoracle.models.Execution
+
+    _depends = [ExecutableTestData]
+
+    @classmethod
+    def set_up_class(cls):
+        cls.set_up_depends()
+        cls.data = { x.__name__: x() for x in cls.depends() }
+        cls.argsList = [
+                {
+                    "name": ModelTestData.gen_name(),
+                    "id_executable": executable,
+                } for executable in cls.data["ExecutableTestData"] ]
+        cls.orms = [ cls.model.objects.create(**kwargs) for kwargs in cls.argsList ]
+
+
+class TestModelExecution(unittest.TestCase, ModelTest):
+
+    @classmethod
+    def setUpClass(cls):
+        data = cls.dataClass.set_up_class()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dataClass.tear_down_class()
+
+    dataClass = ExecutionTestData
+
+    cls = memoryoracle.models.Execution
+
+
+class MemoryTestData(ModelTestData):
+
+    model = memoryoracle.models.Memory
+
+    _depends = [ExecutionTestData]
+
+    @classmethod
+    def set_up_class(cls):
+        cls.set_up_depends()
+        cls.data = { x.__name__: x() for x in cls.depends() }
+        cls.argsList = [
+                {
+                    "name": ModelTestData.gen_name(),
+                    "id_execution": execution,
+                    "type": "__test_type__",
+                    "address": ModelTestData.gen_name(),
+                    "has_symbol": random.choice([True, False]),
+                    "data": ModelTestData.gen_name(),
+                } for execution in cls.data["ExecutionTestData"] ]
+        cls.orms = [ cls.model.objects.create(**kwargs) for kwargs in cls.argsList ]
+
+
+class TestModelMemory(unittest.TestCase, ModelTest):
+
+    @classmethod
+    def setUpClass(cls):
+        data = cls.dataClass.set_up_class()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dataClass.tear_down_class()
+
+    dataClass = MemoryTestData
+
+    cls = memoryoracle.models.Memory
+
+
+class ObjectFileTestData(ModelTestData):
+
+    model = memoryoracle.models.ObjectFile
+
+    _depends = [CommitTestData]
+
+    @classmethod
+    def set_up_class(cls):
+        cls.set_up_depends()
+        cls.data = { x.__name__: x() for x in cls.depends() }
+        cls.argsList = [
+                {
+                    "id_commit": commit,
+                    "path": ModelTestData.gen_name(),
+                    "size": random.randint(0, 1000),
+                } for commit in cls.data["CommitTestData"] ]
+        cls.orms = [ cls.model.objects.create(**kwargs) for kwargs in cls.argsList ]
+
+
+class TestModelObjectFile(unittest.TestCase, ModelTest):
+
+    @classmethod
+    def setUpClass(cls):
+        data = cls.dataClass.set_up_class()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dataClass.tear_down_class()
+
+    dataClass = ObjectFileTestData
+
+    cls = memoryoracle.models.ObjectFile
+
+
+class SourceFileTestData(ModelTestData):
+
+    model = memoryoracle.models.SourceFile
+
+    _depends = [CommitTestData]
+
+    @classmethod
+    def set_up_class(cls):
+        cls.set_up_depends()
+        cls.data = { x.__name__: x() for x in cls.depends() }
+        cls.argsList = [
+                {
+                    "id_commit": commit,
+                    "path": ModelTestData.gen_name(),
+                    "size": random.randint(0, 1000),
+                    "lines": random.randint(0, 1000),
+                } for commit in cls.data["CommitTestData"] ]
+        cls.orms = [ cls.model.objects.create(**kwargs) for kwargs in cls.argsList ]
+
+
+class TestModelSourceFile(unittest.TestCase, ModelTest):
+
+    @classmethod
+    def setUpClass(cls):
+        data = cls.dataClass.set_up_class()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dataClass.tear_down_class()
+
+    dataClass = SourceFileTestData
+
+    cls = memoryoracle.models.SourceFile
+
+
+class SymbolTestData(ModelTestData):
+
+    model = memoryoracle.models.Symbol
+
+    _depends = [ExecutionTestData]
+
+    @classmethod
+    def set_up_class(cls):
+        cls.set_up_depends()
+        cls.data = { x.__name__: x() for x in cls.depends() }
+        cls.argsList = [
+                {
+                    "id_execution": execution,
+                    "type": ModelTestData.gen_name(),
+                } for execution in cls.data["ExecutionTestData"] ]
+        cls.orms = [ cls.model.objects.create(**kwargs) for kwargs in cls.argsList ]
+
+
+class TestModelSymbol(unittest.TestCase, ModelTest):
+
+    @classmethod
+    def setUpClass(cls):
+        data = cls.dataClass.set_up_class()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dataClass.tear_down_class()
+
+    dataClass = SymbolTestData
+
+    cls = memoryoracle.models.Symbol
 
 
 if __name__ == '__main__':

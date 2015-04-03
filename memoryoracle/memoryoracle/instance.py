@@ -384,10 +384,8 @@ class Int(Primitive):
     _spaceFixer = re.compile(r" ")
     _typeHandlerCode = gdb.TYPE_CODE_INT
 
-
     def __init__(self, intDescription):
         self._init(intDescription)
-
 
     def _find_hidden_type(self):
         v = self.object
@@ -407,7 +405,6 @@ class Int(Primitive):
             return gdb.lookup_type(typ).pointer()
 
         return False
-
 
     def _track(self):
         # NOTE: I know this is a hack, but nothing I can do.
@@ -473,11 +470,11 @@ class Void(Instance):
 
 class InstanceWatcher(gdb.Breakpoint):
 
-    def __init__(self, addressable):
-        self._addressable = addressable
-        self._type_name = descriptions.type_name(addressable.type)
-        addr = addressable.address
-        expression = self._addressable.name
+    def __init__(self, instance):
+        self._instance = instance
+        self._type_name = descriptions.type_name(instance.type)
+        addr = instance.address
+        expression = self._instance.name
         super(InstanceWatcher, self).__init__(
                 expression,
                 gdb.BP_WATCHPOINT,

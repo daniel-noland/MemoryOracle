@@ -21,8 +21,7 @@
     var themeColor = "default";
     function changeCSS(cssFile) {
         // Why is this better
-        var css = document.getElementById("main-style");
-        css.href = cssFile;
+        document.getElementById("main-style").href = cssFile;
 
         /*
         var cssPrev = document.getElementsByTagName("link").item(0);
