@@ -11,3 +11,9 @@ select{
     color:white;
     background-color: black;
 }
+h1{
+    color:lightslategrey;
+}
+p{
+    color:lightgray;
+}
