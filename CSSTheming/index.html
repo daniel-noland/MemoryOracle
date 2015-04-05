@@ -20,7 +20,7 @@
                 if($(e.target).is('.active')) {
                     close_accordion_section();
                 }else {
-                    close_accordion_section();
+                    //close_accordion_section();
 
                     // Add active class to section title
                     $(this).addClass('active');
@@ -35,6 +35,18 @@
 
 </head>
 <body>
+<div id = "header-bar">
+    <h1 id="title-mem-or">Memory Oracle</h1>
+    <h1 id="title-theme"></h1>
+    <form name="chooseStyle">
+    <!-- prefer id to name -->
+    <select onChange="menuChoice()" name="style-menu" id="style-menu">
+        <option selected value = "default">Select A Theme</option>
+        <option value = "light">Light Theme</option>
+        <option value = "dark">Dark Theme</option>
+    </select>
+</form>
+</div>
 <!-- no spaces in attributes -->
 <!--<h1> This is some test text to test the theme</h1>
 <p>
@@ -47,36 +59,34 @@
     aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
 </p>-->
 <div class="main">
-    <div class = "memory-graph">hello world</div>
+    <div class = "memory-graph"></div>
     <div class="accordion">
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-1">Accordion Section #1</a>
+            <a class="accordion-section-title" href="#accordion-1">Source View</a>
             <div id="accordion-1" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
             </div>
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-2">Accordion Section #2</a>
+            <a class="accordion-section-title" href="#accordion-2">Local View</a>
             <div id="accordion-2" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
             </div>
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-3">Accordion Section #3</a>
+            <a class="accordion-section-title" href="#accordion-3">Stack View</a>
             <div id="accordion-3" class="accordion-section-content">
+                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+            </div>
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-4">Trace View</a>
+            <div id="accordion-4" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
             </div>
         </div>
     </div>
 </div>
-<form name="chooseStyle">
-    <!-- prefer id to name -->
-    <select onChange="menuChoice()" name="style-menu" id="style-menu">
-        <option selected value = "default">Select A Theme</option>
-        <option value = "light">Light Theme</option>
-        <option value = "dark">Dark Theme</option>
-    </select>
-</form>
 <script>
 
     var themeColor = "default";
@@ -129,7 +139,9 @@
         */
     }
 
+
 </script>
 <BR/>
 </body>
+
 </html>

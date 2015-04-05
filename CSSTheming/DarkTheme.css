@@ -1,19 +1,88 @@
-select{
-    position: absolute;
-    right:0px;
-    top:0px;
+body {
+  background-color: #383838;
+  color: #f8f8f8;
 }
-body{
-    background-color:black;
-    color:white;
+select {
+  color: #f8f8f8;
 }
-select{
-    color:white;
-    background-color: black;
+h1 {
+  color: Black;
 }
-h1{
-    color:lightslategrey;
+p {
+  color: #f8f8f8;
 }
-p{
-    color:lightgray;
+select {
+  background: #383838;
+}
+#header-bar {
+  position: absolute;
+  top: 0px;
+  height: 40px;
+  background: #c0c0c0;
+  color: Black;
+}
+#header-bar,
+#style-menu {
+  position: absolute;
+  right: 0px;
+  top: 20px;
+}
+#header-bar,
+#title-mem-or {
+  left: 0;
+  color: Black;
+  font-size: 14pt;
+}
+#header-bar,
+#title-theme {
+  right: 0px;
+  top: 0px;
+  color: Black;
+  font-size: 8pt;
+}
+.main {
+  position: relative;
+  top: 40px;
+}
+/*----- Accordion -----*/
+.accordion,
+.accordion * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.accordion {
+  overflow: hidden;
+  box-shadow: 0px 1px 3px #c0c0c0;
+  border-radius: 3px;
+  background: #383838;
+  width: 30%;
+  float: right;
+}
+/*----- Section Titles -----*/
+.accordion-section-title {
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  transition: all linear 0.15s;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
+.accordion-section-title.active,
+.accordion-section-title:hover {
+  background: #c0c0c0;
+  /* Type */
+  text-decoration: none;
+}
+.accordion-section:last-child .accordion-section-title {
+  border-bottom: none;
+}
+/*----- Section Content -----*/
+.accordion-section-content {
+  padding: 15px;
+  display: none;
 }
