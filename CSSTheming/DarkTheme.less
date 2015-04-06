@@ -15,7 +15,9 @@ p{
 select{
   background: @bodyBackgroundColor;
 }
+.memory-graph{
 
+}
 #header-bar {
   position:absolute;
   top:0px;
@@ -86,8 +88,11 @@ select{
 
 /*----- Section Content -----*/
 .accordion-section-content {
-  padding:15px;
-  display:none;
+  padding: 15px;
+  display: none;
+  overflow-y: scroll;
+  height: 40em;
+  max-height: 60%;
 }
 @lightestGrey:#f8f8f8;
 @lighterGrey:#C0C0C0;
