@@ -92,5 +92,8 @@ select {
 .accordion-section-content {
   padding: 15px;
   display: none;
+  overflow-y: scroll;
+  height: 40em;
+  max-height: 60%;
 }
 /*less declarations */
