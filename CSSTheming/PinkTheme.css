@@ -1,15 +1,15 @@
 body {
   background-color: white;
-  color: #383838;
+  color: #ff0582;
 }
 select {
-  color: #383838;
+  color: #ff0582;
 }
 h1 {
   color: white;
 }
 p {
-  color: #383838;
+  color: #ff0582;
 }
 select {
   background: white;
@@ -28,7 +28,7 @@ select {
   position: absolute;
   top: 0px;
   height: 40px;
-  background: #383838;
+  background: #ff0582;
   color: white;
 }
 #header-bar,
@@ -55,7 +55,7 @@ select {
   box-sizing: border-box;
   width: 68%;
   height: 500px;
-  border: 3px solid #383838;
+  border: 3px solid #ff0582;
 }
 .programIO {
   position: absolute;
@@ -71,11 +71,11 @@ select {
   width: 100%;
   padding: 15px;
   display: inline-block;
-  border-bottom: 1px solid #383838;
-  background: #383838;
+  border-bottom: 1px solid #ff0582;
+  background: #ff0582;
   /* Type */
   font-size: 1.200em;
-  text-shadow: 0px 1px 0px #383838;
+  text-shadow: 0px 1px 0px #ff0582;
   color: white;
 }
 .DebuggerIO {
@@ -92,11 +92,11 @@ select {
   width: 100%;
   padding: 15px;
   display: inline-block;
-  border-bottom: 1px solid #383838;
-  background: #383838;
+  border-bottom: 1px solid #ff0582;
+  background: #ff0582;
   /* Type */
   font-size: 1.200em;
-  text-shadow: 0px 1px 0px #383838;
+  text-shadow: 0px 1px 0px #ff0582;
   color: white;
 }
 .main {
@@ -123,17 +123,17 @@ select {
   width: 100%;
   padding: 15px;
   display: inline-block;
-  border-bottom: 1px solid #383838;
-  background: #383838;
+  border-bottom: 1px solid #ff0582;
+  background: #ff0582;
   transition: all linear 0.15s;
   /* Type */
   font-size: 1.200em;
-  text-shadow: 0px 1px 0px #383838;
+  text-shadow: 0px 1px 0px #ff0582;
   color: white;
 }
 .accordion-section-title.active,
 .accordion-section-title:hover {
-  background: #383838;
+  background: #ff0582;
   /* Type */
   text-decoration: none;
 }

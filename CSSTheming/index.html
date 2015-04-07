@@ -48,6 +48,7 @@
             <option selected value = "default">Select A Theme</option>
             <option value = "light">Light Theme</option>
             <option value = "dark">Dark Theme</option>
+            <option value = "pink">Pink Theme</option>
         </select>
     </form>
 </div>
@@ -156,6 +157,9 @@
                 break;
             case 'dark':
                 changeCSS('DarkTheme.css');
+                break;
+            case'pink':
+                changeCSS('PinkTheme.css');
                 break;
             default:
                 changeCSS('DefaultTheme.css');
@@ -283,7 +287,7 @@
     var element = document.getElementById('accordion'),
             x = 0, y = 0;
 
-    interact(element)
+   /* interact(element)
             .draggable({
                 snap: {
                     targets: [
@@ -327,7 +331,7 @@
                     target.setAttribute('data-x', x);
                     target.setAttribute('data-y', y);
                 }
-            });
+            });*/
     //}
     function clickBox(){
         boxState = !(boxState);
