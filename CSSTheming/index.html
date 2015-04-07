@@ -34,55 +34,16 @@
             });
         });
     </script>
-    <script>
-        interact('.accordion')
-                .draggable({
-                    // enable inertial throwing
-                    inertia: true,
-                    // keep the element within the area of it's parent
-                    restrict: {
-                        restriction: "parent",
-                        endOnly: true,
-                        elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-                    },
 
-                    // call this function on every dragmove event
-                    onmove: dragMoveListener,
-                    // call this function on every dragend event
-                    onend: function (event) {
-                        var textEl = event.target.querySelector('p');
-
-                        textEl && (textEl.textContent =
-                                'moved a distance of '
-                                + (Math.sqrt(event.dx * event.dx +
-                                event.dy * event.dy)|0) + 'px');
-                    }
-                });
-
-        function dragMoveListener (event) {
-            var target = event.target,
-            // keep the dragged position in the data-x/data-y attributes
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-            // translate the element
-            target.style.webkitTransform =
-                    target.style.transform =
-                            'translate(' + x + 'px, ' + y + 'px)';
-
-            // update the posiion attributes
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
-        }
-
-        // this is used later in the resizing demo
-        window.dragMoveListener = dragMoveListener;
-    </script>
 
 </head>
 <body>
 
 <div id="header-bar">
+    <div class="check">
+        UI Unlock
+        <input type="checkbox" id="check" onclick="clickBox()" class=>
+    </div>
     <h1 id="title-mem-or">Memory Oracle</h1>
     <h1 id="title-theme"></h1>
     <form name="chooseStyle">
@@ -94,6 +55,7 @@
     </select>
 </form>
 </div>
+
 <!-- no spaces in attributes -->
 <!--<h1> This is some test text to test the theme</h1>
 <p>
@@ -106,6 +68,7 @@
     aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
 </p>-->
 <div class="main">
+
     <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
     <div class="accordion">
         <div class="accordion-section">
@@ -157,7 +120,8 @@
     </div>
 </div>
 <script>
-
+    var boxState = false;
+    console.log(boxState);
     var themeColor = "default";
     function changeCSS(cssFile) {
         // Why is this better
@@ -180,36 +144,88 @@
     }
 
     function menuChoice() {
-       // This code should be faster.  Why?
-       switch(document.getElementById("style-menu").value) {
-          case 'light':
-             changeCSS('LightTheme.css');
-             break;
-          case 'dark':
-             changeCSS('DarkTheme.css');
-             break;
-          default:
-             changeCSS('DefaultTheme.css');
-       }
-       /*
-        if (document.chooseStyle.menu.value == 'light') {
-            changeCSS('LightTheme.css');
-            themeColor = "light";
+        // This code should be faster.  Why?
+        switch (document.getElementById("style-menu").value) {
+            case 'light':
+                changeCSS('LightTheme.css');
+                break;
+            case 'dark':
+                changeCSS('DarkTheme.css');
+                break;
+            default:
+                changeCSS('DefaultTheme.css');
         }
-        else if (document.chooseStyle.menu.value == 'dark') {
-            changeCSS('DarkTheme.css');
-            themeColor = "dark";
-        }
-        else if (document.chooseStyle.menu.value == 'default'){
-            changeCSS('DefaultTheme.css');
-            themeColor = "default;"
-
-        }
-        */
     }
 
+        interact('.accordion')
+                .draggable({
+                    // enable inertial throwing
+                    inertia: true,
+                    // keep the element within the area of it's parent
+                    restrict: {
+                        restriction: "parent",
+                        endOnly: true,
+                        elementRect: {top: 0, left: 0, bottom: 1, right: 1}
+                    },
+
+                    // call this function on every dragmove event
+                    onmove: dragMoveListener
+                    // call this function on every dragend event
+
+                });
+
+        function dragMoveListener(event) {
+            if (boxState == true) {
+            var target = event.target,
+            // keep the dragged position in the data-x/data-y attributes
+                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+                    target.style.transform =
+                            'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the posiion attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+        }
+
+        interact('.accordion')
+                .resizable({
+                    edges: {left: true, right: true, bottom: true, top: true}
+                })
+                .on('resizemove', function (event) {
+                    if(boxState == true) {
+                        var target = event.target;
+                        x = (parseFloat(target.getAttribute('data-x')) || 0),
+                                y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+                        // update the element's style
+                        target.style.width = event.rect.width + 'px';
+                        target.style.height = event.rect.height + 'px';
+
+                        // translate when resizing from top or left edges
+                        x += event.deltaRect.left;
+                        y += event.deltaRect.top;
+                        x += event.deltaRect.right;
+                        y += event.deltaRect.bottom;
+
+                        target.style.webkitTransform = target.style.transform =
+                                'translate(' + x + 'px,' + y + 'px)';
+
+                        target.setAttribute('data-x', x);
+                        target.setAttribute('data-y', y);
+                    }
+                });
+    //}
+    function clickBox(){
+        boxState = !(boxState);
+    }
 
 </script>
+
 <BR/>
 </body>
 

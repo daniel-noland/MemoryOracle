@@ -96,6 +96,9 @@ select {
   height: 40em;
   max-height: 60%;
 }
-
-
+.check{
+    postion:absolute;
+    float:right;
+    color:white;
+}
 /*less declarations */
