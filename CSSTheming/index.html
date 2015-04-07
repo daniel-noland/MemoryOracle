@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
-    <div class="accordion">
+    <div class="accordion" id="accordion">
         <div class="accordion-section">
             <a class="accordion-section-title" href="#accordion-1">Source View</a>
             <div id="accordion-1" class="accordion-section-content">
@@ -161,6 +161,19 @@
                 changeCSS('DefaultTheme.css');
         }
     }
+    function dragMoveListener(event) {
+        if (boxState == true) {
+            var target = event.target,
+            // keep the dragged position in the data-x/data-y attributes
+                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+            // translate the element
+            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+            // update the posiion attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+    }
     //move and resize program IO
     interact('.programIO')
             .draggable({
@@ -175,9 +188,7 @@
                 // call this function on every dragmove event
                 onmove: dragMoveListener
                 // call this function on every dragend event
-            });
-
-    interact('.programIO')
+            })
             .resizable({
                 edges: {left: true, right: true, bottom: true, top: true}
             })
@@ -192,8 +203,6 @@
                     // translate when resizing from top or left edges
                     x += event.deltaRect.left;
                     y += event.deltaRect.top;
-                    x += event.deltaRect.right;
-                    y += event.deltaRect.bottom;
                     target.style.webkitTransform = target.style.transform =
                             'translate(' + x + 'px,' + y + 'px)';
                     target.setAttribute('data-x', x);
@@ -213,9 +222,8 @@
                 },
                 // call this function on every dragmove event
                 onmove: dragMoveListener
-            });
+            })
 
-    interact('.DebuggerIO')
             .resizable({
                 edges: {left: true, right: true, bottom: true, top: true}
             })
@@ -230,8 +238,6 @@
                     // translate when resizing from top or left edges
                     x += event.deltaRect.left;
                     y += event.deltaRect.top;
-                    x += event.deltaRect.right;
-                    y += event.deltaRect.bottom;
                     target.style.webkitTransform = target.style.transform =
                             'translate(' + x + 'px,' + y + 'px)';
                     target.setAttribute('data-x', x);
@@ -252,9 +258,7 @@
                 // call this function on every dragmove event
                 onmove: dragMoveListener
                 // call this function on every dragend event
-            });
-
-    interact('.memory-graph')
+            })
             .resizable({
                 edges: {left: true, right: true, bottom: true, top: true}
             })
@@ -269,8 +273,6 @@
                     // translate when resizing from top or left edges
                     x += event.deltaRect.left;
                     y += event.deltaRect.top;
-                    x += event.deltaRect.right;
-                    y += event.deltaRect.bottom;
                     target.style.webkitTransform = target.style.transform =
                             'translate(' + x + 'px,' + y + 'px)';
                     target.setAttribute('data-x', x);
@@ -278,34 +280,34 @@
                 }
             });
     //move and resize accordion
-    interact('.accordion')
+    var element = document.getElementById('accordion'),
+            x = 0, y = 0;
+
+    interact(element)
             .draggable({
-                // enable inertial throwing
-                inertia: true,
-                // keep the element within the area of it's parent
-                restrict: {
-                    restriction: "parent",
-                    endOnly: true,
-                    elementRect: {top: 0, left: 0, bottom: 1, right: 1}
+                snap: {
+                    targets: [
+                        interact.createSnapGrid({ x: 30, y: 30 })
+                    ],
+                    range: Infinity,
+                    relativePoints: [ { x: 0, y: 0 } ]
                 },
-                // call this function on every dragmove event
-                onmove: dragMoveListener
-                // call this function on every dragend event
-            });
-    function dragMoveListener(event) {
-        if (boxState == true) {
-            var target = event.target,
-            // keep the dragged position in the data-x/data-y attributes
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-            // translate the element
-            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-            // update the posiion attributes
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
-        }
-    }
-    interact('.accordion')
+                inertia: true,
+                restrict: {
+                    restriction: element.parentNode,
+                    elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+                    endOnly: true
+                }
+            })
+            .on('dragmove', function (event) {
+                x += event.dx;
+                y += event.dy;
+
+                event.target.style.webkitTransform =
+                        event.target.style.transform =
+                                'translate(' + x + 'px, ' + y + 'px)';
+            })
+
             .resizable({
                 edges: {left: true, right: true, bottom: true, top: true}
             })
@@ -320,8 +322,6 @@
                     // translate when resizing from top or left edges
                     x += event.deltaRect.left;
                     y += event.deltaRect.top;
-                    x += event.deltaRect.right;
-                    y += event.deltaRect.bottom;
                     target.style.webkitTransform = target.style.transform =
                             'translate(' + x + 'px,' + y + 'px)';
                     target.setAttribute('data-x', x);
