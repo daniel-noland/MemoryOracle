@@ -6,7 +6,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="../js/lib/interact/interact.js"></script>
     <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
-    <link id="main-style" rel="stylesheet" href="../css/DefaultTheme.css"/>
+    <link id="main-style" rel="stylesheet" href="../css/global.css"/>
+    <link id="color-theme" rel="stylesheet" href="../css/DefaultColorTheme.css"/>
+    <link id="pos-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
     <script>
         function close_accordion_section() {
             $('.accordion .accordion-section-title').removeClass('active');
@@ -36,10 +38,6 @@
 <body>
 
 <div id="header-bar">
-    <div class="check">
-        UI Unlock
-        <input type="checkbox" id="check" onclick="clickBox()" class=>
-    </div>
     <h1 id="title-mem-or">Memory Oracle</h1>
     <h1 id="title-theme"></h1>
     <form name="chooseStyle">
@@ -51,6 +49,12 @@
             <option value = "pink">Pink Theme</option>
         </select>
     </form>
+    <form name="chooseLayout">
+        <select onChange="menuChoice()" name="layout-menu" id=layout-menu">
+            <option selected value = "default">Select A Layout</option>
+            <option value = "noGraph">No Graph</option>
+        </select>
+    </form>
 </div>
 
 <!-- no spaces in attributes -->
@@ -58,21 +62,9 @@
 <p>
 </p>-->
 <div class="main">
-    <div class="programIO">
-        <div class="programIOHeading">Program IO</div>
-        <div class="programIOBody">
-            Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
-            lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
-            Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
-            consectetuer sodales congue in, penatibus eros. Sit wisi nulla cursus, ante dictum erat quis interdum nulla, ultricies vitae, sociis quam dui. Bibendum non imperdiet nullam,
-            purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
-            In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
-            aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
-        </div>
-    </div>
-    <div class="DebuggerIO">
-        <div class="DebuggerIOHeading">Debugger IO</div>
-        <div class="DebuggerIOBody">
+    <div class="callTree">
+        <div class="callTreeHeading">Call Tree</div>
+        <div class="callTreeBody">
             Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
             lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
             Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
@@ -133,209 +125,38 @@
     </div>
 </div>
 <script>
-    var boxState = false;
-    var themeColor = "default";
-    function changeCSS(cssFile) {
+    function changeColorTheme(cssFile) {
         // Why is this better
-        $("#main-style").attr("href", "../css/" + cssFile);
-        //var css = document.getElementById("main-style");
-        //css.href = cssFile;
-        /*
-         var cssPrev = document.getElementsByTagName("link").item(0);
-         var cssNew = document.createElement("link");
-         cssNew.setAttribute("href", cssFile);
-         cssNew.setAttribute("rel", "stylesheet");
-         cssNew.setAttribute("type", "text/css");
-         document.getElementsByTagName("head").item(0).replaceChild(cssNew, cssPrev);
-         */
+        $("#color-theme").attr("href", "../css/" + cssFile);
     }
     function menuChoice() {
-        // This code should be faster.  Why?
         switch (document.getElementById("style-menu").value) {
             case 'light':
-                changeCSS('LightTheme.css');
+                changeColorTheme('LightTheme.css');
                 break;
             case 'dark':
-                changeCSS('DarkTheme.css');
+                changeColorTheme('DarkTheme.css');
                 break;
             case'pink':
-                changeCSS('PinkTheme.css');
+                changeColorTheme('PinkTheme.css');
                 break;
             default:
-                changeCSS('DefaultTheme.css');
+                changeColorTheme('DefaultTheme.css');
         }
     }
-    function dragMoveListener(event) {
-        if (boxState == true) {
-            var target = event.target,
-            // keep the dragged position in the data-x/data-y attributes
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-            // translate the element
-            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-            // update the posiion attributes
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
+    function changeLayout(cssFile) {
+        $("#layout-theme").attr("href", "../css/" + cssFile);
+    }
+    function menuChoice() {
+        switch (document.getElementById("layout-menu").value) {
+            case 'noGraph':
+                changeLayout('NoGraphLayout.css');
+                break;
+            default:
+                changeLayout('DefaultTheme.css');
         }
     }
-    //move and resize program IO
-    interact('.programIO')
-            .draggable({
-                // enable inertial throwing
-                inertia: true,
-                // keep the element within the area of it's parent
-                restrict: {
-                    restriction: "parent",
-                    endOnly: true,
-                    elementRect: {top: 0, left: 0, bottom: 1, right: 1}
-                },
-                // call this function on every dragmove event
-                onmove: dragMoveListener
-                // call this function on every dragend event
-            })
-            .resizable({
-                edges: {left: true, right: true, bottom: true, top: true}
-            })
-            .on('resizemove', function (event) {
-                if(boxState == true) {
-                    var target = event.target;
-                    x = (parseFloat(target.getAttribute('data-x')) || 0),
-                            y = (parseFloat(target.getAttribute('data-y')) || 0);
-                    // update the element's style
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-                    // translate when resizing from top or left edges
-                    x += event.deltaRect.left;
-                    y += event.deltaRect.top;
-                    target.style.webkitTransform = target.style.transform =
-                            'translate(' + x + 'px,' + y + 'px)';
-                    target.setAttribute('data-x', x);
-                    target.setAttribute('data-y', y);
-                }
-            });
-    //move and resize debugger IO
-    interact('.DebuggerIO')
-            .draggable({
-                // enable inertial throwing
-                inertia: true,
-                // keep the element within the area of it's parent
-                restrict: {
-                    restriction: "parent",
-                    endOnly: true,
-                    elementRect: {top: 0, left: 0, bottom: 1, right: 1}
-                },
-                // call this function on every dragmove event
-                onmove: dragMoveListener
-            })
 
-            .resizable({
-                edges: {left: true, right: true, bottom: true, top: true}
-            })
-            .on('resizemove', function (event) {
-                if(boxState == true) {
-                    var target = event.target;
-                    x = (parseFloat(target.getAttribute('data-x')) || 0),
-                            y = (parseFloat(target.getAttribute('data-y')) || 0);
-                    // update the element's style
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-                    // translate when resizing from top or left edges
-                    x += event.deltaRect.left;
-                    y += event.deltaRect.top;
-                    target.style.webkitTransform = target.style.transform =
-                            'translate(' + x + 'px,' + y + 'px)';
-                    target.setAttribute('data-x', x);
-                    target.setAttribute('data-y', y);
-                }
-            });
-    //move and resize memory-graph
-    interact('.memory-graph')
-            .draggable({
-                // enable inertial throwing
-                inertia: true,
-                // keep the element within the area of it's parent
-                restrict: {
-                    restriction: "parent",
-                    endOnly: true,
-                    elementRect: {top: 0, left: 0, bottom: 1, right: 1}
-                },
-                // call this function on every dragmove event
-                onmove: dragMoveListener
-                // call this function on every dragend event
-            })
-            .resizable({
-                edges: {left: true, right: true, bottom: true, top: true}
-            })
-            .on('resizemove', function (event) {
-                if(boxState == true) {
-                    var target = event.target;
-                    x = (parseFloat(target.getAttribute('data-x')) || 0),
-                            y = (parseFloat(target.getAttribute('data-y')) || 0);
-                    // update the element's style
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-                    // translate when resizing from top or left edges
-                    x += event.deltaRect.left;
-                    y += event.deltaRect.top;
-                    target.style.webkitTransform = target.style.transform =
-                            'translate(' + x + 'px,' + y + 'px)';
-                    target.setAttribute('data-x', x);
-                    target.setAttribute('data-y', y);
-                }
-            });
-    //move and resize accordion
-    var element = document.getElementById('accordion'),
-            x = 0, y = 0;
-
-   /* interact(element)
-            .draggable({
-                snap: {
-                    targets: [
-                        interact.createSnapGrid({ x: 30, y: 30 })
-                    ],
-                    range: Infinity,
-                    relativePoints: [ { x: 0, y: 0 } ]
-                },
-                inertia: true,
-                restrict: {
-                    restriction: element.parentNode,
-                    elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
-                    endOnly: true
-                }
-            })
-            .on('dragmove', function (event) {
-                x += event.dx;
-                y += event.dy;
-
-                event.target.style.webkitTransform =
-                        event.target.style.transform =
-                                'translate(' + x + 'px, ' + y + 'px)';
-            })
-
-            .resizable({
-                edges: {left: true, right: true, bottom: true, top: true}
-            })
-            .on('resizemove', function (event) {
-                if(boxState == true) {
-                    var target = event.target;
-                    x = (parseFloat(target.getAttribute('data-x')) || 0),
-                            y = (parseFloat(target.getAttribute('data-y')) || 0);
-                    // update the element's style
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-                    // translate when resizing from top or left edges
-                    x += event.deltaRect.left;
-                    y += event.deltaRect.top;
-                    target.style.webkitTransform = target.style.transform =
-                            'translate(' + x + 'px,' + y + 'px)';
-                    target.setAttribute('data-x', x);
-                    target.setAttribute('data-y', y);
-                }
-            });*/
-    //}
-    function clickBox(){
-        boxState = !(boxState);
-    }
 </script>
 
 <BR/>
