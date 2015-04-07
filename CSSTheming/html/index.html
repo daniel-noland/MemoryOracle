@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>Theme</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="../js/lib/interact/interact.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
     <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
     <link id="main-style" rel="stylesheet" href="../css/global.css"/>
     <link id="color-theme" rel="stylesheet" href="../css/DefaultColorTheme.css"/>
@@ -77,20 +80,152 @@
     <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
     <div class="accordion" id="accordion">
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-1">Source View</a>
-            <div id="accordion-1" class="accordion-section-content">
+            <a class="accordion-section-title" href="#sourceView">Source View</a>
+            <div id="sourceView" class="accordion-section-content">
+                <p>
+                    <pre>
+                    <code>
+                    /* **************************************** */
+                    /* Deck of Cards                            */
+                    /* created by William Nevin                 */
+                    /* 12/12/05 20:12 PM                        */
+                    /*        **************************        */
+                    /* Shuffle(passes) - Iterates through the   */
+                    /*             deck echanging each card     */
+                    /*             with randomly chosen card    */
+                    /*             in the deck.                 */
+                    /* Deal()    - Deals a single card off of   */
+                    /*             the top of the deck.         */
+                    /* Collect() - Resets the deck size to a    */
+                    /*             full deck.                   */
+                    /* Deck Size - Number of decks being used   */
+                    /* **************************************** */
+
+                    #ifndef StdCardDeckH
+                    #define StdCardDeckH
+
+                    #include
+                    #include
+                    #include
+
+                    const char HEART   = 0x03;   // May Not Work on
+                    const char DIAMOND = 0x04;   // certain systems
+                    const char CLUB    = 0x05;   // These are DOS standard
+                    const char SPADE   = 0x06;   // ASCII characters
+
+                    struct Card {
+                    char Suit;
+                    int trueVal;
+                    std::string faceVal;
+                    std::string fullName;
+                    };
+
+                    class Deck
+                    {
+                    public:
+                    Deck(int DeckSize);
+                    ~Deck(void);
+
+                    void Shuffle(int passes);
+                    Card Deal(void);
+                    void Collect(void);
+
+                    private:
+                    Card *CardDeck;
+                    int CurrCard;
+                    const int DECK_SIZ;
+                    };
+
+                    Deck::Deck(int DeckSize = 1) : DECK_SIZ( DeckSize ) {
+                    std::ostringstream sConv;
+                    int CurrSuit, CurrDeck;
+
+                    CardDeck = new Card[52 * DECK_SIZ];
+                    for (CurrDeck = 0; CurrDeck < DECK_SIZ; CurrDeck++) {
+                    for (CurrSuit = 0; CurrSuit < 4; CurrSuit++) {
+                    for (CurrCard = 0; CurrCard < 13; CurrCard ++) {
+                    if ((CurrCard + 1) % 13 == 1) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'A';
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Ace of ";
+                    }
+                    else if ((CurrCard + 1) % 13 == 11) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'J';
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Jack of ";
+                    }
+                    else if ((CurrCard + 1) % 13 == 12) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'Q';
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Queen of ";
+                    }
+                    else if ((CurrCard + 1) % 13 == 0) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'K';
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "King of ";
+                    }
+                    else {
+                    sConv << (CurrCard + 1) % 13;
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = sConv.str();
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = sConv.str() + " of ";
+                    sConv.str("");
+                    }
+                    if (CurrSuit == 0) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = HEART;
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Hearts";
+                    }
+                    else if (CurrSuit == 1) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = DIAMOND;
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Diamonds";
+                    }
+                    else if (CurrSuit == 2) {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = CLUB;
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Clubs";
+                    }
+                    else {
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = SPADE;
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Spades";
+                    }
+                    if ((CurrCard + 1) % 13 < 10)
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal = (CurrCard + 1) % 13;
+                    else
+                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal =  10;
+                    }
+                    }
+                    }
+                    CurrCard = 0;
+                    }
+
+                    Deck::~Deck(void) {
+                    delete[] CardDeck;
+                    }
+
+                    void Deck::Shuffle(int passes = 1) {
+                    int currShuffle;
+                    for (currShuffle = 0; currShuffle < passes; currShuffle++)
+                    std::random_shuffle(CardDeck, CardDeck+DECK_SIZ*52);
+                    }
+
+                    Card Deck::Deal(void) {
+                    if ( CurrCard < DECK_SIZ * 52)
+                    return CardDeck[CurrCard++];
+                    }
+
+                    void Deck::Collect(void) {
+                    CurrCard = 0;
+                    }
+
+                    #endif /* StdCardDeckH */
+                        </code>
+                    </pre>
+                </p>
+            </div>
+        </div>
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#localView">Local View</a>
+            <div id="localView" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
             </div>
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-2">Local View</a>
-            <div id="accordion-2" class="accordion-section-content">
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-            </div>
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-3">Stack View</a>
-            <div id="accordion-3" class="accordion-section-content">
+            <a class="accordion-section-title" href="#stackView">Stack View</a>
+            <div id="stackView" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
@@ -117,8 +252,8 @@
             </div>
         </div>
         <div class="accordion-section">
-            <a class="accordion-section-title" href="#accordion-4">Trace View</a>
-            <div id="accordion-4" class="accordion-section-content">
+            <a class="accordion-section-title" href="#traceView">Trace View</a>
+            <div id="traceView" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
             </div>
         </div>
