@@ -15,8 +15,15 @@ p{
 select{
   background: @bodyBackgroundColor;
 }
-.memory-graph{
-
+.source-code {
+  height: 70%;
+  max-height: 70%;
+  overflow-y: scroll;
+  width: 50%;
+  float: left;
+}
+.resize-container{
+  box-sizing: border-box;
 }
 #header-bar {
   position:absolute;
@@ -41,6 +48,57 @@ select{
   color:@headingTextColor;
   font-size: 8pt;
 }
+.memory-graph{
+  float:left;
+  box-sizing: border-box;
+  width:68%;
+  height:500px;
+  border:3px solid @borderColor;
+}
+.programIO{
+  position: absolute;
+  top:510px;
+  left:0px;
+  height:40%;
+  width:32%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: @bodyBackgroundColor;
+}
+.programIOHeading{
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid @borderColor;
+  background: @headingBackgroundColor;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px @borderColor;
+  color: @headingTextColor;
+}
+
+.DebuggerIO{
+  position: absolute;
+  top:510px;
+  left:632px;
+  height:40%;
+  width:32%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: @bodyBackgroundColor;
+}
+.DebuggerIOHeading{
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid @borderColor;
+  background: @headingBackgroundColor;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px @borderColor;
+  color: @headingTextColor;
+}
+
 
 .main{
   position: relative;
@@ -55,10 +113,10 @@ select{
 
 .accordion {
   overflow:hidden;
-  box-shadow:0px 1px 3px @borderColor;
+  box-shadow:0px 1px 3px rgba(0,0,0,0.25);
   border-radius:3px;
   background:@bodyBackgroundColor;
-  width:30%;
+  width:31.5%;
   float:right;
 }
 
@@ -91,8 +149,14 @@ select{
   padding: 15px;
   display: none;
   overflow-y: scroll;
-  height: 40em;
+  height: 45em;
   max-height: 60%;
+}
+
+.check{
+  postion:absolute;
+  float:right;
+  color:white;
 }
 @lightestGrey:#f8f8f8;
 @lighterGrey:#C0C0C0;

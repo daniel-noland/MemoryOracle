@@ -14,6 +14,16 @@ p {
 select {
   background: #383838;
 }
+.source-code {
+  height: 70%;
+  max-height: 70%;
+  overflow-y: scroll;
+  width: 50%;
+  float: left;
+}
+.resize-container {
+  box-sizing: border-box;
+}
 #header-bar {
   position: absolute;
   top: 0px;
@@ -40,6 +50,55 @@ select {
   color: Black;
   font-size: 8pt;
 }
+.memory-graph {
+  float: left;
+  box-sizing: border-box;
+  width: 68%;
+  height: 500px;
+  border: 3px solid #c0c0c0;
+}
+.programIO {
+  position: absolute;
+  top: 510px;
+  left: 0px;
+  height: 40%;
+  width: 32%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: #383838;
+}
+.programIOHeading {
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
+.DebuggerIO {
+  position: absolute;
+  top: 510px;
+  left: 632px;
+  height: 40%;
+  width: 32%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: #383838;
+}
+.DebuggerIOHeading {
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
 .main {
   position: relative;
   top: 40px;
@@ -50,14 +109,13 @@ select {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  resize: both;
 }
 .accordion {
   overflow: hidden;
-  box-shadow: 0px 1px 3px #c0c0c0;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   background: #383838;
-  width: 30%;
+  width: 31.5%;
   float: right;
 }
 /*----- Section Titles -----*/
@@ -86,4 +144,12 @@ select {
 .accordion-section-content {
   padding: 15px;
   display: none;
+  overflow-y: scroll;
+  height: 40%;
+  max-height: 60%;
+}
+.check {
+  postion: absolute;
+  float: right;
+  color: white;
 }

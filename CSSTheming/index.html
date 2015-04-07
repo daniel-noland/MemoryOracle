@@ -77,7 +77,6 @@
     <div class="DebuggerIO">
         <div class="DebuggerIOHeading">Debugger IO</div>
         <div class="DebuggerIOBody">
-            <p id="tessst">
         Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
         lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
         Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
@@ -85,7 +84,6 @@
         purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
         In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
         aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
-            </p>
         </div>
     </div>
     <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
@@ -174,23 +172,23 @@
                 changeCSS('DefaultTheme.css');
         }
     }
+        i
+            interact('.accordion')
+                    .draggable({
+                        // enable inertial throwing
+                        inertia: true,
+                        // keep the element within the area of it's parent
+                        restrict: {
+                            restriction: "parent",
+                            endOnly: true,
+                            elementRect: {top: 0, left: 0, bottom: 1, right: 1}
+                        },
 
-        interact('.accordion')
-                .draggable({
-                    // enable inertial throwing
-                    inertia: true,
-                    // keep the element within the area of it's parent
-                    restrict: {
-                        restriction: "parent",
-                        endOnly: true,
-                        elementRect: {top: 0, left: 0, bottom: 1, right: 1}
-                    },
+                        // call this function on every dragmove event
+                        onmove: dragMoveListener
+                        // call this function on every dragend event
 
-                    // call this function on every dragmove event
-                    onmove: dragMoveListener
-                    // call this function on every dragend event
-
-                });
+                    });
 
         function dragMoveListener(event) {
             if (boxState == true) {
@@ -200,9 +198,7 @@
                     y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
             // translate the element
-            target.style.webkitTransform =
-                    target.style.transform =
-                            'translate(' + x + 'px, ' + y + 'px)';
+            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 
             // update the posiion attributes
             target.setAttribute('data-x', x);
