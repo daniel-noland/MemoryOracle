@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Theme</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="interact.js"></script>
+    <script src="../js/lib/interact/interact.js"></script>
     <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
-    <link id="main-style" rel="stylesheet" href="DefaultTheme.css"/>
+    <link id="main-style" rel="stylesheet" href="../css/DefaultTheme.css"/>
     <script>
         function close_accordion_section() {
             $('.accordion .accordion-section-title').removeClass('active');
@@ -137,7 +137,7 @@
     var themeColor = "default";
     function changeCSS(cssFile) {
         // Why is this better
-        $("#main-style").attr("href", cssFile);
+        $("#main-style").attr("href", "../css/" + cssFile);
         //var css = document.getElementById("main-style");
         //css.href = cssFile;
         /*
