@@ -1,0 +1,181 @@
+
+body{
+  background-color: @bodyBackgroundColor;
+  color: @bodyTextColor;
+}
+select{
+  color:@bodyTextColor;
+}
+h1{
+  color:@headingTextColor;
+}
+p{
+  color:@bodyTextColor;
+}
+select{
+  background: @bodyBackgroundColor;
+}
+.source-code {
+  height: 70%;
+  max-height: 70%;
+  overflow-y: scroll;
+  width: 50%;
+  float: left;
+}
+.resize-container{
+  box-sizing: border-box;
+}
+#header-bar {
+  position:absolute;
+  top:0px;
+  height: 40px;
+  background:@headingBackgroundColor;
+  color: @headingTextColor
+}
+#header-bar, #style-menu{
+  position: absolute;
+  right:0px;
+  top:20px;
+}
+#header-bar, #title-mem-or{
+  left:0;
+  color:@headingTextColor;
+  font-size: 14pt;
+}
+#header-bar, #title-theme{
+  right:0px;
+  top:0px;
+  color:@headingTextColor;
+  font-size: 8pt;
+}
+.memory-graph{
+
+    background-image: url(http://i.imgur.com/ibXlBGA.jpg?1);
+    background-size: 100% auto;
+    opacity: 0.4;
+
+  float:left;
+  box-sizing: border-box;
+  width:68%;
+  height:500px;
+  border:3px solid @borderColor;
+
+}
+.programIO{
+  position: absolute;
+  top:510px;
+  left:0px;
+  height:40%;
+  width:32%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: @bodyBackgroundColor;
+}
+.programIOHeading{
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid @borderColor;
+  background: @headingBackgroundColor;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px @borderColor;
+  color: @headingTextColor;
+}
+
+.DebuggerIO{
+  position: absolute;
+  top:510px;
+  left:632px;
+  height:40%;
+  width:32%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  background: @bodyBackgroundColor;
+}
+.DebuggerIOHeading{
+  width: 100%;
+  padding: 15px;
+  display: inline-block;
+  border-bottom: 1px solid @borderColor;
+  background: @headingBackgroundColor;
+  /* Type */
+  font-size: 1.200em;
+  text-shadow: 0px 1px 0px @borderColor;
+  color: @headingTextColor;
+}
+
+
+.main{
+  position: relative;
+  top:40px;
+}
+/*----- Accordion -----*/
+.accordion, .accordion * {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+.accordion {
+  overflow:hidden;
+  box-shadow:0px 1px 3px rgba(0,0,0,0.25);
+  border-radius:3px;
+  background:@bodyBackgroundColor;
+  width:31.5%;
+  float:right;
+}
+
+/*----- Section Titles -----*/
+.accordion-section-title {
+  width:100%;
+  padding:15px;
+  display:inline-block;
+  border-bottom:1px solid @borderColor;
+  background:@headingBackgroundColor;
+  transition:all linear 0.15s;
+  /* Type */
+  font-size:1.200em;
+  text-shadow:0px 1px 0px @borderColor;
+  color:@headingTextColor;
+}
+
+.accordion-section-title.active, .accordion-section-title:hover {
+  background:@borderColor;
+  /* Type */
+  text-decoration:none;
+}
+
+.accordion-section:last-child .accordion-section-title {
+  border-bottom:none;
+}
+
+/*----- Section Content -----*/
+.accordion-section-content {
+  padding: 15px;
+  display: none;
+  overflow-y: scroll;
+  height: 45em;
+  max-height: 60%;
+}
+
+.check{
+  postion:absolute;
+  float:right;
+  color:white;
+}
+/*less declarations */
+@lightestGrey:#f8f8f8;
+@lighterGrey:#C0C0C0;
+@lightGrey:#989898;
+@mediumGrey:#707070;
+@darkGrey:#505050;
+@darkerGrey:#383838;
+
+@volcanoRed: #EE3A15;
+
+@bodyTextColor:@darkerGrey;
+@headingTextColor:white;
+@headingBackgroundColor:@darkerGrey;
+@borderColor:@darkerGrey;
+@bodyBackgroundColor:@volcanoRed;
