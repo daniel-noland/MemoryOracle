@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -15,7 +14,7 @@
     <link id="main-style" rel="stylesheet" href="../css/global.css"/>
     <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>
     <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
-    <script>git
+    <script>
         function close_accordion_section() {
             $('.accordion .accordion-section-title').removeClass('active');
             $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
@@ -37,38 +36,67 @@
                 e.preventDefault();
             });
         });
+        function close_settings_section() {
+            $('.settings .settings-section-title').removeClass('active');
+            $('.settings .settings-section-content').slideUp(300).removeClass('open');
+            document.getElementById("main").style.visibility = "visible";
+        }
+        $(document).ready(function() {
+            $('.settings-section-title').click(function(e) {
+                var currentAttrValue = $(this).attr('href');
+                if($(e.target).is('.active')) {
+                    close_settings_section();
+                }else {
+                    $(this).addClass('active');
+                    $('.settings-section-content').slideUp(300).removeClass('open');
+                    $('.settings ' + currentAttrValue).slideDown(300).addClass('open');
+                    document.getElementById("main").style.visibility = "hidden";
+                }
+                e.preventDefault();
+            });
+        });
+
     </script>
 
 
 </head>
 <body>
 
-<div id="header-bar">
+<!--<div id="header-bar">
     <h1 id="title-mem-or">Memory Oracle</h1>
     <h1 id="title-theme"></h1>
-    <form name="chooseStyle">
-        <!-- prefer id to name -->
-        <select onChange="themeChoice()" name="style-menu" id="style-menu">
-            <option selected value = "default">Select A Theme</option>
-            <option value = "light">Light Theme</option>
-            <option value = "dark">Dark Theme</option>
-            <option value = "pink">Pink Theme</option>
-            <option value = "volcano">Volcano</option>
-        </select>
-    </form>
-    <form name="chooseLayout">
-        <select onChange="layoutChoice()" name="layout-menu" id="layout-menu">
-            <option selected value = "default">Select A Layout</option>
-            <option value = "noGraph">No Graph</option>
-        </select>
-    </form>
-</div>
+
+</div>-->
 
 <!-- no spaces in attributes -->
 <!--<h1> This is some test text to test the theme</h1>
 <p>
 </p>-->
-<div class="main">
+<div class="settings" id="settings">
+    <div class="settings-section"></div>
+    <div id="heading">
+        <a class="settings-section-title" href="#settingsMenu">Memory Oracle Settings</a>
+    </div>
+        <div id="settingsMenu" class="settings-section-content">
+            <form name="chooseTheme">
+                <select onChange="themeChoice()" name="style-menu" id="style-menu">
+                    <option selected value = "default">Select A Theme</option>
+                    <option value = "light">Light Theme</option>
+                    <option value = "dark">Dark Theme</option>
+                    <option value = "pink">Pink Theme</option>
+                    <option value = "volcano">Volcano</option>
+                </select>
+            </form>
+            <form name="chooseLayout">
+                <select onChange="layoutChoice()" name="layout-menu" id="layout-menu">
+                    <option selected value = "default">Select A Layout</option>
+                    <option value = "noGraph">No Graph</option>
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="main" id="main">
     <div class="callTree">
         <div class="callTreeHeading">Call Tree</div>
         <div class="callTreeBody">
@@ -82,6 +110,7 @@
         </div>
     </div>
     <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
+
     <div class="accordion" id="accordion">
         <div class="accordion-section">
             <a class="accordion-section-title" href="#sourceView">Source View</a>

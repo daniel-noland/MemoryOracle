@@ -23,11 +23,12 @@
     right:120px;
     top:20px;
 }
-#header-bar, #title-mem-or{
+#title-mem-or{
     left:0;
+    top:0;
     font-size: 14pt;
 }
-#header-bar, #title-theme{
+#title-settings{
     right:0px;
     top:0px;
     font-size: 8pt;
@@ -101,6 +102,52 @@
     overflow-y: scroll;
     height: 45em;
     max-height: 60%;
+}
+
+.settings, .settings * {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.settings {
+    position:absolute;
+    top:0px;
+    overflow:hidden;
+    box-shadow:0px 1px 3px rgba(0,0,0,0.25);
+    border-radius:3px;
+    width:31.5%;
+    float:right;
+}
+
+/*----- Section Titles -----*/
+.settings-section-title {
+    height: 40px;
+    width:100%;
+    padding:15px;
+    display:inline-block;
+    transition:all linear 0.15s;
+    /* Type */
+    font-size:1.200em;
+
+}
+
+.settings-section-title.active, .settings-section-title:hover {
+    /* Type */
+    text-decoration:none;
+}
+
+.settings-section:last-child .settings-section-title {
+    border-bottom:none;
+}
+
+/*----- Section Content -----*/
+.settings-section-content {
+    padding: 1px;
+    display: none;
+    overflow-y: scroll;
+    height: 55em;
+    max-height: 100%;
 }
 
 
