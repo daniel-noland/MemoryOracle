@@ -11,7 +11,7 @@
     <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
     <link id="main-style" rel="stylesheet" href="../css/global.css"/>
     <link id="color-theme" rel="stylesheet" href="../css/DefaultColorTheme.css"/>
-    <link id="pos-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
+    <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
     <script>
         function close_accordion_section() {
             $('.accordion .accordion-section-title').removeClass('active');
@@ -45,7 +45,7 @@
     <h1 id="title-theme"></h1>
     <form name="chooseStyle">
         <!-- prefer id to name -->
-        <select onChange="menuChoice()" name="style-menu" id="style-menu">
+        <select onChange="themeChoice()" name="style-menu" id="style-menu">
             <option selected value = "default">Select A Theme</option>
             <option value = "light">Light Theme</option>
             <option value = "dark">Dark Theme</option>
@@ -53,7 +53,7 @@
         </select>
     </form>
     <form name="chooseLayout">
-        <select onChange="menuChoice()" name="layout-menu" id=layout-menu">
+        <select onChange="layoutChoice()" name="layout-menu" id="layout-menu">
             <option selected value = "default">Select A Layout</option>
             <option value = "noGraph">No Graph</option>
         </select>
@@ -264,7 +264,7 @@
         // Why is this better
         $("#color-theme").attr("href", "../css/" + cssFile);
     }
-    function menuChoice() {
+    function themeChoice() {
         switch (document.getElementById("style-menu").value) {
             case 'light':
                 changeColorTheme('LightTheme.css');
@@ -282,10 +282,10 @@
     function changeLayout(cssFile) {
         $("#layout-theme").attr("href", "../css/" + cssFile);
     }
-    function menuChoice() {
+    function layoutChoice() {
         switch (document.getElementById("layout-menu").value) {
             case 'noGraph':
-                changeLayout('NoGraphLayout.css');
+                changeLayout('noGraph.css');
                 break;
             default:
                 changeLayout('DefaultTheme.css');

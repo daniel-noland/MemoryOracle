@@ -18,6 +18,11 @@
     right:0px;
     top:20px;
 }
+#header-bar, #layout-menu{
+    position: absolute;
+    right:120px;
+    top:20px;
+}
 #header-bar, #title-mem-or{
     left:0;
     font-size: 14pt;
@@ -38,7 +43,7 @@
     top:510px;
     left:0px;
     height:40%;
-    width:32%;
+    width:64%;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
 }
@@ -98,10 +103,5 @@
     max-height: 60%;
 }
 
-.check{
-    postion:absolute;
-    float:right;
-    color:white;
-}
 
 
