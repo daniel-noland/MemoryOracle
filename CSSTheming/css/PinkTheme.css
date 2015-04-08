@@ -1,21 +1,21 @@
 body {
   background-color: white;
-  color: #383838;
+  color: #ff0582;
 }
 select {
-  color: #383838;
+  color: #ff0582;
 }
 h1 {
   color: white;
 }
 p {
-  color: #383838;
+  color: #ff0582;
 }
 select {
   background: white;
 }
 #header-bar {
-  background: #383838;
+  background: #ff0582;
   color: white;
 }
 #header-bar,
@@ -27,15 +27,15 @@ select {
   color: white;
 }
 .memory-graph {
-  border: 3px solid #383838;
+  border: 3px solid #ff0582;
 }
 .callTree {
   background: white;
 }
 .callTreeHeading {
-  border-bottom: 1px solid #383838;
-  background: #383838;
-  text-shadow: 0px 1px 0px #383838;
+  border-bottom: 1px solid #ff0582;
+  background: #ff0582;
+  text-shadow: 0px 1px 0px #ff0582;
   color: white;
 }
 /*----- Accordion -----*/
@@ -44,13 +44,13 @@ select {
 }
 /*----- Section Titles -----*/
 .accordion-section-title {
-  border-bottom: 1px solid #383838;
-  background: #383838;
-  text-shadow: 0px 1px 0px #383838;
+  border-bottom: 1px solid #ff0582;
+  background: #ff0582;
+  text-shadow: 0px 1px 0px #ff0582;
   color: white;
 }
 .accordion-section-title.active,
 .accordion-section-title:hover {
-  background: #383838;
+  background: #ff0582;
 }
 /*less declarations */

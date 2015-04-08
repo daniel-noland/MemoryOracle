@@ -13,9 +13,9 @@
 
     <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
     <link id="main-style" rel="stylesheet" href="../css/global.css"/>
-    <link id="color-theme" rel="stylesheet" href="../css/DefaultColorTheme.css"/>
+    <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>
     <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
-    <script>
+    <script>git
         function close_accordion_section() {
             $('.accordion .accordion-section-title').removeClass('active');
             $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
@@ -284,6 +284,10 @@
                 break;
             case'pink':
                 changeColorTheme('PinkTheme.css');
+                changeSyntaxHighlightTheme("school_book.css");
+                break;
+            case'volcano':
+                changeColorTheme('VolcanoTheme.css');
                 changeSyntaxHighlightTheme("school_book.css");
                 break;
             default:
