@@ -75,16 +75,18 @@
 <div class="settings" id="settings">
     <div class="settings-section"></div>
     <div id="heading">
-        <a class="settings-section-title" href="#settingsMenu">Memory Oracle Settings</a>
+        <a class="settings-section-title" href="#settings-menu">Memory Oracle Settings</a>
     </div>
-        <div id="settingsMenu" class="settings-section-content">
+        <div id="settings-menu" class="settings-section-content">
+
+
             <form name="chooseTheme">
                 <select onChange="themeChoice()" name="style-menu" id="style-menu">
                     <option selected value = "default">Select A Theme</option>
-                    <option value = "light">Light Theme</option>
-                    <option value = "dark">Dark Theme</option>
-                    <option value = "pink">Pink Theme</option>
-                    <option value = "volcano">Volcano</option>
+                    <option value="light">Light Theme</option>
+                    <option value="dark">Dark Theme</option>
+                    <option value="pink">Pink Theme</option>
+                    <option value="volcano">Volcano</option>
                 </select>
             </form>
             <form name="chooseLayout">
@@ -93,27 +95,62 @@
                     <option value = "noGraph">No Graph</option>
                 </select>
             </form>
-            <div class="imgThemeMenu">Select From A Following Color Scheme</div>
-            <div class="imgThemeMenu">Select Your Preferred Layout</div>
-            <div class="imgDefault-Theme">
-                Default
-            </div>
-            <div class="imgLight-Theme">
-                Light
-            </div>
-            <div class="imgDark-Theme">
-                Dark</div>
-            <div class="imgPink-Theme">Pink
-            </div>
-            <div class="imgVolcano-Theme">
-                Volcano
-            </div>
-            <div class="imgDefault-Position">
-                DefaultPos
-            </div>
-            <div class="imgNo-Graph">
-                No Graph
-            </div>
+            <table cellspacing="0">
+               <tr>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+                  <td>
+                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                  </td>
+               </tr>
+            </table>
+            <!-- <div class="imgThemeMenu">Select From A Following Color Scheme</div> -->
+            <!-- <div class="imgThemeMenu">Select Your Preferred Layout</div> -->
+            <!-- <div class="imgDefault-Theme"> -->
+            <!--     Default -->
+            <!-- </div> -->
+            <!-- <div class="imgLight-Theme"> -->
+            <!--     Light -->
+            <!-- </div> -->
+            <!-- <div class="imgDark-Theme"> -->
+            <!--     Dark</div> -->
+            <!-- <div class="imgPink-Theme">Pink -->
+            <!-- </div> -->
+            <!-- <div class="imgVolcano-Theme"> -->
+            <!--     Volcano -->
+            <!-- </div> -->
+            <!-- <div class="imgDefault-Position"> -->
+            <!--     DefaultPos -->
+            <!-- </div> -->
+            <!-- <div class="imgNo-Graph"> -->
+            <!--     No Graph -->
+            <!-- </div> -->
         </div>
     </div>
 </div>
