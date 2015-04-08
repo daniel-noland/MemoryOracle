@@ -14,16 +14,7 @@ p{
 select{
   background: @bodyBackgroundColor;
 }
-#header-bar {
-  background:@headingBackgroundColor;
-  color: @headingTextColor
-}
-#header-bar, #title-mem-or{
-  color:@headingTextColor;
-}
-#header-bar, #title-theme{
-  color:@headingTextColor;
-}
+
 .memory-graph{
   border:3px solid @borderColor;
   background-image: url(http://i.imgur.com/ibXlBGA.jpg?1);
@@ -34,7 +25,10 @@ select{
   background: @bodyBackgroundColor;
 }
 .callTreeHeading{
-  border-bottom: 1px solid @borderColor;
+
+  background-image: url(http://i.imgur.com/d80OjQR.jpg);
+  
+ border-bottom: 1px solid @borderColor;
   background: @headingBackgroundColor;
   text-shadow: 0px 1px 0px @borderColor;
   color: @headingTextColor;
@@ -49,7 +43,7 @@ select{
 /*----- Section Titles -----*/
 .accordion-section-title {
   border-bottom:1px solid @borderColor;
-  background:@headingBackgroundColor;
+  /*background:@headingBackgroundColor;*/
   text-shadow:0px 1px 0px @borderColor;
   color:@headingTextColor;
 }
