@@ -96,7 +96,7 @@
 
 /*----- Section Content -----*/
 .accordion-section-content {
-    padding: 15px;
+    padding: 1px;
     display: none;
     overflow-y: scroll;
     height: 45em;

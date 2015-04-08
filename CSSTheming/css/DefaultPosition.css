@@ -56,14 +56,9 @@
 
 /*----- Section Content -----*/
 .accordion-section-content {
-    padding: 15px;
     height: 44em;
     max-height: 60%;
 }
 
-.check{
-    postion:absolute;
-    float:right;
-}
 
 
