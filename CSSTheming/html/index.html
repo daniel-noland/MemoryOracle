@@ -14,7 +14,15 @@
     <link id="main-style" rel="stylesheet" href="../css/global.css"/>
     <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>
     <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
-    <script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pure Drawer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/global.css"/>
+
+        <script>
         function close_accordion_section() {
             $('.accordion .accordion-section-title').removeClass('active');
             $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
@@ -72,332 +80,354 @@
 <!--<h1> This is some test text to test the theme</h1>
 <p>
 </p>-->
-<div class="settings" id="settings">
-    <div class="settings-section"></div>
-    <div id="heading">
-        <a class="settings-section-title" href="#settings-menu">Memory Oracle Settings</a>
-    </div>
-        <div id="settings-menu" class="settings-section-content">
+
+<div class="pure-container" data-effect="pure-effect-slide">
+    <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"/>
+    <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
+
+    <nav class="pure-drawer" data-position="left">
+        <p style="padding: 100px 20px; margin: 0;">Insert your off-canvas content here</p>
+    </nav>
+
+    <div class="pure-pusher-container">
+        <div class="pure-pusher">
+            <p style="width: 300px; margin: 100px auto;">
+
+            <div class="settings" id="settings">
+                <div class="settings-section"></div>
+                <div id="heading">
+                    <a class="settings-section-title" href="#settings-menu">Memory Oracle Settings</a>
+                </div>
+                <div id="settings-menu" class="settings-section-content">
 
 
-            <form name="chooseTheme">
-                <select onChange="themeChoice()" name="style-menu" id="style-menu">
-                    <option selected value = "default">Select A Theme</option>
-                    <option value="light">Light Theme</option>
-                    <option value="dark">Dark Theme</option>
-                    <option value="pink">Pink Theme</option>
-                    <option value="volcano">Volcano</option>
-                </select>
-            </form>
-            <form name="chooseLayout">
-                <select onChange="layoutChoice()" name="layout-menu" id="layout-menu">
-                    <option selected value = "default">Select A Layout</option>
-                    <option value = "noGraph">No Graph</option>
-                </select>
-            </form>
-            <table cellspacing="0">
-               <tr>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-                  <td>
-                     <img src="../img/cat.jpg" alt="" class="theme-preview" />
-                  </td>
-               </tr>
-            </table>
-            <!-- <div class="imgThemeMenu">Select From A Following Color Scheme</div> -->
-            <!-- <div class="imgThemeMenu">Select Your Preferred Layout</div> -->
-            <!-- <div class="imgDefault-Theme"> -->
-            <!--     Default -->
-            <!-- </div> -->
-            <!-- <div class="imgLight-Theme"> -->
-            <!--     Light -->
-            <!-- </div> -->
-            <!-- <div class="imgDark-Theme"> -->
-            <!--     Dark</div> -->
-            <!-- <div class="imgPink-Theme">Pink -->
-            <!-- </div> -->
-            <!-- <div class="imgVolcano-Theme"> -->
-            <!--     Volcano -->
-            <!-- </div> -->
-            <!-- <div class="imgDefault-Position"> -->
-            <!--     DefaultPos -->
-            <!-- </div> -->
-            <!-- <div class="imgNo-Graph"> -->
-            <!--     No Graph -->
-            <!-- </div> -->
+                    <form name="chooseTheme">
+                        <select onChange="themeChoice()" name="style-menu" id="style-menu">
+                            <option selected value = "default">Select A Theme</option>
+                            <option value="light">Light Theme</option>
+                            <option value="dark">Dark Theme</option>
+                            <option value="pink">Pink Theme</option>
+                            <option value="volcano">Volcano</option>
+                        </select>
+                    </form>
+                    <form name="chooseLayout">
+                        <select onChange="layoutChoice()" name="layout-menu" id="layout-menu">
+                            <option selected value = "default">Select A Layout</option>
+                            <option value = "noGraph">No Graph</option>
+                        </select>
+                    </form>
+                    <table cellspacing="0">
+                        <tr>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                            <td>
+                                <img src="../img/cat.jpg" alt="" class="theme-preview" />
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- <div class="imgThemeMenu">Select From A Following Color Scheme</div> -->
+                    <!-- <div class="imgThemeMenu">Select Your Preferred Layout</div> -->
+                    <!-- <div class="imgDefault-Theme"> -->
+                    <!--     Default -->
+                    <!-- </div> -->
+                    <!-- <div class="imgLight-Theme"> -->
+                    <!--     Light -->
+                    <!-- </div> -->
+                    <!-- <div class="imgDark-Theme"> -->
+                    <!--     Dark</div> -->
+                    <!-- <div class="imgPink-Theme">Pink -->
+                    <!-- </div> -->
+                    <!-- <div class="imgVolcano-Theme"> -->
+                    <!--     Volcano -->
+                    <!-- </div> -->
+                    <!-- <div class="imgDefault-Position"> -->
+                    <!--     DefaultPos -->
+                    <!-- </div> -->
+                    <!-- <div class="imgNo-Graph"> -->
+                    <!--     No Graph -->
+                    <!-- </div> -->
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="main" id="main">
-    <div class="callTree">
-        <div class="callTreeHeading">Call Tree</div>
-        <div class="callTreeBody">
-            Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
-            lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
-            Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
-            consectetuer sodales congue in, penatibus eros. Sit wisi nulla cursus, ante dictum erat quis interdum nulla, ultricies vitae, sociis quam dui. Bibendum non imperdiet nullam,
-            purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
-            In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
-            aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
-        </div>
-    </div>
-    <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
+        <div class="main" id="main">
+            <div class="callTree">
+                <div class="callTreeHeading">Call Tree</div>
+                <div class="callTreeBody">
+                    Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
+                    lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
+                    Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
+                    consectetuer sodales congue in, penatibus eros. Sit wisi nulla cursus, ante dictum erat quis interdum nulla, ultricies vitae, sociis quam dui. Bibendum non imperdiet nullam,
+                    purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
+                    In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
+                    aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
+                </div>
+            </div>
+            <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
 
-    <div class="accordion" id="accordion">
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#sourceView">Source View</a>
-            <div id="sourceView" class="accordion-section-content">
-                <p>
+            <div class="accordion" id="accordion">
+                <div class="accordion-section">
+                    <a class="accordion-section-title" href="#sourceView">Source View</a>
+                    <div id="sourceView" class="accordion-section-content">
+                        <p>
                     <pre>
                     <code>
-                    /* **************************************** */
-                    /* Deck of Cards                            */
-                    /* created by William Nevin                 */
-                    /* 12/12/05 20:12 PM                        */
-                    /*        **************************        */
-                    /* Shuffle(passes) - Iterates through the   */
-                    /*             deck echanging each card     */
-                    /*             with randomly chosen card    */
-                    /*             in the deck.                 */
-                    /* Deal()    - Deals a single card off of   */
-                    /*             the top of the deck.         */
-                    /* Collect() - Resets the deck size to a    */
-                    /*             full deck.                   */
-                    /* Deck Size - Number of decks being used   */
-                    /* **************************************** */
+                        /* **************************************** */
+                        /* Deck of Cards                            */
+                        /* created by William Nevin                 */
+                        /* 12/12/05 20:12 PM                        */
+                        /*        **************************        */
+                        /* Shuffle(passes) - Iterates through the   */
+                        /*             deck echanging each card     */
+                        /*             with randomly chosen card    */
+                        /*             in the deck.                 */
+                        /* Deal()    - Deals a single card off of   */
+                        /*             the top of the deck.         */
+                        /* Collect() - Resets the deck size to a    */
+                        /*             full deck.                   */
+                        /* Deck Size - Number of decks being used   */
+                        /* **************************************** */
 
-                    #ifndef StdCardDeckH
-                    #define StdCardDeckH
+                        #ifndef StdCardDeckH
+                        #define StdCardDeckH
 
-                    #include &lt;string&gt;
-                    #include &lt;sstream&gt;
-                    #include &lt;algorithm&gt;
+                        #include &lt;string&gt;
+                        #include &lt;sstream&gt;
+                        #include &lt;algorithm&gt;
 
-                    const char HEART   = 0x03;   // May Not Work on
-                    const char DIAMOND = 0x04;   // certain systems
-                    const char CLUB    = 0x05;   // These are DOS standard
-                    const char SPADE   = 0x06;   // ASCII characters
+                        const char HEART   = 0x03;   // May Not Work on
+                        const char DIAMOND = 0x04;   // certain systems
+                        const char CLUB    = 0x05;   // These are DOS standard
+                        const char SPADE   = 0x06;   // ASCII characters
 
-                    struct Card {
-                    char Suit;
-                    int trueVal;
-                    std::string faceVal;
-                    std::string fullName;
-                    };
+                        struct Card {
+                        char Suit;
+                        int trueVal;
+                        std::string faceVal;
+                        std::string fullName;
+                        };
 
-                    class Deck
-                    {
-                    public:
-                    Deck(int DeckSize);
-                    ~Deck(void);
+                        class Deck
+                        {
+                        public:
+                        Deck(int DeckSize);
+                        ~Deck(void);
 
-                    void Shuffle(int passes);
-                    Card Deal(void);
-                    void Collect(void);
+                        void Shuffle(int passes);
+                        Card Deal(void);
+                        void Collect(void);
 
-                    private:
-                    Card *CardDeck;
-                    int CurrCard;
-                    const int DECK_SIZ;
-                    };
+                        private:
+                        Card *CardDeck;
+                        int CurrCard;
+                        const int DECK_SIZ;
+                        };
 
-                    Deck::Deck(int DeckSize = 1) : DECK_SIZ( DeckSize ) {
-                    std::ostringstream sConv;
-                    int CurrSuit, CurrDeck;
+                        Deck::Deck(int DeckSize = 1) : DECK_SIZ( DeckSize ) {
+                        std::ostringstream sConv;
+                        int CurrSuit, CurrDeck;
 
-                    CardDeck = new Card[52 * DECK_SIZ];
-                    for (CurrDeck = 0; CurrDeck < DECK_SIZ; CurrDeck++) {
-                    for (CurrSuit = 0; CurrSuit < 4; CurrSuit++) {
-                    for (CurrCard = 0; CurrCard < 13; CurrCard ++) {
-                    if ((CurrCard + 1) % 13 == 1) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'A';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Ace of ";
-                    }
-                    else if ((CurrCard + 1) % 13 == 11) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'J';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Jack of ";
-                    }
-                    else if ((CurrCard + 1) % 13 == 12) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'Q';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Queen of ";
-                    }
-                    else if ((CurrCard + 1) % 13 == 0) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'K';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "King of ";
-                    }
-                    else {
-                    sConv << (CurrCard + 1) % 13;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = sConv.str();
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = sConv.str() + " of ";
-                    sConv.str("");
-                    }
-                    if (CurrSuit == 0) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = HEART;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Hearts";
-                    }
-                    else if (CurrSuit == 1) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = DIAMOND;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Diamonds";
-                    }
-                    else if (CurrSuit == 2) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = CLUB;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Clubs";
-                    }
-                    else {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = SPADE;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Spades";
-                    }
-                    if ((CurrCard + 1) % 13 < 10)
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal = (CurrCard + 1) % 13;
-                    else
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal =  10;
-                    }
-                    }
-                    }
-                    CurrCard = 0;
-                    }
+                        CardDeck = new Card[52 * DECK_SIZ];
+                        for (CurrDeck = 0; CurrDeck < DECK_SIZ; CurrDeck++) {
+                        for (CurrSuit = 0; CurrSuit < 4; CurrSuit++) {
+                        for (CurrCard = 0; CurrCard < 13; CurrCard ++) {
+                        if ((CurrCard + 1) % 13 == 1) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'A';
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Ace of ";
+                        }
+                        else if ((CurrCard + 1) % 13 == 11) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'J';
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Jack of ";
+                        }
+                        else if ((CurrCard + 1) % 13 == 12) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'Q';
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Queen of ";
+                        }
+                        else if ((CurrCard + 1) % 13 == 0) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'K';
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "King of ";
+                        }
+                        else {
+                        sConv << (CurrCard + 1) % 13;
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = sConv.str();
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = sConv.str() + " of ";
+                        sConv.str("");
+                        }
+                        if (CurrSuit == 0) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = HEART;
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Hearts";
+                        }
+                        else if (CurrSuit == 1) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = DIAMOND;
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Diamonds";
+                        }
+                        else if (CurrSuit == 2) {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = CLUB;
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Clubs";
+                        }
+                        else {
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = SPADE;
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Spades";
+                        }
+                        if ((CurrCard + 1) % 13 < 10)
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal = (CurrCard + 1) % 13;
+                        else
+                        CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal =  10;
+                        }
+                        }
+                        }
+                        CurrCard = 0;
+                        }
 
-                    Deck::~Deck(void) {
-                    delete[] CardDeck;
-                    }
+                        Deck::~Deck(void) {
+                        delete[] CardDeck;
+                        }
 
-                    void Deck::Shuffle(int passes = 1) {
-                    int currShuffle;
-                    for (currShuffle = 0; currShuffle < passes; currShuffle++)
-                    std::random_shuffle(CardDeck, CardDeck+DECK_SIZ*52);
-                    }
+                        void Deck::Shuffle(int passes = 1) {
+                        int currShuffle;
+                        for (currShuffle = 0; currShuffle < passes; currShuffle++)
+                        std::random_shuffle(CardDeck, CardDeck+DECK_SIZ*52);
+                        }
 
-                    Card Deck::Deal(void) {
-                    if ( CurrCard < DECK_SIZ * 52)
-                    return CardDeck[CurrCard++];
-                    }
+                        Card Deck::Deal(void) {
+                        if ( CurrCard < DECK_SIZ * 52)
+                        return CardDeck[CurrCard++];
+                        }
 
-                    void Deck::Collect(void) {
-                    CurrCard = 0;
-                    }
+                        void Deck::Collect(void) {
+                        CurrCard = 0;
+                        }
 
-                    #endif /* StdCardDeckH */
-                        </code>
+                        #endif /* StdCardDeckH */
+                    </code>
                     </pre>
-                </p>
+                        </p>
+                    </div>
+                </div>
+                <div class="accordion-section">
+                    <a class="accordion-section-title" href="#localView">Local View</a>
+                    <div id="localView" class="accordion-section-content">
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                    </div>
+                </div>
+                <div class="accordion-section">
+                    <a class="accordion-section-title" href="#stackView">Stack View</a>
+                    <div id="stackView" class="accordion-section-content">
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                    </div>
+                </div>
+                <div class="accordion-section">
+                    <a class="accordion-section-title" href="#traceView">Trace View</a>
+                    <div id="traceView" class="accordion-section-content">
+                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#localView">Local View</a>
-            <div id="localView" class="accordion-section-content">
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-            </div>
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#stackView">Stack View</a>
-            <div id="stackView" class="accordion-section-content">
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-            </div>
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#traceView">Trace View</a>
-            <div id="traceView" class="accordion-section-content">
-                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
-            </div>
+        <script>
+            function changeSyntaxHighlightTheme(cssFile) {
+                // Why is this better
+                $("#syntaxHighlight-theme").attr("href", "../node_modules/highlight.js/styles/" + cssFile);
+            }
+            function changeColorTheme(cssFile) {
+                // Why is this better
+                $("#color-theme").attr("href", "../css/" + cssFile);
+            }
+            function themeChoice() {
+                switch (document.getElementById("style-menu").value) {
+                    case 'light':
+                        changeColorTheme('LightTheme.css');
+                        changeSyntaxHighlightTheme("solarized_light.css");
+                        break;
+                    case 'dark':
+                        changeColorTheme('DarkTheme.css');
+                        changeSyntaxHighlightTheme("solarized_dark.css");
+                        break;
+                    case'pink':
+                        changeColorTheme('PinkTheme.css');
+                        changeSyntaxHighlightTheme("school_book.css");
+                        break;
+                    case'volcano':
+                        changeColorTheme('VolcanoTheme.css');
+                        changeSyntaxHighlightTheme("school_book.css");
+                        break;
+                    default:
+                        changeColorTheme('DefaultTheme.css');
+                        changeSyntaxHighlightTheme("github.css");
+                }
+            }
+            function changeLayout(cssFile) {
+                $("#layout-theme").attr("href", "../css/" + cssFile);
+            }
+            function layoutChoice() {
+                switch (document.getElementById("layout-menu").value) {
+                    case 'noGraph':
+                        changeLayout('noGraph.css');
+                        break;
+                    default:
+                        changeLayout('DefaultPosition.css');
+                }
+            }
+
+        </script>
+
+        <BR/>                INSERT TEXT HERE
+
+            </p>
         </div>
     </div>
+
+    <label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
 </div>
-<script>
-    function changeSyntaxHighlightTheme(cssFile) {
-        // Why is this better
-        $("#syntaxHighlight-theme").attr("href", "../node_modules/highlight.js/styles/" + cssFile);
-    }
-    function changeColorTheme(cssFile) {
-        // Why is this better
-        $("#color-theme").attr("href", "../css/" + cssFile);
-    }
-    function themeChoice() {
-        switch (document.getElementById("style-menu").value) {
-            case 'light':
-                changeColorTheme('LightTheme.css');
-                changeSyntaxHighlightTheme("solarized_light.css");
-                break;
-            case 'dark':
-                changeColorTheme('DarkTheme.css');
-                changeSyntaxHighlightTheme("solarized_dark.css");
-                break;
-            case'pink':
-                changeColorTheme('PinkTheme.css');
-                changeSyntaxHighlightTheme("school_book.css");
-                break;
-            case'volcano':
-                changeColorTheme('VolcanoTheme.css');
-                changeSyntaxHighlightTheme("school_book.css");
-                break;
-            default:
-                changeColorTheme('DefaultTheme.css');
-                changeSyntaxHighlightTheme("github.css");
-        }
-    }
-    function changeLayout(cssFile) {
-        $("#layout-theme").attr("href", "../css/" + cssFile);
-    }
-    function layoutChoice() {
-        switch (document.getElementById("layout-menu").value) {
-            case 'noGraph':
-                changeLayout('noGraph.css');
-                break;
-            default:
-                changeLayout('DefaultPosition.css');
-        }
-    }
 
-</script>
 
-<BR/>
 </body>
 
 </html>
