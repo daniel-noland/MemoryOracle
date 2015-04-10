@@ -1,5 +1,5 @@
 body {
-  background-color: #f8f8f8;
+  background-color: white;
   color: #383838;
 }
 select {
@@ -12,7 +12,7 @@ p {
   color: #383838;
 }
 select {
-  background: #f8f8f8;
+  background: white;
 }
 #header-bar {
   background: #383838;
@@ -30,7 +30,7 @@ select {
   border: 3px solid #383838;
 }
 .callTree {
-  background: #f8f8f8;
+  background: white;
 }
 .callTreeHeading {
   border-bottom: 1px solid #383838;
@@ -40,7 +40,7 @@ select {
 }
 /*----- Accordion -----*/
 .accordion {
-  background: #f8f8f8;
+  background: white;
 }
 /*----- Section Titles -----*/
 .accordion-section-title {
@@ -53,3 +53,4 @@ select {
 .accordion-section-title:hover {
   background: #383838;
 }
+/*less declarations */

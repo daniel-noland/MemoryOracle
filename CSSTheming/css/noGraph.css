@@ -64,9 +64,16 @@
     max-height: 60%;
 }
 
-.check{
-    postion:absolute;
-    float:right;
+.settings {
+    width:100%;
 }
 
+.settings-section-title {
+    width:100%;
+
+}
+.settings-section-content {
+    height: 44em;
+    max-height: 60%;
+}
 

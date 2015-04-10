@@ -14,92 +14,25 @@ p{
 select{
   background: @bodyBackgroundColor;
 }
-.theme-preview {
-   width:10em;
+#header-bar {
+  background:@headingBackgroundColor;
+  color: @headingTextColor
 }
-.imgTheme-Menu{
-  position: absolute;
-  left:0em;
-  top:0em;
-  height:20em;
-  width:15em;
+#header-bar, #title-mem-or{
+  color:@headingTextColor;
 }
-.imgDefault-Theme{
-  postition:absolute;
-  left:15em;
-  top:0em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
-}
-.imgDark-Theme{
-  position:absolute;
-  left:35em;
-  top:2.57em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
-}
-.imgLight-Theme{
-  position:absolute;
-  left:55em;
-  top:2.57em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
-}
-.imgPink-Theme{
-  position:absolute;
-  left:75em;
-  top:2.57em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
-}
-.imgVolcano-Theme{
-  position:absolute;
-  left:95em;
-  top:2.57em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
-}
-.imgDefault-Position{
-  position:absolute;
-  left:15em;
-  top:23.57em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
-}
-.imgNo-Graph{
-  position:absolute;
-  left:35em;
-  top:23.57em;
-  padding:10px;
-  background:blue;
-  height:300px;
-  width:300px;
-  border:5px solid @borderColor;
+#header-bar, #title-theme{
+  color:@headingTextColor;
 }
 .memory-graph{
   border:3px solid @borderColor;
+  background-image: url(http://i.imgur.com/ibXlBGA.jpg?1);
+  background-size: 100% auto;
+  opacity: 0.4;
 }
 .callTree{
-   background: @bodyBackgroundColor;
- }
+  background: @bodyBackgroundColor;
+}
 .callTreeHeading{
   border-bottom: 1px solid @borderColor;
   background: @headingBackgroundColor;
@@ -120,7 +53,6 @@ select{
   text-shadow:0px 1px 0px @borderColor;
   color:@headingTextColor;
 }
-
 .accordion-section-title.active, .accordion-section-title:hover {
   background:@borderColor;
 }
@@ -148,8 +80,10 @@ select{
 @darkGrey:#505050;
 @darkerGrey:#383838;
 
+@volcanoRed: #EE3A15;
+
 @bodyTextColor:@darkerGrey;
 @headingTextColor:white;
 @headingBackgroundColor:@darkerGrey;
 @borderColor:@darkerGrey;
-@bodyBackgroundColor:white;
+@bodyBackgroundColor:@volcanoRed;
