@@ -14,7 +14,7 @@
 
     <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
     <link id="main-style" rel="stylesheet" href="../css/global.css"/>
-    <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>
+    <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>00000000000
     <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
     <script>
         function close_accordion_section() {
@@ -88,6 +88,8 @@
                     <option value="dark">Dark Theme</option>
                     <option value="pink">Pink Theme</option>
                     <option value="volcano">Volcano</option>
+                    <option value="green">Green Theme</option>
+                    <option value="orange">Orange Theme</option>
                 </select>
             </form>
             <form name="chooseLayout">
@@ -373,6 +375,14 @@
             case'pink':
                 changeColorTheme('PinkTheme.css');
                 changeSyntaxHighlightTheme("school_book.css");
+                break;
+            case'orange':
+                changeColorTheme('OrangeTheme.css');
+                changeSyntaxHighlightTheme("brown_paper.css");
+                break;
+            case'green':
+                changeColorTheme('GreenTheme.css');
+                changeSyntaxHighlightTheme("solarized_light.css");
                 break;
             case'volcano':
                 changeColorTheme('VolcanoTheme.css');

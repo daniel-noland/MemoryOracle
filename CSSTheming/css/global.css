@@ -1,24 +1,9 @@
-.source-code {
-    height: 70%;
-    max-height: 70%;
-    overflow-y: scroll;
-    width: 50%;
-    float: left;
-}
-.resize-container{
-    box-sizing: border-box;
-}
-#header-bar {
-    position:absolute;
-    top:0px;
-    height: 40px;
-}
-#header-bar, #style-menu{
+#style-menu{
     position: absolute;
     right:0px;
     top:20px;
 }
-#header-bar, #layout-menu{
+#layout-menu{
     position: absolute;
     right:120px;
     top:20px;
@@ -55,10 +40,83 @@
     /* Type */
     font-size: 1.200em;
 }
-
+/*
+.theme-preview {
+   width:10em;
+}
+.imgTheme-Menu{
+    position: absolute;
+    left:0em;
+    top:0em;
+    height:20em;
+    width:15em;
+}
+.imgDefault-Theme{
+    position:absolute;
+    left:15em;
+    top:0em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+}
+.imgDark-Theme{
+    position:absolute;
+    left:35em;
+    top:2.57em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+}
+.imgLight-Theme{
+    position:absolute;
+    left:55em;
+    top:2.57em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+}
+.imgPink-Theme{
+    position:absolute;
+    left:75em;
+    top:2.57em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+}
+.imgVolcano-Theme{
+    position:absolute;
+    left:95em;
+    top:2.57em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+}
+.imgDefault-Position{
+    position:absolute;
+    left:15em;
+    top:23.57em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+}
+.imgNo-Graph{
+    position:absolute;
+    left:35em;
+    top:23.57em;
+    padding:10px;
+    background:blue;
+    height:300px;
+    width:300px;
+} */
 .main{
     position: relative;
-    top:40px;
+    /top:40px;
 }
 /*----- Accordion -----*/
 .accordion, .accordion * {

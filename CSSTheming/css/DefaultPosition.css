@@ -58,9 +58,16 @@
 }
 
 .settings {
+    position:absolute;
+    top:0em;
     width:100%;
+    display:inline;
 }
-
+.settings-menu-button{
+    position: absolute;
+    top:10px;
+    text-align:center;
+}
 .settings-section-title {
     width:100%;
 
