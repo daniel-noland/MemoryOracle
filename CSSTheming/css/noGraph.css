@@ -22,7 +22,7 @@
     top:0px;
 }
 .memory-graph{
-    visibility: hidden;
+    display:none;
     float:left;
     width:68%;
     height:500px;
@@ -45,10 +45,10 @@
 /*----- Accordion -----*/
 
 .accordion {
-    position:absolute;
-    right:0;
-    top:0;
+    right:0px;
+    top:0px;
     width:48%;
+    display:inline;
 }
 
 /*----- Section Titles -----*/

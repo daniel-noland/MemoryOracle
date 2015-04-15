@@ -40,10 +40,17 @@
     /* Type */
     font-size: 1.200em;
 }
-/*
-.theme-preview {
-   width:10em;
+.colorTable{
+    cursor:hand;
 }
+.theme-preview {
+   width:20em;
+}
+.colorHeading{
+    font-size: 50px;
+}
+
+/*
 .imgTheme-Menu{
     position: absolute;
     left:0em;
@@ -131,6 +138,8 @@
     border-radius:3px;
     width:31.5%;
     float:right;
+    max-height: 70%;
+    height: 70%;
 }
 
 /*----- Section Titles -----*/
@@ -141,7 +150,6 @@
     transition:all linear 0.15s;
     /* Type */
     font-size:1.200em;
-
 }
 
 .accordion-section-title.active, .accordion-section-title:hover {
@@ -158,7 +166,7 @@
     padding: 1px;
     display: none;
     overflow-y: scroll;
-    height: 45em;
+    height: 43em;
     max-height: 60%;
 }
 
@@ -206,6 +214,8 @@
     overflow-y: scroll;
     height: 55em;
     max-height: 100%;
+
+
 }
 
 
