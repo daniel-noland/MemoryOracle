@@ -11,9 +11,9 @@
       }
 
       .node {
-      fill: #000;
-      stroke: #fff;
-      stroke-width: 1.5px;
+         fill: #000;
+         stroke: #fff;
+         stroke-width: 1.5px;
       }
 
       </style>
@@ -405,7 +405,7 @@ $.when(load("arrays"), load("pointers"), load("structs"), load("values"))
 
 var ws = new WebSocket("ws://localhost:8765");
 
-ws.onmessage = function (event){
+ws.onmessage = function (event) {
    console.log(event.data);
    $("body").append("<div>" + event.data + "</div>");
 }
