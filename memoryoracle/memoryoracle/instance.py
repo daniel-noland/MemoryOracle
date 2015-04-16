@@ -174,9 +174,6 @@ class StructureInstance(Instance):
         self._init(structureDescription)
 
     def _track(self):
-        # if self.name[0] == "*":
-        #     name = "(" + self.name + ")"
-        # else:
         name = deepcopy(self.name)
         if name[0] == "*":
             name = name[1:]
@@ -266,7 +263,7 @@ class Array(Instance):
         # creature, so we remove the current address
         # from the updateTracker.
 
-        # CONCERN: if the first element of the array
+        # TODO: if the first element of the array
         # is a pointer back to the array, this may
         # cause an infinite loop.  *This algorithm
         # needs torture testing.*

@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 
+import gdb
 from django.db import models
+from jsonfield import JSONField
+from copy import deepcopy
 
 from uuid import uuid4 as uuid
 
@@ -76,7 +79,11 @@ class Execution(Tracked):
 class Typed(Tracked):
 
     id_execution = models.ForeignKey(Execution)
-    type = models.CharField(max_length=200)
+    type = models.TextField()
+    description = models.JSONField(default=None)
+    data = models.JSONField(default=None)
+
+    _updatedNames = set()
 
     class Meta:
         abstract = True
@@ -84,22 +91,67 @@ class Typed(Tracked):
     class DetectionError(Exception):
         pass
 
-    _typeCodeMap = dict()
-    # _typeCodeMap = {
-            # gdb.TYPE_CODE_ERROR: TypeDetectionError,
-            # }
+    class DataError(Exception):
+        pass
 
-    # _typeHandlerCode = gdb.TYPE_CODE_ERROR
+    _typeCodeMap = {
+            gdb.TYPE_CODE_ERROR: TypeDetectionError,
+    }
 
-    @property
-    def type(self):
-        if self._type is None:
-            self._type = Typed._type_lookup(self.gdb_type.code)
-        return self._type
+    _typeHandlerCode = gdb.TYPE_CODE_ERROR
+
+    def _basic_track(self, **kwargs):
+
+        self.args = deepcopy(kwargs)
+
+        if kwargs["name"] in self._updatedNames:
+            self.args["update"] = False
+            return self.args["update"]
+
+        self._updatedNames.add(kwargs["name"])
+
+        if isinstance(kwargs["type"], gdb.Type):
+            self.args["type"] = str(typ)
+
+        if isinstance(kwargs["description"], Description):
+            self.args["description"] = kwargs["description"].dict
+
+        if isinstance(kwargs["data"], gdb.Value):
+            self.args["data"] = dict()
+            self.debugee_data = kwargs["data"]
+
+        if isinstance(self.args["data"], dict):
+            self.debugee_data = None
+        else:
+            raise DataError(
+                    "Invalid data field!  Must be dictionary or gdb.Value")
+
+        if self.index(self.args) not in self._updateTracker:
+            self._updateTracker.add(self.args["index"])
+            # self.repository[self.index][self.name] = self.description.dict
+            self.args["description"] = self.args["description"].dict
+            self.args["update"] = True
+        else:
+            self.args["update"] = False
+
+        return self.args["update"]
+
+    def track(self, **kwargs):
+        if self._basic_track(**kwargs):
+            self._track()
+
+    def __init__(self, *args, **kwargs):
+
+        if len(args) > 0:
+            raise Exception("Only keyword values allowed in __init__!")
+
+        self.track(self, **kwargs)
+        super(Typed, self).__init__(*args, **self.args)
+        self._watchers[self.index] = InstanceWatcher(self)
 
     @staticmethod
     def type_handler():
-        return Typed._type_lookup(Typed._typeHandlerCode)
+        return Typed._type_lookup(self._typeHandlerCode)
 
     @property
     def type_code(self):
@@ -107,14 +159,47 @@ class Typed(Tracked):
 
     @property
     def gdb_type(self):
-        return self.object.type
+        return json.loads(self.data)["type"]
 
 
 class Memory(Typed):
+    """
+    Model representing an instance of an addressable object with a type from
+    the debugee.
+
+    This class enforces that the object have a memory address
+    in the debugge, or that an appropriate address is specified.
+    """
 
     address = models.CharField(max_length=64)
     has_symbol = models.BooleanField(default=False)
-    data = models.TextField()
+    parent = models.ForeignKey('self', null=True, blank=True, related_name="children")
+
+    _updateTracker = set()
+    _watchers = dict()
+    _addressFixer = re.compile(r" .*")
+
+    def update(self):
+        self._clear_updated()
+        self.track()
+
+    def _clear_updated(self):
+        self._updateTracker.discard(self.index)
+
+    @property
+    def watchers(self):
+        return self._watchers
+
+    def _compute_index(self):
+        return self._addressFixer.sub("", str(self.address))
+
+    # @property
+    # def frame(self):
+    #     return self.description.frame
+
+    def __init__(self, *args, **kwargs):
+        super(Memory, self).__init__(*args, **kwargs)
+        self.track()
 
     class Meta:
         db_table = 'memory'
