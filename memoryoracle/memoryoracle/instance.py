@@ -566,7 +566,7 @@ class StateSerializer(json.JSONEncoder):
 
     def default(self, obj):
         if isinstance(obj, set):
-            return { "set": list(obj) }
+            return {"set": list(obj)}
         return json.JSONEncoder.default(self, StateSerializer.equal_fix(obj))
 
 def stopped(event):
@@ -574,12 +574,16 @@ def stopped(event):
 
     with open("arrays.json", "w") as outfile:
         json.dump(arrayData, outfile, cls=StateSerializer)
+
     with open("pointers.json", "w") as outfile:
         json.dump(Pointer.repository, outfile, cls=StateSerializer)
+
     with open("structs.json", "w") as outfile:
         json.dump(StructureInstance.repository, outfile, cls=StateSerializer)
+
     with open("values.json", "w") as outfile:
         json.dump(Int.repository, outfile, cls=StateSerializer)
+
     with open("functions.json", "w") as outfile:
         json.dump(Call.repository, outfile, cls=StateSerializer)
 
