@@ -95,7 +95,7 @@
                 <!--<select onChange="layoutChoice()" name="layout-menu" id="layout-menu">-->
                     <!--<option selected value = "default">Select A Layout</option>-->
                     <!--<option value = "noGraph">No Graph</option>-->
-                <!--</select>-->gi
+                <!--</select>-->
             <!--</form>-->
             <table class="colorTable" cellspacing="20">
                <tr>
@@ -164,7 +164,9 @@
     </div>
 </div>
 <div class="main" id="main">
-    <div class="callTree">
+    <span id="left">
+    <div id="memory-graph class="shown">THIS IS WHERE THE SVG STUFF GOES</div>
+    <div class="callTree shown">
         <div class="callTreeHeading">Call Tree</div>
         <div class="callTreeBody">
             Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
@@ -176,9 +178,10 @@
             aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
         </div>
     </div>
-    <div class="memory-graph">THIS IS WHERE THE SVG STUFF GOES</div>
+    </span>
 
-    <div class="accordion" id="accordion">
+    <span id="right">
+    <div class="accordion shown" id="accordion">
         <div class="accordion-section">
             <a class="accordion-section-title" href="#sourceView">Source View</a>
             <div id="sourceView" class="accordion-section-content">
@@ -342,6 +345,7 @@
             </div>
         </div>
     </div>
+    </span>
 </div>
 <script>
     function changeSyntaxHighlightTheme(cssFile) {
