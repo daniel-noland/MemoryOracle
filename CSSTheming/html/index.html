@@ -19,16 +19,11 @@
     <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>
     <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
     <script>
-        function close_accordion_section() {
-            $('.accordion .accordion-section-title').removeClass('active');
-            $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
-        }
         $(function() {
            $("#views").accordion({
                collapsible: true
            });
         });
-
         function close_settings_section() {
             $('#settings .settings-section-title').removeClass('active');
             $('#settings .settings-section-content').slideUp(300).removeClass('open');
@@ -37,9 +32,9 @@
         $(function() {
             $('.settings-section-title').click(function(e) {
                 var currentAttrValue = $(this).attr('href');
-                if($(e.target).is('.active')) {
+                if ($(e.target).is('.active')) {
                     close_settings_section();
-                }else {
+                } else {
                     $(this).addClass('active');
                     $('.settings-section-content').slideUp(300).removeClass('open');
                     $('.settings ' + currentAttrValue).slideDown(300).addClass('open');
@@ -403,8 +398,6 @@ CurrCard = 0;
     }
 
 </script>
-
-<BR/>
 </body>
 
 </html>

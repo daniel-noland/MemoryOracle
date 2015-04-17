@@ -97,5 +97,14 @@
     max-height: 100%;
 }
 
+/* --- jQuery UI mods --- */
+
+body {
+   marign: 0%;
+}
+
+.ui-accordion .ui-accordion-content {
+   padding: 0%;
+}
 
 
