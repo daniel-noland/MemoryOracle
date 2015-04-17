@@ -4,9 +4,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Interact" level="application" />
-    <orderEntry type="library" name="JqueryUI" level="project" />
     <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="d3.v3" level="application" />
   </component>
 </module>

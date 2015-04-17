@@ -26,6 +26,7 @@
    margin-top: 2%;
    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
    border-radius: 3px;
+
 }
 #callTreeHeading{
    width: 100%;
@@ -33,6 +34,7 @@
    display: inline-block;
    /* Type */
    font-size: 1.200em;
+
 }
 .colorTable{
    cursor:hand;
@@ -117,7 +119,7 @@ width:300px;
 } */
    .main{
       position: relative;
-      /top:40px;
+      top:40px;
    }
    /*----- Accordion -----*/
    .accordion, .accordion * {
@@ -213,4 +215,42 @@ width:300px;
    }
 
 
+.node {
+   cursor: pointer;
+}
+
+.overlay{
+   background-color:#EEE;
+}
+
+.node circle {
+   fill: #fff;
+   stroke: steelblue;
+   stroke-width: 1.5px;
+}
+
+.node text {
+   font-size:10px;
+   font-family:sans-serif;
+}
+
+.link {
+   fill: none;
+   stroke: #ccc;
+   stroke-width: 1.5px;
+}
+
+.templink {
+   fill: none;
+   stroke: red;
+   stroke-width: 3px;
+}
+
+.ghostCircle.show{
+   display:block;
+}
+
+.ghostCircle, .activeDrag .ghostCircle{
+   display: none;
+}
 

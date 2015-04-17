@@ -53,3 +53,17 @@ select {
 .accordion-section-title:hover {
   background: #c0c0c0;
 }
+.settings {
+  background: #383838;
+}
+/*----- Section Titles -----*/
+.settings-section-title {
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
+.settings-section-title.active,
+.settings-section-title:hover {
+  background: #c0c0c0;
+}
