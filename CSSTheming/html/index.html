@@ -5,10 +5,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Theme</title>
+    <link id="jquery-ui-theme" rel="stylesheet" href="/js/lib/jquery-ui/jquery-ui.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link id="syntaxHighlight-theme" rel="stylesheet" href="../node_modules/highlight.js/styles/solarized_dark.css">
+    <link id="syntaxHighlight-theme" rel="stylesheet" href="../node_modules/highlight.js/styles/solarized_dark.css" />
     <!--<link id="syntaxHighlight-theme" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">-->
 
+    <script src="/js/lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
@@ -21,29 +23,18 @@
             $('.accordion .accordion-section-title').removeClass('active');
             $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
         }
-        $(document).ready(function() {
-            $('.accordion-section-title').click(function(e) {
-                // Grab current anchor value
-                var currentAttrValue = $(this).attr('href');
-                if($(e.target).is('.active')) {
-                    close_accordion_section();
-                }else {
-                    //close_accordion_section();
-                    // Add active class to section title
-                    $(this).addClass('active');
-                    // Open up the hidden content panel
-                    $('.accordion-section-content').slideUp(300).removeClass('open');
-                    $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
-                }
-                e.preventDefault();
-            });
+        $(function() {
+           $("#views").accordion({
+               collapsible: true
+           });
         });
+
         function close_settings_section() {
-            $('.settings .settings-section-title').removeClass('active');
-            $('.settings .settings-section-content').slideUp(300).removeClass('open');
+            $('#settings .settings-section-title').removeClass('active');
+            $('#settings .settings-section-content').slideUp(300).removeClass('open');
             document.getElementById("main").style.visibility = "visible";
         }
-        $(document).ready(function() {
+        $(function() {
             $('.settings-section-title').click(function(e) {
                 var currentAttrValue = $(this).attr('href');
                 if($(e.target).is('.active')) {
@@ -164,8 +155,9 @@
     </div>
 </div>
 <div class="main" id="main">
-    <span id="left">
-    <div id="memory-graph" class="shown">
+    <span class="left">
+      <div class="top">
+         <div id="memory-graph" class="shown">
                Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
                lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
                Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
@@ -173,169 +165,168 @@
                purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
                In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
                aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
-    THIS IS WHERE THE SVG STUFF GOES</div>
-      <div id="callTree" class="callTree shown">
-         <div class="callTreeHeading">Call Tree</div>
-         <div class="callTreeBody">
-               Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
-               lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
-               Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
-               consectetuer sodales congue in, penatibus eros. Sit wisi nulla cursus, ante dictum erat quis interdum nulla, ultricies vitae, sociis quam dui. Bibendum non imperdiet nullam,
-               purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
-               In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
-               aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
+               THIS IS WHERE THE SVG STUFF GOES
+         </div>
+      </div>
+      <div class="bottom">
+         <div id="callTree" class="shown">
+            <div id="callTreeHeading">Call Tree</div>
+            <div id="callTreeBody">
+                Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
+                lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
+                Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
+                consectetuer sodales congue in, penatibus eros. Sit wisi nulla cursus, ante dictum erat quis interdum nulla, ultricies vitae, sociis quam dui. Bibendum non imperdiet nullam,
+                purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
+                In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
+                aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
+            </div>
          </div>
       </div>
     </span>
 
-    <span id="right">
-    <div class="accordion shown" id="accordion">
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#sourceView">Source View</a>
+    <span class="right">
+    <div class="top">
+      <div id="views" class="accordion shown">
+            <h3 class="accordion-section-title">Source View</h3>
             <div id="sourceView" class="accordion-section-content">
-                <p>
-                    <pre>
-                    <code>
-                    /* **************************************** */
-                    /* Deck of Cards                            */
-                    /* created by William Nevin                 */
-                    /* 12/12/05 20:12 PM                        */
-                    /*        **************************        */
-                    /* Shuffle(passes) - Iterates through the   */
-                    /*             deck echanging each card     */
-                    /*             with randomly chosen card    */
-                    /*             in the deck.                 */
-                    /* Deal()    - Deals a single card off of   */
-                    /*             the top of the deck.         */
-                    /* Collect() - Resets the deck size to a    */
-                    /*             full deck.                   */
-                    /* Deck Size - Number of decks being used   */
-                    /* **************************************** */
+               <p>
+<pre>
+<code>
+/* **************************************** */
+/* Deck of Cards                            */
+/* created by William Nevin                 */
+/* 12/12/05 20:12 PM                        */
+/*        **************************        */
+/* Shuffle(passes) - Iterates through the   */
+/*             deck echanging each card     */
+/*             with randomly chosen card    */
+/*             in the deck.                 */
+/* Deal()    - Deals a single card off of   */
+/*             the top of the deck.         */
+/* Collect() - Resets the deck size to a    */
+/*             full deck.                   */
+/* Deck Size - Number of decks being used   */
+/* **************************************** */
 
-                    #ifndef StdCardDeckH
-                    #define StdCardDeckH
+#ifndef StdCardDeckH
+#define StdCardDeckH
 
-                    #include &lt;string&gt;
-                    #include &lt;sstream&gt;
-                    #include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+#include &lt;algorithm&gt;
 
-                    const char HEART   = 0x03;   // May Not Work on
-                    const char DIAMOND = 0x04;   // certain systems
-                    const char CLUB    = 0x05;   // These are DOS standard
-                    const char SPADE   = 0x06;   // ASCII characters
+const char HEART   = 0x03;   // May Not Work on
+const char DIAMOND = 0x04;   // certain systems
+const char CLUB    = 0x05;   // These are DOS standard
+const char SPADE   = 0x06;   // ASCII characters
 
-                    struct Card {
-                    char Suit;
-                    int trueVal;
-                    std::string faceVal;
-                    std::string fullName;
-                    };
+struct Card {
+char Suit;
+int trueVal;
+std::string faceVal;
+std::string fullName;
+};
 
-                    class Deck
-                    {
-                    public:
-                    Deck(int DeckSize);
-                    ~Deck(void);
+class Deck
+{
+public:
+Deck(int DeckSize);
+~Deck(void);
 
-                    void Shuffle(int passes);
-                    Card Deal(void);
-                    void Collect(void);
+void Shuffle(int passes);
+Card Deal(void);
+void Collect(void);
 
-                    private:
-                    Card *CardDeck;
-                    int CurrCard;
-                    const int DECK_SIZ;
-                    };
+private:
+Card *CardDeck;
+int CurrCard;
+const int DECK_SIZ;
+};
 
-                    Deck::Deck(int DeckSize = 1) : DECK_SIZ( DeckSize ) {
-                    std::ostringstream sConv;
-                    int CurrSuit, CurrDeck;
+Deck::Deck(int DeckSize = 1) : DECK_SIZ( DeckSize ) {
+std::ostringstream sConv;
+int CurrSuit, CurrDeck;
 
-                    CardDeck = new Card[52 * DECK_SIZ];
-                    for (CurrDeck = 0; CurrDeck < DECK_SIZ; CurrDeck++) {
-                    for (CurrSuit = 0; CurrSuit < 4; CurrSuit++) {
-                    for (CurrCard = 0; CurrCard < 13; CurrCard ++) {
-                    if ((CurrCard + 1) % 13 == 1) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'A';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Ace of ";
-                    }
-                    else if ((CurrCard + 1) % 13 == 11) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'J';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Jack of ";
-                    }
-                    else if ((CurrCard + 1) % 13 == 12) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'Q';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Queen of ";
-                    }
-                    else if ((CurrCard + 1) % 13 == 0) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'K';
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "King of ";
-                    }
-                    else {
-                    sConv << (CurrCard + 1) % 13;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = sConv.str();
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = sConv.str() + " of ";
-                    sConv.str("");
-                    }
-                    if (CurrSuit == 0) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = HEART;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Hearts";
-                    }
-                    else if (CurrSuit == 1) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = DIAMOND;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Diamonds";
-                    }
-                    else if (CurrSuit == 2) {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = CLUB;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Clubs";
-                    }
-                    else {
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = SPADE;
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Spades";
-                    }
-                    if ((CurrCard + 1) % 13 < 10)
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal = (CurrCard + 1) % 13;
-                    else
-                    CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal =  10;
-                    }
-                    }
-                    }
-                    CurrCard = 0;
-                    }
+CardDeck = new Card[52 * DECK_SIZ];
+for (CurrDeck = 0; CurrDeck < DECK_SIZ; CurrDeck++) {
+for (CurrSuit = 0; CurrSuit < 4; CurrSuit++) {
+for (CurrCard = 0; CurrCard < 13; CurrCard ++) {
+if ((CurrCard + 1) % 13 == 1) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'A';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Ace of ";
+}
+else if ((CurrCard + 1) % 13 == 11) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'J';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Jack of ";
+}
+else if ((CurrCard + 1) % 13 == 12) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'Q';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Queen of ";
+}
+else if ((CurrCard + 1) % 13 == 0) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'K';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "King of ";
+}
+else {
+sConv << (CurrCard + 1) % 13;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = sConv.str();
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = sConv.str() + " of ";
+sConv.str("");
+}
+if (CurrSuit == 0) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = HEART;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Hearts";
+}
+else if (CurrSuit == 1) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = DIAMOND;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Diamonds";
+}
+else if (CurrSuit == 2) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = CLUB;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Clubs";
+}
+else {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = SPADE;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Spades";
+}
+if ((CurrCard + 1) % 13 < 10)
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal = (CurrCard + 1) % 13;
+else
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal =  10;
+}
+}
+}
+CurrCard = 0;
+}
 
-                    Deck::~Deck(void) {
-                    delete[] CardDeck;
-                    }
+Deck::~Deck(void) {
+delete[] CardDeck;
+}
 
-                    void Deck::Shuffle(int passes = 1) {
-                    int currShuffle;
-                    for (currShuffle = 0; currShuffle < passes; currShuffle++)
-                    std::random_shuffle(CardDeck, CardDeck+DECK_SIZ*52);
-                    }
+void Deck::Shuffle(int passes = 1) {
+int currShuffle;
+for (currShuffle = 0; currShuffle < passes; currShuffle++)
+std::random_shuffle(CardDeck, CardDeck+DECK_SIZ*52);
+}
 
-                    Card Deck::Deal(void) {
-                    if ( CurrCard < DECK_SIZ * 52)
-                    return CardDeck[CurrCard++];
-                    }
+Card Deck::Deal(void) {
+if ( CurrCard < DECK_SIZ * 52)
+return CardDeck[CurrCard++];
+}
 
-                    void Deck::Collect(void) {
-                    CurrCard = 0;
-                    }
+void Deck::Collect(void) {
+CurrCard = 0;
+}
 
-                    #endif /* StdCardDeckH */
-                        </code>
-                    </pre>
-                </p>
+#endif /* StdCardDeckH */
+</code>
+</pre>
+               </p>
             </div>
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#localView">Local View</a>
+            <h3 class="accordion-section-title">Local View</h3>
             <div id="localView" class="accordion-section-content">
-
             </div>
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#stackView">Stack View</a>
+            <h3 class="accordion-section-title">Stack View</h3>
             <div id="stackView" class="accordion-section-content">
                 <p> address     -    contents</p>
                 <p>0x01234567   -   0x01234567</p>
@@ -345,14 +336,13 @@
                 <p>0x01234567   -   0x01234567</p>
 
             </div>
-        </div>
-        <div class="accordion-section">
-            <a class="accordion-section-title" href="#traceView">Trace View</a>
+            <h3 class="accordion-section-title">Trace View</h3>
             <div id="traceView" class="accordion-section-content">
                 <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
             </div>
-        </div>
     </div>
+   </div>
+   <div class="bottom">Controls live here</div>
     </span>
 </div>
 <script>
@@ -364,37 +354,6 @@
         // Why is this better
         $("#color-theme").attr("href", "../css/" + cssFile);
     }
-//    function themeChoice(selection) {
-//        switch (selection) {
-//            case 'light':
-//                changeColorTheme('LightTheme.css');
-//                changeSyntaxHighlightTheme("solarized_light.css");
-//                break;
-//            case 'dark':
-//                changeColorTheme('DarkTheme.css');
-//                changeSyntaxHighlightTheme("agate.css");
-//                break;
-//            case'pink':
-//                changeColorTheme('PinkTheme.css');
-//                changeSyntaxHighlightTheme("school_book.css");
-//                break;
-//            case'orange':
-//                changeColorTheme('OrangeTheme.css');
-//                changeSyntaxHighlightTheme("github.css");
-//                break;
-//            case'green':
-//                changeColorTheme('GreenTheme.css');
-//                changeSyntaxHighlightTheme("agate.css");
-//                break;
-//            case'volcano':
-//                changeColorTheme('VolcanoTheme.css');
-//                changeSyntaxHighlightTheme("school_book.css");
-//                break;
-//            default:
-//                changeColorTheme('DefaultTheme.css');
-//                changeSyntaxHighlightTheme("github.css");
-//        }
-//    }
     function changeLight(){
         changeColorTheme('LightTheme.css');
         changeSyntaxHighlightTheme("solarized_light.css");

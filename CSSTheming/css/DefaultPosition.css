@@ -39,19 +39,30 @@
     top:40px;
 }
 
-#left {
+.left {
    float: left;
    left: 0;
    width: 60%;
+   height: 100%;
    display: inline;
 }
 
-#right {
+.right {
    float: right;
    right: 0;
    width: 38%;
+   height: 100%;
    display: inline;
 }
+
+.top {
+   top: 0;
+}
+
+.bottom {
+   bottom: 0;
+}
+
 /*----- Accordion -----*/
 
 .accordion {
