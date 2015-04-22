@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
    int a[5] = { 1, 2, 3, 4, 5 };
    float b[2][2] = { {1 ,2.17}, {3.14, 4} };
    float d[2][3][2] = { {1 ,2.17, 3.14}, {0, 4} };
+   float dd = 3.14;
    double* c = new double[10];
    std::string h = "hello, world";
    char* h2 = "goodbye, world";

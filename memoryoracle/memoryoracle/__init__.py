@@ -1,7 +1,11 @@
-# import pymysql
-# pymysql.install_as_MySQLdb()
-#import gdb
-import pymysql
-pymysql.install_as_MySQLdb()
-import django.conf
-django.conf.settings.configure(DEBUG=True, TEMPLATE_DEBUG=True)
+import gdb
+
+import pymongo
+
+import mongoengine
+
+# NOTE: The read_preference should not be needed.  This is a workaround for a
+# bug in pymongo.  (http://goo.gl/Somoeu)
+mongoengine.connect('memoryoracle',
+                    read_preference=\
+                            pymongo.read_preferences.ReadPreference.PRIMARY)

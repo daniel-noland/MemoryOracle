@@ -1,27 +1,38 @@
-#!/usr/bin/env python
-# -*- encoding UTF-8 -*-
+#!/usr/bin/env python# -*- encoding UTF-8 -*-
 """
 File containing all classes representing memory addressable
 objects in the debugged program.
 """
 
-import gdb
+# import gdb
 import typed
-import tracked
-import templatable
-import frame
+# import templatable
+# import frame
 from copy import deepcopy
 import re
 import descriptions
-import weakref
+# import weakref
 import traceback
-import json
-from uuid import uuid4 as uuid
+# import json
+# from uuid import uuid4 as uuid
+
+import pymongo
+import frame
+
+import mongoengine
+
+# NOTE: The read_preference should not be needed.  This is a workaround for a
+# bug in pymongo.  (http://goo.gl/Somoeu)
+connection = mongoengine.connect('memoryoracle',
+                    read_preference=\
+                            pymongo.read_preferences.ReadPreference.PRIMARY)
+
+db = connection.memoryoracle
 
 
-class Instance(typed.Typed):
+class Memory(typed.Typed):
     """
-    *Abstract* class representing an instance of an object with a type.
+    *Abstract* class representing a instance of an object with a type.
 
     This class enforces that the object have a memory address
     in the debugge, or that an appropriate address is specified.
@@ -30,38 +41,67 @@ class Instance(typed.Typed):
     _addressFixer = re.compile(r" .*")
     _updatedNames = set()
 
-    def _init(self, description):
-        self._id = str(uuid())
-        self._address = None
-        self._description =  description
-        self._name = description.name
-        self._object = self.description.object
-        self._type = self._object.type
+    address = mongoengine.LongField()
+    name = mongoengine.StringField()
+    description = mongoengine.ReferenceField(descriptions.Description)
+    type = mongoengine.StringField()
+    parent_class = mongoengine.ReferenceField('Memory')
 
-        if self.parent is not None and self.parent_class is None:
-            raise ValueError("Parent supplied but no parent class!")
-        elif self.parent is None and self.parent_class is not None:
-            raise ValueError("parent_class supplied but no parent!")
+    _watchers = dict()
 
-    @property
-    def symbol(self):
-        return self._description.symbol
+    _execution = None
 
-    @property
-    def id(self):
-        return self._id
-
-    @property
-    def object(self):
-        return self._object
-
-    @property
-    def name(self):
-        return self._name
+    class DuplicateMemory(Exception):
+        pass
 
     @property
     def index(self):
-        return str(self.address)
+        return long(self.address)
+
+
+    @classmethod
+    def _fetch(cls, address=None, execution=None, frame=None):
+        if execution is not None:
+            if frame is not None:
+                if address is not None:
+                    memories = cls.objects(
+                        execution=execution,
+                        frame=frame,
+                        address=address
+                    )
+                    if len(memories) > 1:
+                        raise DuplicateMemory("Duplicate address for memory!")
+                    elif len(memories) == 0:
+                        return False
+                    return memories[0]
+                raise Exception("Address must be specified in _fetch call!")
+            raise Exception("Frame must be specified in _fetch call")
+        raise Exception("Execution must be specified in _fetch call!")
+
+
+    @staticmethod
+    def _set_execution(execution):
+        Memory._execution = execution
+
+    @classmethod
+    def factory(cls, *args, **kwargs):
+        # TODO: Make this raise exceptions correctly
+        if "address" in kwargs in kwargs and "frame" in kwargs:
+
+            if "execution" in kwargs:
+                Memory._set_execution(kwargs["execution"])
+
+
+            fetchedVal = cls._fetch(
+                address=kwargs["address"],
+                frame=kwargs["frame"],
+                execution=kwargs["execution"]
+            )
+
+            if fetchedVal != False:
+                return fetchedVal
+
+        return cls(*args, **kwargs)
 
     def _basic_track(self):
         if self.name in self._updatedNames:
@@ -71,8 +111,19 @@ class Instance(typed.Typed):
 
         if self.index not in self._updateTracker:
             self._updateTracker.add(self.index)
-            if self.index not in self.repository:
-                self.repository[self.index] = dict()
+
+            # query = db[self.__class__.__name__].find({
+            query = self.find({
+                "execution": self.execution,
+                "address": self.index
+            })
+            if query.count() > 1:
+                # TODO: This is bugged.  It will throw errors on address recycle.
+                raise Exception("Duplicate of same object with same address!")
+            elif query.count() == 0:
+
+                self.save()
+
             self.repository[self.index][self.name] = self.description.dict
             self.repository[self.index][self.name]["id"] = self.id
             return True
@@ -82,12 +133,8 @@ class Instance(typed.Typed):
     def track(self):
         if self._basic_track():
             self._track()
-            self._watchers[self.index] = InstanceWatcher(self)
-        # else:
-        #     if self.parent:
-        #         repo = self.repository.get(self.index, dict()).get(self.name)
-        #         if repo:
-        #             repo["parents"][self.parent_class][self.parent] = None
+            self._watchers[self.index] = MemoryWatcher(self)
+            print(self.to_json()) ## DEBUG
 
     def update(self):
         self._clear_updated()
@@ -100,40 +147,14 @@ class Instance(typed.Typed):
     def watchers(self):
         return self._watchers
 
-    @property
-    def address(self):
-        if self._address is None:
-            self._address = self._compute_address()
-        return self._address
-
-    def _compute_address(self):
-        if self.object.address:
-            return self._addressFixer.sub("", str(self.object.address))
-        else:
-            return self.description.address
-
-    @property
-    def description(self):
-        return self._description
-
-    @property
-    def parent(self):
-        return self.description.parent
-
-    @property
-    def parent_class(self):
-        return self.description.parent_class
-
-    @property
-    def frame(self):
-        return self.description.frame
-
-    def __init__(self, description):
-        raise NotImplementedError(
-                "Attempt to init abstract class Instance")
+    meta = {
+        'indexes': [
+            'address',
+        ]
+    }
 
 
-class Call(Instance):
+class Call(Memory):
     """
     *Concrete* class representing a particaular call to a function.
 
@@ -145,17 +166,11 @@ class Call(Instance):
     _updateTracker = set()
     _watchers = dict()
 
-    def __init__(self, decription):
-        self._init(decription)
-
-    def _track(self):
-        pass
-
 
 typed.register_type_handler(Call)
 
 
-class StructureInstance(Instance):
+class Structure(Owner):
     """
     *Concrete" class representing a specific memory structure.
 
@@ -170,54 +185,55 @@ class StructureInstance(Instance):
     _updateTracker = set()
     _watchers = dict()
 
-    def __init__(self, structureDescription):
-        self._init(structureDescription)
 
     def _track(self):
-        name = deepcopy(self.name)
+        name = deepcopy(str(self.name))
         if name[0] == "*":
             name = name[1:]
             marker = "->"
         else:
             marker = "."
         name += marker
+        children = []
         for f in self.object.type.fields():
-            desc = descriptions.InstanceDescription(
+            desc = descriptions.MemoryDescription(
                     name + f.name,
-                    relativeName = (marker, f.name),
-                    parent = self.id,
-                    parent_class = "struct")
+                    relativeName=(marker, f.name),
+                    parent=self.id,
+                    parent_class="struct")
             # childObj = MemberDecorator(addressable_factory(desc))
             # TODO: Use member decorator
             childObj = addressable_factory(desc)
             childObj.track()
+            children.append(childObj)
+        self.children = children
 
 
-typed.register_type_handler(StructureInstance)
+typed.register_type_handler(Structure)
 
 
-class VolatileDecorator(Instance):
+class VolatileDecorator(Memory):
     """
     *Decorator* class to indicate an addressable is volatile.
     """
     pass
 
 
-class RegisterDecorator(Instance):
+class RegisterDecorator(Memory):
     """
     *Decorator* class to decorate an addressable as being marked register.
     """
     pass
 
 
-class ExternDecorator(Instance):
+class ExternDecorator(Memory):
     """
     *Decorator* class to decorate an addressable as being marked extern.
     """
     pass
 
 
-class MemberDecorator(Instance):
+class MemberDecorator(Memory):
     """
     *Decorator* class to decorate an addressable as being a member value
     of another class.
@@ -225,7 +241,7 @@ class MemberDecorator(Instance):
     pass
 
 
-class Array(Instance):
+class Array(Owner):
     """
     *Concrete* class to represent an array in the debugge.
     """
@@ -235,9 +251,6 @@ class Array(Instance):
     _watchers = dict()
 
     _typeHandlerCode = gdb.TYPE_CODE_ARRAY
-
-    def __init__(self, pointerDescription):
-        self._init(pointerDescription)
 
     def _track(self):
         # convenience vars:
@@ -279,7 +292,7 @@ class Array(Instance):
         # langauge, then the algorithm should still work.
         for i in range(repo["range"][0], repo["range"][1] + 1):
             childName = self.name + "[" + str(i) + "]"
-            childDesc = descriptions.InstanceDescription(
+            childDesc = descriptions.MemoryDescription(
                         childName,
                         relativeName = "[" + str(i) + "]",
                         parent = self.id,
@@ -293,7 +306,7 @@ class Array(Instance):
 typed.register_type_handler(Array)
 
 
-class Primitive(Instance):
+class Primitive(Memory):
     """
     *Abstract* class to represent a primitive data type in the debugge.
 
@@ -352,7 +365,7 @@ class Pointer(Primitive):
     def _track(self):
         val = self.val_string()
         self.repository[self.index][self.name]["value"] = self.val_string()
-        desc = descriptions.InstanceDescription("*" + self.name,
+        desc = descriptions.MemoryDescription("*" + self.name,
                 relativeName = ("*", None),
                 parent = self.id,
                 parent_class = "pointer")
@@ -444,35 +457,39 @@ class CharString(Pointer):
     pass
 
 
-class ConstDecorator(Instance):
+class ConstDecorator(Memory):
     """
     *Decorator* class to decorate an addressable as being marked const.
     """
     pass
 
 
-class StaticDecorator(Instance):
+class StaticDecorator(Memory):
     """
     *Decorator* class to decorate an addressable as being marked static.
     """
     pass
 
 
-class Void(Instance):
+class Void(Memory):
     """
     *Concrete* class to describe an object of the type void
     """
     pass
 
 
-class InstanceWatcher(gdb.Breakpoint):
+# TODO: Refactor this to live in the main memory class.
+# That way memories own their watchers, rather than the reverse.
+# This has the advantage that it should stop complaints from gdb
+# when objects go out of scope.
+class MemoryWatcher(gdb.Breakpoint):
 
-    def __init__(self, instance):
-        self._instance = instance
-        self._type_name = descriptions.type_name(instance.type)
-        addr = instance.address
-        expression = self._instance.name
-        super(InstanceWatcher, self).__init__(
+    def __init__(self, memory):
+        self._memory = memory
+        self._type_name = descriptions.type_name(memory.type)
+        addr = memory.address
+        expression = self._memory.name
+        super(MemoryWatcher, self).__init__(
                 expression,
                 gdb.BP_WATCHPOINT,
                 gdb.WP_WRITE,
@@ -482,17 +499,17 @@ class InstanceWatcher(gdb.Breakpoint):
 
     def stop(self):
         try:
-            if self.addressable:
-                self.addressable.update()
+            if self.memory:
+                self.memory.update()
             else:
-                print("Instance gone!")
+                print("Memory gone!")
         except Exception as e:
             traceback.print_exc()
         return False
 
     @property
-    def addressable(self):
-        return self._addressable
+    def memory(self):
+        return self._memory
 
 def addressable_factory(description):
     _stdLibChecker = re.compile("^std::.*")
@@ -530,21 +547,21 @@ def serialize_upward(baseBlock = None):
         f = f.older()
 
 def serialize_block_locals(blk = None):
-    Instance._updatedNames.clear()
+    Memory._updatedNames.clear()
     block = blk if blk is not None else gdb.selected_frame().block()
     for sym in block:
         if sym.is_constant:
             continue
-        desc = descriptions.InstanceDescription(sym.name, symbol = sym)
+        desc = descriptions.MemoryDescription(sym.name, symbol = sym)
         if isinstance(desc.object, gdb.Symbol):
             continue
         obj = addressable_factory(desc)
         obj.track()
 
 def serialize_frame_locals(frm = None):
-    Instance._updatedNames.clear()
+    Memory._updatedNames.clear()
     for k in get_frame_symbols(frm = frm):
-        desc = descriptions.InstanceDescription(k)
+        desc = descriptions.MemoryDescription(k)
         obj = addressable_factory(desc)
         obj.track()
 
@@ -579,7 +596,7 @@ def stopped(event):
         json.dump(Pointer.repository, outfile, cls=StateSerializer)
 
     with open("structs.json", "w") as outfile:
-        json.dump(StructureInstance.repository, outfile, cls=StateSerializer)
+        json.dump(Structure.repository, outfile, cls=StateSerializer)
 
     with open("values.json", "w") as outfile:
         json.dump(Int.repository, outfile, cls=StateSerializer)

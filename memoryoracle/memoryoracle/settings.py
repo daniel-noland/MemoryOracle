@@ -57,13 +57,20 @@ WSGI_APPLICATION = 'memoryoracle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'memoryoracle',
+#         'USER': 'memoryoracle',
+#         'PASSWORD': 'fakepass',
+#         'HOST': '/var/run/mysqld/mysqld.sock',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'memoryoracle',
-        'USER': 'memoryoracle',
-        'PASSWORD': 'fakepass',
-        'HOST': '/var/run/mysqld/mysqld.sock',
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'memoryoracle'
     }
 }
 

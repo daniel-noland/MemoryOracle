@@ -4,83 +4,64 @@
 File containing the abstract Tracked class.
 """
 
-from uuid import uuid4 as uuid
+# import gdb
+
+import pymongo
+
+import mongoengine
+
+import execution
+
+# NOTE: The read_preference should not be needed.  This is a workaround for a
+# bug in pymongo.  (http://goo.gl/Somoeu)
+mongoengine.connect('memoryoracle',
+                    read_preference=\
+                            pymongo.read_preferences.ReadPreference.PRIMARY)
 
 
-class Tracked(object):
+class Tracked(mongoengine.Document):
     """
     *Abstract* class to represent a piece of information from the debugee
     to track.
     """
 
-    def _init(self, description):
-        self._id = uuid()
-        self._description = description
+    execution = mongoengine.ReferenceField(execution.Execution)
 
-    def __init__(self, *args, **kwargs):
-        raise NotImplementedError(
-                "Attempted to instantiate abstract class Tracked")
+    # def _init(self, description):
+    #     self._description = description
 
-    @property
-    def description(self):
-        return self._description
+    # def __init__(self, *args, **kwargs):
+    #     raise NotImplementedError(
+    #             "Attempted to instantiate abstract class Tracked")
 
-    @property
-    def name(self):
-        return self._name
+    # @property
+    # def description(self):
+    #     return self._description
 
-    @property
-    def id(self):
-        return self._id
+    # @property
+    # def name(self):
+    #     return self._name
 
     def track(self):
         raise NotImplementedError(
                 "Attempted to track abstract class")
 
 
-class ExternalDecorator(Tracked):
+class Owner(Tracked):
     """
-    *Decorator* class to decorate a tracked object as being external
-    to your work.
+    *Abstract* class representing an object which owns another object.
+
+    The Owner may both be owned, and contin objects which own other objects
     """
-
-    track = True
-
-    def __init__(self, tracked, toTrack = False):
-        """
-        Ctor for ExternalDecorator.
-        """
-        self.tracked = tracked
-        self._toTrack = toTrack
-
-    def track(self):
-        """
-        Track an external object
-        """
-        if track or self._toTrack:
-            entry = self.tracked.track()
-            entry["external"] = True
+    children = mongoengine.ListField(mongoengine.ReferenceField(Tracked))
 
 
-class StandardDecorator(Tracked):
+class Reference(Tracked):
     """
-    *Decorator* class to decorate a tracked object as belonging to
-    the languages standard library.
+    *Abstract* class representing an object which is a reference to another
+    object.
     """
-
-    def __init__(self, tracked, toTrack = False):
-        """
-        Ctor for StandardDecorator.
-        """
-        self.tracked = tracked
-        self._toTrack = toTrack
-
-    def track(self):
-        """
-        Track a standard object
-        """
-        if self._toTrack:
-            self.tracked.track()
+    target = mongoengine.ReferenceField(Tracked)
 
 
 class ProgramFile(Tracked):
@@ -94,6 +75,7 @@ class ObjectFile(ProgramFile):
     """
     *Concrete* class to track a compiled object file in the debugee
     """
+    source_file = mongoengine.ReferenceField("SourceFile")
     pass
 
 
@@ -101,6 +83,7 @@ class SourceFile(ProgramFile):
     """
     *Abstract* class to track a source code file belonging to the debugee.
     """
+    object_file = mongoengine.ReferenceField(ObjectFile)
     pass
 
 

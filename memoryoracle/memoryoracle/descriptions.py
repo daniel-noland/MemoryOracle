@@ -126,7 +126,7 @@ class ObjectFileDescription(FileDescription):
     pass
 
 
-class AddressableDescription(Description):
+class InstanceDescription(Description):
     """
     *Concrete* AddressableDescription class.
 
