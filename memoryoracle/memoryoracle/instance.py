@@ -4,8 +4,10 @@ File containing all classes representing memory addressable
 objects in the debugged program.
 """
 
-# import gdb
+import gdb
+import tracked
 import typed
+import registry
 # import templatable
 # import frame
 from copy import deepcopy
@@ -13,11 +15,11 @@ import re
 import descriptions
 # import weakref
 import traceback
-# import json
+import json
 # from uuid import uuid4 as uuid
 
 import pymongo
-import frame
+# import frame
 
 import mongoengine
 
@@ -43,7 +45,7 @@ class Memory(typed.Typed):
 
     address = mongoengine.LongField()
     name = mongoengine.StringField()
-    description = mongoengine.ReferenceField(descriptions.Description)
+    # description = mongoengine.ReferenceField(descriptions.Description)
     type = mongoengine.StringField()
     parent_class = mongoengine.ReferenceField('Memory')
 
@@ -167,10 +169,10 @@ class Call(Memory):
     _watchers = dict()
 
 
-typed.register_type_handler(Call)
+registry.TypeRegistration(Call)
 
 
-class Structure(Owner):
+class Structure(Memory):
     """
     *Concrete" class representing a specific memory structure.
 
@@ -179,6 +181,8 @@ class Structure(Owner):
     memory structure has the same address as the memory structure,
     and may thus share a node in the memory topology.
     """
+
+    children = mongoengine.ListField(mongoengine.ReferenceField(tracked.Tracked))
 
     repository = dict()
     _typeHandlerCode = gdb.TYPE_CODE_STRUCT
@@ -199,17 +203,17 @@ class Structure(Owner):
             desc = descriptions.MemoryDescription(
                     name + f.name,
                     relativeName=(marker, f.name),
-                    parent=self.id,
+                    parent=self,
                     parent_class="struct")
-            # childObj = MemberDecorator(addressable_factory(desc))
             # TODO: Use member decorator
+            # childObj = MemberDecorator(addressable_factory(desc))
             childObj = addressable_factory(desc)
             childObj.track()
             children.append(childObj)
         self.children = children
 
 
-typed.register_type_handler(Structure)
+registry.TypeRegistration(Structure)
 
 
 class VolatileDecorator(Memory):
@@ -241,7 +245,7 @@ class MemberDecorator(Memory):
     pass
 
 
-class Array(Owner):
+class Array(Memory):
     """
     *Concrete* class to represent an array in the debugge.
     """
@@ -303,7 +307,7 @@ class Array(Owner):
 
 
 # Register the Array class with the type handler
-typed.register_type_handler(Array)
+registry.TypeRegistration(Array)
 
 
 class Primitive(Memory):
@@ -378,7 +382,7 @@ class Pointer(Primitive):
 
 
 # Register the Pointer class with the type handler
-typed.register_type_handler(Pointer)
+registry.TypeRegistration(Pointer)
 
 
 class Int(Primitive):
@@ -430,7 +434,7 @@ class Int(Primitive):
             Int.repository[self.index][self.name]["type"] = descriptions.type_name(self.object.type)
 
 
-typed.register_type_handler(Int)
+registry.TypeRegistration(Int)
 
 
 class Float(Primitive):
@@ -447,7 +451,7 @@ class Float(Primitive):
         self._init(floatDescription)
 
 
-typed.register_type_handler(Float)
+registry.TypeRegistration(Float)
 
 
 class CharString(Pointer):
@@ -601,7 +605,7 @@ def stopped(event):
     with open("values.json", "w") as outfile:
         json.dump(Int.repository, outfile, cls=StateSerializer)
 
-    with open("functions.json", "w") as outfile:
-        json.dump(Call.repository, outfile, cls=StateSerializer)
+    # with open("functions.json", "w") as outfile:
+    #     json.dump(Call.repository, outfile, cls=StateSerializer)
 
 gdb.events.stop.connect(stopped)

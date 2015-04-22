@@ -24,8 +24,9 @@ class Tracked(mongoengine.Document):
     *Abstract* class to represent a piece of information from the debugee
     to track.
     """
+    meta = {'allow_inheritance': True}
 
-    execution = mongoengine.ReferenceField(execution.Execution)
+    # execution = mongoengine.ReferenceField(execution.Execution)
 
     # def _init(self, description):
     #     self._description = description
@@ -53,7 +54,6 @@ class Owner(Tracked):
 
     The Owner may both be owned, and contin objects which own other objects
     """
-    children = mongoengine.ListField(mongoengine.ReferenceField(Tracked))
 
 
 class Reference(Tracked):

@@ -2,6 +2,12 @@
 # -*- encoding UTF-8 -*-
 
 import gdb
+import typed
+
+
+class TypeDetectionError(Exception):
+    pass
+
 
 class TypeRegistration(object):
     """
@@ -34,26 +40,30 @@ class TypeRegistration(object):
         gdb.TYPE_CODE_INTERNAL_FUNCTION: "DebuggerFunction",
     }
 
+    def __init__(self, handler):
+        self.register_handler(handler)
+
     @property
     def lookup(self):
         return self._lookup
 
-    def register_type_handler(self, cls):
+    @classmethod
+    def register_handler(cls, handler):
 
-        if not issubclass(cls, Typed):
+        if not issubclass(handler, typed.Typed):
             raise ValueError("Type handler must be a Typed object")
 
-        if Typed.lookup[cls._typeHandlerCode] is None:
-            Typed._typeCodeMap[cls._typeHandlerCode] = cls
-            print("Registered type code handler " + str(cls))
+        if not cls._typeCodeMap.get(handler._typeHandlerCode):
+            cls._typeCodeMap[handler._typeHandlerCode] = handler
+            print("Registered type code handler " + str(handler))
         else:
-            error = "\nType code already in use!\n"
-            error += "code: " + str(cls._typeHandlerCode)
-            error += "\nhandler: " + str(cls) + "\n"
+            error = "Type code already in use: "
+            error += "code: " + str(handler._typeHandlerCode)
+            error += ", handler: " + str(handler) + "\n"
             raise KeyError(error)
 
-    @staticmethod
-    def type_handler():
-        return Typed._type_lookup(Typed._typeHandlerCode)
+    # @staticmethod
+    # def type_handler():
+    #     return Typed._type_lookup(Typed._typeHandlerCode)
 
 

@@ -6,12 +6,8 @@ objects with a gdb.TYPE_CODE.
 """
 
 import tracked
-import gdb
+# import gdb
 import mongoengine
-
-class TypeDetectionError(Exception):
-    pass
-
 
 """
 Class Typed, which represents debugee
@@ -19,7 +15,7 @@ objects with a gdb.TYPE_CODE.
 """
 class Typed(tracked.Tracked):
 
-    _typeHandlerCode = gdb.TYPE_CODE_ERROR
+    # _typeHandlerCode = gdb.TYPE_CODE_ERROR
 
     @property
     def type(self):

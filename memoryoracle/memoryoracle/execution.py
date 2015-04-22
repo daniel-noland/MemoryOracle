@@ -21,7 +21,6 @@ class Instance(mongoengine.Document):
 
     name = mongoengine.StringField()
 
-
 class Execution(mongoengine.EmbeddedDocument):
     """
     *Concrete* class representing a particular call to an executable.
@@ -31,7 +30,6 @@ class Execution(mongoengine.EmbeddedDocument):
     end_time = mongoengine.ComplexDateTimeField()
     # objects = mongoengine.ListField(mongoengine.ReferenceField(instance.Instance))
     objects = mongoengine.ListField(mongoengine.ReferenceField(Instance))
-
 
 class Executable(mongoengine.EmbeddedDocument):
     """
