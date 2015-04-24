@@ -7,9 +7,10 @@ objects in the debugged program.
 import gdb
 import tracked
 import typed
+import execution
 import registry
+import frame
 # import templatable
-# import frame
 from copy import deepcopy
 import re
 import descriptions
@@ -19,7 +20,6 @@ import json
 # from uuid import uuid4 as uuid
 
 import pymongo
-# import frame
 
 import mongoengine
 
@@ -43,67 +43,78 @@ class Memory(typed.Typed):
     _addressFixer = re.compile(r" .*")
     _updatedNames = set()
 
-    address = mongoengine.LongField()
+    address = mongoengine.StringField()
     name = mongoengine.StringField()
+    frame = mongoengine.StringField()
+    execution = mongoengine.ReferenceField(execution.Execution)
     # description = mongoengine.ReferenceField(descriptions.Description)
     type = mongoengine.StringField()
-    parent_class = mongoengine.ReferenceField('Memory')
+    dynamic_type = mongoengine.StringField()
+    unaliased_type = mongoengine.StringField()
+    parent = mongoengine.ReferenceField('Memory')
 
     _watchers = dict()
 
     _execution = None
 
-    class DuplicateMemory(Exception):
+    _updateTracker = set()
+
+    class DuplicateAddress(Exception):
         pass
+
+    def __init__(self, *args, **kwargs):
+        self._description = kwargs["descript"]
+        self._object = kwargs["descript"].object
+        super(Memory, self).__init__(*args, **(kwargs["descript"].dict))
 
     @property
     def index(self):
-        return long(self.address)
-
+        return str(self.address)
 
     @classmethod
-    def _fetch(cls, address=None, execution=None, frame=None):
-        if execution is not None:
-            if frame is not None:
-                if address is not None:
-                    memories = cls.objects(
-                        execution=execution,
-                        frame=frame,
-                        address=address
-                    )
-                    if len(memories) > 1:
-                        raise DuplicateMemory("Duplicate address for memory!")
-                    elif len(memories) == 0:
-                        return False
-                    return memories[0]
-                raise Exception("Address must be specified in _fetch call!")
-            raise Exception("Frame must be specified in _fetch call")
-        raise Exception("Execution must be specified in _fetch call!")
+    def _fetch(cls, description):
+        if description is None:
+            raise Exception("Description required to fetch object!")
 
+        execution = description.execution
+        frameDescription = descriptions.MemoryDescription("myframe", address=str(gdb.selected_frame()))
+
+        # TODO: replace selected_frame call with something more flexible
+        frm = frame.Frame(gdb.selected_frame())
+        address = description.address
+        memories = cls.objects(
+            execution=execution,
+            frame=str(frm),
+            address=address
+        )
+        if len(memories) > 1:
+            raise DuplicateAddress("Duplicate address for memory!")
+        elif len(memories) == 0:
+            return False
+        return memories[0]
 
     @staticmethod
     def _set_execution(execution):
         Memory._execution = execution
 
     @classmethod
-    def factory(cls, *args, **kwargs):
-        # TODO: Make this raise exceptions correctly
-        if "address" in kwargs in kwargs and "frame" in kwargs:
+    def factory(cls, descript=None):
+        """
+        build an object based on a description, or fetch that object
+        from the database if it already exists.
+        """
 
-            if "execution" in kwargs:
-                Memory._set_execution(kwargs["execution"])
+        if descript.execution is not None:
+            Memory._set_execution(descript.execution)
+        else:
+            descript._execution = Memory._execution
 
+        fetchedVal = cls._fetch(descript)
 
-            fetchedVal = cls._fetch(
-                address=kwargs["address"],
-                frame=kwargs["frame"],
-                execution=kwargs["execution"]
-            )
+        if fetchedVal != False:
+            return fetchedVal
 
-            if fetchedVal != False:
-                return fetchedVal
-
-        return cls(*args, **kwargs)
+        return cls(descript=descript)
 
     def _basic_track(self):
         if self.name in self._updatedNames:
@@ -113,21 +124,7 @@ class Memory(typed.Typed):
 
         if self.index not in self._updateTracker:
             self._updateTracker.add(self.index)
-
-            # query = db[self.__class__.__name__].find({
-            query = self.find({
-                "execution": self.execution,
-                "address": self.index
-            })
-            if query.count() > 1:
-                # TODO: This is bugged.  It will throw errors on address recycle.
-                raise Exception("Duplicate of same object with same address!")
-            elif query.count() == 0:
-
-                self.save()
-
-            self.repository[self.index][self.name] = self.description.dict
-            self.repository[self.index][self.name]["id"] = self.id
+            self.extract_dynamic_type()
             return True
         else:
             return False
@@ -135,7 +132,9 @@ class Memory(typed.Typed):
     def track(self):
         if self._basic_track():
             self._track()
-            self._watchers[self.index] = MemoryWatcher(self)
+            ## TODO: enable memory watchers
+            # self._watchers[self.index] = MemoryWatcher(self)
+            self.save()
             print(self.to_json()) ## DEBUG
 
     def update(self):
@@ -149,11 +148,27 @@ class Memory(typed.Typed):
     def watchers(self):
         return self._watchers
 
+    def extract_dynamic_type(self):
+        s = self.description.object
+        # If the type is aliased, remove those aliases
+        # and store that type
+        strip = s.type.strip_typedefs()
+        if strip != s.type:
+            self.unaliased_type = strip.name
+
+        # If the type is dynamic, detect this and store
+        # accordingly
+        dynamic = s.dynamic_type
+        if dynamic != s.type:
+            self.dynamic_type = dynamic.name
+
     meta = {
         'indexes': [
             'address',
+            'frame'
         ]
     }
+
 
 
 class Call(Memory):
@@ -201,10 +216,10 @@ class Structure(Memory):
         children = []
         for f in self.object.type.fields():
             desc = descriptions.MemoryDescription(
-                    name + f.name,
-                    relativeName=(marker, f.name),
-                    parent=self,
-                    parent_class="struct")
+                name + f.name,
+                relativeName=(marker, f.name),
+                parent=self,
+                parent_class="struct")
             # TODO: Use member decorator
             # childObj = MemberDecorator(addressable_factory(desc))
             childObj = addressable_factory(desc)
@@ -256,18 +271,21 @@ class Array(Memory):
 
     _typeHandlerCode = gdb.TYPE_CODE_ARRAY
 
+    range = mongoengine.ListField()
+    target_type = mongoengine.StringField() ## TODO: upgrade this to ref field
+
     def _track(self):
         # convenience vars:
         s = self.object
-        repo = self.repository[self.index][self.name]
 
         # compute range of array in C sizeof(type) units
-        repo["range"] = self.object.type.range()
+        arrayRange = self.object.type.range()
+        self.range = arrayRange
 
         # compute the type of data the array contains
         # e.g. for float[2] the answer is float
         # for float[3][2][7] the answer is float
-        repo["target_type"] = target_type_name(self.type)
+        self.target_type = target_type_name(self.type)
 
         # compute the immediate type of data the array
         # contains.  e.g. for float[2] the answer is float.
@@ -294,12 +312,13 @@ class Array(Memory):
         # range would be non zero.  Still, this costs
         # very little, and if we support some "1 indexed"
         # langauge, then the algorithm should still work.
-        for i in range(repo["range"][0], repo["range"][1] + 1):
-            childName = self.name + "[" + str(i) + "]"
+        for i in range(arrayRange[0], arrayRange[1] + 1):
+            relativeName = "[" + str(i) + "]",
+            childName = self.name + relativeName
             childDesc = descriptions.MemoryDescription(
                         childName,
-                        relativeName = "[" + str(i) + "]",
-                        parent = self.id,
+                        relativeName = relativeName,
+                        parent = self,
                         parent_class = "array")
 
             childObj = addressable_factory(childDesc)
@@ -320,34 +339,23 @@ class Primitive(Memory):
     # repository = dict()
     # _updateTracker = dict()
 
+    value = mongoengine.StringField()
+
     def _track(self):
-        # convenience vars
-        s = self.object
-        repo = self.repository[self.index][self.name]
-
-        repo["value"] = self.val_string()
-
-        # If the type is aliased, remove those aliases
-        # and store that type
-        strip = s.type.strip_typedefs()
-        if strip != s.type:
-            self.values[addr][name]["unaliased_type"] = strip.name
-
-        # If the type is dynamic, detect this and store
-        # accordingly
-
-        # TODO: Determine if the gdb python api needs this in the
-        # pointer _track or here
-        dynamic = s.dynamic_type
-        if dynamic != s.type:
-            self.values[addr][name]["dynamic_type"] = dynamic.name
+        self.value = self.val_string()
 
     def val_string(self):
         """
         Get the printed value of a primitive object
         """
-        with frame.FrameSelector(self.frame):
+        with frame.Selector(self.frame) as s:
+
+            ## TODO: Find a way to print values without messing with the $# var
+            # in the gdb interface.
             gdbPrint = gdb.execute("print " + self.name, False, True)
+            print(s.frame.read_var(self.name)) ## DEBUG
+            ## TODO: If we can't fix the $# var, we may as well use it.
+            ## this is free information we may as well store for the user's use.
             ansSections = gdbPrint[:-1].split(" = ")[1:]
             return " ".join(ansSections)
 
@@ -363,21 +371,22 @@ class Pointer(Primitive):
 
     _typeHandlerCode = gdb.TYPE_CODE_PTR
 
-    def __init__(self, pointerDescription):
-        self._init(pointerDescription)
-
     def _track(self):
-        val = self.val_string()
-        self.repository[self.index][self.name]["value"] = self.val_string()
-        desc = descriptions.MemoryDescription("*" + self.name,
-                relativeName = ("*", None),
-                parent = self.id,
-                parent_class = "pointer")
+        super(Pointer, self)._track()
+        relativeName = "*"
+        targetName = relativeName + self.name
+        desc = descriptions.MemoryDescription(
+            targetName,
+            relativeName=(relativeName, None),
+            parent=self,
+            parent_class="pointer"
+        )
         try:
             target = addressable_factory(desc)
             target.track()
         except gdb.MemoryError as e:
             # TODO: Decorate target as invalid in this case.
+            print("Found invalid target")
             pass
 
 
@@ -397,9 +406,6 @@ class Int(Primitive):
     _pointerFinder = re.compile(r"(\(.* \*\)) ")
     _spaceFixer = re.compile(r" ")
     _typeHandlerCode = gdb.TYPE_CODE_INT
-
-    def __init__(self, intDescription):
-        self._init(intDescription)
 
     def _find_hidden_type(self):
         v = self.object
@@ -426,12 +432,13 @@ class Int(Primitive):
         # and arrays are ints.
         hidden_typ = self._find_hidden_type()
         if isinstance(hidden_typ, gdb.Type):
-            self.description._object = self.object.cast(hidden_typ)
-            obj = addressable_factory(self.description)
-            obj.track()
+            print("Found hidden type!") ## DEBUG
+            self._description._object = self.object.cast(hidden_typ)
+            addressable_factory(self.description).track()
         else:
-            Int.repository[self.index][self.name]["value"] = self.val_string()
-            Int.repository[self.index][self.name]["type"] = descriptions.type_name(self.object.type)
+            self.value = self.val_string()
+            typ = self.object.type
+            self.type = descriptions.MemoryDescription.find_true_type_name(typ)
 
 
 registry.TypeRegistration(Int)
@@ -446,10 +453,6 @@ class Float(Primitive):
     _watchers = dict()
 
     _typeHandlerCode = gdb.TYPE_CODE_FLT
-
-    def __init__(self, floatDescription):
-        self._init(floatDescription)
-
 
 registry.TypeRegistration(Float)
 
@@ -529,15 +532,15 @@ def addressable_factory(description):
         return Untracked()
 
 
-def get_frame_symbols(frm = None):
-    with frame.FrameSelector(frm) as fs:
+def get_frame_symbols(frm=None):
+    with frame.Selector(frm) as fs:
         f = fs.frame
         if f.is_valid():
             return { str(sym) for sym in f.block() }
         else:
             raise Exception("Frame no longer valid")
 
-def serialize_frame_globals(frm = None):
+def serialize_frame_globals(frm=None):
     frame = frm if frm is not None else gdb.selected_frame()
     block = frame.block().global_block
     serialize_block_locals(block)
@@ -609,3 +612,15 @@ def stopped(event):
     #     json.dump(Call.repository, outfile, cls=StateSerializer)
 
 gdb.events.stop.connect(stopped)
+
+frameDescription = descriptions.MemoryDescription("yourframe")
+f = frame.Frame(gdb.selected_frame())
+e = execution.Execution()
+e.save()
+d = descriptions.MemoryDescription("a", address="1", execution=e)
+x = Float.factory(descript=d)
+if x:
+    print(x)
+    x.save()
+x.track()
+print(x.to_json())

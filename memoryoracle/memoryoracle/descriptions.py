@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- encoding UTF-8 -*-
 
-# import frame
-# import gdb
+import gdb
 import traceback
 from copy import deepcopy
 from uuid import uuid4 as uuid
 import mongoengine
+import frame
+
 
 class Description(object):
     """
@@ -127,9 +128,9 @@ class ObjectFileDescription(FileDescription):
     pass
 
 
-class InstanceDescription(Description):
+class MemoryDescription(Description):
     """
-    *Concrete* AddressableDescription class.
+    *Concrete* MemoryDescription class.
 
     A description of a memory addressable object.
     """
@@ -142,19 +143,20 @@ class InstanceDescription(Description):
         self._address = kwargs.get("address")
         self._parent = kwargs.get("parent")
         self._symbol = kwargs.get("symbol")
+        self._execution = kwargs.get("execution")
         self._relativeName = kwargs.get("relativeName")
         # self._parents = \
         #         deepcopy(AddressableDescription._parent_classifications)
         self._parentClass = kwargs.get("parent_class")
         # self._parents[self.parent_class] = self.parent
-        self._frame = frame.Frame(kwargs.get("frame", gdb.selected_frame()))
+        self._frame = kwargs.get("frame", gdb.selected_frame())
 
         if self.parent is not None and self.parent_class is None:
             raise ValueError("Parent supplied but no parent class!")
         elif self.parent is None and self.parent_class is not None:
             raise ValueError("parent_class supplied but no parent!")
 
-        with frame.FrameSelector(self.frame) as fs:
+        with frame.Selector(self.frame) as fs:
             sym = self._symbol
             if sym is not None:
                 typ = sym.type
@@ -182,14 +184,15 @@ class InstanceDescription(Description):
         if self._symbol and self._symbol.type:
             self._type_name = str(self._symbol.type)
         elif isinstance(self.object, gdb.Value):
-            self._type_name = type_name(self.object.type)
+            self._type_name = MemoryDescription.find_true_type_name(self.object.type)
+        else:
+            # TODO: This is for dev.  Remove in production code.
+            self._type_name = "void"
+            # raise Exception("Untyped memory", self)
 
     @property
     def dict(self):
-        # d = deepcopy(AddressableDescription._parent_classifications)
-        # if self.parent is not None:
-        #     d[self.parent_class] = { self.parent: self.relative_name }
-        return { "name": self.name, "parent": self.parent,
+        return { "name": self.name, "parent": self.parent, "address": self.address,
                 "frame": str(self.frame), "type": self.type_name }
 
     @property
@@ -224,14 +227,19 @@ class InstanceDescription(Description):
     def frame(self):
         return self._frame
 
-def type_name(t, nameDecorators = ""):
-    if t.code == gdb.TYPE_CODE_PTR:
-        return type_name(t.target(), nameDecorators + "*")
-    elif t.code == gdb.TYPE_CODE_ARRAY:
-        length = str(t.range()[1] - t.range()[0] + 1)
-        return type_name(t.target(), nameDecorators + "[" + length + "]")
-    else:
-        if isinstance(t.name, str):
-            return t.name + nameDecorators
+    @property
+    def execution(self):
+        return self._execution
+
+    @classmethod
+    def find_true_type_name(cls, t, nameDecorators = ""):
+        if t.code == gdb.TYPE_CODE_PTR:
+            return cls.find_true_type_name(t.target(), nameDecorators + "*")
+        elif t.code == gdb.TYPE_CODE_ARRAY:
+            length = str(t.range()[1] - t.range()[0] + 1)
+            return cls.find_true_type_name(t.target(), nameDecorators + "[" + length + "]")
         else:
-            return "(((none)))"
+            if isinstance(t.name, str):
+                return t.name + nameDecorators
+            else:
+                return "<## unknown type ##>"

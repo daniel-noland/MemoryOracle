@@ -21,7 +21,7 @@ class Instance(mongoengine.Document):
 
     name = mongoengine.StringField()
 
-class Execution(mongoengine.EmbeddedDocument):
+class Execution(mongoengine.Document):
     """
     *Concrete* class representing a particular call to an executable.
     """
@@ -42,7 +42,7 @@ class Executable(mongoengine.EmbeddedDocument):
     hash_sha384 = mongoengine.StringField()
     hash_sha512 = mongoengine.StringField()
     version = mongoengine.StringField()
-    executions = mongoengine.EmbeddedDocumentListField(Execution)
+    executions = mongoengine.ListField(mongoengine.ReferenceField(Execution))
 
 
 class Commit(mongoengine.Document):

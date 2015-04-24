@@ -47,6 +47,10 @@ class Tracked(mongoengine.Document):
         raise NotImplementedError(
                 "Attempted to track abstract class")
 
+    @property
+    def description(self):
+        return self._description
+
 
 class Owner(Tracked):
     """

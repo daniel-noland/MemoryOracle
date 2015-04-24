@@ -4,27 +4,35 @@
 
 import gdb
 import tracked
+import mongoengine
 
-
-class Frame(tracked.Tracked):
+class Frame(object):
     """
     *Concrete* class to track a frame in the debugee
-
-    TODO: Use finish points to automatically clean up.
     """
+    # TODO: Use finish points to automatically clean up.
 
-    _instances = dict()
+    knownFrames = dict()
 
-    def __init__(self, gdbFrame = None):
-        self.frame = gdbFrame if gdbFrame is not None else gdb.selected_frame()
-        # self.track()
+    def _get_frame(self, gdbFrame=None):
+        return gdbFrame if gdbFrame is not None else gdb.selected_frame()
+
+    def __init__(self, gdbFrame):
+        self.frame = gdbFrame
+        self.description = str(self.frame)
+        if self.frame.is_valid():
+            self.knownFrames[self.description] = self
+
 
     def __str__(self):
         return str(self.frame)
 
+    def __repr__(self):
+        return repr(self.frame)
+
     @property
     def index(self):
-        return str(self.frame)
+        return str(self)
 
     def is_valid(self):
         return self.frame.is_valid()
@@ -63,21 +71,24 @@ class Frame(tracked.Tracked):
         return self.frame.read_register()
 
     def read_var(self, variable, block = None):
-        return self.frame.read_var(variable, block)
+        if block is not None:
+            return self.frame.read_var(variable, block)
+        else:
+            return self.frame.read_var(variable)
 
     def select(self):
         self.frame.select()
 
 
-class FrameSelector(object):
+class Selector(object):
 
-    def __init__(self, f = None):
+    def __init__(self, f=None):
         if f is None:
             self._frame = Frame(gdb.newest_frame())
         elif isinstance(f, gdb.Frame):
             self._frame = Frame(f)
-        elif isinstance(f, Frame):
-            self._frame = f
+        elif isinstance(f, str):
+            self._frame = Frame.knownFrames.get(f, Frame(gdb.newest_frame()))
         else:
             print("Frame param of invalid type!")
             raise ValueError("frame param of invalid type: " + str(type(f)))

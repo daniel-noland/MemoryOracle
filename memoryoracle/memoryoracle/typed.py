@@ -18,15 +18,13 @@ class Typed(tracked.Tracked):
     # _typeHandlerCode = gdb.TYPE_CODE_ERROR
 
     @property
-    def type(self):
-        if self._type is None:
-            self._type = Typed._type_lookup(self.gdb_type.code)
-        return self._type
-
-    @property
     def type_code(self):
         raise NotImplementedError("Abstract class Typed has no type code")
 
-    # @property
-    # def gdb_type(self):
-    #     return self.object.type
+    @property
+    def gdb_type(self):
+        return self.object.type
+
+    @property
+    def object(self):
+        return self._object
