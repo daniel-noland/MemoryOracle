@@ -62,14 +62,30 @@ class Memory(typed.Typed):
     class DuplicateAddress(Exception):
         pass
 
-    def __init__(self, *args, **kwargs):
-        self._description = kwargs["descript"]
-        self._object = kwargs["descript"].object
-        super(Memory, self).__init__(*args, **(kwargs["descript"].dict))
+    # def __init__(self, *args, **kwargs):
+    #     print("args,", args)
+    #     print("kwargs,", kwargs)
+    #     if "descript" in kwargs:
+    #         self._description = kwargs["descript"]
+    #     elif len(args) > 0:
+    #         if isinstance(args[0], descriptions.MemoryDescription):
+    #             self._description = args[0]
+    #         else:
+    #             raise Exception("Memories must be initialized with descriptions.MemoryDescription objects")
+
+    #     # TODO: If this happens it is programmer.  Remove this exception when done debugging
+    #     if len(args) > 1:
+    #         raise Exception("Memory.__init__ can only take a single positional or argument.")
+
+    #     self._object = self._description.object
+    #     super(Memory, self).__init__(*args, **(kwargs["descript"].dict))
 
     @property
     def index(self):
         return str(self.address)
+
+    class NewObject(Exception):
+        pass
 
     @classmethod
     def _fetch(cls, description):
@@ -88,9 +104,9 @@ class Memory(typed.Typed):
             address=address
         )
         if len(memories) > 1:
-            raise DuplicateAddress("Duplicate address for memory!")
+            raise Memory.DuplicateAddress("Duplicate address for memory!")
         elif len(memories) == 0:
-            return False
+            raise Memory.NewObject("New object found")
         return memories[0]
 
     @staticmethod
@@ -98,23 +114,22 @@ class Memory(typed.Typed):
         Memory._execution = execution
 
     @classmethod
-    def factory(cls, descript=None):
+    def factory(cls, **kwargs):
         """
         build an object based on a description, or fetch that object
         from the database if it already exists.
         """
+        desc = kwargs["descript"]
 
-        if descript.execution is not None:
-            Memory._set_execution(descript.execution)
-        else:
-            descript._execution = Memory._execution
+        if desc.execution is not None:
+            Memory._set_execution(desc.execution)
 
-        fetchedVal = cls._fetch(descript)
-
-        if fetchedVal != False:
-            return fetchedVal
-
-        return cls(descript=descript)
+        try:
+            return cls._fetch(desc)
+        except Memory.NewObject:
+            otherArgs = {k: v for k, v in kwargs.items() if k != "descript"}
+            otherArgs.update(desc.dict)
+            return cls(**otherArgs)
 
     def _basic_track(self):
         if self.name in self._updatedNames:
@@ -127,7 +142,7 @@ class Memory(typed.Typed):
 
         if self.index not in self._updateTracker:
             self._updateTracker.add(self.index)
-            self.extract_dynamic_type()
+            # self.extract_dynamic_type()
             return True
         else:
             return False
@@ -137,7 +152,7 @@ class Memory(typed.Typed):
             self._track()
             ## TODO: enable memory watchers
             # self._watchers[self.index] = MemoryWatcher(self)
-            print("Address: ", self.object.address, type(self.object.address), self.address, type(self.address))
+            # print("Address: ", self.object.address, type(self.object.address), self.address, type(self.address))
             self.save()
 
     def update(self):
@@ -150,20 +165,6 @@ class Memory(typed.Typed):
     @property
     def watchers(self):
         return self._watchers
-
-    def extract_dynamic_type(self):
-        s = self.description.object
-        # If the type is aliased, remove those aliases
-        # and store that type
-        strip = s.type.strip_typedefs()
-        if strip != s.type:
-            self.unaliased_type = strip.name
-
-        # If the type is dynamic, detect this and store
-        # accordingly
-        dynamic = s.dynamic_type
-        if dynamic != s.type:
-            self.dynamic_type = dynamic.name
 
     meta = {
         'indexes': [
@@ -448,7 +449,6 @@ class Float(Primitive):
     """
     *Concrete* class to represent floating point primitivies.
     """
-    repository = dict()
     _updateTracker = set()
     _watchers = dict()
 
@@ -527,8 +527,8 @@ def addressable_factory(description):
         description._address = str(s.address)
         handler = registry.handler_lookup(s.type.strip_typedefs().code)
         if standardLib:
-            return tracked.StandardDecorator(handler(descript=description), toTrack = False)
-        return handler(descript=description)
+            return tracked.StandardDecorator(handler.factory(descript=description), toTrack = False)
+        return handler.factory(descript=description)
     else:
         return Untracked()
 
@@ -632,4 +632,4 @@ dArray = descriptions.MemoryDescription("b", address="3", execution=e)
 xArray = Array.factory(descript=dArray)
 xArray.track()
 
-
+# print(tracked.Tracked.objects().all())

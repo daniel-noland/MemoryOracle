@@ -190,10 +190,19 @@ class MemoryDescription(Description):
                 self._address = str(self.object.address)
             print(self._address)
 
+        # if self.object is not None:
+        #     self._dynamic_type, self._stripped_type = \
+        #             self.extract_extra_type_info()
+        # else:
+        #     self._dynamic_type = "?"
+        #     self._stripped_type = "?"
+
     @property
     def dict(self):
         return { "name": self.name, "address": self.address,
-                "frame": str(self.frame), "type": self.type_name }
+                 "frame": str(self.frame), "type": self.type_name}
+                 # "dynamic_type": self.dynamic_type.name,
+                 # "stripped_type": self.stripped_type.name}
 
     @property
     def relative_name(self):
@@ -207,18 +216,6 @@ class MemoryDescription(Description):
     def address(self):
         return self._address
 
-    # @property
-    # def parent(self):
-    #     return self._parent
-
-    # @property
-    # def parents(self):
-    #     return self._parents
-
-    # @property
-    # def parent_class(self):
-    #     return self._parentClass
-
     @property
     def object(self):
         return self._object
@@ -230,6 +227,14 @@ class MemoryDescription(Description):
     @property
     def execution(self):
         return self._execution
+
+    @property
+    def stripped_type(self):
+        return self._stripped_type
+
+    @property
+    def dynamic_type(self):
+        return self._dynamic_type
 
     @classmethod
     def find_true_type_name(cls, t, nameDecorators = ""):
@@ -243,3 +248,8 @@ class MemoryDescription(Description):
                 return t.name + nameDecorators
             else:
                 return "<## unknown type ##>"
+
+    def extract_extra_type_info(self):
+        s = self.object
+        strip = self.object.type.strip_typedefs()
+        return (strip.name, s.dynamic_type)
