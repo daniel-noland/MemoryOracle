@@ -1,0 +1,117 @@
+\hypertarget{classmemoryoracle_1_1typed_1_1Typed}{}\section{memoryoracle.\+typed.\+Typed Class Reference}
+\label{classmemoryoracle_1_1typed_1_1Typed}\index{memoryoracle.\+typed.\+Typed@{memoryoracle.\+typed.\+Typed}}
+
+
+Inheritance diagram for memoryoracle.\+typed.\+Typed\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1typed_1_1Typed__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+typed.\+Typed\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmemoryoracle_1_1typed_1_1Typed__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1typed_1_1Typed_a4670b26e07c52aa65346b1fc22a7e07b}{type\+\_\+code} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1typed_1_1Typed_a15e6c3fa11c755a81247ee308464bb56}{gdb\+\_\+type} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1typed_1_1Typed_a0d1a3c7644d37da66f9ea5cb269115fe}{object} (self)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file typed.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1typed_1_1Typed_a15e6c3fa11c755a81247ee308464bb56}{}\index{memoryoracle\+::typed\+::\+Typed@{memoryoracle\+::typed\+::\+Typed}!gdb\+\_\+type@{gdb\+\_\+type}}
+\index{gdb\+\_\+type@{gdb\+\_\+type}!memoryoracle\+::typed\+::\+Typed@{memoryoracle\+::typed\+::\+Typed}}
+\subsubsection[{gdb\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+typed.\+Typed.\+gdb\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1typed_1_1Typed_a15e6c3fa11c755a81247ee308464bb56}
+
+
+Definition at line 25 of file typed.\+py.
+
+
+\begin{DoxyCode}
+25     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1typed_1_1Typed_a15e6c3fa11c755a81247ee308464bb56}{gdb\_type}(self):
+26         \textcolor{keywordflow}{return} self.object.type
+27 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1typed_1_1Typed_a0d1a3c7644d37da66f9ea5cb269115fe}{}\index{memoryoracle\+::typed\+::\+Typed@{memoryoracle\+::typed\+::\+Typed}!object@{object}}
+\index{object@{object}!memoryoracle\+::typed\+::\+Typed@{memoryoracle\+::typed\+::\+Typed}}
+\subsubsection[{object}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+typed.\+Typed.\+object (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1typed_1_1Typed_a0d1a3c7644d37da66f9ea5cb269115fe}
+
+
+Definition at line 29 of file typed.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+\_\+object, and memoryoracle.\+descriptions.\+Memory\+Description.\+\_\+object.
+
+
+
+Referenced by memoryoracle.\+instance.\+Int.\+\_\+find\+\_\+hidden\+\_\+type(), and memoryoracle.\+instance.\+Array.\+\_\+track().
+
+
+\begin{DoxyCode}
+29     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1typed_1_1Typed_a0d1a3c7644d37da66f9ea5cb269115fe}{object}(self):
+30         \textcolor{keywordflow}{return} self.\_object
+31 \end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1typed_1_1Typed_a0d1a3c7644d37da66f9ea5cb269115fe_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1typed_1_1Typed_a4670b26e07c52aa65346b1fc22a7e07b}{}\index{memoryoracle\+::typed\+::\+Typed@{memoryoracle\+::typed\+::\+Typed}!type\+\_\+code@{type\+\_\+code}}
+\index{type\+\_\+code@{type\+\_\+code}!memoryoracle\+::typed\+::\+Typed@{memoryoracle\+::typed\+::\+Typed}}
+\subsubsection[{type\+\_\+code}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+typed.\+Typed.\+type\+\_\+code (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1typed_1_1Typed_a4670b26e07c52aa65346b1fc22a7e07b}
+
+
+Definition at line 21 of file typed.\+py.
+
+
+\begin{DoxyCode}
+21     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1typed_1_1Typed_a4670b26e07c52aa65346b1fc22a7e07b}{type\_code}(self):
+22         \textcolor{keywordflow}{raise} NotImplementedError(\textcolor{stringliteral}{"Abstract class Typed has no type code"})
+23 
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{typed_8py}{typed.\+py}\end{DoxyCompactItemize}

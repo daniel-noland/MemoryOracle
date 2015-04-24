@@ -1,0 +1,84 @@
+\hypertarget{instance_8py}{}\section{memoryoracle/instance.py File Reference}
+\label{instance_8py}\index{memoryoracle/instance.\+py@{memoryoracle/instance.\+py}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Memory}{memoryoracle.\+instance.\+Memory}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Memory_1_1DuplicateAddress}{memoryoracle.\+instance.\+Memory.\+Duplicate\+Address}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Call}{memoryoracle.\+instance.\+Call}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Structure}{memoryoracle.\+instance.\+Structure}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1VolatileDecorator}{memoryoracle.\+instance.\+Volatile\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1RegisterDecorator}{memoryoracle.\+instance.\+Register\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1ExternDecorator}{memoryoracle.\+instance.\+Extern\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1MemberDecorator}{memoryoracle.\+instance.\+Member\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Array}{memoryoracle.\+instance.\+Array}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Primitive}{memoryoracle.\+instance.\+Primitive}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Pointer}{memoryoracle.\+instance.\+Pointer}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Int}{memoryoracle.\+instance.\+Int}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Float}{memoryoracle.\+instance.\+Float}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1CharString}{memoryoracle.\+instance.\+Char\+String}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1ConstDecorator}{memoryoracle.\+instance.\+Const\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1StaticDecorator}{memoryoracle.\+instance.\+Static\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Void}{memoryoracle.\+instance.\+Void}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1MemoryWatcher}{memoryoracle.\+instance.\+Memory\+Watcher}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1StateSerializer}{memoryoracle.\+instance.\+State\+Serializer}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacememoryoracle_1_1instance}{memoryoracle.\+instance}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_ac651a8635b1ae2ee7e788bf9adb17a0b}{memoryoracle.\+instance.\+addressable\+\_\+factory} (description)
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a31e7e3135691ee03e847163a5b1e3950}{memoryoracle.\+instance.\+get\+\_\+frame\+\_\+symbols}
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a2b902e26969fe19c09ad673fd8f1bbb5}{memoryoracle.\+instance.\+serialize\+\_\+frame\+\_\+globals}
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a90a3c2f070ac8af0b41e6947d2b71a8a}{memoryoracle.\+instance.\+serialize\+\_\+upward}
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a78622e017f520b55ef2a05cffded052b}{memoryoracle.\+instance.\+serialize\+\_\+block\+\_\+locals}
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a958b2f6afa09c327a9e48bbe2fc7f125}{memoryoracle.\+instance.\+serialize\+\_\+frame\+\_\+locals}
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a4b8eb263a612b709be51201fc0fa7b6c}{memoryoracle.\+instance.\+target\+\_\+type\+\_\+name} (t)
+\item 
+def \hyperlink{namespacememoryoracle_1_1instance_a05aa9c531f257d44ef9ac5f60f4e3859}{memoryoracle.\+instance.\+stopped} (event)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1instance_a5e1db5ce414b598e74fcabb1803e1eb0}{memoryoracle.\+instance.\+connection}
+\item 
+\hyperlink{namespacememoryoracle_1_1instance_ad0b99030c18c65a87129ed0c8a7d3b2e}{memoryoracle.\+instance.\+db} = connection.\+memoryoracle
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1instance_ab71eabd3bbc314043bb5a1313cc3ab75}{memoryoracle.\+instance.\+frame\+Description} = descriptions.\+Memory\+Description(\char`\"{}yourframe\char`\"{})
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1instance_a29d678ee2f2624880e57ee0ee498e793}{memoryoracle.\+instance.\+f} = frame.\+Frame(gdb.\+selected\+\_\+frame())
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1instance_a8337088b8d0f8b6a58174f7b6a624d9e}{memoryoracle.\+instance.\+e} = execution.\+Execution()
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1instance_a50bbc043ba350bab4859e973b833b71f}{memoryoracle.\+instance.\+d} = descriptions.\+Memory\+Description(\char`\"{}a\char`\"{}, address=\char`\"{}1\char`\"{}, execution=e)
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1instance_afe036cc8dc71469743d090c4c80d50c5}{memoryoracle.\+instance.\+x} = Float.\+factory(descript=d)
+\end{DoxyCompactItemize}

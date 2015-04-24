@@ -1,0 +1,119 @@
+\hypertarget{namespacememoryoracle_1_1whip}{}\section{memoryoracle.\+whip Namespace Reference}
+\label{namespacememoryoracle_1_1whip}\index{memoryoracle.\+whip@{memoryoracle.\+whip}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}
+\item 
+class \hyperlink{classmemoryoracle_1_1whip_1_1SugarDecorator}{Sugar\+Decorator}
+\item 
+class \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{Whip\+Decorator}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacememoryoracle_1_1whip_ab9ffad7c18a9ef305221ac23e51d72cd}{coffee\+\_\+factory} (toppings\+List)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1whip_a699c7d4f532bf531884c1b8d63e3c54a}{my\+Coffee} = \hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}()
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1whip_a02937cc57ed7ecd4a098d2ff3c169f41}{my\+Whip\+Coffee} = \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{Whip\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}())
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1whip_a5499987513ec35b1d99b12773c508c06}{my\+Sugar\+Coffee} = \hyperlink{classmemoryoracle_1_1whip_1_1SugarDecorator}{Sugar\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}())
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1whip_ad09a6bd0136da3334447b1700114201c}{my\+Whip\+Sugar\+Coffee} = \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{Whip\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1SugarDecorator}{Sugar\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}()))
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1whip_a016df199d94ab221fd5793992d1209af}{my\+Whip\+Whip\+Sugar\+Coffee} = \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{Whip\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{Whip\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1SugarDecorator}{Sugar\+Decorator}(\hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}())))
+\item 
+list \hyperlink{namespacememoryoracle_1_1whip_ae603092dfc18fbff7a0452dd92457ec6}{top\+List} = \mbox{[}\char`\"{}whip\char`\"{}, \char`\"{}whip\char`\"{}, \char`\"{}double whip\char`\"{}, \char`\"{}sugar\char`\"{}, \char`\"{}sugar\char`\"{}, \char`\"{}whip\char`\"{}, \char`\"{}whip\char`\"{}\mbox{]}
+\item 
+tuple \hyperlink{namespacememoryoracle_1_1whip_a9008ef35cee0e5d2fe14e842629ee8e3}{your\+Coffee} = \hyperlink{namespacememoryoracle_1_1whip_ab9ffad7c18a9ef305221ac23e51d72cd}{coffee\+\_\+factory}(\hyperlink{namespacememoryoracle_1_1whip_ae603092dfc18fbff7a0452dd92457ec6}{top\+List})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacememoryoracle_1_1whip_ab9ffad7c18a9ef305221ac23e51d72cd}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!coffee\+\_\+factory@{coffee\+\_\+factory}}
+\index{coffee\+\_\+factory@{coffee\+\_\+factory}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{coffee\+\_\+factory}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+whip.\+coffee\+\_\+factory (
+\begin{DoxyParamCaption}
+\item[{}]{toppings\+List}
+\end{DoxyParamCaption}
+)}\label{namespacememoryoracle_1_1whip_ab9ffad7c18a9ef305221ac23e51d72cd}
+
+
+Definition at line 45 of file whip.\+py.
+
+
+\begin{DoxyCode}
+45 \textcolor{keyword}{def }\hyperlink{namespacememoryoracle_1_1whip_ab9ffad7c18a9ef305221ac23e51d72cd}{coffee\_factory}(toppingsList):
+46 
+47     coffee = \hyperlink{classmemoryoracle_1_1whip_1_1Coffee}{Coffee}()
+48 
+49     \textcolor{keywordflow}{for} top \textcolor{keywordflow}{in} toppingsList:
+50         \textcolor{keywordflow}{if} top == \textcolor{stringliteral}{"sugar"}:
+51             coffee = \hyperlink{classmemoryoracle_1_1whip_1_1SugarDecorator}{SugarDecorator}(coffee)
+52         \textcolor{keywordflow}{elif} top == \textcolor{stringliteral}{"whip"}:
+53             coffee = \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{WhipDecorator}(coffee)
+54         \textcolor{keywordflow}{elif} top == \textcolor{stringliteral}{"double whip"}:
+55             coffee = \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{WhipDecorator}(\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator}{WhipDecorator}(coffee))
+56         \textcolor{keywordflow}{else}:
+57             \textcolor{keywordflow}{raise} Exception(\textcolor{stringliteral}{"Invalid topping!"})
+58 
+59     \textcolor{keywordflow}{return} coffee
+60 
+61 
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespacememoryoracle_1_1whip_a699c7d4f532bf531884c1b8d63e3c54a}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!my\+Coffee@{my\+Coffee}}
+\index{my\+Coffee@{my\+Coffee}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{my\+Coffee}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+whip.\+my\+Coffee = {\bf Coffee}()}\label{namespacememoryoracle_1_1whip_a699c7d4f532bf531884c1b8d63e3c54a}
+
+
+Definition at line 62 of file whip.\+py.
+
+\hypertarget{namespacememoryoracle_1_1whip_a5499987513ec35b1d99b12773c508c06}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!my\+Sugar\+Coffee@{my\+Sugar\+Coffee}}
+\index{my\+Sugar\+Coffee@{my\+Sugar\+Coffee}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{my\+Sugar\+Coffee}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+whip.\+my\+Sugar\+Coffee = {\bf Sugar\+Decorator}({\bf Coffee}())}\label{namespacememoryoracle_1_1whip_a5499987513ec35b1d99b12773c508c06}
+
+
+Definition at line 68 of file whip.\+py.
+
+\hypertarget{namespacememoryoracle_1_1whip_a02937cc57ed7ecd4a098d2ff3c169f41}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!my\+Whip\+Coffee@{my\+Whip\+Coffee}}
+\index{my\+Whip\+Coffee@{my\+Whip\+Coffee}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{my\+Whip\+Coffee}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+whip.\+my\+Whip\+Coffee = {\bf Whip\+Decorator}({\bf Coffee}())}\label{namespacememoryoracle_1_1whip_a02937cc57ed7ecd4a098d2ff3c169f41}
+
+
+Definition at line 65 of file whip.\+py.
+
+\hypertarget{namespacememoryoracle_1_1whip_ad09a6bd0136da3334447b1700114201c}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!my\+Whip\+Sugar\+Coffee@{my\+Whip\+Sugar\+Coffee}}
+\index{my\+Whip\+Sugar\+Coffee@{my\+Whip\+Sugar\+Coffee}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{my\+Whip\+Sugar\+Coffee}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+whip.\+my\+Whip\+Sugar\+Coffee = {\bf Whip\+Decorator}({\bf Sugar\+Decorator}({\bf Coffee}()))}\label{namespacememoryoracle_1_1whip_ad09a6bd0136da3334447b1700114201c}
+
+
+Definition at line 71 of file whip.\+py.
+
+\hypertarget{namespacememoryoracle_1_1whip_a016df199d94ab221fd5793992d1209af}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!my\+Whip\+Whip\+Sugar\+Coffee@{my\+Whip\+Whip\+Sugar\+Coffee}}
+\index{my\+Whip\+Whip\+Sugar\+Coffee@{my\+Whip\+Whip\+Sugar\+Coffee}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{my\+Whip\+Whip\+Sugar\+Coffee}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+whip.\+my\+Whip\+Whip\+Sugar\+Coffee = {\bf Whip\+Decorator}({\bf Whip\+Decorator}({\bf Sugar\+Decorator}({\bf Coffee}())))}\label{namespacememoryoracle_1_1whip_a016df199d94ab221fd5793992d1209af}
+
+
+Definition at line 74 of file whip.\+py.
+
+\hypertarget{namespacememoryoracle_1_1whip_ae603092dfc18fbff7a0452dd92457ec6}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!top\+List@{top\+List}}
+\index{top\+List@{top\+List}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{top\+List}]{\setlength{\rightskip}{0pt plus 5cm}list memoryoracle.\+whip.\+top\+List = \mbox{[}\char`\"{}whip\char`\"{}, \char`\"{}whip\char`\"{}, \char`\"{}double whip\char`\"{}, \char`\"{}sugar\char`\"{}, \char`\"{}sugar\char`\"{}, \char`\"{}whip\char`\"{}, \char`\"{}whip\char`\"{}\mbox{]}}\label{namespacememoryoracle_1_1whip_ae603092dfc18fbff7a0452dd92457ec6}
+
+
+Definition at line 77 of file whip.\+py.
+
+\hypertarget{namespacememoryoracle_1_1whip_a9008ef35cee0e5d2fe14e842629ee8e3}{}\index{memoryoracle\+::whip@{memoryoracle\+::whip}!your\+Coffee@{your\+Coffee}}
+\index{your\+Coffee@{your\+Coffee}!memoryoracle\+::whip@{memoryoracle\+::whip}}
+\subsubsection[{your\+Coffee}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+whip.\+your\+Coffee = {\bf coffee\+\_\+factory}({\bf top\+List})}\label{namespacememoryoracle_1_1whip_a9008ef35cee0e5d2fe14e842629ee8e3}
+
+
+Definition at line 78 of file whip.\+py.
+

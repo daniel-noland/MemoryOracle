@@ -1,0 +1,7 @@
+<map id="memoryoracle.instance.Owner" name="memoryoracle.instance.Owner">
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1instance_1_1Array.html" title="{memoryoracle.instance.Array\n|+ repository\l&#45; _updateTracker\l&#45; _watchers\l&#45; _typeHandlerCode\l|&#45; _track()\l}" alt="" coords="5,903,216,1025"/>
+<area shape="rect" id="node7" href="$classmemoryoracle_1_1instance_1_1Structure.html" title="{memoryoracle.instance.Structure\n|+ children\l+ repository\l&#45; _typeHandlerCode\l&#45; _updateTracker\l&#45; _watchers\l|&#45; _track()\l}" alt="" coords="240,896,477,1032"/>
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1instance_1_1Instance.html" title="{memoryoracle.instance.Instance\n|+ address\l+ name\l+ description\l+ type\l+ parent_class\l+ meta\l&#45; _addressFixer\l&#45; _updatedNames\l&#45; _watchers\l|+ index()\l+ track()\l+ update()\l+ watchers()\l&#45; _basic_track()\l&#45; _clear_updated()\l}" alt="" coords="119,455,350,723"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1typed_1_1Typed.html" title="{memoryoracle.typed.Typed\n|&#45; _type\l&#45; _typeHandlerCode\l|+ type()\l+ type_code()\l}" alt="" coords="137,300,332,407"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1tracked_1_1Tracked.html" title="{memoryoracle.tracked.Tracked\n|&#45; _description\l|+ description()\l+ name()\l+ track()\l&#45; _init()\l}" alt="" coords="125,131,344,252"/>
+</map>

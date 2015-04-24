@@ -1,0 +1,60 @@
+\hypertarget{classmemoryoracle_1_1instance_1_1StateSerializer}{}\section{memoryoracle.\+instance.\+State\+Serializer Class Reference}
+\label{classmemoryoracle_1_1instance_1_1StateSerializer}\index{memoryoracle.\+instance.\+State\+Serializer@{memoryoracle.\+instance.\+State\+Serializer}}
+
+
+Inheritance diagram for memoryoracle.\+instance.\+State\+Serializer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classmemoryoracle_1_1instance_1_1StateSerializer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+instance.\+State\+Serializer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classmemoryoracle_1_1instance_1_1StateSerializer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1StateSerializer_af13ea8d2e6b502afeea96517605c2e94}{default} (self, obj)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 587 of file instance.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1StateSerializer_af13ea8d2e6b502afeea96517605c2e94}{}\index{memoryoracle\+::instance\+::\+State\+Serializer@{memoryoracle\+::instance\+::\+State\+Serializer}!default@{default}}
+\index{default@{default}!memoryoracle\+::instance\+::\+State\+Serializer@{memoryoracle\+::instance\+::\+State\+Serializer}}
+\subsubsection[{default}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+State\+Serializer.\+default (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{obj}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1StateSerializer_af13ea8d2e6b502afeea96517605c2e94}
+
+
+Definition at line 589 of file instance.\+py.
+
+
+\begin{DoxyCode}
+589     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1StateSerializer_af13ea8d2e6b502afeea96517605c2e94}{default}(self, obj):
+590         \textcolor{keywordflow}{if} isinstance(obj, set):
+591             \textcolor{keywordflow}{return} \{\textcolor{stringliteral}{"set"}: list(obj)\}
+592         \textcolor{keywordflow}{return} json.JSONEncoder.default(self, StateSerializer.equal\_fix(obj))
+593 
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{instance_8py}{instance.\+py}\end{DoxyCompactItemize}

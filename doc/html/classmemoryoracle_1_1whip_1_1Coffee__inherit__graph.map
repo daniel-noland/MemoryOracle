@@ -1,0 +1,4 @@
+<map id="memoryoracle.whip.Coffee" name="memoryoracle.whip.Coffee">
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1whip_1_1SugarDecorator.html" title="{memoryoracle.whip.SugarDecorator\n|+ coffee\l&#45; _additionalCost\l|+ __init__()\l+ cost()\l+ name()\l}" alt="" coords="5,285,259,407"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1whip_1_1WhipDecorator.html" title="{memoryoracle.whip.WhipDecorator\n|+ coffee\l&#45; _additionalCost\l|+ __init__()\l+ cost()\l+ name()\l}" alt="" coords="283,285,528,407"/>
+</map>

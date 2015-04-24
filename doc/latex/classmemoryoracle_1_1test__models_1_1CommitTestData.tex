@@ -1,0 +1,99 @@
+\hypertarget{classmemoryoracle_1_1test__models_1_1CommitTestData}{}\section{memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data Class Reference}
+\label{classmemoryoracle_1_1test__models_1_1CommitTestData}\index{memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data@{memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data}}
+
+
+Inheritance diagram for memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classmemoryoracle_1_1test__models_1_1CommitTestData__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classmemoryoracle_1_1test__models_1_1CommitTestData__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1test__models_1_1CommitTestData_a27d442f991377050929bb9dde59ac3ee}{set\+\_\+up\+\_\+class} (cls)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1test__models_1_1CommitTestData_a1d7335c322637a6769200489933b9338}{model} = \hyperlink{classmemoryoracle_1_1models_1_1Commit}{memoryoracle.\+models.\+Commit}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+list \hyperlink{classmemoryoracle_1_1test__models_1_1CommitTestData_ab91d93619fdbadba1be0780696886cdf}{\+\_\+depends} = \mbox{[}\hyperlink{classmemoryoracle_1_1test__models_1_1ProgramTestData}{Program\+Test\+Data}\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 114 of file test\+\_\+models.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1test__models_1_1CommitTestData_a27d442f991377050929bb9dde59ac3ee}{}\index{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}!set\+\_\+up\+\_\+class@{set\+\_\+up\+\_\+class}}
+\index{set\+\_\+up\+\_\+class@{set\+\_\+up\+\_\+class}!memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}}
+\subsubsection[{set\+\_\+up\+\_\+class}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data.\+set\+\_\+up\+\_\+class (
+\begin{DoxyParamCaption}
+\item[{}]{cls}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1test__models_1_1CommitTestData_a27d442f991377050929bb9dde59ac3ee}
+
+
+Definition at line 121 of file test\+\_\+models.\+py.
+
+
+
+References memoryoracle.\+instance.\+x.
+
+
+\begin{DoxyCode}
+121     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1test__models_1_1CommitTestData_a27d442f991377050929bb9dde59ac3ee}{set\_up\_class}(cls):
+122         cls.set\_up\_depends()
+123         cls.data = \{ x.\_\_name\_\_: \hyperlink{namespacememoryoracle_1_1instance_afe036cc8dc71469743d090c4c80d50c5}{x}() \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} cls.depends() \}
+124         cls.argsList = [
+125                 \{
+126                     \textcolor{stringliteral}{"name"}: ModelTestData.gen\_name(),
+127                     \textcolor{stringliteral}{"id\_program"}: prog,
+128                     \textcolor{stringliteral}{"branch\_name"}: ModelTestData.gen\_name(),
+129                     \textcolor{stringliteral}{"vcs\_hash"}: ModelTestData.gen\_name()
+130                 \} \textcolor{keywordflow}{for} prog \textcolor{keywordflow}{in} cls.data[\textcolor{stringliteral}{"ProgramTestData"}] ]
+131         cls.orms = [ cls.model.objects.create(**kwargs) \textcolor{keywordflow}{for} kwargs \textcolor{keywordflow}{in} cls.argsList ]
+132 
+133 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1test__models_1_1CommitTestData_ab91d93619fdbadba1be0780696886cdf}{}\index{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}!\+\_\+depends@{\+\_\+depends}}
+\index{\+\_\+depends@{\+\_\+depends}!memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}}
+\subsubsection[{\+\_\+depends}]{\setlength{\rightskip}{0pt plus 5cm}list memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data.\+\_\+depends = \mbox{[}{\bf Program\+Test\+Data}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1test__models_1_1CommitTestData_ab91d93619fdbadba1be0780696886cdf}
+
+
+Definition at line 118 of file test\+\_\+models.\+py.
+
+\hypertarget{classmemoryoracle_1_1test__models_1_1CommitTestData_a1d7335c322637a6769200489933b9338}{}\index{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}!model@{model}}
+\index{model@{model}!memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}}
+\subsubsection[{model}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data.\+model = {\bf memoryoracle.\+models.\+Commit}\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1test__models_1_1CommitTestData_a1d7335c322637a6769200489933b9338}
+
+
+Definition at line 116 of file test\+\_\+models.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{test__models_8py}{test\+\_\+models.\+py}\end{DoxyCompactItemize}

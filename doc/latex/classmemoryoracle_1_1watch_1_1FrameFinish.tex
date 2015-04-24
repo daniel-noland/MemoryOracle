@@ -1,0 +1,122 @@
+\hypertarget{classmemoryoracle_1_1watch_1_1FrameFinish}{}\section{memoryoracle.\+watch.\+Frame\+Finish Class Reference}
+\label{classmemoryoracle_1_1watch_1_1FrameFinish}\index{memoryoracle.\+watch.\+Frame\+Finish@{memoryoracle.\+watch.\+Frame\+Finish}}
+
+
+Inheritance diagram for memoryoracle.\+watch.\+Frame\+Finish\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classmemoryoracle_1_1watch_1_1FrameFinish__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+watch.\+Frame\+Finish\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classmemoryoracle_1_1watch_1_1FrameFinish__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_af1d5162eb1be6985c4a496347206239a}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, frame)
+\item 
+def \hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a419a3fdc0d27726bde39197efd05b51e}{stop} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}{frame\+Name}
+\item 
+\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a17cb727761c42da3ef546aaa3c6cad4d}{silent}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 10 of file watch.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1FrameFinish_af1d5162eb1be6985c4a496347206239a}{}\index{memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+watch.\+Frame\+Finish.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{frame}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1watch_1_1FrameFinish_af1d5162eb1be6985c4a496347206239a}
+
+
+Definition at line 12 of file watch.\+py.
+
+
+\begin{DoxyCode}
+12     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_af1d5162eb1be6985c4a496347206239a}{\_\_init\_\_}(self, frame):
+13         super(StateFinish, self).\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_af1d5162eb1be6985c4a496347206239a}{\_\_init\_\_}(frame, internal = \textcolor{keyword}{True})
+14         self.\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}{frameName} = str(frame)
+15         self.\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a17cb727761c42da3ef546aaa3c6cad4d}{silent} = \textcolor{keyword}{True}
+16 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1FrameFinish_a419a3fdc0d27726bde39197efd05b51e}{}\index{memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}!stop@{stop}}
+\index{stop@{stop}!memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+watch.\+Frame\+Finish.\+stop (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1watch_1_1FrameFinish_a419a3fdc0d27726bde39197efd05b51e}
+
+
+Definition at line 17 of file watch.\+py.
+
+
+
+References memoryoracle.\+watch.\+Frame\+Finish.\+frame\+Name.
+
+
+\begin{DoxyCode}
+17     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a419a3fdc0d27726bde39197efd05b51e}{stop}(self):
+18         state = State.\_instances.get(self.\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}{frameName}, \textcolor{keywordtype}{None})
+19         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} state:
+20             print(\textcolor{stringliteral}{"Frame name not found "} + self.\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}{frameName})
+21             \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+22         \textcolor{keywordflow}{for} wp \textcolor{keywordflow}{in} state.watchers.values():
+23             wp.delete()
+24         State.\_instances.pop(self.\hyperlink{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}{frameName})
+25         \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+26 
+27 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}{}\index{memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}!frame\+Name@{frame\+Name}}
+\index{frame\+Name@{frame\+Name}!memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}}
+\subsubsection[{frame\+Name}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+watch.\+Frame\+Finish.\+frame\+Name}\label{classmemoryoracle_1_1watch_1_1FrameFinish_a14597fb9b29e7ebb6df3e1c415875365}
+
+
+Definition at line 14 of file watch.\+py.
+
+
+
+Referenced by memoryoracle.\+watch.\+Frame\+Finish.\+stop().
+
+\hypertarget{classmemoryoracle_1_1watch_1_1FrameFinish_a17cb727761c42da3ef546aaa3c6cad4d}{}\index{memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}!silent@{silent}}
+\index{silent@{silent}!memoryoracle\+::watch\+::\+Frame\+Finish@{memoryoracle\+::watch\+::\+Frame\+Finish}}
+\subsubsection[{silent}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+watch.\+Frame\+Finish.\+silent}\label{classmemoryoracle_1_1watch_1_1FrameFinish_a17cb727761c42da3ef546aaa3c6cad4d}
+
+
+Definition at line 15 of file watch.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{watch_8py}{watch.\+py}\end{DoxyCompactItemize}

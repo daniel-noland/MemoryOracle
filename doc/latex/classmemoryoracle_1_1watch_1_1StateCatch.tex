@@ -1,0 +1,123 @@
+\hypertarget{classmemoryoracle_1_1watch_1_1StateCatch}{}\section{memoryoracle.\+watch.\+State\+Catch Class Reference}
+\label{classmemoryoracle_1_1watch_1_1StateCatch}\index{memoryoracle.\+watch.\+State\+Catch@{memoryoracle.\+watch.\+State\+Catch}}
+
+
+Inheritance diagram for memoryoracle.\+watch.\+State\+Catch\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classmemoryoracle_1_1watch_1_1StateCatch__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+watch.\+State\+Catch\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classmemoryoracle_1_1watch_1_1StateCatch__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_a38b410cc8c4e5fae056c4e7e87e2b947}{\+\_\+\+\_\+init\+\_\+\+\_\+}
+\item 
+def \hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_ab0da6fca924dccf11ac2c4da2620f211}{stop} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_aa6aa955a60ded1f2db63e6e6b37d5027}{silent}
+\item 
+\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_aa2e2ebcdb40ead7d1114f09d20181e18}{frame}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_ac14780996a90f60b06a022254645a332}{tracked\+Frames} = dict()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 62 of file watch.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1StateCatch_a38b410cc8c4e5fae056c4e7e87e2b947}{}\index{memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+watch.\+State\+Catch.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{break\+Cond, }
+\item[{}]{frame = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1watch_1_1StateCatch_a38b410cc8c4e5fae056c4e7e87e2b947}
+
+
+Definition at line 66 of file watch.\+py.
+
+
+\begin{DoxyCode}
+66     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_a38b410cc8c4e5fae056c4e7e87e2b947}{\_\_init\_\_}(self, breakCond, frame = None):
+67         super(StateCatch, self).\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_a38b410cc8c4e5fae056c4e7e87e2b947}{\_\_init\_\_}(breakCond, internal=\textcolor{keyword}{True})
+68         self.\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_aa6aa955a60ded1f2db63e6e6b37d5027}{silent} = \textcolor{keyword}{True}
+69         self.\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_aa2e2ebcdb40ead7d1114f09d20181e18}{frame} = str(frame) \textcolor{keywordflow}{if} frame \textcolor{keywordflow}{else} str(gdb.selected\_frame())
+70 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1StateCatch_ab0da6fca924dccf11ac2c4da2620f211}{}\index{memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}!stop@{stop}}
+\index{stop@{stop}!memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+watch.\+State\+Catch.\+stop (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1watch_1_1StateCatch_ab0da6fca924dccf11ac2c4da2620f211}
+
+
+Definition at line 71 of file watch.\+py.
+
+
+\begin{DoxyCode}
+71     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1watch_1_1StateCatch_ab0da6fca924dccf11ac2c4da2620f211}{stop}(self):
+72         s = State()
+73         s.serialize\_locals()
+74 \end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1StateCatch_aa2e2ebcdb40ead7d1114f09d20181e18}{}\index{memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}!frame@{frame}}
+\index{frame@{frame}!memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}}
+\subsubsection[{frame}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+watch.\+State\+Catch.\+frame}\label{classmemoryoracle_1_1watch_1_1StateCatch_aa2e2ebcdb40ead7d1114f09d20181e18}
+
+
+Definition at line 69 of file watch.\+py.
+
+
+
+Referenced by memoryoracle.\+descriptions.\+Memory\+Description.\+dict().
+
+\hypertarget{classmemoryoracle_1_1watch_1_1StateCatch_aa6aa955a60ded1f2db63e6e6b37d5027}{}\index{memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}!silent@{silent}}
+\index{silent@{silent}!memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}}
+\subsubsection[{silent}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+watch.\+State\+Catch.\+silent}\label{classmemoryoracle_1_1watch_1_1StateCatch_aa6aa955a60ded1f2db63e6e6b37d5027}
+
+
+Definition at line 68 of file watch.\+py.
+
+\hypertarget{classmemoryoracle_1_1watch_1_1StateCatch_ac14780996a90f60b06a022254645a332}{}\index{memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}!tracked\+Frames@{tracked\+Frames}}
+\index{tracked\+Frames@{tracked\+Frames}!memoryoracle\+::watch\+::\+State\+Catch@{memoryoracle\+::watch\+::\+State\+Catch}}
+\subsubsection[{tracked\+Frames}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+watch.\+State\+Catch.\+tracked\+Frames = dict()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1watch_1_1StateCatch_ac14780996a90f60b06a022254645a332}
+
+
+Definition at line 64 of file watch.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{watch_8py}{watch.\+py}\end{DoxyCompactItemize}

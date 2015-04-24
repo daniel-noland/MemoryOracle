@@ -1,0 +1,205 @@
+\hypertarget{classmemoryoracle_1_1registry_1_1TypeRegistration}{}\section{memoryoracle.\+registry.\+Type\+Registration Class Reference}
+\label{classmemoryoracle_1_1registry_1_1TypeRegistration}\index{memoryoracle.\+registry.\+Type\+Registration@{memoryoracle.\+registry.\+Type\+Registration}}
+
+
+Inheritance diagram for memoryoracle.\+registry.\+Type\+Registration\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classmemoryoracle_1_1registry_1_1TypeRegistration__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+registry.\+Type\+Registration\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classmemoryoracle_1_1registry_1_1TypeRegistration__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_ad2ccbebf4c4f7c5ffced2caa21bb848c}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, handler)
+\item 
+def \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_aaee3c9526b626cf5c09203ea8c79751b}{lookup} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_a3f017524239fb80650039bd4ab927f73}{register\+\_\+handler} (cls, handler)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_a0f8bbbddaa054388c8c84efef397d967}{\+\_\+type\+Code\+Map} = \{gdb.\+T\+Y\+P\+E\+\_\+\+C\+O\+D\+E\+\_\+\+E\+R\+R\+O\+R\+: \hyperlink{classmemoryoracle_1_1registry_1_1TypeDetectionError}{Type\+Detection\+Error}\}
+\item 
+dictionary \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_a08416d99733193baf2dec4208043c793}{\+\_\+lookup}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Concrete* class to register discovered debugee types for lookup.
+\end{DoxyVerb}
+ 
+
+Definition at line 12 of file registry.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1registry_1_1TypeRegistration_ad2ccbebf4c4f7c5ffced2caa21bb848c}{}\index{memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+registry.\+Type\+Registration.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{handler}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1registry_1_1TypeRegistration_ad2ccbebf4c4f7c5ffced2caa21bb848c}
+
+
+Definition at line 43 of file registry.\+py.
+
+
+
+References memoryoracle.\+registry.\+Type\+Registration.\+register\+\_\+handler().
+
+
+\begin{DoxyCode}
+43     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_ad2ccbebf4c4f7c5ffced2caa21bb848c}{\_\_init\_\_}(self, handler):
+44         self.\hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_a3f017524239fb80650039bd4ab927f73}{register\_handler}(handler)
+45 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1registry_1_1TypeRegistration_ad2ccbebf4c4f7c5ffced2caa21bb848c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1registry_1_1TypeRegistration_aaee3c9526b626cf5c09203ea8c79751b}{}\index{memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}!lookup@{lookup}}
+\index{lookup@{lookup}!memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}}
+\subsubsection[{lookup}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+registry.\+Type\+Registration.\+lookup (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1registry_1_1TypeRegistration_aaee3c9526b626cf5c09203ea8c79751b}
+
+
+Definition at line 47 of file registry.\+py.
+
+
+
+References memoryoracle.\+registry.\+Type\+Registration.\+\_\+lookup.
+
+
+\begin{DoxyCode}
+47     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_aaee3c9526b626cf5c09203ea8c79751b}{lookup}(self):
+48         \textcolor{keywordflow}{return} self.\hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_a08416d99733193baf2dec4208043c793}{\_lookup}
+49 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1registry_1_1TypeRegistration_a3f017524239fb80650039bd4ab927f73}{}\index{memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}!register\+\_\+handler@{register\+\_\+handler}}
+\index{register\+\_\+handler@{register\+\_\+handler}!memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}}
+\subsubsection[{register\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+registry.\+Type\+Registration.\+register\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{handler}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1registry_1_1TypeRegistration_a3f017524239fb80650039bd4ab927f73}
+
+
+Definition at line 51 of file registry.\+py.
+
+
+
+Referenced by memoryoracle.\+registry.\+Type\+Registration.\+\_\+\+\_\+init\+\_\+\+\_\+().
+
+
+\begin{DoxyCode}
+51     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration_a3f017524239fb80650039bd4ab927f73}{register\_handler}(cls, handler):
+52 
+53         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} issubclass(handler, \hyperlink{classmemoryoracle_1_1typed_1_1Typed}{typed.Typed}):
+54             \textcolor{keywordflow}{raise} ValueError(\textcolor{stringliteral}{"Type handler must be a Typed object"})
+55 
+56         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} cls.\_typeCodeMap.get(handler.\_typeHandlerCode):
+57             cls.\_typeCodeMap[handler.\_typeHandlerCode] = handler
+58             print(\textcolor{stringliteral}{"Registered type code handler "} + str(handler))
+59         \textcolor{keywordflow}{else}:
+60             error = \textcolor{stringliteral}{"Type code already in use: "}
+61             error += \textcolor{stringliteral}{"code: "} + str(handler.\_typeHandlerCode)
+62             error += \textcolor{stringliteral}{", handler: "} + str(handler) + \textcolor{stringliteral}{"\(\backslash\)n"}
+63             \textcolor{keywordflow}{raise} KeyError(error)
+64 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1registry_1_1TypeRegistration_a3f017524239fb80650039bd4ab927f73_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1registry_1_1TypeRegistration_a08416d99733193baf2dec4208043c793}{}\index{memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}!\+\_\+lookup@{\+\_\+lookup}}
+\index{\+\_\+lookup@{\+\_\+lookup}!memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}}
+\subsubsection[{\+\_\+lookup}]{\setlength{\rightskip}{0pt plus 5cm}dictionary memoryoracle.\+registry.\+Type\+Registration.\+\_\+lookup\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1registry_1_1TypeRegistration_a08416d99733193baf2dec4208043c793}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 = \{
+2         gdb.TYPE\_CODE\_PTR: \textcolor{stringliteral}{"Pointer"},
+3         gdb.TYPE\_CODE\_ARRAY: \textcolor{stringliteral}{"Array"},
+4         gdb.TYPE\_CODE\_STRUCT: \textcolor{stringliteral}{"Struct"},
+5         gdb.TYPE\_CODE\_UNION: \textcolor{stringliteral}{"Union"},
+6         gdb.TYPE\_CODE\_ENUM: \textcolor{stringliteral}{"Enum"},
+7         gdb.TYPE\_CODE\_FUNC: \textcolor{stringliteral}{"Function"},
+8         gdb.TYPE\_CODE\_INT: \textcolor{stringliteral}{"Int"},
+9         gdb.TYPE\_CODE\_FLT: \textcolor{stringliteral}{"Float"},
+10         gdb.TYPE\_CODE\_VOID: \textcolor{stringliteral}{"Void"},
+11         gdb.TYPE\_CODE\_STRING: \textcolor{stringliteral}{"String"},
+12         gdb.TYPE\_CODE\_ERROR: \textcolor{stringliteral}{"TypeDetectionError"},
+13         gdb.TYPE\_CODE\_METHOD: \textcolor{stringliteral}{"Method"},
+14         gdb.TYPE\_CODE\_METHODPTR: \textcolor{stringliteral}{"MethodPointer"},
+15         gdb.TYPE\_CODE\_MEMBERPTR: \textcolor{stringliteral}{"MemberPointer"},
+16         gdb.TYPE\_CODE\_REF: \textcolor{stringliteral}{"Reference"},
+17         gdb.TYPE\_CODE\_CHAR: \textcolor{stringliteral}{"Character"},
+18         gdb.TYPE\_CODE\_BOOL: \textcolor{stringliteral}{"Bool"},
+19         gdb.TYPE\_CODE\_COMPLEX: \textcolor{stringliteral}{"ComplexFloat"},
+20         gdb.TYPE\_CODE\_TYPEDEF: \textcolor{stringliteral}{"AliasedAddressable"},
+21         gdb.TYPE\_CODE\_NAMESPACE: \textcolor{stringliteral}{"Namespace"},
+22         gdb.TYPE\_CODE\_INTERNAL\_FUNCTION: \textcolor{stringliteral}{"DebuggerFunction"},
+23     \}
+\end{DoxyCode}
+
+
+Definition at line 19 of file registry.\+py.
+
+
+
+Referenced by memoryoracle.\+registry.\+Type\+Registration.\+lookup().
+
+\hypertarget{classmemoryoracle_1_1registry_1_1TypeRegistration_a0f8bbbddaa054388c8c84efef397d967}{}\index{memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}!\+\_\+type\+Code\+Map@{\+\_\+type\+Code\+Map}}
+\index{\+\_\+type\+Code\+Map@{\+\_\+type\+Code\+Map}!memoryoracle\+::registry\+::\+Type\+Registration@{memoryoracle\+::registry\+::\+Type\+Registration}}
+\subsubsection[{\+\_\+type\+Code\+Map}]{\setlength{\rightskip}{0pt plus 5cm}dictionary memoryoracle.\+registry.\+Type\+Registration.\+\_\+type\+Code\+Map = \{gdb.\+T\+Y\+P\+E\+\_\+\+C\+O\+D\+E\+\_\+\+E\+R\+R\+O\+R\+: {\bf Type\+Detection\+Error}\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1registry_1_1TypeRegistration_a0f8bbbddaa054388c8c84efef397d967}
+
+
+Definition at line 17 of file registry.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{registry_8py}{registry.\+py}\end{DoxyCompactItemize}

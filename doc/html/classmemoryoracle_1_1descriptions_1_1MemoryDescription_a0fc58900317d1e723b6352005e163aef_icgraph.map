@@ -1,0 +1,11 @@
+<map id="memoryoracle.descriptions.MemoryDescription.object" name="memoryoracle.descriptions.MemoryDescription.object">
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1instance_1_1Int.html#a450a73bc8aaf1a7ac5f18c3ed1a933fc" title="memoryoracle.instance.Int.\l_find_hidden_type" alt="" coords="253,63,451,105"/>
+<area shape="rect" id="node10" href="$classmemoryoracle_1_1instance_1_1Array.html#a1d8c3993d8a52bfbec8240d6f79b3ce1" title="TODO: upgrade this to ref field. " alt="" coords="499,126,712,167"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1instance_1_1Int.html#a38c9424341353f006771163d360594da" title="memoryoracle.instance.Int.\l_track" alt="" coords="507,61,704,102"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1instance_1_1Memory.html#a8951ac234fecbd6cd473133ae7e63662" title="memoryoracle.instance.Memory.track" alt="" coords="760,68,1023,95"/>
+<area shape="rect" id="node9" href="$classmemoryoracle_1_1models_1_1Typed.html#aa1d5d8d5b7ebe5c2876f363e7eb669db" title="memoryoracle.models.Typed.track" alt="" coords="770,123,1013,149"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1instance_1_1Memory.html#aa937ea1a82dcaa2fa1c868a387d59483" title="memoryoracle.instance.Memory.update" alt="" coords="1071,5,1347,32"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1models_1_1Typed.html#a494dfbe205034b874ff9e8c7039f579b" title="memoryoracle.models.Typed.\l__init__" alt="" coords="1103,57,1314,98"/>
+<area shape="rect" id="node7" href="$classmemoryoracle_1_1models_1_1Memory.html#a71d4a141abc3358afdf1a1325bfd4253" title="memoryoracle.models.Memory.update" alt="" coords="1074,123,1343,149"/>
+<area shape="rect" id="node8" href="$classmemoryoracle_1_1models_1_1Memory.html#aed3af349dd80317ae9cca4b4e9cb7c26" title="memoryoracle.models.Memory.\l__init__" alt="" coords="1097,174,1321,215"/>
+</map>

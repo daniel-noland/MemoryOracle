@@ -1,0 +1,190 @@
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher}{}\section{memoryoracle.\+instance.\+Instance\+Watcher Class Reference}
+\label{classmemoryoracle_1_1instance_1_1InstanceWatcher}\index{memoryoracle.\+instance.\+Instance\+Watcher@{memoryoracle.\+instance.\+Instance\+Watcher}}
+
+
+Inheritance diagram for memoryoracle.\+instance.\+Instance\+Watcher\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classmemoryoracle_1_1instance_1_1InstanceWatcher__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+instance.\+Instance\+Watcher\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classmemoryoracle_1_1instance_1_1InstanceWatcher__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_abe6bfa583c02408c5d9b4f1ba3a943c0}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd}{instance})
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a1dfaed2006ecf495ede2ab638de9f7db}{stop} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd}{instance} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a483405128108db3465d423107be47589}{silent}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a01830207137ed5f292f0ca46a669a05e}{\+\_\+instance}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_aab7d06a6fb4e5029e13fa851b57bb7a6}{\+\_\+type\+\_\+name}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 421 of file instance.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher_abe6bfa583c02408c5d9b4f1ba3a943c0}{}\index{memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Instance\+Watcher.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{instance}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1InstanceWatcher_abe6bfa583c02408c5d9b4f1ba3a943c0}
+
+
+Definition at line 423 of file instance.\+py.
+
+
+\begin{DoxyCode}
+423     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_abe6bfa583c02408c5d9b4f1ba3a943c0}{\_\_init\_\_}(self, instance):
+424         self.\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a01830207137ed5f292f0ca46a669a05e}{\_instance} = instance
+425         self.\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_aab7d06a6fb4e5029e13fa851b57bb7a6}{\_type\_name} = descriptions.type\_name(instance.type)
+426         addr = instance.address
+427         expression = self.\_instance.name
+428         super(InstanceWatcher, self).\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_abe6bfa583c02408c5d9b4f1ba3a943c0}{\_\_init\_\_}(
+429                 expression,
+430                 gdb.BP\_WATCHPOINT,
+431                 gdb.WP\_WRITE,
+432                 \textcolor{keyword}{True},
+433                 \textcolor{keyword}{False})
+434         self.\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a483405128108db3465d423107be47589}{silent} = \textcolor{keyword}{True}
+435 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd}{}\index{memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}!instance@{instance}}
+\index{instance@{instance}!memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Instance\+Watcher.\+instance (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd}
+
+
+Definition at line 447 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Instance\+Watcher.\+\_\+instance.
+
+
+
+Referenced by memoryoracle.\+instance.\+Instance\+Watcher.\+stop().
+
+
+\begin{DoxyCode}
+447     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd}{instance}(self):
+448         \textcolor{keywordflow}{return} self.\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a01830207137ed5f292f0ca46a669a05e}{\_instance}
+449 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher_a1dfaed2006ecf495ede2ab638de9f7db}{}\index{memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}!stop@{stop}}
+\index{stop@{stop}!memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Instance\+Watcher.\+stop (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1InstanceWatcher_a1dfaed2006ecf495ede2ab638de9f7db}
+
+
+Definition at line 436 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Instance\+Watcher.\+instance().
+
+
+\begin{DoxyCode}
+436     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a1dfaed2006ecf495ede2ab638de9f7db}{stop}(self):
+437         \textcolor{keywordflow}{try}:
+438             \textcolor{keywordflow}{if} self.\hyperlink{classmemoryoracle_1_1instance_1_1InstanceWatcher_a80c73a0d5b32d62848c3df462ff83dcd}{instance}:
+439                 self.instance.update()
+440             \textcolor{keywordflow}{else}:
+441                 print(\textcolor{stringliteral}{"Instance gone!"})
+442         \textcolor{keywordflow}{except} Exception \textcolor{keyword}{as} e:
+443             traceback.print\_exc()
+444         \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+445 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1InstanceWatcher_a1dfaed2006ecf495ede2ab638de9f7db_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher_a01830207137ed5f292f0ca46a669a05e}{}\index{memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}!\+\_\+instance@{\+\_\+instance}}
+\index{\+\_\+instance@{\+\_\+instance}!memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}}
+\subsubsection[{\+\_\+instance}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Instance\+Watcher.\+\_\+instance\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1InstanceWatcher_a01830207137ed5f292f0ca46a669a05e}
+
+
+Definition at line 424 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Instance\+Watcher.\+instance().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher_aab7d06a6fb4e5029e13fa851b57bb7a6}{}\index{memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}!\+\_\+type\+\_\+name@{\+\_\+type\+\_\+name}}
+\index{\+\_\+type\+\_\+name@{\+\_\+type\+\_\+name}!memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}}
+\subsubsection[{\+\_\+type\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Instance\+Watcher.\+\_\+type\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1InstanceWatcher_aab7d06a6fb4e5029e13fa851b57bb7a6}
+
+
+Definition at line 425 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1InstanceWatcher_a483405128108db3465d423107be47589}{}\index{memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}!silent@{silent}}
+\index{silent@{silent}!memoryoracle\+::instance\+::\+Instance\+Watcher@{memoryoracle\+::instance\+::\+Instance\+Watcher}}
+\subsubsection[{silent}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Instance\+Watcher.\+silent}\label{classmemoryoracle_1_1instance_1_1InstanceWatcher_a483405128108db3465d423107be47589}
+
+
+Definition at line 434 of file instance.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{instance_8py}{instance.\+py}\end{DoxyCompactItemize}

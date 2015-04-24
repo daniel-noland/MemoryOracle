@@ -1,0 +1,167 @@
+\hypertarget{classmemoryoracle_1_1instance_1_1Pointer}{}\section{memoryoracle.\+instance.\+Pointer Class Reference}
+\label{classmemoryoracle_1_1instance_1_1Pointer}\index{memoryoracle.\+instance.\+Pointer@{memoryoracle.\+instance.\+Pointer}}
+
+
+Inheritance diagram for memoryoracle.\+instance.\+Pointer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Pointer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+instance.\+Pointer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Pointer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Pointer_ab386b41b9f0cf6ff19065f0ae00647b6}{repository} = dict()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a}{\+\_\+track} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Pointer_acff47dcd377cdf74928c5d1858d43fa5}{\+\_\+update\+Tracker} = set()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Pointer_a77e0a4c5d2637dcf1e43861c5805acda}{\+\_\+watchers} = dict()
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Pointer_a9668f3c920788f907283902e134de2b1}{\+\_\+type\+Handler\+Code} = gdb.\+T\+Y\+P\+E\+\_\+\+C\+O\+D\+E\+\_\+\+P\+T\+R
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Concrete* class to represent a pointer in the debugge.
+\end{DoxyVerb}
+ 
+
+Definition at line 361 of file instance.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a}{}\index{memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}!\+\_\+track@{\+\_\+track}}
+\index{\+\_\+track@{\+\_\+track}!memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}}
+\subsubsection[{\+\_\+track}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Pointer.\+\_\+track (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a}
+
+
+Definition at line 372 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+addressable\+\_\+factory(), memoryoracle.\+execution.\+Instance.\+name, memoryoracle.\+execution.\+Executable.\+name, and memoryoracle.\+instance.\+Memory.\+name.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+track(), and memoryoracle.\+models.\+Typed.\+track().
+
+
+\begin{DoxyCode}
+372     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a}{\_track}(self):
+373         super(Pointer, self).\hyperlink{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a}{\_track}()
+374         relativeName = \textcolor{stringliteral}{"*"}
+375         targetName = relativeName + self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{name}
+376         desc = \hyperlink{classmemoryoracle_1_1descriptions_1_1MemoryDescription}{descriptions.MemoryDescription}(
+377             targetName,
+378             relativeName=(relativeName, \textcolor{keywordtype}{None}),
+379             parent=self,
+380             parent\_class=\textcolor{stringliteral}{"pointer"}
+381         )
+382         \textcolor{keywordflow}{try}:
+383             target = \hyperlink{namespacememoryoracle_1_1instance_ac651a8635b1ae2ee7e788bf9adb17a0b}{addressable\_factory}(desc)
+384             target.track()
+385         \textcolor{keywordflow}{except} gdb.MemoryError \textcolor{keyword}{as} e:
+386             \textcolor{comment}{# TODO: Decorate target as invalid in this case.}
+387             print(\textcolor{stringliteral}{"Found invalid target"})
+388             \textcolor{keywordflow}{pass}
+389 
+390 
+391 \textcolor{comment}{# Register the Pointer class with the type handler}
+392 \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration}{registry.TypeRegistration}(Pointer)
+393 
+394 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Pointer_a2cc9e298adaad8bed089d90186fcde8a_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Pointer_a9668f3c920788f907283902e134de2b1}{}\index{memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}!\+\_\+type\+Handler\+Code@{\+\_\+type\+Handler\+Code}}
+\index{\+\_\+type\+Handler\+Code@{\+\_\+type\+Handler\+Code}!memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}}
+\subsubsection[{\+\_\+type\+Handler\+Code}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Pointer.\+\_\+type\+Handler\+Code = gdb.\+T\+Y\+P\+E\+\_\+\+C\+O\+D\+E\+\_\+\+P\+T\+R\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Pointer_a9668f3c920788f907283902e134de2b1}
+
+
+Definition at line 370 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+type\+\_\+handler().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Pointer_acff47dcd377cdf74928c5d1858d43fa5}{}\index{memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}!\+\_\+update\+Tracker@{\+\_\+update\+Tracker}}
+\index{\+\_\+update\+Tracker@{\+\_\+update\+Tracker}!memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}}
+\subsubsection[{\+\_\+update\+Tracker}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Pointer.\+\_\+update\+Tracker = set()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Pointer_acff47dcd377cdf74928c5d1858d43fa5}
+
+
+Definition at line 367 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Pointer_a77e0a4c5d2637dcf1e43861c5805acda}{}\index{memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}!\+\_\+watchers@{\+\_\+watchers}}
+\index{\+\_\+watchers@{\+\_\+watchers}!memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}}
+\subsubsection[{\+\_\+watchers}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Pointer.\+\_\+watchers = dict()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Pointer_a77e0a4c5d2637dcf1e43861c5805acda}
+
+
+Definition at line 368 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+\_\+\+\_\+init\+\_\+\+\_\+(), and memoryoracle.\+models.\+Memory.\+watchers().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Pointer_ab386b41b9f0cf6ff19065f0ae00647b6}{}\index{memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}!repository@{repository}}
+\index{repository@{repository}!memoryoracle\+::instance\+::\+Pointer@{memoryoracle\+::instance\+::\+Pointer}}
+\subsubsection[{repository}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Pointer.\+repository = dict()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Pointer_ab386b41b9f0cf6ff19065f0ae00647b6}
+
+
+Definition at line 366 of file instance.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{instance_8py}{instance.\+py}\end{DoxyCompactItemize}

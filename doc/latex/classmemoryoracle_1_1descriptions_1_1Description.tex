@@ -1,0 +1,193 @@
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description}{}\section{memoryoracle.\+descriptions.\+Description Class Reference}
+\label{classmemoryoracle_1_1descriptions_1_1Description}\index{memoryoracle.\+descriptions.\+Description@{memoryoracle.\+descriptions.\+Description}}
+
+
+Inheritance diagram for memoryoracle.\+descriptions.\+Description\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1descriptions_1_1Description__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+descriptions.\+Description\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classmemoryoracle_1_1descriptions_1_1Description__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a4fb6dc4bf9be65d6d1b135a9af46af38}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, args, kwargs)
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a793ffb6975ee167869a1f475b1748769}{id} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a4b27c3ae1ef0ab35ec0f990fa553b8b3}{name} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1Description_ab09bce45e6b9a038366ef720a5253506}{dict} (self)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a61b082efab73e7121ad7321bd5d21b84}{\+\_\+init} (self)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a75740a1e65e4640ddd011d2c98aad5c3}{\+\_\+id}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Abstract* Description class.
+
+This is the superclass of all the different kinds of
+descriptions used by the subclasses of Tracked.
+\end{DoxyVerb}
+ 
+
+Definition at line 12 of file descriptions.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description_a4fb6dc4bf9be65d6d1b135a9af46af38}{}\index{memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Description.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{args, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1Description_a4fb6dc4bf9be65d6d1b135a9af46af38}
+
+
+Definition at line 23 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+23     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a4fb6dc4bf9be65d6d1b135a9af46af38}{\_\_init\_\_}(self, *args, **kwargs):
+24         \textcolor{keywordflow}{raise} NotImplementedError(
+25                 \textcolor{stringliteral}{"Attempt to instiante abstract class"});
+26 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description_a61b082efab73e7121ad7321bd5d21b84}{}\index{memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}!\+\_\+init@{\+\_\+init}}
+\index{\+\_\+init@{\+\_\+init}!memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}}
+\subsubsection[{\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Description.\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1descriptions_1_1Description_a61b082efab73e7121ad7321bd5d21b84}
+
+
+Definition at line 20 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+20     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a61b082efab73e7121ad7321bd5d21b84}{\_init}(self):
+21         self.\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a75740a1e65e4640ddd011d2c98aad5c3}{\_id} = str(uuid())
+22 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description_ab09bce45e6b9a038366ef720a5253506}{}\index{memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}!dict@{dict}}
+\index{dict@{dict}!memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}}
+\subsubsection[{dict}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Description.\+dict (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1Description_ab09bce45e6b9a038366ef720a5253506}
+
+
+Definition at line 36 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+36     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_ab09bce45e6b9a038366ef720a5253506}{dict}(self):
+37         \textcolor{keywordflow}{raise} NotImplementedError(
+38                 \textcolor{stringliteral}{"Can not transform abstract class Description to dict"})
+39 
+40 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description_a793ffb6975ee167869a1f475b1748769}{}\index{memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}!id@{id}}
+\index{id@{id}!memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Description.\+id (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1Description_a793ffb6975ee167869a1f475b1748769}
+
+
+Definition at line 28 of file descriptions.\+py.
+
+
+
+References memoryoracle.\+descriptions.\+Description.\+\_\+id.
+
+
+\begin{DoxyCode}
+28     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a793ffb6975ee167869a1f475b1748769}{id}(self):
+29         \textcolor{keywordflow}{return} self.\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a75740a1e65e4640ddd011d2c98aad5c3}{\_id}
+30 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description_a4b27c3ae1ef0ab35ec0f990fa553b8b3}{}\index{memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}!name@{name}}
+\index{name@{name}!memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Description.\+name (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1Description_a4b27c3ae1ef0ab35ec0f990fa553b8b3}
+
+
+Definition at line 32 of file descriptions.\+py.
+
+
+
+References memoryoracle.\+descriptions.\+Memory\+Description.\+\_\+name.
+
+
+
+Referenced by memoryoracle.\+descriptions.\+Memory\+Description.\+dict().
+
+
+\begin{DoxyCode}
+32     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1Description_a4b27c3ae1ef0ab35ec0f990fa553b8b3}{name}(self):
+33         \textcolor{keywordflow}{return} self.\_name
+34 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1descriptions_1_1Description_a4b27c3ae1ef0ab35ec0f990fa553b8b3_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1Description_a75740a1e65e4640ddd011d2c98aad5c3}{}\index{memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}!\+\_\+id@{\+\_\+id}}
+\index{\+\_\+id@{\+\_\+id}!memoryoracle\+::descriptions\+::\+Description@{memoryoracle\+::descriptions\+::\+Description}}
+\subsubsection[{\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+descriptions.\+Description.\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1descriptions_1_1Description_a75740a1e65e4640ddd011d2c98aad5c3}
+
+
+Definition at line 21 of file descriptions.\+py.
+
+
+
+Referenced by memoryoracle.\+descriptions.\+Description.\+id().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{descriptions_8py}{descriptions.\+py}\end{DoxyCompactItemize}

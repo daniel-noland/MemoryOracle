@@ -1,0 +1,8 @@
+<map id="memoryoracle.templatable.Type" name="memoryoracle.templatable.Type">
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1templatable_1_1Enum.html" title="{memoryoracle.templatable.Enum\n||}" alt="" coords="5,403,243,481"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1templatable_1_1SimpleType.html" title="{memoryoracle.templatable.\lSimpleType\n||}" alt="" coords="267,396,467,488"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1templatable_1_1Structure.html" title="{memoryoracle.templatable.\lStructure\n||}" alt="" coords="491,396,691,488"/>
+<area shape="rect" id="node8" href="$classmemoryoracle_1_1templatable_1_1Union.html" title="{memoryoracle.templatable.\lUnion\n||}" alt="" coords="715,396,915,488"/>
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1templatable_1_1Templatable.html" title="{memoryoracle.templatable.\lTemplatable\n||}" alt="" coords="379,131,579,223"/>
+<area shape="rect" id="node7" href="$classmemoryoracle_1_1templatable_1_1StronglyTypedEnum.html" title="{memoryoracle.templatable.\lStronglyTypedEnum\n||}" alt="" coords="491,536,691,628"/>
+</map>

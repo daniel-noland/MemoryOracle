@@ -1,0 +1,169 @@
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector}{}\section{memoryoracle.\+frame.\+Selector Class Reference}
+\label{classmemoryoracle_1_1frame_1_1Selector}\index{memoryoracle.\+frame.\+Selector@{memoryoracle.\+frame.\+Selector}}
+
+
+Inheritance diagram for memoryoracle.\+frame.\+Selector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classmemoryoracle_1_1frame_1_1Selector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+frame.\+Selector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classmemoryoracle_1_1frame_1_1Selector__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1frame_1_1Selector_a4321284dd9eaf92a17e1cab0b05031aa}{\+\_\+\+\_\+init\+\_\+\+\_\+}
+\item 
+def \hyperlink{classmemoryoracle_1_1frame_1_1Selector_a2e56e422890aedf9c85b592874357d42}{\+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1frame_1_1Selector_a0c81c3a542276af51c56f0a56b2fee2c}{\+\_\+\+\_\+exit\+\_\+\+\_\+} (self, type, value, tb)
+\item 
+def \hyperlink{classmemoryoracle_1_1frame_1_1Selector_a40e2c431561865326cc4ff42e6d8293a}{frame} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1frame_1_1Selector_af45ac2d7b1133a45dfa21f83f1c5a1bc}{old\+Frame}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}{\+\_\+frame}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 83 of file frame.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector_a4321284dd9eaf92a17e1cab0b05031aa}{}\index{memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+frame.\+Selector.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{f = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1frame_1_1Selector_a4321284dd9eaf92a17e1cab0b05031aa}
+
+
+Definition at line 85 of file frame.\+py.
+
+
+\begin{DoxyCode}
+85     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a4321284dd9eaf92a17e1cab0b05031aa}{\_\_init\_\_}(self, f=None):
+86         \textcolor{keywordflow}{if} f \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+87             self.\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}{\_frame} = \hyperlink{classmemoryoracle_1_1frame_1_1Frame}{Frame}(gdb.newest\_frame())
+88         \textcolor{keywordflow}{elif} isinstance(f, gdb.Frame):
+89             self.\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}{\_frame} = \hyperlink{classmemoryoracle_1_1frame_1_1Frame}{Frame}(f)
+90         \textcolor{keywordflow}{elif} isinstance(f, str):
+91             self.\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}{\_frame} = Frame.knownFrames.get(f, \hyperlink{classmemoryoracle_1_1frame_1_1Frame}{Frame}(gdb.newest\_frame()))
+92         \textcolor{keywordflow}{else}:
+93             print(\textcolor{stringliteral}{"Frame param of invalid type!"})
+94             \textcolor{keywordflow}{raise} ValueError(\textcolor{stringliteral}{"frame param of invalid type: "} + str(type(f)))
+95 
+96         \textcolor{comment}{# self.frame.track()}
+97 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector_a2e56e422890aedf9c85b592874357d42}{}\index{memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}!\+\_\+\+\_\+enter\+\_\+\+\_\+@{\+\_\+\+\_\+enter\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+enter\+\_\+\+\_\+@{\+\_\+\+\_\+enter\+\_\+\+\_\+}!memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}}
+\subsubsection[{\+\_\+\+\_\+enter\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+frame.\+Selector.\+\_\+\+\_\+enter\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1frame_1_1Selector_a2e56e422890aedf9c85b592874357d42}
+
+
+Definition at line 98 of file frame.\+py.
+
+
+\begin{DoxyCode}
+98     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a2e56e422890aedf9c85b592874357d42}{\_\_enter\_\_}(self):
+99         self.\hyperlink{classmemoryoracle_1_1frame_1_1Selector_af45ac2d7b1133a45dfa21f83f1c5a1bc}{oldFrame} = gdb.selected\_frame()
+100         self.frame.select()
+101         \textcolor{keywordflow}{return} self
+102 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector_a0c81c3a542276af51c56f0a56b2fee2c}{}\index{memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}!\+\_\+\+\_\+exit\+\_\+\+\_\+@{\+\_\+\+\_\+exit\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+exit\+\_\+\+\_\+@{\+\_\+\+\_\+exit\+\_\+\+\_\+}!memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}}
+\subsubsection[{\+\_\+\+\_\+exit\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+frame.\+Selector.\+\_\+\+\_\+exit\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{type, }
+\item[{}]{value, }
+\item[{}]{tb}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1frame_1_1Selector_a0c81c3a542276af51c56f0a56b2fee2c}
+
+
+Definition at line 103 of file frame.\+py.
+
+
+\begin{DoxyCode}
+103     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a0c81c3a542276af51c56f0a56b2fee2c}{\_\_exit\_\_}(self, type, value, tb):
+104         self.oldFrame.select()
+105 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector_a40e2c431561865326cc4ff42e6d8293a}{}\index{memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}!frame@{frame}}
+\index{frame@{frame}!memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}}
+\subsubsection[{frame}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+frame.\+Selector.\+frame (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1frame_1_1Selector_a40e2c431561865326cc4ff42e6d8293a}
+
+
+Definition at line 107 of file frame.\+py.
+
+
+
+References memoryoracle.\+frame.\+Selector.\+\_\+frame, and memoryoracle.\+descriptions.\+Memory\+Description.\+\_\+frame.
+
+
+\begin{DoxyCode}
+107     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a40e2c431561865326cc4ff42e6d8293a}{frame}(self):
+108         \textcolor{keywordflow}{return} self.\hyperlink{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}{\_frame}
+109 \end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}{}\index{memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}!\+\_\+frame@{\+\_\+frame}}
+\index{\+\_\+frame@{\+\_\+frame}!memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}}
+\subsubsection[{\+\_\+frame}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+frame.\+Selector.\+\_\+frame\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1frame_1_1Selector_a93ce2fc7f2ba34cac7d5d481dcf548a5}
+
+
+Definition at line 87 of file frame.\+py.
+
+
+
+Referenced by memoryoracle.\+frame.\+Selector.\+frame().
+
+\hypertarget{classmemoryoracle_1_1frame_1_1Selector_af45ac2d7b1133a45dfa21f83f1c5a1bc}{}\index{memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}!old\+Frame@{old\+Frame}}
+\index{old\+Frame@{old\+Frame}!memoryoracle\+::frame\+::\+Selector@{memoryoracle\+::frame\+::\+Selector}}
+\subsubsection[{old\+Frame}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+frame.\+Selector.\+old\+Frame}\label{classmemoryoracle_1_1frame_1_1Selector_af45ac2d7b1133a45dfa21f83f1c5a1bc}
+
+
+Definition at line 99 of file frame.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{frame_8py}{frame.\+py}\end{DoxyCompactItemize}

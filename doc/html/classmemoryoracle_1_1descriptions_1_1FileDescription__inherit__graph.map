@@ -1,0 +1,5 @@
+<map id="memoryoracle.descriptions.FileDescription" name="memoryoracle.descriptions.FileDescription">
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1descriptions_1_1ObjectFileDescription.html" title="{memoryoracle.descriptions.\lObjectFileDescription\n||}" alt="" coords="5,469,205,561"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1descriptions_1_1SourceFileDescription.html" title="{memoryoracle.descriptions.\lSourceFileDescription\n||}" alt="" coords="229,469,429,561"/>
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1descriptions_1_1Description.html" title="{memoryoracle.descriptions.\lDescription\n|&#45; _id\l|+ __init__()\l+ id()\l+ name()\l+ dict()\l&#45; _init()\l}" alt="" coords="117,131,317,281"/>
+</map>

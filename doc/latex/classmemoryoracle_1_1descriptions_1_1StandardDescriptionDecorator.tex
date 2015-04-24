@@ -1,0 +1,144 @@
+\hypertarget{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator}{}\section{memoryoracle.\+descriptions.\+Standard\+Description\+Decorator Class Reference}
+\label{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator}\index{memoryoracle.\+descriptions.\+Standard\+Description\+Decorator@{memoryoracle.\+descriptions.\+Standard\+Description\+Decorator}}
+
+
+Inheritance diagram for memoryoracle.\+descriptions.\+Standard\+Description\+Decorator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+descriptions.\+Standard\+Description\+Decorator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a46d6f7565415b1ff607d61c9afa6f6d0}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a50e064e8a858b8eafe2c603650dbbee8}{description})
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a50e064e8a858b8eafe2c603650dbbee8}{description} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a06d5c7b1716ece015737e1137f39f56d}{name} (self)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_ade25da7ba3aa70a22861cf7787b7a3e7}{\+\_\+description}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Decorator* StandardDescriptionDecorator class.
+
+A decorator to mark another description as pertaining to a
+piece of the language's standard library.
+\end{DoxyVerb}
+ 
+
+Definition at line 84 of file descriptions.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a46d6f7565415b1ff607d61c9afa6f6d0}{}\index{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{description}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a46d6f7565415b1ff607d61c9afa6f6d0}
+
+
+Definition at line 92 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+92     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a46d6f7565415b1ff607d61c9afa6f6d0}{\_\_init\_\_}(self, description):
+93         self.\hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_ade25da7ba3aa70a22861cf7787b7a3e7}{\_description} = description
+94 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a50e064e8a858b8eafe2c603650dbbee8}{}\index{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}!description@{description}}
+\index{description@{description}!memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}}
+\subsubsection[{description}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+description (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a50e064e8a858b8eafe2c603650dbbee8}
+
+
+Definition at line 96 of file descriptions.\+py.
+
+
+
+References memoryoracle.\+descriptions.\+Black\+Box\+Decorator.\+\_\+description, memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+\_\+description, and memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+\_\+description.
+
+
+
+Referenced by memoryoracle.\+instance.\+Int.\+\_\+track().
+
+
+\begin{DoxyCode}
+96     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a50e064e8a858b8eafe2c603650dbbee8}{description}(self):
+97         \textcolor{keywordflow}{return} \{ \textcolor{stringliteral}{"standard"}: self.\hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_ade25da7ba3aa70a22861cf7787b7a3e7}{\_description} \}
+98 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a50e064e8a858b8eafe2c603650dbbee8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a06d5c7b1716ece015737e1137f39f56d}{}\index{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}!name@{name}}
+\index{name@{name}!memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+name (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a06d5c7b1716ece015737e1137f39f56d}
+
+
+Definition at line 100 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+100     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_a06d5c7b1716ece015737e1137f39f56d}{name}(self):
+101         \textcolor{keywordflow}{return} self.\_description.name
+102 
+103 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_ade25da7ba3aa70a22861cf7787b7a3e7}{}\index{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}!\+\_\+description@{\+\_\+description}}
+\index{\+\_\+description@{\+\_\+description}!memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}}
+\subsubsection[{\+\_\+description}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+\_\+description\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator_ade25da7ba3aa70a22861cf7787b7a3e7}
+
+
+Definition at line 93 of file descriptions.\+py.
+
+
+
+Referenced by memoryoracle.\+tracked.\+Tracked.\+description(), and memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+description().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{descriptions_8py}{descriptions.\+py}\end{DoxyCompactItemize}

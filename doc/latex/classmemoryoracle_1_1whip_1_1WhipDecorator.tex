@@ -1,0 +1,127 @@
+\hypertarget{classmemoryoracle_1_1whip_1_1WhipDecorator}{}\section{memoryoracle.\+whip.\+Whip\+Decorator Class Reference}
+\label{classmemoryoracle_1_1whip_1_1WhipDecorator}\index{memoryoracle.\+whip.\+Whip\+Decorator@{memoryoracle.\+whip.\+Whip\+Decorator}}
+
+
+Inheritance diagram for memoryoracle.\+whip.\+Whip\+Decorator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{classmemoryoracle_1_1whip_1_1WhipDecorator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+whip.\+Whip\+Decorator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{classmemoryoracle_1_1whip_1_1WhipDecorator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_adc88600018521265b4e4ea31ae3cedc3}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_a15614e10c214e40622bf7d2feaa54673}{coffee})
+\item 
+def \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_af7cd7acff72c5c50a4e762e41fdca1ca}{cost} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_a1896ad782902459bf19b6c852dd82eed}{name} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_a15614e10c214e40622bf7d2feaa54673}{coffee}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_ac4e118473ef05bf2a6f2767711f1101d}{\+\_\+additional\+Cost} = 0.\+35
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 17 of file whip.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1whip_1_1WhipDecorator_adc88600018521265b4e4ea31ae3cedc3}{}\index{memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+whip.\+Whip\+Decorator.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{coffee}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1whip_1_1WhipDecorator_adc88600018521265b4e4ea31ae3cedc3}
+
+
+Definition at line 21 of file whip.\+py.
+
+
+\begin{DoxyCode}
+21     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_adc88600018521265b4e4ea31ae3cedc3}{\_\_init\_\_}(self, coffee):
+22         self.\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_a15614e10c214e40622bf7d2feaa54673}{coffee} = coffee
+23 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1whip_1_1WhipDecorator_af7cd7acff72c5c50a4e762e41fdca1ca}{}\index{memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}!cost@{cost}}
+\index{cost@{cost}!memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}}
+\subsubsection[{cost}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+whip.\+Whip\+Decorator.\+cost (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1whip_1_1WhipDecorator_af7cd7acff72c5c50a4e762e41fdca1ca}
+
+
+Definition at line 24 of file whip.\+py.
+
+
+\begin{DoxyCode}
+24     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_af7cd7acff72c5c50a4e762e41fdca1ca}{cost}(self):
+25         \textcolor{keywordflow}{return} WhipDecorator.\_additionalCost + self.coffee.cost()
+26 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1whip_1_1WhipDecorator_a1896ad782902459bf19b6c852dd82eed}{}\index{memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}!name@{name}}
+\index{name@{name}!memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+whip.\+Whip\+Decorator.\+name (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1whip_1_1WhipDecorator_a1896ad782902459bf19b6c852dd82eed}
+
+
+Definition at line 27 of file whip.\+py.
+
+
+\begin{DoxyCode}
+27     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1whip_1_1WhipDecorator_a1896ad782902459bf19b6c852dd82eed}{name}(self):
+28         \textcolor{keywordflow}{return} self.coffee.name() + \textcolor{stringliteral}{", whip"}
+29 
+30 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1whip_1_1WhipDecorator_ac4e118473ef05bf2a6f2767711f1101d}{}\index{memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}!\+\_\+additional\+Cost@{\+\_\+additional\+Cost}}
+\index{\+\_\+additional\+Cost@{\+\_\+additional\+Cost}!memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}}
+\subsubsection[{\+\_\+additional\+Cost}]{\setlength{\rightskip}{0pt plus 5cm}float memoryoracle.\+whip.\+Whip\+Decorator.\+\_\+additional\+Cost = 0.\+35\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1whip_1_1WhipDecorator_ac4e118473ef05bf2a6f2767711f1101d}
+
+
+Definition at line 19 of file whip.\+py.
+
+\hypertarget{classmemoryoracle_1_1whip_1_1WhipDecorator_a15614e10c214e40622bf7d2feaa54673}{}\index{memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}!coffee@{coffee}}
+\index{coffee@{coffee}!memoryoracle\+::whip\+::\+Whip\+Decorator@{memoryoracle\+::whip\+::\+Whip\+Decorator}}
+\subsubsection[{coffee}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+whip.\+Whip\+Decorator.\+coffee}\label{classmemoryoracle_1_1whip_1_1WhipDecorator_a15614e10c214e40622bf7d2feaa54673}
+
+
+Definition at line 22 of file whip.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{whip_8py}{whip.\+py}\end{DoxyCompactItemize}

@@ -1,0 +1,137 @@
+\hypertarget{classmemoryoracle_1_1watch_1_1AddressableWatcher}{}\section{memoryoracle.\+watch.\+Addressable\+Watcher Class Reference}
+\label{classmemoryoracle_1_1watch_1_1AddressableWatcher}\index{memoryoracle.\+watch.\+Addressable\+Watcher@{memoryoracle.\+watch.\+Addressable\+Watcher}}
+
+
+Inheritance diagram for memoryoracle.\+watch.\+Addressable\+Watcher\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classmemoryoracle_1_1watch_1_1AddressableWatcher__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+watch.\+Addressable\+Watcher\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classmemoryoracle_1_1watch_1_1AddressableWatcher__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a5a534586bb83ff923873c878e4c94c39}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a9db9d7d3b1a32e74ebecb3cdb2537015}{stop} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_aae157cf9b50d98e099a2c7f98b25634e}{silent}
+\item 
+\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a7b7679f54a21d0a3efc5e785df46186e}{name}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 28 of file watch.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1AddressableWatcher_a5a534586bb83ff923873c878e4c94c39}{}\index{memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+watch.\+Addressable\+Watcher.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1watch_1_1AddressableWatcher_a5a534586bb83ff923873c878e4c94c39}
+
+
+Definition at line 30 of file watch.\+py.
+
+
+\begin{DoxyCode}
+30     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a5a534586bb83ff923873c878e4c94c39}{\_\_init\_\_}(self, ):
+31         super(StateWatcher, self).\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a5a534586bb83ff923873c878e4c94c39}{\_\_init\_\_}(\textcolor{stringliteral}{"*"} + addr,
+32                 gdb.BP\_WATCHPOINT,
+33                 gdb.WP\_WRITE,
+34                 \textcolor{keyword}{True},
+35                 \textcolor{keyword}{False})
+36         self.\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_aae157cf9b50d98e099a2c7f98b25634e}{silent} = \textcolor{keyword}{True}
+37         self.\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a7b7679f54a21d0a3efc5e785df46186e}{name} = name
+38 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1AddressableWatcher_a9db9d7d3b1a32e74ebecb3cdb2537015}{}\index{memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}!stop@{stop}}
+\index{stop@{stop}!memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+watch.\+Addressable\+Watcher.\+stop (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1watch_1_1AddressableWatcher_a9db9d7d3b1a32e74ebecb3cdb2537015}
+
+
+Definition at line 39 of file watch.\+py.
+
+
+
+References memoryoracle.\+execution.\+Instance.\+name, memoryoracle.\+watch.\+Addressable\+Watcher.\+name, memoryoracle.\+execution.\+Executable.\+name, memoryoracle.\+models.\+Tracked.\+name, and memoryoracle.\+instance.\+Memory.\+name.
+
+
+\begin{DoxyCode}
+39     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a9db9d7d3b1a32e74ebecb3cdb2537015}{stop}(self):
+40         frameName = str(gdb.selected\_frame())
+41         addr = self.expression[1:]
+42         state = State.\_instances.get(frameName, \textcolor{keywordtype}{None})
+43 
+44         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} state:
+45             state = State()
+46             c = state.serialize\_locals()
+47             \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} c:
+48                 \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+49 
+50         \textcolor{keywordflow}{try}:
+51             val = state.name\_to\_val(self.\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a7b7679f54a21d0a3efc5e785df46186e}{name})
+52             names = state.get\_serial(val = val).keys()
+53             \textcolor{keywordflow}{for} name \textcolor{keywordflow}{in} names:
+54                 state.update(val, name)
+55 
+56         \textcolor{keywordflow}{except} Exception \textcolor{keyword}{as} e:
+57             traceback.print\_exc()
+58             state.serialize(self.\hyperlink{classmemoryoracle_1_1watch_1_1AddressableWatcher_a7b7679f54a21d0a3efc5e785df46186e}{name}, address = addr)
+59             print(\textcolor{stringliteral}{"ERROR: could not find address "} + addr)
+60         \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+61 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1watch_1_1AddressableWatcher_a7b7679f54a21d0a3efc5e785df46186e}{}\index{memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}!name@{name}}
+\index{name@{name}!memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+watch.\+Addressable\+Watcher.\+name}\label{classmemoryoracle_1_1watch_1_1AddressableWatcher_a7b7679f54a21d0a3efc5e785df46186e}
+
+
+Definition at line 37 of file watch.\+py.
+
+
+
+Referenced by memoryoracle.\+descriptions.\+Memory\+Description.\+dict(), and memoryoracle.\+watch.\+Addressable\+Watcher.\+stop().
+
+\hypertarget{classmemoryoracle_1_1watch_1_1AddressableWatcher_aae157cf9b50d98e099a2c7f98b25634e}{}\index{memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}!silent@{silent}}
+\index{silent@{silent}!memoryoracle\+::watch\+::\+Addressable\+Watcher@{memoryoracle\+::watch\+::\+Addressable\+Watcher}}
+\subsubsection[{silent}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+watch.\+Addressable\+Watcher.\+silent}\label{classmemoryoracle_1_1watch_1_1AddressableWatcher_aae157cf9b50d98e099a2c7f98b25634e}
+
+
+Definition at line 36 of file watch.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{watch_8py}{watch.\+py}\end{DoxyCompactItemize}

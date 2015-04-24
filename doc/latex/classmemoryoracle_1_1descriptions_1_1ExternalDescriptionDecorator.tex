@@ -1,0 +1,146 @@
+\hypertarget{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator}{}\section{memoryoracle.\+descriptions.\+External\+Description\+Decorator Class Reference}
+\label{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator}\index{memoryoracle.\+descriptions.\+External\+Description\+Decorator@{memoryoracle.\+descriptions.\+External\+Description\+Decorator}}
+
+
+Inheritance diagram for memoryoracle.\+descriptions.\+External\+Description\+Decorator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+descriptions.\+External\+Description\+Decorator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_afeb1f6dd877cc71d89def903ffd781d6}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae5952e51de2c9473ce19875b55ccb625}{description})
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae5952e51de2c9473ce19875b55ccb625}{description} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_a3653b421084fc367f59e1b365270d4e1}{name} (self)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae42579816acbf90c9a28395fa0d55786}{\+\_\+description}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Decorator* ExternalDescriptionDecorator class.
+
+A decorator to mark another description as refering to an
+external piece of information, such as a standard library
+header file or a library file which is external to your
+project.
+\end{DoxyVerb}
+ 
+
+Definition at line 62 of file descriptions.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_afeb1f6dd877cc71d89def903ffd781d6}{}\index{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{description}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_afeb1f6dd877cc71d89def903ffd781d6}
+
+
+Definition at line 72 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+72     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_afeb1f6dd877cc71d89def903ffd781d6}{\_\_init\_\_}(self, description):
+73         self.\hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae42579816acbf90c9a28395fa0d55786}{\_description} = description
+74 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae5952e51de2c9473ce19875b55ccb625}{}\index{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}!description@{description}}
+\index{description@{description}!memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}}
+\subsubsection[{description}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+description (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae5952e51de2c9473ce19875b55ccb625}
+
+
+Definition at line 76 of file descriptions.\+py.
+
+
+
+References memoryoracle.\+descriptions.\+Black\+Box\+Decorator.\+\_\+description, and memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+\_\+description.
+
+
+
+Referenced by memoryoracle.\+instance.\+Int.\+\_\+track().
+
+
+\begin{DoxyCode}
+76     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae5952e51de2c9473ce19875b55ccb625}{description}(self):
+77         \textcolor{keywordflow}{return} \{ \textcolor{stringliteral}{"external"}: self.\hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae42579816acbf90c9a28395fa0d55786}{\_description} \}
+78 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae5952e51de2c9473ce19875b55ccb625_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_a3653b421084fc367f59e1b365270d4e1}{}\index{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}!name@{name}}
+\index{name@{name}!memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+name (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_a3653b421084fc367f59e1b365270d4e1}
+
+
+Definition at line 80 of file descriptions.\+py.
+
+
+\begin{DoxyCode}
+80     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_a3653b421084fc367f59e1b365270d4e1}{name}(self):
+81         \textcolor{keywordflow}{return} self.\_description.name
+82 
+83 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae42579816acbf90c9a28395fa0d55786}{}\index{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}!\+\_\+description@{\+\_\+description}}
+\index{\+\_\+description@{\+\_\+description}!memoryoracle\+::descriptions\+::\+External\+Description\+Decorator@{memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}}
+\subsubsection[{\+\_\+description}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+\_\+description\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator_ae42579816acbf90c9a28395fa0d55786}
+
+
+Definition at line 73 of file descriptions.\+py.
+
+
+
+Referenced by memoryoracle.\+tracked.\+Tracked.\+description(), memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+description(), and memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+description().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{descriptions_8py}{descriptions.\+py}\end{DoxyCompactItemize}

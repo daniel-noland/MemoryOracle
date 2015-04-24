@@ -1,0 +1,11 @@
+<map id="memoryoracle.instance.StructureInstance._track" name="memoryoracle.instance.StructureInstance._track">
+<area shape="rect" id="node2" href="$namespacememoryoracle_1_1instance.html#ac651a8635b1ae2ee7e788bf9adb17a0b" title="memoryoracle.instance.addressable\l_factory" alt="" coords="299,5,554,47"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1descriptions_1_1Description.html#a793ffb6975ee167869a1f475b1748769" title="memoryoracle.descriptions.\lDescription.id" alt="" coords="327,71,527,112"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1instance_1_1Instance.html#a94bd2b9c1a7739801bc9938e86034652" title="memoryoracle.instance.Instance.id" alt="" coords="303,137,550,163"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1descriptions_1_1Description.html#a4b27c3ae1ef0ab35ec0f990fa553b8b3" title="memoryoracle.descriptions.\lDescription.name" alt="" coords="327,188,527,229"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1frame_1_1Frame.html#a34903b0f51d554e95b269e5e1d6f1b16" title="memoryoracle.frame.Frame.name" alt="" coords="305,254,548,281"/>
+<area shape="rect" id="node7" href="$classmemoryoracle_1_1descriptions_1_1BlackBoxDecorator.html#a30f3fcba004264fb8b1c4e625a348124" title="memoryoracle.descriptions.\lBlackBoxDecorator.name" alt="" coords="327,305,527,347"/>
+<area shape="rect" id="node8" href="$classmemoryoracle_1_1instance_1_1Instance.html#a87024af86578f01672682bfaa5c82d8c" title="memoryoracle.instance.Instance.name" alt="" coords="291,371,563,398"/>
+<area shape="rect" id="node9" href="$classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator.html#a3653b421084fc367f59e1b365270d4e1" title="memoryoracle.descriptions.\lExternalDescriptionDecorator.name" alt="" coords="301,423,552,464"/>
+<area shape="rect" id="node10" href="$classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator.html#a06d5c7b1716ece015737e1137f39f56d" title="memoryoracle.descriptions.\lStandardDescriptionDecorator.name" alt="" coords="298,488,555,529"/>
+</map>

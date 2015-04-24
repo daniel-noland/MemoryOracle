@@ -1,0 +1,196 @@
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure}{}\section{memoryoracle.\+instance.\+Structure Class Reference}
+\label{classmemoryoracle_1_1instance_1_1Structure}\index{memoryoracle.\+instance.\+Structure@{memoryoracle.\+instance.\+Structure}}
+
+
+Inheritance diagram for memoryoracle.\+instance.\+Structure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Structure__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+instance.\+Structure\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Structure__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Structure_ac9da48acb0aae1763cc98f5b3ab8fee3}{children}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Structure_a5a8dcad9bb85bbde2676e9b6e9fa138e}{children} = mongoengine.\+List\+Field(mongoengine.\+Reference\+Field(\hyperlink{classmemoryoracle_1_1tracked_1_1Tracked}{tracked.\+Tracked}))
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Structure_a1c9e520113c49be36a1bc9f57b6deee4}{repository} = dict()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Structure_a200a54be462e0199b7833cbd11f81a52}{\+\_\+track} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Structure_ad6d7eb43b40a67a235d23f2f018587f0}{\+\_\+type\+Handler\+Code} = gdb.\+T\+Y\+P\+E\+\_\+\+C\+O\+D\+E\+\_\+\+S\+T\+R\+U\+C\+T
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Structure_ae63c5b3c5f79bf71f88a43325085d251}{\+\_\+update\+Tracker} = set()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Structure_a0b0148c77593c771c18b3f69eee9c3a9}{\+\_\+watchers} = dict()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Concrete" class representing a specific memory structure.
+
+This includes all instances of classes and structs in C++.
+It is worth noting that the first member variable of a
+memory structure has the same address as the memory structure,
+and may thus share a node in the memory topology.
+\end{DoxyVerb}
+ 
+
+Definition at line 190 of file instance.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_a200a54be462e0199b7833cbd11f81a52}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!\+\_\+track@{\+\_\+track}}
+\index{\+\_\+track@{\+\_\+track}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{\+\_\+track}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Structure.\+\_\+track (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Structure_a200a54be462e0199b7833cbd11f81a52}
+
+
+Definition at line 208 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+addressable\+\_\+factory(), memoryoracle.\+execution.\+Instance.\+name, memoryoracle.\+execution.\+Executable.\+name, and memoryoracle.\+instance.\+Memory.\+name.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+track(), and memoryoracle.\+models.\+Typed.\+track().
+
+
+\begin{DoxyCode}
+208     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Structure_a200a54be462e0199b7833cbd11f81a52}{\_track}(self):
+209         name = deepcopy(str(self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{name}))
+210         \textcolor{keywordflow}{if} name[0] == \textcolor{stringliteral}{"*"}:
+211             name = name[1:]
+212             marker = \textcolor{stringliteral}{"->"}
+213         \textcolor{keywordflow}{else}:
+214             marker = \textcolor{stringliteral}{"."}
+215         name += marker
+216         children = []
+217         \textcolor{keywordflow}{for} f \textcolor{keywordflow}{in} self.object.type.fields():
+218             desc = \hyperlink{classmemoryoracle_1_1descriptions_1_1MemoryDescription}{descriptions.MemoryDescription}(
+219                 name + f.name,
+220                 relativeName=(marker, f.name),
+221                 parent=self,
+222                 parent\_class=\textcolor{stringliteral}{"struct"})
+223             \textcolor{comment}{# TODO: Use member decorator}
+224             \textcolor{comment}{# childObj = MemberDecorator(addressable\_factory(desc))}
+225             childObj = \hyperlink{namespacememoryoracle_1_1instance_ac651a8635b1ae2ee7e788bf9adb17a0b}{addressable\_factory}(desc)
+226             childObj.track()
+227             children.append(childObj)
+228         self.\hyperlink{classmemoryoracle_1_1instance_1_1Structure_a5a8dcad9bb85bbde2676e9b6e9fa138e}{children} = children
+229 
+230 
+231 \hyperlink{classmemoryoracle_1_1registry_1_1TypeRegistration}{registry.TypeRegistration}(Structure)
+232 
+233 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Structure_a200a54be462e0199b7833cbd11f81a52_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Structure_a200a54be462e0199b7833cbd11f81a52_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_ad6d7eb43b40a67a235d23f2f018587f0}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!\+\_\+type\+Handler\+Code@{\+\_\+type\+Handler\+Code}}
+\index{\+\_\+type\+Handler\+Code@{\+\_\+type\+Handler\+Code}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{\+\_\+type\+Handler\+Code}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Structure.\+\_\+type\+Handler\+Code = gdb.\+T\+Y\+P\+E\+\_\+\+C\+O\+D\+E\+\_\+\+S\+T\+R\+U\+C\+T\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Structure_ad6d7eb43b40a67a235d23f2f018587f0}
+
+
+Definition at line 203 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+type\+\_\+handler().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_ae63c5b3c5f79bf71f88a43325085d251}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!\+\_\+update\+Tracker@{\+\_\+update\+Tracker}}
+\index{\+\_\+update\+Tracker@{\+\_\+update\+Tracker}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{\+\_\+update\+Tracker}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Structure.\+\_\+update\+Tracker = set()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Structure_ae63c5b3c5f79bf71f88a43325085d251}
+
+
+Definition at line 204 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_a0b0148c77593c771c18b3f69eee9c3a9}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!\+\_\+watchers@{\+\_\+watchers}}
+\index{\+\_\+watchers@{\+\_\+watchers}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{\+\_\+watchers}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Structure.\+\_\+watchers = dict()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Structure_a0b0148c77593c771c18b3f69eee9c3a9}
+
+
+Definition at line 205 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+\_\+\+\_\+init\+\_\+\+\_\+(), and memoryoracle.\+models.\+Memory.\+watchers().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_a5a8dcad9bb85bbde2676e9b6e9fa138e}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!children@{children}}
+\index{children@{children}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{children}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Structure.\+children = mongoengine.\+List\+Field(mongoengine.\+Reference\+Field({\bf tracked.\+Tracked}))\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Structure_a5a8dcad9bb85bbde2676e9b6e9fa138e}
+
+
+Definition at line 200 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_ac9da48acb0aae1763cc98f5b3ab8fee3}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!children@{children}}
+\index{children@{children}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{children}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Structure.\+children}\label{classmemoryoracle_1_1instance_1_1Structure_ac9da48acb0aae1763cc98f5b3ab8fee3}
+
+
+Definition at line 228 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Structure_a1c9e520113c49be36a1bc9f57b6deee4}{}\index{memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}!repository@{repository}}
+\index{repository@{repository}!memoryoracle\+::instance\+::\+Structure@{memoryoracle\+::instance\+::\+Structure}}
+\subsubsection[{repository}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Structure.\+repository = dict()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Structure_a1c9e520113c49be36a1bc9f57b6deee4}
+
+
+Definition at line 202 of file instance.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{instance_8py}{instance.\+py}\end{DoxyCompactItemize}

@@ -1,0 +1,1561 @@
+\begin{theindex}
+
+  \item {\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{210}
+  \item {\+\_\+\+I\+D\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{210}
+  \item {\+\_\+\+M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{210}
+  \item {\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+  \item {\+\_\+\+S\+T\+O\+R\+E\+\_\+\+T\+E\+S\+T\+S}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{173}
+  \item {\+\_\+\+\_\+enter\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::frame\+::\+Selector}, \hyperpage{212}
+  \item {\+\_\+\+\_\+exit\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::frame\+::\+Selector}, \hyperpage{212}
+  \item {\+\_\+\+\_\+init\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::descriptions\+::\+Black\+Box\+Decorator}, 
+		\hyperpage{43}
+    \subitem {memoryoracle\+::descriptions\+::\+Description}, 
+		\hyperpage{63}
+    \subitem {memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}, 
+		\hyperpage{86}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{132}
+    \subitem {memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}, 
+		\hyperpage{252}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{96}
+    \subitem {memoryoracle\+::frame\+::\+Selector}, \hyperpage{212}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{123}
+    \subitem {memoryoracle\+::instance\+::\+Memory\+Watcher}, 
+		\hyperpage{143}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{117}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{316}
+    \subitem {memoryoracle\+::registry\+::\+Type\+Registration}, 
+		\hyperpage{325}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{171}
+    \subitem {memoryoracle\+::tracked\+::\+Untracked\+Decorator}, 
+		\hyperpage{331}
+    \subitem {memoryoracle\+::watch\+::\+Addressable\+Watcher}, 
+		\hyperpage{32}
+    \subitem {memoryoracle\+::watch\+::\+Frame\+Finish}, 
+		\hyperpage{101}
+    \subitem {memoryoracle\+::watch\+::\+State\+Catch}, \hyperpage{254}
+    \subitem {memoryoracle\+::whip\+::\+Coffee}, \hyperpage{50}
+    \subitem {memoryoracle\+::whip\+::\+Sugar\+Decorator}, 
+		\hyperpage{269}
+    \subitem {memoryoracle\+::whip\+::\+Whip\+Decorator}, 
+		\hyperpage{341}
+  \item {\+\_\+\+\_\+iter\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{171}
+  \item {\+\_\+\+\_\+next\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{171}
+  \item {\+\_\+\+\_\+repr\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{96}
+  \item {\+\_\+\+\_\+str\+\_\+\+\_\+}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{96}
+  \item {\+\_\+additional\+Cost}
+    \subitem {memoryoracle\+::whip\+::\+Sugar\+Decorator}, 
+		\hyperpage{269}
+    \subitem {memoryoracle\+::whip\+::\+Whip\+Decorator}, 
+		\hyperpage{341}
+  \item {\+\_\+address}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+address\+Fixer}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{127}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{119}
+  \item {\+\_\+array\+Finder}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{111}
+  \item {\+\_\+basic\+\_\+track}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{123}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{317}
+  \item {\+\_\+clear\+\_\+updated}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{124}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{118}
+  \item {\+\_\+compute\+\_\+index}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{118}
+  \item {\+\_\+depends}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}, 
+		\hyperpage{57}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Executable\+Test\+Data}, 
+		\hyperpage{76}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}, 
+		\hyperpage{83}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Memory\+Test\+Data}, 
+		\hyperpage{141}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Object\+File\+Test\+Data}, 
+		\hyperpage{184}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Program\+Test\+Data}, 
+		\hyperpage{203}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Source\+File\+Test\+Data}, 
+		\hyperpage{249}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Symbol\+Test\+Data}, 
+		\hyperpage{276}
+  \item {\+\_\+description}
+    \subitem {memoryoracle\+::descriptions\+::\+Black\+Box\+Decorator}, 
+		\hyperpage{43}
+    \subitem {memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}, 
+		\hyperpage{86}
+    \subitem {memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}, 
+		\hyperpage{252}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{127}
+  \item {\+\_\+execution}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+  \item {\+\_\+fetch}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{124}
+  \item {\+\_\+find\+\_\+hidden\+\_\+type}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{109}
+  \item {\+\_\+frame}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+    \subitem {memoryoracle\+::frame\+::\+Selector}, \hyperpage{213}
+  \item {\+\_\+get\+\_\+frame}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{97}
+  \item {\+\_\+i}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+  \item {\+\_\+id}
+    \subitem {memoryoracle\+::descriptions\+::\+Description}, 
+		\hyperpage{64}
+  \item {\+\_\+init}
+    \subitem {memoryoracle\+::descriptions\+::\+Description}, 
+		\hyperpage{63}
+  \item {\+\_\+lookup}
+    \subitem {memoryoracle\+::registry\+::\+Type\+Registration}, 
+		\hyperpage{326}
+  \item {\+\_\+memory}
+    \subitem {memoryoracle\+::instance\+::\+Memory\+Watcher}, 
+		\hyperpage{144}
+  \item {\+\_\+name}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+object}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+  \item {\+\_\+parent}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+parent\+Class}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+parent\+\_\+classifications}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+pointer\+Finder}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{111}
+  \item {\+\_\+relative\+Name}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+set\+\_\+execution}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{124}
+  \item {\+\_\+space\+Fixer}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{111}
+  \item {\+\_\+symbol}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{137}
+  \item {\+\_\+track}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{38}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{110}
+    \subitem {memoryoracle\+::instance\+::\+Pointer}, \hyperpage{189}
+    \subitem {memoryoracle\+::instance\+::\+Primitive}, \hyperpage{193}
+    \subitem {memoryoracle\+::instance\+::\+Structure}, \hyperpage{263}
+  \item {\+\_\+type\+Code\+Map}
+    \subitem {memoryoracle\+::registry\+::\+Type\+Registration}, 
+		\hyperpage{327}
+  \item {\+\_\+type\+Handler\+Code}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{39}
+    \subitem {memoryoracle\+::instance\+::\+Call}, \hyperpage{46}
+    \subitem {memoryoracle\+::instance\+::\+Float}, \hyperpage{93}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{111}
+    \subitem {memoryoracle\+::instance\+::\+Pointer}, \hyperpage{190}
+    \subitem {memoryoracle\+::instance\+::\+Structure}, \hyperpage{264}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{319}
+  \item {\+\_\+type\+\_\+name}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{138}
+    \subitem {memoryoracle\+::instance\+::\+Memory\+Watcher}, 
+		\hyperpage{144}
+  \item {\+\_\+update\+Tracker}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{39}
+    \subitem {memoryoracle\+::instance\+::\+Call}, \hyperpage{46}
+    \subitem {memoryoracle\+::instance\+::\+Float}, \hyperpage{93}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{112}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+    \subitem {memoryoracle\+::instance\+::\+Pointer}, \hyperpage{190}
+    \subitem {memoryoracle\+::instance\+::\+Structure}, \hyperpage{264}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{119}
+  \item {\+\_\+updated\+Names}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{319}
+  \item {\+\_\+watchers}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{39}
+    \subitem {memoryoracle\+::instance\+::\+Call}, \hyperpage{46}
+    \subitem {memoryoracle\+::instance\+::\+Float}, \hyperpage{93}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{112}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+    \subitem {memoryoracle\+::instance\+::\+Pointer}, \hyperpage{190}
+    \subitem {memoryoracle\+::instance\+::\+Structure}, \hyperpage{264}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{119}
+
+  \indexspace
+
+  \item {A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{209}
+  \item {A\+L\+L\+O\+W\+E\+D\+\_\+\+H\+O\+S\+T\+S}
+    \subitem {memoryoracle\+::settings}, \hyperpage{23}
+  \item {abstract}
+    \subitem {memoryoracle\+::models\+::\+Program\+File\+::\+Meta}, 
+		\hyperpage{148}
+    \subitem {memoryoracle\+::models\+::\+Tracked\+::\+Meta}, 
+		\hyperpage{153}
+    \subitem {memoryoracle\+::models\+::\+Typed\+::\+Meta}, 
+		\hyperpage{146}
+  \item {address}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{133}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{120}
+  \item {addressable\+\_\+factory}
+    \subitem {memoryoracle\+::instance}, \hyperpage{16}
+  \item {application}
+    \subitem {memoryoracle\+::wsgi}, \hyperpage{29}
+  \item {architecture}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{97}
+  \item {args}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{319}
+  \item {arguments}
+    \subitem {memoryoracle\+::execution\+::\+Execution}, \hyperpage{80}
+
+  \indexspace
+
+  \item {B\+A\+S\+E\+\_\+\+D\+I\+R}
+    \subitem {memoryoracle\+::settings}, \hyperpage{23}
+  \item {block}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{97}
+  \item {branch\+\_\+name}
+    \subitem {memoryoracle\+::models\+::\+Commit}, \hyperpage{54}
+
+  \indexspace
+
+  \item {children}
+    \subitem {memoryoracle\+::instance\+::\+Structure}, \hyperpage{264}
+  \item {cls}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Commit}, 
+		\hyperpage{283}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Executable}, 
+		\hyperpage{286}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Execution}, 
+		\hyperpage{289}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Memory}, 
+		\hyperpage{292}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Object\+File}, 
+		\hyperpage{295}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Program}, 
+		\hyperpage{298}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Source\+File}, 
+		\hyperpage{301}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Symbol}, 
+		\hyperpage{304}
+  \item {coffee}
+    \subitem {memoryoracle\+::whip\+::\+Sugar\+Decorator}, 
+		\hyperpage{269}
+    \subitem {memoryoracle\+::whip\+::\+Whip\+Decorator}, 
+		\hyperpage{341}
+  \item {coffee\+\_\+factory}
+    \subitem {memoryoracle\+::whip}, \hyperpage{27}
+  \item {commit}
+    \subitem {memoryoracle\+::execution}, \hyperpage{14}
+  \item {connection}
+    \subitem {memoryoracle\+::execution}, \hyperpage{14}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {cost}
+    \subitem {memoryoracle\+::whip\+::\+Coffee}, \hyperpage{50}
+    \subitem {memoryoracle\+::whip\+::\+Sugar\+Decorator}, 
+		\hyperpage{269}
+    \subitem {memoryoracle\+::whip\+::\+Whip\+Decorator}, 
+		\hyperpage{341}
+
+  \indexspace
+
+  \item {d}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {D\+A\+T\+A\+B\+A\+S\+E\+S}
+    \subitem {memoryoracle\+::settings}, \hyperpage{23}
+  \item {D\+E\+B\+U\+G}
+    \subitem {memoryoracle\+::settings}, \hyperpage{23}
+  \item {data}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{319}
+  \item {data\+Class}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Commit}, 
+		\hyperpage{283}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Executable}, 
+		\hyperpage{286}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Execution}, 
+		\hyperpage{289}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Memory}, 
+		\hyperpage{292}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Object\+File}, 
+		\hyperpage{295}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Program}, 
+		\hyperpage{298}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Source\+File}, 
+		\hyperpage{301}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Symbol}, 
+		\hyperpage{304}
+  \item {db}
+    \subitem {memoryoracle\+::execution}, \hyperpage{15}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {db\+\_\+table}
+    \subitem {memoryoracle\+::models\+::\+Commit\+::\+Meta}, 
+		\hyperpage{155}
+    \subitem {memoryoracle\+::models\+::\+Executable\+::\+Meta}, 
+		\hyperpage{156}
+    \subitem {memoryoracle\+::models\+::\+Execution\+::\+Meta}, 
+		\hyperpage{145}
+    \subitem {memoryoracle\+::models\+::\+Memory\+::\+Meta}, 
+		\hyperpage{147}
+    \subitem {memoryoracle\+::models\+::\+Object\+File\+::\+Meta}, 
+		\hyperpage{149}
+    \subitem {memoryoracle\+::models\+::\+Program\+::\+Meta}, 
+		\hyperpage{154}
+    \subitem {memoryoracle\+::models\+::\+Source\+File\+::\+Meta}, 
+		\hyperpage{150}
+    \subitem {memoryoracle\+::models\+::\+Symbol\+::\+Meta}, 
+		\hyperpage{151}
+    \subitem {memoryoracle\+::models\+::\+Type\+::\+Meta}, 
+		\hyperpage{152}
+  \item {debugee\+\_\+data}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{320}
+  \item {default}
+    \subitem {memoryoracle\+::instance\+::\+State\+Serializer}, 
+		\hyperpage{256}
+  \item {dependencies}
+    \subitem {memoryoracle\+::migrations\+::0001\+\_\+initial\+::\+Migration}, 
+		\hyperpage{158}
+    \subitem {memoryoracle\+::migrations\+::0002\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}, 
+		\hyperpage{159}
+    \subitem {memoryoracle\+::migrations\+::0003\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}, 
+		\hyperpage{161}
+    \subitem {memoryoracle\+::migrations\+::0004\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}, 
+		\hyperpage{162}
+    \subitem {memoryoracle\+::migrations\+::0005\+\_\+auto\+\_\+20150403\+\_\+0100\+::\+Migration}, 
+		\hyperpage{164}
+    \subitem {memoryoracle\+::migrations\+::0006\+\_\+program\+\_\+path\+::\+Migration}, 
+		\hyperpage{165}
+    \subitem {memoryoracle\+::migrations\+::0007\+\_\+auto\+\_\+20150403\+\_\+0248\+::\+Migration}, 
+		\hyperpage{167}
+  \item {depends}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{171}
+  \item {description}
+    \subitem {memoryoracle\+::descriptions\+::\+Black\+Box\+Decorator}, 
+		\hyperpage{43}
+    \subitem {memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}, 
+		\hyperpage{86}
+    \subitem {memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}, 
+		\hyperpage{252}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{320}
+    \subitem {memoryoracle\+::tracked\+::\+Tracked}, \hyperpage{305}
+  \item {dict}
+    \subitem {memoryoracle\+::descriptions\+::\+Description}, 
+		\hyperpage{63}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{133}
+  \item {dynamic\+\_\+type}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+
+  \indexspace
+
+  \item {e}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {end\+\_\+time}
+    \subitem {memoryoracle\+::execution\+::\+Execution}, \hyperpage{80}
+  \item {executable}
+    \subitem {memoryoracle\+::execution}, \hyperpage{15}
+  \item {executables}
+    \subitem {memoryoracle\+::execution\+::\+Commit}, \hyperpage{52}
+  \item {execution}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{134}
+    \subitem {memoryoracle\+::execution}, \hyperpage{15}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+  \item {executions}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{70}
+  \item {extract\+\_\+dynamic\+\_\+type}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{125}
+
+  \indexspace
+
+  \item {f}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {factory}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{125}
+  \item {find\+\_\+sal}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{97}
+  \item {find\+\_\+true\+\_\+type\+\_\+name}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{134}
+  \item {frame}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{134}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+    \subitem {memoryoracle\+::frame\+::\+Selector}, \hyperpage{212}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{128}
+    \subitem {memoryoracle\+::watch\+::\+State\+Catch}, \hyperpage{254}
+  \item {frame\+Description}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {frame\+Name}
+    \subitem {memoryoracle\+::watch\+::\+Frame\+Finish}, 
+		\hyperpage{102}
+  \item {function}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{97}
+
+  \indexspace
+
+  \item {gdb\+\_\+type}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{318}
+    \subitem {memoryoracle\+::typed\+::\+Typed}, \hyperpage{313}
+  \item {gen\+\_\+id}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{209}
+  \item {gen\+\_\+name}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{171}
+  \item {get\+\_\+frame\+\_\+symbols}
+    \subitem {memoryoracle\+::instance}, \hyperpage{17}
+
+  \indexspace
+
+  \item {has\+\_\+symbol}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{120}
+  \item {hash\+\_\+sha256}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{70}
+  \item {hash\+\_\+sha384}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{70}
+  \item {hash\+\_\+sha512}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{71}
+
+  \indexspace
+
+  \item {I\+D\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{210}
+  \item {I\+N\+S\+T\+A\+L\+L\+E\+D\+\_\+\+A\+P\+P\+S}
+    \subitem {memoryoracle\+::settings}, \hyperpage{23}
+  \item {id}
+    \subitem {memoryoracle\+::descriptions\+::\+Description}, 
+		\hyperpage{63}
+  \item {id\+\_\+commit}
+    \subitem {memoryoracle\+::models\+::\+Executable}, \hyperpage{73}
+    \subitem {memoryoracle\+::models\+::\+Program\+File}, 
+		\hyperpage{200}
+  \item {id\+\_\+executable}
+    \subitem {memoryoracle\+::models\+::\+Execution}, \hyperpage{78}
+  \item {id\+\_\+execution}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{320}
+  \item {id\+\_\+program}
+    \subitem {memoryoracle\+::models\+::\+Commit}, \hyperpage{54}
+  \item {index}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{97}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{125}
+  \item {instance}
+    \subitem {memoryoracle\+::execution}, \hyperpage{15}
+  \item {is\+\_\+valid}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{98}
+
+  \indexspace
+
+  \item {known\+Frames}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{100}
+
+  \indexspace
+
+  \item {L\+A\+N\+G\+U\+A\+G\+E\+\_\+\+C\+O\+D\+E}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {lines}
+    \subitem {memoryoracle\+::models\+::\+Source\+File}, 
+		\hyperpage{244}
+  \item {lookup}
+    \subitem {memoryoracle\+::registry\+::\+Type\+Registration}, 
+		\hyperpage{326}
+
+  \indexspace
+
+  \item {M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H}
+    \subitem {memoryoracle\+::models\+::\+Schema}, \hyperpage{210}
+  \item {M\+I\+D\+D\+L\+E\+W\+A\+R\+E\+\_\+\+C\+L\+A\+S\+S\+E\+S}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {memory}
+    \subitem {memoryoracle\+::instance\+::\+Memory\+Watcher}, 
+		\hyperpage{143}
+  \item {memoryoracle}, \hyperpage{13}
+    \subitem {read\+\_\+preference}, \hyperpage{13}
+  \item {memoryoracle.\+container}, \hyperpage{13}
+  \item {memoryoracle.\+container.\+Container}, \hyperpage{60}
+  \item {memoryoracle.\+container.\+S\+L\+Array}, \hyperpage{216}
+  \item {memoryoracle.\+container.\+S\+L\+Bitset}, \hyperpage{218}
+  \item {memoryoracle.\+container.\+S\+L\+Container}, \hyperpage{219}
+  \item {memoryoracle.\+container.\+S\+L\+Deque}, \hyperpage{221}
+  \item {memoryoracle.\+container.\+S\+L\+Forward\+List}, 
+		\hyperpage{223}
+  \item {memoryoracle.\+container.\+S\+L\+List}, \hyperpage{225}
+  \item {memoryoracle.\+container.\+S\+L\+Map}, \hyperpage{227}
+  \item {memoryoracle.\+container.\+S\+L\+Queue}, \hyperpage{229}
+  \item {memoryoracle.\+container.\+S\+L\+Set}, \hyperpage{231}
+  \item {memoryoracle.\+container.\+S\+L\+Stack}, \hyperpage{233}
+  \item {memoryoracle.\+container.\+S\+L\+Unordered\+Map}, 
+		\hyperpage{235}
+  \item {memoryoracle.\+container.\+S\+L\+Unordered\+Set}, 
+		\hyperpage{237}
+  \item {memoryoracle.\+container.\+S\+L\+Vector}, \hyperpage{239}
+  \item {memoryoracle.\+descriptions}, \hyperpage{14}
+  \item {memoryoracle.\+descriptions.\+Black\+Box\+Decorator}, 
+		\hyperpage{41}
+  \item {memoryoracle.\+descriptions.\+Description}, \hyperpage{62}
+  \item {memoryoracle.\+descriptions.\+External\+Description\+Decorator}, 
+		\hyperpage{84}
+  \item {memoryoracle.\+descriptions.\+File\+Description}, 
+		\hyperpage{89}
+  \item {memoryoracle.\+descriptions.\+Memory\+Description}, 
+		\hyperpage{130}
+  \item {memoryoracle.\+descriptions.\+Object\+File\+Description}, 
+		\hyperpage{180}
+  \item {memoryoracle.\+descriptions.\+Source\+File\+Description}, 
+		\hyperpage{245}
+  \item {memoryoracle.\+descriptions.\+Standard\+Description\+Decorator}, 
+		\hyperpage{250}
+  \item {memoryoracle.\+execution}, \hyperpage{14}
+  \item {memoryoracle.\+execution.\+Commit}, \hyperpage{51}
+  \item {memoryoracle.\+execution.\+Executable}, \hyperpage{69}
+  \item {memoryoracle.\+execution.\+Execution}, \hyperpage{79}
+  \item {memoryoracle.\+execution.\+Instance}, \hyperpage{105}
+  \item {memoryoracle.\+frame}, \hyperpage{15}
+  \item {memoryoracle.\+frame.\+Frame}, \hyperpage{94}
+  \item {memoryoracle.\+frame.\+Selector}, \hyperpage{211}
+  \item {memoryoracle.\+instance}, \hyperpage{15}
+  \item {memoryoracle.\+instance.\+Array}, \hyperpage{36}
+  \item {memoryoracle.\+instance.\+Call}, \hyperpage{44}
+  \item {memoryoracle.\+instance.\+Char\+String}, \hyperpage{47}
+  \item {memoryoracle.\+instance.\+Const\+Decorator}, \hyperpage{58}
+  \item {memoryoracle.\+instance.\+Extern\+Decorator}, \hyperpage{87}
+  \item {memoryoracle.\+instance.\+Float}, \hyperpage{91}
+  \item {memoryoracle.\+instance.\+Int}, \hyperpage{107}
+  \item {memoryoracle.\+instance.\+Member\+Decorator}, \hyperpage{113}
+  \item {memoryoracle.\+instance.\+Memory}, \hyperpage{120}
+  \item {memoryoracle.\+instance.\+Memory.\+Duplicate\+Address}, 
+		\hyperpage{66}
+  \item {memoryoracle.\+instance.\+Memory\+Watcher}, \hyperpage{142}
+  \item {memoryoracle.\+instance.\+Pointer}, \hyperpage{187}
+  \item {memoryoracle.\+instance.\+Primitive}, \hyperpage{191}
+  \item {memoryoracle.\+instance.\+Register\+Decorator}, 
+		\hyperpage{206}
+  \item {memoryoracle.\+instance.\+State\+Serializer}, \hyperpage{255}
+  \item {memoryoracle.\+instance.\+Static\+Decorator}, \hyperpage{257}
+  \item {memoryoracle.\+instance.\+Structure}, \hyperpage{261}
+  \item {memoryoracle.\+instance.\+Void}, \hyperpage{335}
+  \item {memoryoracle.\+instance.\+Volatile\+Decorator}, 
+		\hyperpage{337}
+  \item {memoryoracle.\+migrations}, \hyperpage{21}
+  \item {memoryoracle.\+migrations.\+0001\+\_\+initial}, \hyperpage{21}
+  \item {memoryoracle.\+migrations.\+0001\+\_\+initial.\+Migration}, 
+		\hyperpage{157}
+  \item {memoryoracle.\+migrations.\+0002\+\_\+auto\+\_\+20150402\+\_\+2000}, 
+		\hyperpage{21}
+  \item {memoryoracle.\+migrations.\+0002\+\_\+auto\+\_\+20150402\+\_\+2000.\+Migration}, 
+		\hyperpage{158}
+  \item {memoryoracle.\+migrations.\+0003\+\_\+auto\+\_\+20150402\+\_\+2000}, 
+		\hyperpage{21}
+  \item {memoryoracle.\+migrations.\+0003\+\_\+auto\+\_\+20150402\+\_\+2000.\+Migration}, 
+		\hyperpage{160}
+  \item {memoryoracle.\+migrations.\+0004\+\_\+auto\+\_\+20150402\+\_\+2000}, 
+		\hyperpage{21}
+  \item {memoryoracle.\+migrations.\+0004\+\_\+auto\+\_\+20150402\+\_\+2000.\+Migration}, 
+		\hyperpage{161}
+  \item {memoryoracle.\+migrations.\+0005\+\_\+auto\+\_\+20150403\+\_\+0100}, 
+		\hyperpage{22}
+  \item {memoryoracle.\+migrations.\+0005\+\_\+auto\+\_\+20150403\+\_\+0100.\+Migration}, 
+		\hyperpage{163}
+  \item {memoryoracle.\+migrations.\+0006\+\_\+program\+\_\+path}, 
+		\hyperpage{22}
+  \item {memoryoracle.\+migrations.\+0006\+\_\+program\+\_\+path.\+Migration}, 
+		\hyperpage{164}
+  \item {memoryoracle.\+migrations.\+0007\+\_\+auto\+\_\+20150403\+\_\+0248}, 
+		\hyperpage{22}
+  \item {memoryoracle.\+migrations.\+0007\+\_\+auto\+\_\+20150403\+\_\+0248.\+Migration}, 
+		\hyperpage{166}
+  \item {memoryoracle.\+models}, \hyperpage{22}
+  \item {memoryoracle.\+models.\+Commit}, \hyperpage{53}
+  \item {memoryoracle.\+models.\+Commit.\+Meta}, \hyperpage{155}
+  \item {memoryoracle.\+models.\+Executable}, \hyperpage{72}
+  \item {memoryoracle.\+models.\+Executable.\+Meta}, \hyperpage{156}
+  \item {memoryoracle.\+models.\+Execution}, \hyperpage{77}
+  \item {memoryoracle.\+models.\+Execution.\+Meta}, \hyperpage{145}
+  \item {memoryoracle.\+models.\+Memory}, \hyperpage{115}
+  \item {memoryoracle.\+models.\+Memory.\+Meta}, \hyperpage{147}
+  \item {memoryoracle.\+models.\+Object\+File}, \hyperpage{176}
+  \item {memoryoracle.\+models.\+Object\+File.\+Meta}, \hyperpage{149}
+  \item {memoryoracle.\+models.\+Program}, \hyperpage{195}
+  \item {memoryoracle.\+models.\+Program.\+Meta}, \hyperpage{154}
+  \item {memoryoracle.\+models.\+Program\+File}, \hyperpage{199}
+  \item {memoryoracle.\+models.\+Program\+File.\+Meta}, \hyperpage{148}
+  \item {memoryoracle.\+models.\+Schema}, \hyperpage{208}
+  \item {memoryoracle.\+models.\+Source\+File}, \hyperpage{243}
+  \item {memoryoracle.\+models.\+Source\+File.\+Meta}, \hyperpage{150}
+  \item {memoryoracle.\+models.\+Symbol}, \hyperpage{272}
+  \item {memoryoracle.\+models.\+Symbol.\+Meta}, \hyperpage{151}
+  \item {memoryoracle.\+models.\+Tracked}, \hyperpage{306}
+  \item {memoryoracle.\+models.\+Tracked.\+Meta}, \hyperpage{153}
+  \item {memoryoracle.\+models.\+Type}, \hyperpage{308}
+  \item {memoryoracle.\+models.\+Type.\+Meta}, \hyperpage{152}
+  \item {memoryoracle.\+models.\+Typed}, \hyperpage{314}
+  \item {memoryoracle.\+models.\+Typed.\+Data\+Error}, \hyperpage{61}
+  \item {memoryoracle.\+models.\+Typed.\+Detection\+Error}, 
+		\hyperpage{65}
+  \item {memoryoracle.\+models.\+Typed.\+Meta}, \hyperpage{146}
+  \item {memoryoracle.\+registry}, \hyperpage{22}
+  \item {memoryoracle.\+registry.\+Type\+Detection\+Error}, 
+		\hyperpage{323}
+  \item {memoryoracle.\+registry.\+Type\+Registration}, \hyperpage{324}
+  \item {memoryoracle.\+settings}, \hyperpage{22}
+  \item {memoryoracle.\+symbol}, \hyperpage{25}
+  \item {memoryoracle.\+symbol.\+Alias}, \hyperpage{34}
+  \item {memoryoracle.\+symbol.\+Enum}, \hyperpage{67}
+  \item {memoryoracle.\+symbol.\+Function}, \hyperpage{103}
+  \item {memoryoracle.\+symbol.\+Namespace}, \hyperpage{174}
+  \item {memoryoracle.\+symbol.\+Simple\+Type}, \hyperpage{214}
+  \item {memoryoracle.\+symbol.\+Strongly\+Typed\+Enum}, 
+		\hyperpage{259}
+  \item {memoryoracle.\+symbol.\+Structure}, \hyperpage{265}
+  \item {memoryoracle.\+symbol.\+Symbol}, \hyperpage{270}
+  \item {memoryoracle.\+symbol.\+Template\+Decorator}, \hyperpage{279}
+  \item {memoryoracle.\+symbol.\+Templated\+Decorator}, \hyperpage{277}
+  \item {memoryoracle.\+symbol.\+Type}, \hyperpage{310}
+  \item {memoryoracle.\+symbol.\+Typedef}, \hyperpage{321}
+  \item {memoryoracle.\+symbol.\+Union}, \hyperpage{328}
+  \item {memoryoracle.\+symbol.\+Variable}, \hyperpage{333}
+  \item {memoryoracle.\+test\+\_\+models}, \hyperpage{25}
+  \item {memoryoracle.\+test\+\_\+models.\+Commit\+Test\+Data}, 
+		\hyperpage{55}
+  \item {memoryoracle.\+test\+\_\+models.\+Executable\+Test\+Data}, 
+		\hyperpage{74}
+  \item {memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data}, 
+		\hyperpage{81}
+  \item {memoryoracle.\+test\+\_\+models.\+Memory\+Test\+Data}, 
+		\hyperpage{139}
+  \item {memoryoracle.\+test\+\_\+models.\+Model\+Test}, 
+		\hyperpage{167}
+  \item {memoryoracle.\+test\+\_\+models.\+Model\+Test\+Data}, 
+		\hyperpage{169}
+  \item {memoryoracle.\+test\+\_\+models.\+Object\+File\+Test\+Data}, 
+		\hyperpage{182}
+  \item {memoryoracle.\+test\+\_\+models.\+Program\+Test\+Data}, 
+		\hyperpage{201}
+  \item {memoryoracle.\+test\+\_\+models.\+Source\+File\+Test\+Data}, 
+		\hyperpage{247}
+  \item {memoryoracle.\+test\+\_\+models.\+Symbol\+Test\+Data}, 
+		\hyperpage{274}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Commit}, 
+		\hyperpage{281}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Executable}, 
+		\hyperpage{284}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Execution}, 
+		\hyperpage{287}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Memory}, 
+		\hyperpage{290}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Object\+File}, 
+		\hyperpage{293}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Program}, 
+		\hyperpage{296}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Source\+File}, 
+		\hyperpage{299}
+  \item {memoryoracle.\+test\+\_\+models.\+Test\+Model\+Symbol}, 
+		\hyperpage{302}
+  \item {memoryoracle.\+tracked}, \hyperpage{26}
+  \item {memoryoracle.\+tracked.\+Object\+File}, \hyperpage{178}
+  \item {memoryoracle.\+tracked.\+Owner}, \hyperpage{185}
+  \item {memoryoracle.\+tracked.\+Program\+File}, \hyperpage{197}
+  \item {memoryoracle.\+tracked.\+Reference}, \hyperpage{204}
+  \item {memoryoracle.\+tracked.\+Source\+File}, \hyperpage{241}
+  \item {memoryoracle.\+tracked.\+Tracked}, \hyperpage{304}
+  \item {memoryoracle.\+tracked.\+Untracked\+Decorator}, 
+		\hyperpage{330}
+  \item {memoryoracle.\+typed}, \hyperpage{26}
+  \item {memoryoracle.\+typed.\+Typed}, \hyperpage{312}
+  \item {memoryoracle.\+urls}, \hyperpage{26}
+  \item {memoryoracle.\+watch}, \hyperpage{27}
+  \item {memoryoracle.\+watch.\+Addressable\+Watcher}, \hyperpage{31}
+  \item {memoryoracle.\+watch.\+Frame\+Finish}, \hyperpage{100}
+  \item {memoryoracle.\+watch.\+State\+Catch}, \hyperpage{253}
+  \item {memoryoracle.\+whip}, \hyperpage{27}
+  \item {memoryoracle.\+whip.\+Coffee}, \hyperpage{49}
+  \item {memoryoracle.\+whip.\+Sugar\+Decorator}, \hyperpage{267}
+  \item {memoryoracle.\+whip.\+Whip\+Decorator}, \hyperpage{339}
+  \item {memoryoracle.\+wsgi}, \hyperpage{28}
+  \item {memoryoracle/\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}, 
+		\hyperpage{343}
+  \item {memoryoracle/container.\+py}, \hyperpage{343}
+  \item {memoryoracle/descriptions.\+py}, \hyperpage{344}
+  \item {memoryoracle/execution.\+py}, \hyperpage{344}
+  \item {memoryoracle/frame.\+py}, \hyperpage{344}
+  \item {memoryoracle/instance.\+py}, \hyperpage{345}
+  \item {memoryoracle/migrations/0001\+\_\+initial.\+py}, 
+		\hyperpage{346}
+  \item {memoryoracle/migrations/0002\+\_\+auto\+\_\+20150402\+\_\+2000.\+py}, 
+		\hyperpage{346}
+  \item {memoryoracle/migrations/0003\+\_\+auto\+\_\+20150402\+\_\+2000.\+py}, 
+		\hyperpage{346}
+  \item {memoryoracle/migrations/0004\+\_\+auto\+\_\+20150402\+\_\+2000.\+py}, 
+		\hyperpage{346}
+  \item {memoryoracle/migrations/0005\+\_\+auto\+\_\+20150403\+\_\+0100.\+py}, 
+		\hyperpage{346}
+  \item {memoryoracle/migrations/0006\+\_\+program\+\_\+path.\+py}, 
+		\hyperpage{347}
+  \item {memoryoracle/migrations/0007\+\_\+auto\+\_\+20150403\+\_\+0248.\+py}, 
+		\hyperpage{347}
+  \item {memoryoracle/migrations/\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}, 
+		\hyperpage{343}
+  \item {memoryoracle/models.\+py}, \hyperpage{347}
+  \item {memoryoracle/registry.\+py}, \hyperpage{348}
+  \item {memoryoracle/settings.\+py}, \hyperpage{348}
+  \item {memoryoracle/symbol.\+py}, \hyperpage{349}
+  \item {memoryoracle/test\+\_\+models.\+py}, \hyperpage{349}
+  \item {memoryoracle/tracked.\+py}, \hyperpage{350}
+  \item {memoryoracle/typed.\+py}, \hyperpage{350}
+  \item {memoryoracle/urls.\+py}, \hyperpage{350}
+  \item {memoryoracle/watch.\+py}, \hyperpage{350}
+  \item {memoryoracle/whip.\+py}, \hyperpage{351}
+  \item {memoryoracle/wsgi.\+py}, \hyperpage{351}
+  \item {memoryoracle\+::descriptions\+::\+Black\+Box\+Decorator}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{43}
+    \subitem {\+\_\+description}, \hyperpage{43}
+    \subitem {description}, \hyperpage{43}
+    \subitem {name}, \hyperpage{43}
+  \item {memoryoracle\+::descriptions\+::\+Description}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{63}
+    \subitem {\+\_\+id}, \hyperpage{64}
+    \subitem {\+\_\+init}, \hyperpage{63}
+    \subitem {dict}, \hyperpage{63}
+    \subitem {id}, \hyperpage{63}
+    \subitem {name}, \hyperpage{64}
+  \item {memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{86}
+    \subitem {\+\_\+description}, \hyperpage{86}
+    \subitem {description}, \hyperpage{86}
+    \subitem {name}, \hyperpage{86}
+  \item {memoryoracle\+::descriptions\+::\+Memory\+Description}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{132}
+    \subitem {\+\_\+address}, \hyperpage{137}
+    \subitem {\+\_\+execution}, \hyperpage{137}
+    \subitem {\+\_\+frame}, \hyperpage{137}
+    \subitem {\+\_\+name}, \hyperpage{137}
+    \subitem {\+\_\+object}, \hyperpage{137}
+    \subitem {\+\_\+parent}, \hyperpage{137}
+    \subitem {\+\_\+parent\+Class}, \hyperpage{137}
+    \subitem {\+\_\+parent\+\_\+classifications}, \hyperpage{137}
+    \subitem {\+\_\+relative\+Name}, \hyperpage{137}
+    \subitem {\+\_\+symbol}, \hyperpage{137}
+    \subitem {\+\_\+type\+\_\+name}, \hyperpage{138}
+    \subitem {address}, \hyperpage{133}
+    \subitem {dict}, \hyperpage{133}
+    \subitem {execution}, \hyperpage{134}
+    \subitem {find\+\_\+true\+\_\+type\+\_\+name}, \hyperpage{134}
+    \subitem {frame}, \hyperpage{134}
+    \subitem {object}, \hyperpage{135}
+    \subitem {parent}, \hyperpage{135}
+    \subitem {parent\+\_\+class}, \hyperpage{136}
+    \subitem {relative\+\_\+name}, \hyperpage{136}
+    \subitem {type\+\_\+name}, \hyperpage{136}
+  \item {memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{252}
+    \subitem {\+\_\+description}, \hyperpage{252}
+    \subitem {description}, \hyperpage{252}
+    \subitem {name}, \hyperpage{252}
+  \item {memoryoracle\+::execution}
+    \subitem {commit}, \hyperpage{14}
+    \subitem {connection}, \hyperpage{14}
+    \subitem {db}, \hyperpage{15}
+    \subitem {executable}, \hyperpage{15}
+    \subitem {execution}, \hyperpage{15}
+    \subitem {instance}, \hyperpage{15}
+  \item {memoryoracle\+::execution\+::\+Commit}
+    \subitem {executables}, \hyperpage{52}
+    \subitem {vcs\+\_\+hash}, \hyperpage{52}
+  \item {memoryoracle\+::execution\+::\+Executable}
+    \subitem {executions}, \hyperpage{70}
+    \subitem {hash\+\_\+sha256}, \hyperpage{70}
+    \subitem {hash\+\_\+sha384}, \hyperpage{70}
+    \subitem {hash\+\_\+sha512}, \hyperpage{71}
+    \subitem {name}, \hyperpage{71}
+    \subitem {path}, \hyperpage{71}
+    \subitem {version}, \hyperpage{71}
+  \item {memoryoracle\+::execution\+::\+Execution}
+    \subitem {arguments}, \hyperpage{80}
+    \subitem {end\+\_\+time}, \hyperpage{80}
+    \subitem {objects}, \hyperpage{80}
+    \subitem {start\+\_\+time}, \hyperpage{80}
+  \item {memoryoracle\+::execution\+::\+Instance}
+    \subitem {name}, \hyperpage{106}
+  \item {memoryoracle\+::frame\+::\+Frame}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{96}
+    \subitem {\+\_\+\+\_\+repr\+\_\+\+\_\+}, \hyperpage{96}
+    \subitem {\+\_\+\+\_\+str\+\_\+\+\_\+}, \hyperpage{96}
+    \subitem {\+\_\+get\+\_\+frame}, \hyperpage{97}
+    \subitem {architecture}, \hyperpage{97}
+    \subitem {block}, \hyperpage{97}
+    \subitem {description}, \hyperpage{99}
+    \subitem {find\+\_\+sal}, \hyperpage{97}
+    \subitem {frame}, \hyperpage{99}
+    \subitem {function}, \hyperpage{97}
+    \subitem {index}, \hyperpage{97}
+    \subitem {is\+\_\+valid}, \hyperpage{98}
+    \subitem {known\+Frames}, \hyperpage{100}
+    \subitem {name}, \hyperpage{98}
+    \subitem {newer}, \hyperpage{98}
+    \subitem {older}, \hyperpage{98}
+    \subitem {pc}, \hyperpage{98}
+    \subitem {read\+\_\+register}, \hyperpage{99}
+    \subitem {read\+\_\+var}, \hyperpage{99}
+    \subitem {select}, \hyperpage{99}
+    \subitem {type}, \hyperpage{99}
+    \subitem {unwind\+\_\+stop\+\_\+reason}, \hyperpage{99}
+  \item {memoryoracle\+::frame\+::\+Selector}
+    \subitem {\+\_\+\+\_\+enter\+\_\+\+\_\+}, \hyperpage{212}
+    \subitem {\+\_\+\+\_\+exit\+\_\+\+\_\+}, \hyperpage{212}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{212}
+    \subitem {\+\_\+frame}, \hyperpage{213}
+    \subitem {frame}, \hyperpage{212}
+    \subitem {old\+Frame}, \hyperpage{213}
+  \item {memoryoracle\+::instance}
+    \subitem {addressable\+\_\+factory}, \hyperpage{16}
+    \subitem {connection}, \hyperpage{20}
+    \subitem {d}, \hyperpage{20}
+    \subitem {db}, \hyperpage{20}
+    \subitem {e}, \hyperpage{20}
+    \subitem {f}, \hyperpage{20}
+    \subitem {frame\+Description}, \hyperpage{20}
+    \subitem {get\+\_\+frame\+\_\+symbols}, \hyperpage{17}
+    \subitem {serialize\+\_\+block\+\_\+locals}, \hyperpage{17}
+    \subitem {serialize\+\_\+frame\+\_\+globals}, \hyperpage{18}
+    \subitem {serialize\+\_\+frame\+\_\+locals}, \hyperpage{18}
+    \subitem {serialize\+\_\+upward}, \hyperpage{19}
+    \subitem {stopped}, \hyperpage{19}
+    \subitem {target\+\_\+type\+\_\+name}, \hyperpage{20}
+    \subitem {x}, \hyperpage{21}
+  \item {memoryoracle\+::instance\+::\+Array}
+    \subitem {\+\_\+track}, \hyperpage{38}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{39}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{39}
+    \subitem {\+\_\+watchers}, \hyperpage{39}
+    \subitem {range}, \hyperpage{40}
+    \subitem {repository}, \hyperpage{40}
+    \subitem {target\+\_\+type}, \hyperpage{40}
+  \item {memoryoracle\+::instance\+::\+Call}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{46}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{46}
+    \subitem {\+\_\+watchers}, \hyperpage{46}
+    \subitem {repository}, \hyperpage{46}
+  \item {memoryoracle\+::instance\+::\+Float}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{93}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{93}
+    \subitem {\+\_\+watchers}, \hyperpage{93}
+    \subitem {repository}, \hyperpage{93}
+  \item {memoryoracle\+::instance\+::\+Int}
+    \subitem {\+\_\+array\+Finder}, \hyperpage{111}
+    \subitem {\+\_\+find\+\_\+hidden\+\_\+type}, \hyperpage{109}
+    \subitem {\+\_\+pointer\+Finder}, \hyperpage{111}
+    \subitem {\+\_\+space\+Fixer}, \hyperpage{111}
+    \subitem {\+\_\+track}, \hyperpage{110}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{111}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{112}
+    \subitem {\+\_\+watchers}, \hyperpage{112}
+    \subitem {repository}, \hyperpage{112}
+    \subitem {type}, \hyperpage{112}
+    \subitem {value}, \hyperpage{112}
+  \item {memoryoracle\+::instance\+::\+Memory}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{123}
+    \subitem {\+\_\+address\+Fixer}, \hyperpage{127}
+    \subitem {\+\_\+basic\+\_\+track}, \hyperpage{123}
+    \subitem {\+\_\+clear\+\_\+updated}, \hyperpage{124}
+    \subitem {\+\_\+description}, \hyperpage{127}
+    \subitem {\+\_\+execution}, \hyperpage{128}
+    \subitem {\+\_\+fetch}, \hyperpage{124}
+    \subitem {\+\_\+object}, \hyperpage{128}
+    \subitem {\+\_\+set\+\_\+execution}, \hyperpage{124}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{128}
+    \subitem {\+\_\+updated\+Names}, \hyperpage{128}
+    \subitem {\+\_\+watchers}, \hyperpage{128}
+    \subitem {address}, \hyperpage{128}
+    \subitem {dynamic\+\_\+type}, \hyperpage{128}
+    \subitem {execution}, \hyperpage{128}
+    \subitem {extract\+\_\+dynamic\+\_\+type}, \hyperpage{125}
+    \subitem {factory}, \hyperpage{125}
+    \subitem {frame}, \hyperpage{128}
+    \subitem {index}, \hyperpage{125}
+    \subitem {meta}, \hyperpage{129}
+    \subitem {name}, \hyperpage{129}
+    \subitem {parent}, \hyperpage{129}
+    \subitem {track}, \hyperpage{126}
+    \subitem {type}, \hyperpage{129}
+    \subitem {unaliased\+\_\+type}, \hyperpage{129}
+    \subitem {update}, \hyperpage{127}
+    \subitem {watchers}, \hyperpage{127}
+  \item {memoryoracle\+::instance\+::\+Memory\+Watcher}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{143}
+    \subitem {\+\_\+memory}, \hyperpage{144}
+    \subitem {\+\_\+type\+\_\+name}, \hyperpage{144}
+    \subitem {memory}, \hyperpage{143}
+    \subitem {silent}, \hyperpage{144}
+    \subitem {stop}, \hyperpage{144}
+  \item {memoryoracle\+::instance\+::\+Pointer}
+    \subitem {\+\_\+track}, \hyperpage{189}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{190}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{190}
+    \subitem {\+\_\+watchers}, \hyperpage{190}
+    \subitem {repository}, \hyperpage{190}
+  \item {memoryoracle\+::instance\+::\+Primitive}
+    \subitem {\+\_\+track}, \hyperpage{193}
+    \subitem {val\+\_\+string}, \hyperpage{193}
+    \subitem {value}, \hyperpage{194}
+  \item {memoryoracle\+::instance\+::\+State\+Serializer}
+    \subitem {default}, \hyperpage{256}
+  \item {memoryoracle\+::instance\+::\+Structure}
+    \subitem {\+\_\+track}, \hyperpage{263}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{264}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{264}
+    \subitem {\+\_\+watchers}, \hyperpage{264}
+    \subitem {children}, \hyperpage{264}
+    \subitem {repository}, \hyperpage{264}
+  \item {memoryoracle\+::migrations\+::0001\+\_\+initial\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{158}
+    \subitem {operations}, \hyperpage{158}
+  \item {memoryoracle\+::migrations\+::0002\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{159}
+    \subitem {operations}, \hyperpage{159}
+  \item {memoryoracle\+::migrations\+::0003\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{161}
+    \subitem {operations}, \hyperpage{161}
+  \item {memoryoracle\+::migrations\+::0004\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{162}
+    \subitem {operations}, \hyperpage{162}
+  \item {memoryoracle\+::migrations\+::0005\+\_\+auto\+\_\+20150403\+\_\+0100\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{164}
+    \subitem {operations}, \hyperpage{164}
+  \item {memoryoracle\+::migrations\+::0006\+\_\+program\+\_\+path\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{165}
+    \subitem {operations}, \hyperpage{165}
+  \item {memoryoracle\+::migrations\+::0007\+\_\+auto\+\_\+20150403\+\_\+0248\+::\+Migration}
+    \subitem {dependencies}, \hyperpage{167}
+    \subitem {operations}, \hyperpage{167}
+  \item {memoryoracle\+::models\+::\+Commit}
+    \subitem {branch\+\_\+name}, \hyperpage{54}
+    \subitem {id\+\_\+program}, \hyperpage{54}
+    \subitem {vcs\+\_\+hash}, \hyperpage{55}
+  \item {memoryoracle\+::models\+::\+Commit\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{155}
+  \item {memoryoracle\+::models\+::\+Executable}
+    \subitem {id\+\_\+commit}, \hyperpage{73}
+    \subitem {path}, \hyperpage{73}
+  \item {memoryoracle\+::models\+::\+Executable\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{156}
+  \item {memoryoracle\+::models\+::\+Execution}
+    \subitem {id\+\_\+executable}, \hyperpage{78}
+  \item {memoryoracle\+::models\+::\+Execution\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{145}
+  \item {memoryoracle\+::models\+::\+Memory}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{117}
+    \subitem {\+\_\+address\+Fixer}, \hyperpage{119}
+    \subitem {\+\_\+clear\+\_\+updated}, \hyperpage{118}
+    \subitem {\+\_\+compute\+\_\+index}, \hyperpage{118}
+    \subitem {\+\_\+update\+Tracker}, \hyperpage{119}
+    \subitem {\+\_\+watchers}, \hyperpage{119}
+    \subitem {address}, \hyperpage{120}
+    \subitem {has\+\_\+symbol}, \hyperpage{120}
+    \subitem {parent}, \hyperpage{120}
+    \subitem {update}, \hyperpage{119}
+    \subitem {watchers}, \hyperpage{119}
+  \item {memoryoracle\+::models\+::\+Memory\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{147}
+  \item {memoryoracle\+::models\+::\+Object\+File\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{149}
+  \item {memoryoracle\+::models\+::\+Program\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{154}
+  \item {memoryoracle\+::models\+::\+Program\+File}
+    \subitem {id\+\_\+commit}, \hyperpage{200}
+    \subitem {path}, \hyperpage{200}
+    \subitem {size}, \hyperpage{201}
+  \item {memoryoracle\+::models\+::\+Program\+File\+::\+Meta}
+    \subitem {abstract}, \hyperpage{148}
+  \item {memoryoracle\+::models\+::\+Schema}
+    \subitem {\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+E\+N\+G\+T\+H}, 
+		\hyperpage{210}
+    \subitem {\+\_\+\+I\+D\+\_\+\+L\+E\+N\+G\+T\+H}, \hyperpage{210}
+    \subitem {\+\_\+\+M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H}, 
+		\hyperpage{210}
+    \subitem {A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+E\+N\+G\+T\+H}, 
+		\hyperpage{209}
+    \subitem {gen\+\_\+id}, \hyperpage{209}
+    \subitem {I\+D\+\_\+\+L\+E\+N\+G\+T\+H}, \hyperpage{210}
+    \subitem {M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H}, 
+		\hyperpage{210}
+  \item {memoryoracle\+::models\+::\+Source\+File}
+    \subitem {lines}, \hyperpage{244}
+  \item {memoryoracle\+::models\+::\+Source\+File\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{150}
+  \item {memoryoracle\+::models\+::\+Symbol\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{151}
+  \item {memoryoracle\+::models\+::\+Tracked}
+    \subitem {name}, \hyperpage{307}
+  \item {memoryoracle\+::models\+::\+Tracked\+::\+Meta}
+    \subitem {abstract}, \hyperpage{153}
+  \item {memoryoracle\+::models\+::\+Type\+::\+Meta}
+    \subitem {db\+\_\+table}, \hyperpage{152}
+  \item {memoryoracle\+::models\+::\+Typed}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{316}
+    \subitem {\+\_\+basic\+\_\+track}, \hyperpage{317}
+    \subitem {\+\_\+type\+Handler\+Code}, \hyperpage{319}
+    \subitem {\+\_\+updated\+Names}, \hyperpage{319}
+    \subitem {args}, \hyperpage{319}
+    \subitem {data}, \hyperpage{319}
+    \subitem {debugee\+\_\+data}, \hyperpage{320}
+    \subitem {description}, \hyperpage{320}
+    \subitem {gdb\+\_\+type}, \hyperpage{318}
+    \subitem {id\+\_\+execution}, \hyperpage{320}
+    \subitem {track}, \hyperpage{318}
+    \subitem {type}, \hyperpage{320}
+    \subitem {type\+\_\+code}, \hyperpage{319}
+    \subitem {type\+\_\+handler}, \hyperpage{319}
+  \item {memoryoracle\+::models\+::\+Typed\+::\+Meta}
+    \subitem {abstract}, \hyperpage{146}
+  \item {memoryoracle\+::registry\+::\+Type\+Registration}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{325}
+    \subitem {\+\_\+lookup}, \hyperpage{326}
+    \subitem {\+\_\+type\+Code\+Map}, \hyperpage{327}
+    \subitem {lookup}, \hyperpage{326}
+    \subitem {register\+\_\+handler}, \hyperpage{326}
+  \item {memoryoracle\+::settings}
+    \subitem {A\+L\+L\+O\+W\+E\+D\+\_\+\+H\+O\+S\+T\+S}, \hyperpage{23}
+    \subitem {B\+A\+S\+E\+\_\+\+D\+I\+R}, \hyperpage{23}
+    \subitem {D\+A\+T\+A\+B\+A\+S\+E\+S}, \hyperpage{23}
+    \subitem {D\+E\+B\+U\+G}, \hyperpage{23}
+    \subitem {I\+N\+S\+T\+A\+L\+L\+E\+D\+\_\+\+A\+P\+P\+S}, 
+		\hyperpage{23}
+    \subitem {L\+A\+N\+G\+U\+A\+G\+E\+\_\+\+C\+O\+D\+E}, \hyperpage{24}
+    \subitem {M\+I\+D\+D\+L\+E\+W\+A\+R\+E\+\_\+\+C\+L\+A\+S\+S\+E\+S}, 
+		\hyperpage{24}
+    \subitem {R\+O\+O\+T\+\_\+\+U\+R\+L\+C\+O\+N\+F}, \hyperpage{24}
+    \subitem {S\+E\+C\+R\+E\+T\+\_\+\+K\+E\+Y}, \hyperpage{24}
+    \subitem {S\+T\+A\+T\+I\+C\+\_\+\+U\+R\+L}, \hyperpage{24}
+    \subitem {T\+E\+M\+P\+L\+A\+T\+E\+\_\+\+D\+E\+B\+U\+G}, 
+		\hyperpage{24}
+    \subitem {T\+I\+M\+E\+\_\+\+Z\+O\+N\+E}, \hyperpage{24}
+    \subitem {U\+S\+E\+\_\+\+I18\+N}, \hyperpage{24}
+    \subitem {U\+S\+E\+\_\+\+L10\+N}, \hyperpage{25}
+    \subitem {U\+S\+E\+\_\+\+T\+Z}, \hyperpage{25}
+    \subitem {W\+S\+G\+I\+\_\+\+A\+P\+P\+L\+I\+C\+A\+T\+I\+O\+N}, 
+		\hyperpage{25}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{57}
+    \subitem {model}, \hyperpage{57}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{57}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Executable\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{76}
+    \subitem {model}, \hyperpage{76}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{76}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{83}
+    \subitem {model}, \hyperpage{83}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{83}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Memory\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{141}
+    \subitem {model}, \hyperpage{141}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{141}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Model\+Test}
+    \subitem {set\+Up\+Class}, \hyperpage{168}
+    \subitem {tear\+Down\+Class}, \hyperpage{168}
+    \subitem {test\+\_\+if\+\_\+exists}, \hyperpage{168}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}
+    \subitem {\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H}, 
+		\hyperpage{172}
+    \subitem {\+\_\+\+S\+T\+O\+R\+E\+\_\+\+T\+E\+S\+T\+S}, 
+		\hyperpage{173}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{171}
+    \subitem {\+\_\+\+\_\+iter\+\_\+\+\_\+}, \hyperpage{171}
+    \subitem {\+\_\+\+\_\+next\+\_\+\+\_\+}, \hyperpage{171}
+    \subitem {\+\_\+depends}, \hyperpage{172}
+    \subitem {\+\_\+i}, \hyperpage{172}
+    \subitem {depends}, \hyperpage{171}
+    \subitem {gen\+\_\+name}, \hyperpage{171}
+    \subitem {S\+T\+O\+R\+E\+\_\+\+T\+E\+S\+T\+S}, \hyperpage{172}
+    \subitem {set\+\_\+up\+\_\+depends}, \hyperpage{172}
+    \subitem {tear\+\_\+down\+\_\+class}, \hyperpage{172}
+    \subitem {tear\+\_\+down\+\_\+depends}, \hyperpage{172}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Object\+File\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{184}
+    \subitem {model}, \hyperpage{184}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{184}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Program\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{203}
+    \subitem {model}, \hyperpage{203}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{203}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Source\+File\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{249}
+    \subitem {model}, \hyperpage{249}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{249}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Symbol\+Test\+Data}
+    \subitem {\+\_\+depends}, \hyperpage{276}
+    \subitem {model}, \hyperpage{276}
+    \subitem {set\+\_\+up\+\_\+class}, \hyperpage{276}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Commit}
+    \subitem {cls}, \hyperpage{283}
+    \subitem {data\+Class}, \hyperpage{283}
+    \subitem {set\+Up\+Class}, \hyperpage{282}
+    \subitem {tear\+Down\+Class}, \hyperpage{283}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Executable}
+    \subitem {cls}, \hyperpage{286}
+    \subitem {data\+Class}, \hyperpage{286}
+    \subitem {set\+Up\+Class}, \hyperpage{285}
+    \subitem {tear\+Down\+Class}, \hyperpage{286}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Execution}
+    \subitem {cls}, \hyperpage{289}
+    \subitem {data\+Class}, \hyperpage{289}
+    \subitem {set\+Up\+Class}, \hyperpage{288}
+    \subitem {tear\+Down\+Class}, \hyperpage{289}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Memory}
+    \subitem {cls}, \hyperpage{292}
+    \subitem {data\+Class}, \hyperpage{292}
+    \subitem {set\+Up\+Class}, \hyperpage{291}
+    \subitem {tear\+Down\+Class}, \hyperpage{292}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Object\+File}
+    \subitem {cls}, \hyperpage{295}
+    \subitem {data\+Class}, \hyperpage{295}
+    \subitem {set\+Up\+Class}, \hyperpage{294}
+    \subitem {tear\+Down\+Class}, \hyperpage{295}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Program}
+    \subitem {cls}, \hyperpage{298}
+    \subitem {data\+Class}, \hyperpage{298}
+    \subitem {set\+Up\+Class}, \hyperpage{297}
+    \subitem {tear\+Down\+Class}, \hyperpage{298}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Source\+File}
+    \subitem {cls}, \hyperpage{301}
+    \subitem {data\+Class}, \hyperpage{301}
+    \subitem {set\+Up\+Class}, \hyperpage{300}
+    \subitem {tear\+Down\+Class}, \hyperpage{301}
+  \item {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Symbol}
+    \subitem {cls}, \hyperpage{304}
+    \subitem {data\+Class}, \hyperpage{304}
+    \subitem {set\+Up\+Class}, \hyperpage{303}
+    \subitem {tear\+Down\+Class}, \hyperpage{304}
+  \item {memoryoracle\+::tracked}
+    \subitem {read\+\_\+preference}, \hyperpage{26}
+  \item {memoryoracle\+::tracked\+::\+Object\+File}
+    \subitem {source\+\_\+file}, \hyperpage{179}
+  \item {memoryoracle\+::tracked\+::\+Reference}
+    \subitem {target}, \hyperpage{205}
+  \item {memoryoracle\+::tracked\+::\+Source\+File}
+    \subitem {object\+\_\+file}, \hyperpage{242}
+  \item {memoryoracle\+::tracked\+::\+Tracked}
+    \subitem {description}, \hyperpage{305}
+    \subitem {meta}, \hyperpage{306}
+    \subitem {track}, \hyperpage{306}
+  \item {memoryoracle\+::tracked\+::\+Untracked\+Decorator}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{331}
+    \subitem {track}, \hyperpage{332}
+  \item {memoryoracle\+::typed\+::\+Typed}
+    \subitem {gdb\+\_\+type}, \hyperpage{313}
+    \subitem {object}, \hyperpage{313}
+    \subitem {type\+\_\+code}, \hyperpage{313}
+  \item {memoryoracle\+::urls}
+    \subitem {urlpatterns}, \hyperpage{26}
+  \item {memoryoracle\+::watch\+::\+Addressable\+Watcher}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{32}
+    \subitem {name}, \hyperpage{33}
+    \subitem {silent}, \hyperpage{33}
+    \subitem {stop}, \hyperpage{33}
+  \item {memoryoracle\+::watch\+::\+Frame\+Finish}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{101}
+    \subitem {frame\+Name}, \hyperpage{102}
+    \subitem {silent}, \hyperpage{102}
+    \subitem {stop}, \hyperpage{101}
+  \item {memoryoracle\+::watch\+::\+State\+Catch}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{254}
+    \subitem {frame}, \hyperpage{254}
+    \subitem {silent}, \hyperpage{254}
+    \subitem {stop}, \hyperpage{254}
+    \subitem {tracked\+Frames}, \hyperpage{254}
+  \item {memoryoracle\+::whip}
+    \subitem {coffee\+\_\+factory}, \hyperpage{27}
+    \subitem {my\+Coffee}, \hyperpage{28}
+    \subitem {my\+Sugar\+Coffee}, \hyperpage{28}
+    \subitem {my\+Whip\+Coffee}, \hyperpage{28}
+    \subitem {my\+Whip\+Sugar\+Coffee}, \hyperpage{28}
+    \subitem {my\+Whip\+Whip\+Sugar\+Coffee}, \hyperpage{28}
+    \subitem {top\+List}, \hyperpage{28}
+    \subitem {your\+Coffee}, \hyperpage{28}
+  \item {memoryoracle\+::whip\+::\+Coffee}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{50}
+    \subitem {cost}, \hyperpage{50}
+    \subitem {name}, \hyperpage{50}
+  \item {memoryoracle\+::whip\+::\+Sugar\+Decorator}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{269}
+    \subitem {\+\_\+additional\+Cost}, \hyperpage{269}
+    \subitem {coffee}, \hyperpage{269}
+    \subitem {cost}, \hyperpage{269}
+    \subitem {name}, \hyperpage{269}
+  \item {memoryoracle\+::whip\+::\+Whip\+Decorator}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{341}
+    \subitem {\+\_\+additional\+Cost}, \hyperpage{341}
+    \subitem {coffee}, \hyperpage{341}
+    \subitem {cost}, \hyperpage{341}
+    \subitem {name}, \hyperpage{341}
+  \item {memoryoracle\+::wsgi}
+    \subitem {application}, \hyperpage{29}
+  \item {meta}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{129}
+    \subitem {memoryoracle\+::tracked\+::\+Tracked}, \hyperpage{306}
+  \item {model}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}, 
+		\hyperpage{57}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Executable\+Test\+Data}, 
+		\hyperpage{76}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}, 
+		\hyperpage{83}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Memory\+Test\+Data}, 
+		\hyperpage{141}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Object\+File\+Test\+Data}, 
+		\hyperpage{184}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Program\+Test\+Data}, 
+		\hyperpage{203}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Source\+File\+Test\+Data}, 
+		\hyperpage{249}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Symbol\+Test\+Data}, 
+		\hyperpage{276}
+  \item {my\+Coffee}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+  \item {my\+Sugar\+Coffee}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+  \item {my\+Whip\+Coffee}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+  \item {my\+Whip\+Sugar\+Coffee}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+  \item {my\+Whip\+Whip\+Sugar\+Coffee}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+
+  \indexspace
+
+  \item {name}
+    \subitem {memoryoracle\+::descriptions\+::\+Black\+Box\+Decorator}, 
+		\hyperpage{43}
+    \subitem {memoryoracle\+::descriptions\+::\+Description}, 
+		\hyperpage{64}
+    \subitem {memoryoracle\+::descriptions\+::\+External\+Description\+Decorator}, 
+		\hyperpage{86}
+    \subitem {memoryoracle\+::descriptions\+::\+Standard\+Description\+Decorator}, 
+		\hyperpage{252}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{71}
+    \subitem {memoryoracle\+::execution\+::\+Instance}, \hyperpage{106}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{98}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{129}
+    \subitem {memoryoracle\+::models\+::\+Tracked}, \hyperpage{307}
+    \subitem {memoryoracle\+::watch\+::\+Addressable\+Watcher}, 
+		\hyperpage{33}
+    \subitem {memoryoracle\+::whip\+::\+Coffee}, \hyperpage{50}
+    \subitem {memoryoracle\+::whip\+::\+Sugar\+Decorator}, 
+		\hyperpage{269}
+    \subitem {memoryoracle\+::whip\+::\+Whip\+Decorator}, 
+		\hyperpage{341}
+  \item {newer}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{98}
+
+  \indexspace
+
+  \item {object}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{135}
+    \subitem {memoryoracle\+::typed\+::\+Typed}, \hyperpage{313}
+  \item {object\+\_\+file}
+    \subitem {memoryoracle\+::tracked\+::\+Source\+File}, 
+		\hyperpage{242}
+  \item {objects}
+    \subitem {memoryoracle\+::execution\+::\+Execution}, \hyperpage{80}
+  \item {old\+Frame}
+    \subitem {memoryoracle\+::frame\+::\+Selector}, \hyperpage{213}
+  \item {older}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{98}
+  \item {operations}
+    \subitem {memoryoracle\+::migrations\+::0001\+\_\+initial\+::\+Migration}, 
+		\hyperpage{158}
+    \subitem {memoryoracle\+::migrations\+::0002\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}, 
+		\hyperpage{159}
+    \subitem {memoryoracle\+::migrations\+::0003\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}, 
+		\hyperpage{161}
+    \subitem {memoryoracle\+::migrations\+::0004\+\_\+auto\+\_\+20150402\+\_\+2000\+::\+Migration}, 
+		\hyperpage{162}
+    \subitem {memoryoracle\+::migrations\+::0005\+\_\+auto\+\_\+20150403\+\_\+0100\+::\+Migration}, 
+		\hyperpage{164}
+    \subitem {memoryoracle\+::migrations\+::0006\+\_\+program\+\_\+path\+::\+Migration}, 
+		\hyperpage{165}
+    \subitem {memoryoracle\+::migrations\+::0007\+\_\+auto\+\_\+20150403\+\_\+0248\+::\+Migration}, 
+		\hyperpage{167}
+
+  \indexspace
+
+  \item {parent}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{135}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{129}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{120}
+  \item {parent\+\_\+class}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{136}
+  \item {path}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{71}
+    \subitem {memoryoracle\+::models\+::\+Executable}, \hyperpage{73}
+    \subitem {memoryoracle\+::models\+::\+Program\+File}, 
+		\hyperpage{200}
+  \item {pc}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{98}
+
+  \indexspace
+
+  \item {R\+O\+O\+T\+\_\+\+U\+R\+L\+C\+O\+N\+F}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {range}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{40}
+  \item {read\+\_\+preference}
+    \subitem {memoryoracle}, \hyperpage{13}
+    \subitem {memoryoracle\+::tracked}, \hyperpage{26}
+  \item {read\+\_\+register}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+  \item {read\+\_\+var}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+  \item {register\+\_\+handler}
+    \subitem {memoryoracle\+::registry\+::\+Type\+Registration}, 
+		\hyperpage{326}
+  \item {relative\+\_\+name}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{136}
+  \item {repository}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{40}
+    \subitem {memoryoracle\+::instance\+::\+Call}, \hyperpage{46}
+    \subitem {memoryoracle\+::instance\+::\+Float}, \hyperpage{93}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{112}
+    \subitem {memoryoracle\+::instance\+::\+Pointer}, \hyperpage{190}
+    \subitem {memoryoracle\+::instance\+::\+Structure}, \hyperpage{264}
+
+  \indexspace
+
+  \item {S\+E\+C\+R\+E\+T\+\_\+\+K\+E\+Y}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {S\+T\+A\+T\+I\+C\+\_\+\+U\+R\+L}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {S\+T\+O\+R\+E\+\_\+\+T\+E\+S\+T\+S}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+  \item {select}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+  \item {serialize\+\_\+block\+\_\+locals}
+    \subitem {memoryoracle\+::instance}, \hyperpage{17}
+  \item {serialize\+\_\+frame\+\_\+globals}
+    \subitem {memoryoracle\+::instance}, \hyperpage{18}
+  \item {serialize\+\_\+frame\+\_\+locals}
+    \subitem {memoryoracle\+::instance}, \hyperpage{18}
+  \item {serialize\+\_\+upward}
+    \subitem {memoryoracle\+::instance}, \hyperpage{19}
+  \item {set\+\_\+up\+\_\+class}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Commit\+Test\+Data}, 
+		\hyperpage{57}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Executable\+Test\+Data}, 
+		\hyperpage{76}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}, 
+		\hyperpage{83}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Memory\+Test\+Data}, 
+		\hyperpage{141}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Object\+File\+Test\+Data}, 
+		\hyperpage{184}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Program\+Test\+Data}, 
+		\hyperpage{203}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Source\+File\+Test\+Data}, 
+		\hyperpage{249}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Symbol\+Test\+Data}, 
+		\hyperpage{276}
+  \item {set\+\_\+up\+\_\+depends}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+  \item {set\+Up\+Class}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test}, 
+		\hyperpage{168}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Commit}, 
+		\hyperpage{282}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Executable}, 
+		\hyperpage{285}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Execution}, 
+		\hyperpage{288}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Memory}, 
+		\hyperpage{291}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Object\+File}, 
+		\hyperpage{294}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Program}, 
+		\hyperpage{297}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Source\+File}, 
+		\hyperpage{300}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Symbol}, 
+		\hyperpage{303}
+  \item {silent}
+    \subitem {memoryoracle\+::instance\+::\+Memory\+Watcher}, 
+		\hyperpage{144}
+    \subitem {memoryoracle\+::watch\+::\+Addressable\+Watcher}, 
+		\hyperpage{33}
+    \subitem {memoryoracle\+::watch\+::\+Frame\+Finish}, 
+		\hyperpage{102}
+    \subitem {memoryoracle\+::watch\+::\+State\+Catch}, \hyperpage{254}
+  \item {size}
+    \subitem {memoryoracle\+::models\+::\+Program\+File}, 
+		\hyperpage{201}
+  \item {source\+\_\+file}
+    \subitem {memoryoracle\+::tracked\+::\+Object\+File}, 
+		\hyperpage{179}
+  \item {start\+\_\+time}
+    \subitem {memoryoracle\+::execution\+::\+Execution}, \hyperpage{80}
+  \item {stop}
+    \subitem {memoryoracle\+::instance\+::\+Memory\+Watcher}, 
+		\hyperpage{144}
+    \subitem {memoryoracle\+::watch\+::\+Addressable\+Watcher}, 
+		\hyperpage{33}
+    \subitem {memoryoracle\+::watch\+::\+Frame\+Finish}, 
+		\hyperpage{101}
+    \subitem {memoryoracle\+::watch\+::\+State\+Catch}, \hyperpage{254}
+  \item {stopped}
+    \subitem {memoryoracle\+::instance}, \hyperpage{19}
+
+  \indexspace
+
+  \item {T\+E\+M\+P\+L\+A\+T\+E\+\_\+\+D\+E\+B\+U\+G}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {T\+I\+M\+E\+\_\+\+Z\+O\+N\+E}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {target}
+    \subitem {memoryoracle\+::tracked\+::\+Reference}, \hyperpage{205}
+  \item {target\+\_\+type}
+    \subitem {memoryoracle\+::instance\+::\+Array}, \hyperpage{40}
+  \item {target\+\_\+type\+\_\+name}
+    \subitem {memoryoracle\+::instance}, \hyperpage{20}
+  \item {tear\+\_\+down\+\_\+class}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+  \item {tear\+\_\+down\+\_\+depends}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test\+Data}, 
+		\hyperpage{172}
+  \item {tear\+Down\+Class}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test}, 
+		\hyperpage{168}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Commit}, 
+		\hyperpage{283}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Executable}, 
+		\hyperpage{286}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Execution}, 
+		\hyperpage{289}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Memory}, 
+		\hyperpage{292}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Object\+File}, 
+		\hyperpage{295}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Program}, 
+		\hyperpage{298}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Source\+File}, 
+		\hyperpage{301}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Test\+Model\+Symbol}, 
+		\hyperpage{304}
+  \item {test\+\_\+if\+\_\+exists}
+    \subitem {memoryoracle\+::test\+\_\+models\+::\+Model\+Test}, 
+		\hyperpage{168}
+  \item {top\+List}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+  \item {track}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{126}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{318}
+    \subitem {memoryoracle\+::tracked\+::\+Tracked}, \hyperpage{306}
+    \subitem {memoryoracle\+::tracked\+::\+Untracked\+Decorator}, 
+		\hyperpage{332}
+  \item {tracked\+Frames}
+    \subitem {memoryoracle\+::watch\+::\+State\+Catch}, \hyperpage{254}
+  \item {type}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{112}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{129}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{320}
+  \item {type\+\_\+code}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{319}
+    \subitem {memoryoracle\+::typed\+::\+Typed}, \hyperpage{313}
+  \item {type\+\_\+handler}
+    \subitem {memoryoracle\+::models\+::\+Typed}, \hyperpage{319}
+  \item {type\+\_\+name}
+    \subitem {memoryoracle\+::descriptions\+::\+Memory\+Description}, 
+		\hyperpage{136}
+
+  \indexspace
+
+  \item {U\+S\+E\+\_\+\+I18\+N}
+    \subitem {memoryoracle\+::settings}, \hyperpage{24}
+  \item {U\+S\+E\+\_\+\+L10\+N}
+    \subitem {memoryoracle\+::settings}, \hyperpage{25}
+  \item {U\+S\+E\+\_\+\+T\+Z}
+    \subitem {memoryoracle\+::settings}, \hyperpage{25}
+  \item {unaliased\+\_\+type}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{129}
+  \item {unwind\+\_\+stop\+\_\+reason}
+    \subitem {memoryoracle\+::frame\+::\+Frame}, \hyperpage{99}
+  \item {update}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{127}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{119}
+  \item {urlpatterns}
+    \subitem {memoryoracle\+::urls}, \hyperpage{26}
+
+  \indexspace
+
+  \item {val\+\_\+string}
+    \subitem {memoryoracle\+::instance\+::\+Primitive}, \hyperpage{193}
+  \item {value}
+    \subitem {memoryoracle\+::instance\+::\+Int}, \hyperpage{112}
+    \subitem {memoryoracle\+::instance\+::\+Primitive}, \hyperpage{194}
+  \item {vcs\+\_\+hash}
+    \subitem {memoryoracle\+::execution\+::\+Commit}, \hyperpage{52}
+    \subitem {memoryoracle\+::models\+::\+Commit}, \hyperpage{55}
+  \item {version}
+    \subitem {memoryoracle\+::execution\+::\+Executable}, 
+		\hyperpage{71}
+
+  \indexspace
+
+  \item {W\+S\+G\+I\+\_\+\+A\+P\+P\+L\+I\+C\+A\+T\+I\+O\+N}
+    \subitem {memoryoracle\+::settings}, \hyperpage{25}
+  \item {watchers}
+    \subitem {memoryoracle\+::instance\+::\+Memory}, \hyperpage{127}
+    \subitem {memoryoracle\+::models\+::\+Memory}, \hyperpage{119}
+
+  \indexspace
+
+  \item {x}
+    \subitem {memoryoracle\+::instance}, \hyperpage{21}
+
+  \indexspace
+
+  \item {your\+Coffee}
+    \subitem {memoryoracle\+::whip}, \hyperpage{28}
+
+\end{theindex}

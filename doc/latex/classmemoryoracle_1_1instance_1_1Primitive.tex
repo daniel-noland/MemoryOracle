@@ -1,0 +1,161 @@
+\hypertarget{classmemoryoracle_1_1instance_1_1Primitive}{}\section{memoryoracle.\+instance.\+Primitive Class Reference}
+\label{classmemoryoracle_1_1instance_1_1Primitive}\index{memoryoracle.\+instance.\+Primitive@{memoryoracle.\+instance.\+Primitive}}
+
+
+Inheritance diagram for memoryoracle.\+instance.\+Primitive\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Primitive__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+instance.\+Primitive\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Primitive__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Primitive_abc513cbf3d0938c0db133e9af0a6f5ea}{val\+\_\+string} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Primitive_ac1e638f21743430e98c2e3513a4556ed}{value}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Primitive_adf984d6f1bfc101cdef835b137adef55}{value} = mongoengine.\+String\+Field()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Primitive_a68562bda9732e33fe32188597e2f4b91}{\+\_\+track} (self)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Abstract* class to represent a primitive data type in the debugge.
+
+Primitive data types are directly printable types such as int and double.
+\end{DoxyVerb}
+ 
+
+Definition at line 332 of file instance.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Primitive_a68562bda9732e33fe32188597e2f4b91}{}\index{memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}!\+\_\+track@{\+\_\+track}}
+\index{\+\_\+track@{\+\_\+track}!memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}}
+\subsubsection[{\+\_\+track}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Primitive.\+\_\+track (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Primitive_a68562bda9732e33fe32188597e2f4b91}
+
+
+Definition at line 344 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+track(), and memoryoracle.\+models.\+Typed.\+track().
+
+
+\begin{DoxyCode}
+344     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Primitive_a68562bda9732e33fe32188597e2f4b91}{\_track}(self):
+345         self.\hyperlink{classmemoryoracle_1_1instance_1_1Primitive_adf984d6f1bfc101cdef835b137adef55}{value} = self.\hyperlink{classmemoryoracle_1_1instance_1_1Primitive_abc513cbf3d0938c0db133e9af0a6f5ea}{val\_string}()
+346 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Primitive_a68562bda9732e33fe32188597e2f4b91_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Primitive_abc513cbf3d0938c0db133e9af0a6f5ea}{}\index{memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}!val\+\_\+string@{val\+\_\+string}}
+\index{val\+\_\+string@{val\+\_\+string}!memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}}
+\subsubsection[{val\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Primitive.\+val\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Primitive_abc513cbf3d0938c0db133e9af0a6f5ea}
+\begin{DoxyVerb}Get the printed value of a primitive object
+\end{DoxyVerb}
+ 
+
+Definition at line 347 of file instance.\+py.
+
+
+
+References memoryoracle.\+frame.\+Frame.\+frame, memoryoracle.\+instance.\+Memory.\+frame, memoryoracle.\+execution.\+Instance.\+name, memoryoracle.\+execution.\+Executable.\+name, and memoryoracle.\+instance.\+Memory.\+name.
+
+
+
+Referenced by memoryoracle.\+instance.\+Int.\+\_\+find\+\_\+hidden\+\_\+type().
+
+
+\begin{DoxyCode}
+347     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Primitive_abc513cbf3d0938c0db133e9af0a6f5ea}{val\_string}(self):
+348         \textcolor{stringliteral}{"""}
+349 \textcolor{stringliteral}{        Get the printed value of a primitive object}
+350 \textcolor{stringliteral}{        """}
+351         with \hyperlink{classmemoryoracle_1_1frame_1_1Selector}{frame.Selector}(self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_afd58f13b2c1054f498e32b6643fbd82e}{frame}) \textcolor{keyword}{as} s:
+352             \textcolor{comment}{## TODO: Find a way to print values without messing with the $# var}
+353             \textcolor{comment}{# in the gdb interface.}
+354             gdbPrint = gdb.execute(\textcolor{stringliteral}{"print "} + self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{name}, \textcolor{keyword}{False}, \textcolor{keyword}{True})
+355             \textcolor{comment}{## TODO: If we can't fix the $# var, we may as well use it.}
+356             \textcolor{comment}{## this is free information we may as well store for the user's use.}
+357             ansSections = gdbPrint[:-1].split(\textcolor{stringliteral}{" = "})[1:]
+358             \textcolor{keywordflow}{return} \textcolor{stringliteral}{" "}.join(ansSections)
+359 
+360 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Primitive_abc513cbf3d0938c0db133e9af0a6f5ea_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Primitive_adf984d6f1bfc101cdef835b137adef55}{}\index{memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}!value@{value}}
+\index{value@{value}!memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Primitive.\+value = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Primitive_adf984d6f1bfc101cdef835b137adef55}
+
+
+Definition at line 342 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Primitive_ac1e638f21743430e98c2e3513a4556ed}{}\index{memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}!value@{value}}
+\index{value@{value}!memoryoracle\+::instance\+::\+Primitive@{memoryoracle\+::instance\+::\+Primitive}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Primitive.\+value}\label{classmemoryoracle_1_1instance_1_1Primitive_ac1e638f21743430e98c2e3513a4556ed}
+
+
+Definition at line 345 of file instance.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{instance_8py}{instance.\+py}\end{DoxyCompactItemize}

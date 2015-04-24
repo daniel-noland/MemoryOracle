@@ -1,0 +1,20 @@
+<map id="memoryoracle.instance.Memory.track" name="memoryoracle.instance.Memory.track">
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1instance_1_1Memory.html#ac50fd3bb7216dc0481b8c6f23831a998" title="memoryoracle.instance.Memory.\l_basic_track" alt="" coords="321,76,552,117"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1instance_1_1Structure.html#a200a54be462e0199b7833cbd11f81a52" title="memoryoracle.instance.Structure.\l_track" alt="" coords="316,215,557,256"/>
+<area shape="rect" id="node8" href="$classmemoryoracle_1_1instance_1_1Array.html#a1d8c3993d8a52bfbec8240d6f79b3ce1" title="TODO: upgrade this to ref field. " alt="" coords="645,173,859,215"/>
+<area shape="rect" id="node11" href="$classmemoryoracle_1_1instance_1_1Primitive.html#a68562bda9732e33fe32188597e2f4b91" title="memoryoracle.instance.Primitive.\l_track" alt="" coords="319,280,555,321"/>
+<area shape="rect" id="node12" href="$classmemoryoracle_1_1instance_1_1Pointer.html#a2cc9e298adaad8bed089d90186fcde8a" title="memoryoracle.instance.Pointer.\l_track" alt="" coords="324,345,549,387"/>
+<area shape="rect" id="node13" href="$classmemoryoracle_1_1instance_1_1Int.html#a38c9424341353f006771163d360594da" title="memoryoracle.instance.Int.\l_track" alt="" coords="338,411,535,452"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1instance_1_1Memory.html#acde5472399a5335909aca575b634dde7" title="memoryoracle.instance.Memory.extract\l_dynamic_type" alt="" coords="614,5,890,47"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1frame_1_1Frame.html#aba4a80563b93cf0069db8d64df6b19e5" title="memoryoracle.frame.Frame.index" alt="" coords="633,71,871,98"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1instance_1_1Memory.html#aba9e6136a3854e0ab59a74acd015be06" title="memoryoracle.instance.Memory.index" alt="" coords="619,122,885,149"/>
+<area shape="rect" id="node7" href="$namespacememoryoracle_1_1instance.html#ac651a8635b1ae2ee7e788bf9adb17a0b" title="memoryoracle.instance.addressable\l_factory" alt="" coords="625,239,879,280"/>
+<area shape="rect" id="node9" href="$classmemoryoracle_1_1typed_1_1Typed.html#a0d1a3c7644d37da66f9ea5cb269115fe" title="memoryoracle.typed.Typed.object" alt="" coords="955,250,1193,277"/>
+<area shape="rect" id="node10" href="$classmemoryoracle_1_1descriptions_1_1MemoryDescription.html#a0fc58900317d1e723b6352005e163aef" title="memoryoracle.descriptions.\lMemoryDescription.object" alt="" coords="974,177,1174,219"/>
+<area shape="rect" id="node14" href="$classmemoryoracle_1_1instance_1_1Int.html#a450a73bc8aaf1a7ac5f18c3ed1a933fc" title="memoryoracle.instance.Int.\l_find_hidden_type" alt="" coords="653,304,851,345"/>
+<area shape="rect" id="node16" href="$classmemoryoracle_1_1tracked_1_1Tracked.html#abd8dc997fb5a226926f2044462dbd94b" title="memoryoracle.tracked.Tracked.description" alt="" coords="605,370,899,397"/>
+<area shape="rect" id="node17" href="$classmemoryoracle_1_1descriptions_1_1BlackBoxDecorator.html#a558c1ce5d38dc4785d4ef36c0a053967" title="memoryoracle.descriptions.\lBlackBoxDecorator.description" alt="" coords="643,421,861,463"/>
+<area shape="rect" id="node18" href="$classmemoryoracle_1_1descriptions_1_1ExternalDescriptionDecorator.html#ae5952e51de2c9473ce19875b55ccb625" title="memoryoracle.descriptions.\lExternalDescriptionDecorator.description" alt="" coords="611,487,893,528"/>
+<area shape="rect" id="node19" href="$classmemoryoracle_1_1descriptions_1_1StandardDescriptionDecorator.html#a50e064e8a858b8eafe2c603650dbbee8" title="memoryoracle.descriptions.\lStandardDescriptionDecorator.description" alt="" coords="607,552,897,593"/>
+<area shape="rect" id="node15" href="$classmemoryoracle_1_1instance_1_1Primitive.html#abc513cbf3d0938c0db133e9af0a6f5ea" title="memoryoracle.instance.Primitive.val\l_string" alt="" coords="947,304,1201,345"/>
+</map>

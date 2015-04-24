@@ -1,0 +1,6 @@
+<map id="memoryoracle.templatable.Typedef" name="memoryoracle.templatable.Typedef">
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1templatable_1_1Alias.html" title="{memoryoracle.templatable.\lAlias\n||}" alt="" coords="11,307,211,399"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1templatable_1_1Templatable.html" title="{memoryoracle.templatable.\lTemplatable\n||}" alt="" coords="5,131,205,223"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1typed_1_1Typed.html" title="{memoryoracle.typed.Typed\n|+ lookup\l&#45; _type\l&#45; _typeCodeMap\l&#45; _typeHandlerCode\l|+ type()\l+ type_code()\l+ gdb_type()\l+ type_handler()\l}" alt="" coords="237,271,432,436"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1tracked_1_1Tracked.html" title="{memoryoracle.tracked.Tracked\n||}" alt="" coords="229,138,448,215"/>
+</map>

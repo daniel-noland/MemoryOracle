@@ -1,0 +1,89 @@
+\hypertarget{classmemoryoracle_1_1models_1_1Float}{}\section{memoryoracle.\+models.\+Float Class Reference}
+\label{classmemoryoracle_1_1models_1_1Float}\index{memoryoracle.\+models.\+Float@{memoryoracle.\+models.\+Float}}
+
+
+Inheritance diagram for memoryoracle.\+models.\+Float\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classmemoryoracle_1_1models_1_1Float__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+models.\+Float\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classmemoryoracle_1_1models_1_1Float__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classmemoryoracle_1_1models_1_1Float_1_1Meta}{Meta}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1models_1_1Float_aded74b5ac3f60ce974c7ab2ba1894bb8}{id} = models.\+Char\+Field(primary\+\_\+key=True, max\+\_\+length=36)
+\item 
+tuple \hyperlink{classmemoryoracle_1_1models_1_1Float_a4ac54166d455e2f4339ddd2393ef7dec}{id\+\_\+program\+\_\+instance} = models.\+Foreign\+Key(\textquotesingle{}\hyperlink{classmemoryoracle_1_1models_1_1ProgramInstance}{Program\+Instance}\textquotesingle{}, db\+\_\+column=\textquotesingle{}id\+\_\+program\+\_\+instance\textquotesingle{})
+\item 
+tuple \hyperlink{classmemoryoracle_1_1models_1_1Float_a822e38f5c09e6dc2819d293b83a20df6}{value} = models.\+Char\+Field(max\+\_\+length=200)
+\item 
+tuple \hyperlink{classmemoryoracle_1_1models_1_1Float_ad95190c8fdf7df2c0086ee24be73799c}{address} = models.\+Char\+Field(max\+\_\+length=200)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 161 of file models.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1models_1_1Float_ad95190c8fdf7df2c0086ee24be73799c}{}\index{memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}!address@{address}}
+\index{address@{address}!memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}}
+\subsubsection[{address}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+models.\+Float.\+address = models.\+Char\+Field(max\+\_\+length=200)\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1models_1_1Float_ad95190c8fdf7df2c0086ee24be73799c}
+
+
+Definition at line 165 of file models.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Instance.\+\_\+clear\+\_\+updated(), and memoryoracle.\+instance.\+Instance.\+index().
+
+\hypertarget{classmemoryoracle_1_1models_1_1Float_aded74b5ac3f60ce974c7ab2ba1894bb8}{}\index{memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}!id@{id}}
+\index{id@{id}!memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+models.\+Float.\+id = models.\+Char\+Field(primary\+\_\+key=True, max\+\_\+length=36)\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1models_1_1Float_aded74b5ac3f60ce974c7ab2ba1894bb8}
+
+
+Definition at line 162 of file models.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Instance.\+\_\+basic\+\_\+track(), memoryoracle.\+instance.\+Structure\+Instance.\+\_\+track(), memoryoracle.\+instance.\+Array.\+\_\+track(), and memoryoracle.\+instance.\+Pointer.\+\_\+track().
+
+\hypertarget{classmemoryoracle_1_1models_1_1Float_a4ac54166d455e2f4339ddd2393ef7dec}{}\index{memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}!id\+\_\+program\+\_\+instance@{id\+\_\+program\+\_\+instance}}
+\index{id\+\_\+program\+\_\+instance@{id\+\_\+program\+\_\+instance}!memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}}
+\subsubsection[{id\+\_\+program\+\_\+instance}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+models.\+Float.\+id\+\_\+program\+\_\+instance = models.\+Foreign\+Key(\textquotesingle{}{\bf Program\+Instance}\textquotesingle{}, db\+\_\+column=\textquotesingle{}id\+\_\+program\+\_\+instance\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1models_1_1Float_a4ac54166d455e2f4339ddd2393ef7dec}
+
+
+Definition at line 163 of file models.\+py.
+
+\hypertarget{classmemoryoracle_1_1models_1_1Float_a822e38f5c09e6dc2819d293b83a20df6}{}\index{memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}!value@{value}}
+\index{value@{value}!memoryoracle\+::models\+::\+Float@{memoryoracle\+::models\+::\+Float}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+models.\+Float.\+value = models.\+Char\+Field(max\+\_\+length=200)\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1models_1_1Float_a822e38f5c09e6dc2819d293b83a20df6}
+
+
+Definition at line 164 of file models.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{models_8py}{models.\+py}\end{DoxyCompactItemize}

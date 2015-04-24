@@ -1,0 +1,700 @@
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory}{}\section{memoryoracle.\+instance.\+Memory Class Reference}
+\label{classmemoryoracle_1_1instance_1_1Memory}\index{memoryoracle.\+instance.\+Memory@{memoryoracle.\+instance.\+Memory}}
+
+
+Inheritance diagram for memoryoracle.\+instance.\+Memory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+instance.\+Memory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classmemoryoracle_1_1instance_1_1Memory__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classmemoryoracle_1_1instance_1_1Memory_1_1DuplicateAddress}{Duplicate\+Address}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a2ab9b46d55c08afd748f50c3f4076116}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, args, kwargs)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06}{index} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a050f3787032e0228d9c15baec68ca278}{factory}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662}{track} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_aa937ea1a82dcaa2fa1c868a387d59483}{update} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_af30ce86ef3f667c334f9217c8a699f9e}{watchers} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_acde5472399a5335909aca575b634dde7}{extract\+\_\+dynamic\+\_\+type} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Memory_ac7778b85299f2e28765771174a43b1cd}{unaliased\+\_\+type}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a99da30d4d3ea15d582a12b273ac7bee1}{dynamic\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a168ebce820209761e54c983c16bcd88f}{address} = mongoengine.\+String\+Field()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{name} = mongoengine.\+String\+Field()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_afd58f13b2c1054f498e32b6643fbd82e}{frame} = mongoengine.\+String\+Field()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_ad5fcccd559af49bd7a0ed2b25a08ec87}{execution} = mongoengine.\+Reference\+Field(\hyperlink{classmemoryoracle_1_1execution_1_1Execution}{execution.\+Execution})
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a17b9f6c0f548bf201e4fc636c133470b}{type} = mongoengine.\+String\+Field()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a0e65734b42b7fbb648f644e3d40b039d}{dynamic\+\_\+type} = mongoengine.\+String\+Field()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_abaa6ef3e2ff8451350f47b2c4795f5eb}{unaliased\+\_\+type} = mongoengine.\+String\+Field()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a4f97ee183fd07fc50a47cfef478700d8}{parent} = mongoengine.\+Reference\+Field(\textquotesingle{}\hyperlink{classmemoryoracle_1_1instance_1_1Memory}{Memory}\textquotesingle{})
+\item 
+dictionary \hyperlink{classmemoryoracle_1_1instance_1_1Memory_afebefc428546a963dbfab8ffcae72e8a}{meta}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_ad3c1dc0d60db682e26c231eab85cb88b}{\+\_\+fetch} (cls, \hyperlink{classmemoryoracle_1_1tracked_1_1Tracked_abd8dc997fb5a226926f2044462dbd94b}{description})
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998}{\+\_\+basic\+\_\+track} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_af30604c1bb14fe470d4086c10b08b45e}{\+\_\+clear\+\_\+updated} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a3028b796b6b672b5cf23b1d9c89eebf0}{\+\_\+set\+\_\+execution} (\hyperlink{classmemoryoracle_1_1instance_1_1Memory_ad5fcccd559af49bd7a0ed2b25a08ec87}{execution})
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a788ea83ee6828d6bc864acb07862d920}{\+\_\+description}
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a7359656d1a81dddfe450381200b44e80}{\+\_\+object}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a95ef257acf3cfaa88c9b00ab11256a64}{\+\_\+address\+Fixer} = re.\+compile(r\char`\"{} .$\ast$\char`\"{})
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_a2ac9f507ee9de1420f11982237450ecb}{\+\_\+updated\+Names} = set()
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_aeeda16dba7e90242fd4e6e6161d709de}{\+\_\+watchers} = dict()
+\item 
+\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a3919dc8184d2d87a2cf0fcd3f7c6b824}{\+\_\+execution} = None
+\item 
+tuple \hyperlink{classmemoryoracle_1_1instance_1_1Memory_abfe5ff52d9fa0a5b99fff473df6b4d8b}{\+\_\+update\+Tracker} = set()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Abstract* class representing a instance of an object with a type.
+
+This class enforces that the object have a memory address
+in the debugge, or that an appropriate address is specified.
+\end{DoxyVerb}
+ 
+
+Definition at line 35 of file instance.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a2ab9b46d55c08afd748f50c3f4076116}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{args, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_a2ab9b46d55c08afd748f50c3f4076116}
+
+
+Definition at line 65 of file instance.\+py.
+
+
+\begin{DoxyCode}
+65     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a2ab9b46d55c08afd748f50c3f4076116}{\_\_init\_\_}(self, *args, **kwargs):
+66         self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a788ea83ee6828d6bc864acb07862d920}{\_description} = kwargs[\textcolor{stringliteral}{"descript"}]
+67         self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a7359656d1a81dddfe450381200b44e80}{\_object} = kwargs[\textcolor{stringliteral}{"descript"}].object
+68         super(Memory, self).\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a2ab9b46d55c08afd748f50c3f4076116}{\_\_init\_\_}(*args, **(kwargs[\textcolor{stringliteral}{"descript"}].dict))
+69 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+basic\+\_\+track@{\+\_\+basic\+\_\+track}}
+\index{\+\_\+basic\+\_\+track@{\+\_\+basic\+\_\+track}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+basic\+\_\+track}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998}
+
+
+Definition at line 119 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+\_\+updated\+Names, memoryoracle.\+instance.\+Memory.\+\_\+update\+Tracker, memoryoracle.\+instance.\+Memory.\+extract\+\_\+dynamic\+\_\+type(), memoryoracle.\+frame.\+Frame.\+index(), memoryoracle.\+instance.\+Memory.\+index(), memoryoracle.\+execution.\+Instance.\+name, memoryoracle.\+execution.\+Executable.\+name, and memoryoracle.\+instance.\+Memory.\+name.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+track(), and memoryoracle.\+models.\+Typed.\+track().
+
+
+\begin{DoxyCode}
+119     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998}{\_basic\_track}(self):
+120         \textcolor{keywordflow}{if} self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{name} \textcolor{keywordflow}{in} self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a2ac9f507ee9de1420f11982237450ecb}{\_updatedNames}:
+121             \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+122         \textcolor{keywordflow}{else}:
+123             self.\_updatedNames.add(self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{name})
+124 
+125         \textcolor{keywordflow}{if} self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06}{index} \textcolor{keywordflow}{not} \textcolor{keywordflow}{in} self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_abfe5ff52d9fa0a5b99fff473df6b4d8b}{\_updateTracker}:
+126             self.\_updateTracker.add(self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06}{index})
+127             self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_acde5472399a5335909aca575b634dde7}{extract\_dynamic\_type}()
+128             \textcolor{keywordflow}{return} \textcolor{keyword}{True}
+129         \textcolor{keywordflow}{else}:
+130             \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+131 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_af30604c1bb14fe470d4086c10b08b45e}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+clear\+\_\+updated@{\+\_\+clear\+\_\+updated}}
+\index{\+\_\+clear\+\_\+updated@{\+\_\+clear\+\_\+updated}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+clear\+\_\+updated}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+\_\+clear\+\_\+updated (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_af30604c1bb14fe470d4086c10b08b45e}
+
+
+Definition at line 144 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+address.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+update(), and memoryoracle.\+models.\+Memory.\+update().
+
+
+\begin{DoxyCode}
+144     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_af30604c1bb14fe470d4086c10b08b45e}{\_clear\_updated}(self):
+145         self.\_updateTracker.discard(self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a168ebce820209761e54c983c16bcd88f}{address})
+146 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_af30604c1bb14fe470d4086c10b08b45e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_ad3c1dc0d60db682e26c231eab85cb88b}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+fetch@{\+\_\+fetch}}
+\index{\+\_\+fetch@{\+\_\+fetch}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+fetch}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+\_\+fetch (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{description}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_ad3c1dc0d60db682e26c231eab85cb88b}
+
+
+Definition at line 75 of file instance.\+py.
+
+
+\begin{DoxyCode}
+75     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_ad3c1dc0d60db682e26c231eab85cb88b}{\_fetch}(cls, description):
+76         \textcolor{keywordflow}{if} description \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+77             \textcolor{keywordflow}{raise} Exception(\textcolor{stringliteral}{"Description required to fetch object!"})
+78 
+79         execution = description.execution
+80         frameDescription = \hyperlink{classmemoryoracle_1_1descriptions_1_1MemoryDescription}{descriptions.MemoryDescription}(\textcolor{stringliteral}{"myframe"}, address=
+      str(gdb.selected\_frame()))
+81 
+82         \textcolor{comment}{# TODO: replace selected\_frame call with something more flexible}
+83         frm = \hyperlink{classmemoryoracle_1_1frame_1_1Frame}{frame.Frame}(gdb.selected\_frame())
+84         address = description.address
+85         memories = cls.objects(
+86             execution=execution,
+87             frame=str(frm),
+88             address=address
+89         )
+90         \textcolor{keywordflow}{if} len(memories) > 1:
+91             \textcolor{keywordflow}{raise} \hyperlink{classmemoryoracle_1_1instance_1_1Memory_1_1DuplicateAddress}{DuplicateAddress}(\textcolor{stringliteral}{"Duplicate address for memory!"})
+92         \textcolor{keywordflow}{elif} len(memories) == 0:
+93             \textcolor{keywordflow}{return} \textcolor{keyword}{False}
+94         \textcolor{keywordflow}{return} memories[0]
+95 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a3028b796b6b672b5cf23b1d9c89eebf0}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+set\+\_\+execution@{\+\_\+set\+\_\+execution}}
+\index{\+\_\+set\+\_\+execution@{\+\_\+set\+\_\+execution}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+set\+\_\+execution}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+\_\+set\+\_\+execution (
+\begin{DoxyParamCaption}
+\item[{}]{execution}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_a3028b796b6b672b5cf23b1d9c89eebf0}
+
+
+Definition at line 97 of file instance.\+py.
+
+
+\begin{DoxyCode}
+97     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a3028b796b6b672b5cf23b1d9c89eebf0}{\_set\_execution}(execution):
+98         Memory.\_execution = execution
+99 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_acde5472399a5335909aca575b634dde7}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!extract\+\_\+dynamic\+\_\+type@{extract\+\_\+dynamic\+\_\+type}}
+\index{extract\+\_\+dynamic\+\_\+type@{extract\+\_\+dynamic\+\_\+type}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{extract\+\_\+dynamic\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+extract\+\_\+dynamic\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_acde5472399a5335909aca575b634dde7}
+
+
+Definition at line 151 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track().
+
+
+\begin{DoxyCode}
+151     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_acde5472399a5335909aca575b634dde7}{extract\_dynamic\_type}(self):
+152         s = self.description.object
+153         \textcolor{comment}{# If the type is aliased, remove those aliases}
+154         \textcolor{comment}{# and store that type}
+155         strip = s.type.strip\_typedefs()
+156         \textcolor{keywordflow}{if} strip != s.type:
+157             self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_abaa6ef3e2ff8451350f47b2c4795f5eb}{unaliased\_type} = strip.name
+158 
+159         \textcolor{comment}{# If the type is dynamic, detect this and store}
+160         \textcolor{comment}{# accordingly}
+161         dynamic = s.dynamic\_type
+162         \textcolor{keywordflow}{if} dynamic != s.type:
+163             self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a0e65734b42b7fbb648f644e3d40b039d}{dynamic\_type} = dynamic.name
+164 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_acde5472399a5335909aca575b634dde7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a050f3787032e0228d9c15baec68ca278}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!factory@{factory}}
+\index{factory@{factory}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{factory}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+factory (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{descript = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_a050f3787032e0228d9c15baec68ca278}
+\begin{DoxyVerb}build an object based on a description, or fetch that object
+from the database if it already exists.
+\end{DoxyVerb}
+ 
+
+Definition at line 101 of file instance.\+py.
+
+
+\begin{DoxyCode}
+101     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a050f3787032e0228d9c15baec68ca278}{factory}(cls, descript=None):
+102         \textcolor{stringliteral}{"""}
+103 \textcolor{stringliteral}{        build an object based on a description, or fetch that object}
+104 \textcolor{stringliteral}{        from the database if it already exists.}
+105 \textcolor{stringliteral}{        """}
+106 
+107         \textcolor{keywordflow}{if} descript.execution \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}:
+108             Memory.\_set\_execution(descript.execution)
+109         \textcolor{keywordflow}{else}:
+110             descript.\_execution = Memory.\_execution
+111 
+112         fetchedVal = cls.\_fetch(descript)
+113 
+114         \textcolor{keywordflow}{if} fetchedVal != \textcolor{keyword}{False}:
+115             \textcolor{keywordflow}{return} fetchedVal
+116 
+117         \textcolor{keywordflow}{return} cls(descript=descript)
+118 
+\end{DoxyCode}
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!index@{index}}
+\index{index@{index}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{index}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+index (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06}
+
+
+Definition at line 71 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+address.
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+\_\+\+\_\+init\+\_\+\+\_\+(), memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track(), and memoryoracle.\+models.\+Memory.\+\_\+clear\+\_\+updated().
+
+
+\begin{DoxyCode}
+71     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06}{index}(self):
+72         \textcolor{keywordflow}{return} str(self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a168ebce820209761e54c983c16bcd88f}{address})
+73 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_aba9e6136a3854e0ab59a74acd015be06_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!track@{track}}
+\index{track@{track}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{track}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+track (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662}
+
+
+Definition at line 132 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track(), memoryoracle.\+instance.\+Structure.\+\_\+track(), memoryoracle.\+instance.\+Array.\+\_\+track(), memoryoracle.\+instance.\+Primitive.\+\_\+track(), memoryoracle.\+instance.\+Pointer.\+\_\+track(), and memoryoracle.\+instance.\+Int.\+\_\+track().
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+\_\+\+\_\+init\+\_\+\+\_\+(), memoryoracle.\+models.\+Memory.\+\_\+\+\_\+init\+\_\+\+\_\+(), memoryoracle.\+instance.\+Int.\+\_\+track(), memoryoracle.\+instance.\+Memory.\+update(), and memoryoracle.\+models.\+Memory.\+update().
+
+
+\begin{DoxyCode}
+132     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662}{track}(self):
+133         \textcolor{keywordflow}{if} self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_ac50fd3bb7216dc0481b8c6f23831a998}{\_basic\_track}():
+134             self.\_track()
+135             \textcolor{comment}{## TODO: enable memory watchers}
+136             \textcolor{comment}{# self.\_watchers[self.index] = MemoryWatcher(self)}
+137             self.save()
+138             print(self.to\_json()) \textcolor{comment}{## DEBUG}
+139 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_aa937ea1a82dcaa2fa1c868a387d59483}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!update@{update}}
+\index{update@{update}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+update (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_aa937ea1a82dcaa2fa1c868a387d59483}
+
+
+Definition at line 140 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+\_\+clear\+\_\+updated(), and memoryoracle.\+instance.\+Memory.\+track().
+
+
+\begin{DoxyCode}
+140     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_aa937ea1a82dcaa2fa1c868a387d59483}{update}(self):
+141         self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_af30604c1bb14fe470d4086c10b08b45e}{\_clear\_updated}()
+142         self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_a8951ac234fecbd6cd473133ae7e63662}{track}()
+143 
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1instance_1_1Memory_aa937ea1a82dcaa2fa1c868a387d59483_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_af30ce86ef3f667c334f9217c8a699f9e}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!watchers@{watchers}}
+\index{watchers@{watchers}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{watchers}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+instance.\+Memory.\+watchers (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1instance_1_1Memory_af30ce86ef3f667c334f9217c8a699f9e}
+
+
+Definition at line 148 of file instance.\+py.
+
+
+
+References memoryoracle.\+instance.\+Memory.\+\_\+watchers.
+
+
+\begin{DoxyCode}
+148     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1instance_1_1Memory_af30ce86ef3f667c334f9217c8a699f9e}{watchers}(self):
+149         \textcolor{keywordflow}{return} self.\hyperlink{classmemoryoracle_1_1instance_1_1Memory_aeeda16dba7e90242fd4e6e6161d709de}{\_watchers}
+150 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a95ef257acf3cfaa88c9b00ab11256a64}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+address\+Fixer@{\+\_\+address\+Fixer}}
+\index{\+\_\+address\+Fixer@{\+\_\+address\+Fixer}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+address\+Fixer}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+\_\+address\+Fixer = re.\+compile(r\char`\"{} .$\ast$\char`\"{})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_a95ef257acf3cfaa88c9b00ab11256a64}
+
+
+Definition at line 43 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a788ea83ee6828d6bc864acb07862d920}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+description@{\+\_\+description}}
+\index{\+\_\+description@{\+\_\+description}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+description}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Memory.\+\_\+description\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_a788ea83ee6828d6bc864acb07862d920}
+
+
+Definition at line 66 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+tracked.\+Tracked.\+description().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a3919dc8184d2d87a2cf0fcd3f7c6b824}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+execution@{\+\_\+execution}}
+\index{\+\_\+execution@{\+\_\+execution}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+execution}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Memory.\+\_\+execution = None\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_a3919dc8184d2d87a2cf0fcd3f7c6b824}
+
+
+Definition at line 58 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a7359656d1a81dddfe450381200b44e80}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+object@{\+\_\+object}}
+\index{\+\_\+object@{\+\_\+object}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+object}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Memory.\+\_\+object\hspace{0.3cm}{\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_a7359656d1a81dddfe450381200b44e80}
+
+
+Definition at line 67 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+typed.\+Typed.\+object().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a2ac9f507ee9de1420f11982237450ecb}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+updated\+Names@{\+\_\+updated\+Names}}
+\index{\+\_\+updated\+Names@{\+\_\+updated\+Names}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+updated\+Names}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+\_\+updated\+Names = set()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_a2ac9f507ee9de1420f11982237450ecb}
+
+
+Definition at line 44 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_abfe5ff52d9fa0a5b99fff473df6b4d8b}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+update\+Tracker@{\+\_\+update\+Tracker}}
+\index{\+\_\+update\+Tracker@{\+\_\+update\+Tracker}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+update\+Tracker}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+\_\+update\+Tracker = set()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_abfe5ff52d9fa0a5b99fff473df6b4d8b}
+
+
+Definition at line 60 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_aeeda16dba7e90242fd4e6e6161d709de}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!\+\_\+watchers@{\+\_\+watchers}}
+\index{\+\_\+watchers@{\+\_\+watchers}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{\+\_\+watchers}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+\_\+watchers = dict()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1instance_1_1Memory_aeeda16dba7e90242fd4e6e6161d709de}
+
+
+Definition at line 56 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+models.\+Typed.\+\_\+\+\_\+init\+\_\+\+\_\+(), memoryoracle.\+instance.\+Memory.\+watchers(), and memoryoracle.\+models.\+Memory.\+watchers().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a168ebce820209761e54c983c16bcd88f}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!address@{address}}
+\index{address@{address}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{address}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+address = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_a168ebce820209761e54c983c16bcd88f}
+
+
+Definition at line 46 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+\_\+clear\+\_\+updated(), memoryoracle.\+models.\+Memory.\+\_\+compute\+\_\+index(), memoryoracle.\+descriptions.\+Memory\+Description.\+dict(), and memoryoracle.\+instance.\+Memory.\+index().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a0e65734b42b7fbb648f644e3d40b039d}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!dynamic\+\_\+type@{dynamic\+\_\+type}}
+\index{dynamic\+\_\+type@{dynamic\+\_\+type}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{dynamic\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+dynamic\+\_\+type = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_a0e65734b42b7fbb648f644e3d40b039d}
+
+
+Definition at line 52 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a99da30d4d3ea15d582a12b273ac7bee1}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!dynamic\+\_\+type@{dynamic\+\_\+type}}
+\index{dynamic\+\_\+type@{dynamic\+\_\+type}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{dynamic\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Memory.\+dynamic\+\_\+type}\label{classmemoryoracle_1_1instance_1_1Memory_a99da30d4d3ea15d582a12b273ac7bee1}
+
+
+Definition at line 163 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_ad5fcccd559af49bd7a0ed2b25a08ec87}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!execution@{execution}}
+\index{execution@{execution}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{execution}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+execution = mongoengine.\+Reference\+Field({\bf execution.\+Execution})\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_ad5fcccd559af49bd7a0ed2b25a08ec87}
+
+
+Definition at line 49 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_afd58f13b2c1054f498e32b6643fbd82e}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!frame@{frame}}
+\index{frame@{frame}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{frame}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+frame = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_afd58f13b2c1054f498e32b6643fbd82e}
+
+
+Definition at line 48 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+descriptions.\+Memory\+Description.\+dict(), and memoryoracle.\+instance.\+Primitive.\+val\+\_\+string().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_afebefc428546a963dbfab8ffcae72e8a}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!meta@{meta}}
+\index{meta@{meta}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{meta}]{\setlength{\rightskip}{0pt plus 5cm}dictionary memoryoracle.\+instance.\+Memory.\+meta\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_afebefc428546a963dbfab8ffcae72e8a}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 = \{
+2         \textcolor{stringliteral}{'indexes'}: [
+3             \textcolor{stringliteral}{'address'},
+4             \textcolor{stringliteral}{'frame'}
+5         ]
+6     \}
+\end{DoxyCode}
+
+
+Definition at line 165 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!name@{name}}
+\index{name@{name}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+name = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_a00f51174e05bcbaa2d0ec3faccbaffaa}
+
+
+Definition at line 47 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+instance.\+Memory.\+\_\+basic\+\_\+track(), memoryoracle.\+instance.\+Structure.\+\_\+track(), memoryoracle.\+instance.\+Pointer.\+\_\+track(), memoryoracle.\+descriptions.\+Memory\+Description.\+dict(), memoryoracle.\+watch.\+Addressable\+Watcher.\+stop(), and memoryoracle.\+instance.\+Primitive.\+val\+\_\+string().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a4f97ee183fd07fc50a47cfef478700d8}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!parent@{parent}}
+\index{parent@{parent}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+parent = mongoengine.\+Reference\+Field(\textquotesingle{}{\bf Memory}\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_a4f97ee183fd07fc50a47cfef478700d8}
+
+
+Definition at line 54 of file instance.\+py.
+
+
+
+Referenced by memoryoracle.\+descriptions.\+Memory\+Description.\+dict().
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_a17b9f6c0f548bf201e4fc636c133470b}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!type@{type}}
+\index{type@{type}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+type = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_a17b9f6c0f548bf201e4fc636c133470b}
+
+
+Definition at line 51 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_abaa6ef3e2ff8451350f47b2c4795f5eb}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!unaliased\+\_\+type@{unaliased\+\_\+type}}
+\index{unaliased\+\_\+type@{unaliased\+\_\+type}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{unaliased\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}tuple memoryoracle.\+instance.\+Memory.\+unaliased\+\_\+type = mongoengine.\+String\+Field()\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1instance_1_1Memory_abaa6ef3e2ff8451350f47b2c4795f5eb}
+
+
+Definition at line 53 of file instance.\+py.
+
+\hypertarget{classmemoryoracle_1_1instance_1_1Memory_ac7778b85299f2e28765771174a43b1cd}{}\index{memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}!unaliased\+\_\+type@{unaliased\+\_\+type}}
+\index{unaliased\+\_\+type@{unaliased\+\_\+type}!memoryoracle\+::instance\+::\+Memory@{memoryoracle\+::instance\+::\+Memory}}
+\subsubsection[{unaliased\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+instance.\+Memory.\+unaliased\+\_\+type}\label{classmemoryoracle_1_1instance_1_1Memory_ac7778b85299f2e28765771174a43b1cd}
+
+
+Definition at line 157 of file instance.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{instance_8py}{instance.\+py}\end{DoxyCompactItemize}

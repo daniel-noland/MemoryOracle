@@ -1,0 +1,11 @@
+<map id="memoryoracle.frame.Frame.index" name="memoryoracle.frame.Frame.index">
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1models_1_1Typed.html#a494dfbe205034b874ff9e8c7039f579b" title="memoryoracle.models.Typed.\l__init__" alt="" coords="1525,36,1736,77"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1instance_1_1Memory.html#ac50fd3bb7216dc0481b8c6f23831a998" title="memoryoracle.instance.Memory.\l_basic_track" alt="" coords="292,221,523,263"/>
+<area shape="rect" id="node10" href="$classmemoryoracle_1_1models_1_1Memory.html#a253756ba0ddd58fc05a9463c0a181185" title="memoryoracle.models.Memory.\l_clear_updated" alt="" coords="590,335,814,376"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1instance_1_1Memory.html#a8951ac234fecbd6cd473133ae7e63662" title="memoryoracle.instance.Memory.track" alt="" coords="571,203,833,230"/>
+<area shape="rect" id="node7" href="$classmemoryoracle_1_1models_1_1Typed.html#aa1d5d8d5b7ebe5c2876f363e7eb669db" title="memoryoracle.models.Typed.track" alt="" coords="1205,203,1448,230"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1instance_1_1Memory.html#aa937ea1a82dcaa2fa1c868a387d59483" title="memoryoracle.instance.Memory.update" alt="" coords="881,94,1157,121"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1instance_1_1Int.html#a38c9424341353f006771163d360594da" title="memoryoracle.instance.Int.\l_track" alt="" coords="921,196,1118,237"/>
+<area shape="rect" id="node8" href="$classmemoryoracle_1_1models_1_1Memory.html#a71d4a141abc3358afdf1a1325bfd4253" title="memoryoracle.models.Memory.update" alt="" coords="1496,313,1765,339"/>
+<area shape="rect" id="node9" href="$classmemoryoracle_1_1models_1_1Memory.html#aed3af349dd80317ae9cca4b4e9cb7c26" title="memoryoracle.models.Memory.\l__init__" alt="" coords="1519,167,1743,208"/>
+</map>

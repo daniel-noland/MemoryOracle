@@ -1,0 +1,97 @@
+\hypertarget{classmemoryoracle_1_1test__models_1_1ExecutionTestData}{}\section{memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data Class Reference}
+\label{classmemoryoracle_1_1test__models_1_1ExecutionTestData}\index{memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data@{memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data}}
+
+
+Inheritance diagram for memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classmemoryoracle_1_1test__models_1_1ExecutionTestData__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classmemoryoracle_1_1test__models_1_1ExecutionTestData__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1test__models_1_1ExecutionTestData_aee8f3379c92809ba79acff8c1cac48c9}{set\+\_\+up\+\_\+class} (cls)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoryoracle_1_1test__models_1_1ExecutionTestData_a6e5285d5b3b3ff2443ec195959d31213}{model} = \hyperlink{classmemoryoracle_1_1models_1_1Execution}{memoryoracle.\+models.\+Execution}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+list \hyperlink{classmemoryoracle_1_1test__models_1_1ExecutionTestData_a2755e7fbb9b8274fd4572c36bb37e27c}{\+\_\+depends} = \mbox{[}\hyperlink{classmemoryoracle_1_1test__models_1_1ExecutableTestData}{Executable\+Test\+Data}\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 183 of file test\+\_\+models.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1test__models_1_1ExecutionTestData_aee8f3379c92809ba79acff8c1cac48c9}{}\index{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}!set\+\_\+up\+\_\+class@{set\+\_\+up\+\_\+class}}
+\index{set\+\_\+up\+\_\+class@{set\+\_\+up\+\_\+class}!memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}}
+\subsubsection[{set\+\_\+up\+\_\+class}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data.\+set\+\_\+up\+\_\+class (
+\begin{DoxyParamCaption}
+\item[{}]{cls}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1test__models_1_1ExecutionTestData_aee8f3379c92809ba79acff8c1cac48c9}
+
+
+Definition at line 190 of file test\+\_\+models.\+py.
+
+
+
+References memoryoracle.\+instance.\+x.
+
+
+\begin{DoxyCode}
+190     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1test__models_1_1ExecutionTestData_aee8f3379c92809ba79acff8c1cac48c9}{set\_up\_class}(cls):
+191         cls.set\_up\_depends()
+192         cls.data = \{ x.\_\_name\_\_: \hyperlink{namespacememoryoracle_1_1instance_afe036cc8dc71469743d090c4c80d50c5}{x}() \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} cls.depends() \}
+193         cls.argsList = [
+194                 \{
+195                     \textcolor{stringliteral}{"name"}: ModelTestData.gen\_name(),
+196                     \textcolor{stringliteral}{"id\_executable"}: executable,
+197                 \} \textcolor{keywordflow}{for} executable \textcolor{keywordflow}{in} cls.data[\textcolor{stringliteral}{"ExecutableTestData"}] ]
+198         cls.orms = [ cls.model.objects.create(**kwargs) \textcolor{keywordflow}{for} kwargs \textcolor{keywordflow}{in} cls.argsList ]
+199 
+200 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1test__models_1_1ExecutionTestData_a2755e7fbb9b8274fd4572c36bb37e27c}{}\index{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}!\+\_\+depends@{\+\_\+depends}}
+\index{\+\_\+depends@{\+\_\+depends}!memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}}
+\subsubsection[{\+\_\+depends}]{\setlength{\rightskip}{0pt plus 5cm}list memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data.\+\_\+depends = \mbox{[}{\bf Executable\+Test\+Data}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\label{classmemoryoracle_1_1test__models_1_1ExecutionTestData_a2755e7fbb9b8274fd4572c36bb37e27c}
+
+
+Definition at line 187 of file test\+\_\+models.\+py.
+
+\hypertarget{classmemoryoracle_1_1test__models_1_1ExecutionTestData_a6e5285d5b3b3ff2443ec195959d31213}{}\index{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}!model@{model}}
+\index{model@{model}!memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data@{memoryoracle\+::test\+\_\+models\+::\+Execution\+Test\+Data}}
+\subsubsection[{model}]{\setlength{\rightskip}{0pt plus 5cm}memoryoracle.\+test\+\_\+models.\+Execution\+Test\+Data.\+model = {\bf memoryoracle.\+models.\+Execution}\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1test__models_1_1ExecutionTestData_a6e5285d5b3b3ff2443ec195959d31213}
+
+
+Definition at line 185 of file test\+\_\+models.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{test__models_8py}{test\+\_\+models.\+py}\end{DoxyCompactItemize}

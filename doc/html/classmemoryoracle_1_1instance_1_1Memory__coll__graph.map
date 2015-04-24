@@ -1,0 +1,4 @@
+<map id="memoryoracle.instance.Memory" name="memoryoracle.instance.Memory">
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1typed_1_1Typed.html" title="{memoryoracle.typed.Typed\n||+ type_code()\l+ gdb_type()\l+ object()\l}" alt="" coords="23,271,217,377"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1tracked_1_1Tracked.html" title="{memoryoracle.tracked.Tracked\n|+ meta\l|+ track()\l+ description()\l}" alt="" coords="11,131,229,223"/>
+</map>

@@ -1,0 +1,118 @@
+\hypertarget{classmemoryoracle_1_1tracked_1_1Tracked}{}\section{memoryoracle.\+tracked.\+Tracked Class Reference}
+\label{classmemoryoracle_1_1tracked_1_1Tracked}\index{memoryoracle.\+tracked.\+Tracked@{memoryoracle.\+tracked.\+Tracked}}
+
+
+Inheritance diagram for memoryoracle.\+tracked.\+Tracked\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1tracked_1_1Tracked__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for memoryoracle.\+tracked.\+Tracked\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classmemoryoracle_1_1tracked_1_1Tracked__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmemoryoracle_1_1tracked_1_1Tracked_ae7ce69b8e953576f9859666889a62f1e}{track} (self)
+\item 
+def \hyperlink{classmemoryoracle_1_1tracked_1_1Tracked_abd8dc997fb5a226926f2044462dbd94b}{description} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \hyperlink{classmemoryoracle_1_1tracked_1_1Tracked_a96c321cbc762ace556e0f3fb2650c707}{meta} = \{\textquotesingle{}allow\+\_\+inheritance\textquotesingle{}\+: True\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}*Abstract* class to represent a piece of information from the debugee
+to track.
+\end{DoxyVerb}
+ 
+
+Definition at line 22 of file tracked.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmemoryoracle_1_1tracked_1_1Tracked_abd8dc997fb5a226926f2044462dbd94b}{}\index{memoryoracle\+::tracked\+::\+Tracked@{memoryoracle\+::tracked\+::\+Tracked}!description@{description}}
+\index{description@{description}!memoryoracle\+::tracked\+::\+Tracked@{memoryoracle\+::tracked\+::\+Tracked}}
+\subsubsection[{description}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+tracked.\+Tracked.\+description (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1tracked_1_1Tracked_abd8dc997fb5a226926f2044462dbd94b}
+
+
+Definition at line 51 of file tracked.\+py.
+
+
+
+References memoryoracle.\+descriptions.\+Black\+Box\+Decorator.\+\_\+description, memoryoracle.\+instance.\+Memory.\+\_\+description, memoryoracle.\+descriptions.\+External\+Description\+Decorator.\+\_\+description, and memoryoracle.\+descriptions.\+Standard\+Description\+Decorator.\+\_\+description.
+
+
+
+Referenced by memoryoracle.\+instance.\+Int.\+\_\+track().
+
+
+\begin{DoxyCode}
+51     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1tracked_1_1Tracked_abd8dc997fb5a226926f2044462dbd94b}{description}(self):
+52         \textcolor{keywordflow}{return} self.\_description
+53 
+54 
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmemoryoracle_1_1tracked_1_1Tracked_abd8dc997fb5a226926f2044462dbd94b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classmemoryoracle_1_1tracked_1_1Tracked_ae7ce69b8e953576f9859666889a62f1e}{}\index{memoryoracle\+::tracked\+::\+Tracked@{memoryoracle\+::tracked\+::\+Tracked}!track@{track}}
+\index{track@{track}!memoryoracle\+::tracked\+::\+Tracked@{memoryoracle\+::tracked\+::\+Tracked}}
+\subsubsection[{track}]{\setlength{\rightskip}{0pt plus 5cm}def memoryoracle.\+tracked.\+Tracked.\+track (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classmemoryoracle_1_1tracked_1_1Tracked_ae7ce69b8e953576f9859666889a62f1e}
+
+
+Definition at line 46 of file tracked.\+py.
+
+
+\begin{DoxyCode}
+46     \textcolor{keyword}{def }\hyperlink{classmemoryoracle_1_1tracked_1_1Tracked_ae7ce69b8e953576f9859666889a62f1e}{track}(self):
+47         \textcolor{keywordflow}{raise} NotImplementedError(
+48                 \textcolor{stringliteral}{"Attempted to track abstract class"})
+49 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classmemoryoracle_1_1tracked_1_1Tracked_a96c321cbc762ace556e0f3fb2650c707}{}\index{memoryoracle\+::tracked\+::\+Tracked@{memoryoracle\+::tracked\+::\+Tracked}!meta@{meta}}
+\index{meta@{meta}!memoryoracle\+::tracked\+::\+Tracked@{memoryoracle\+::tracked\+::\+Tracked}}
+\subsubsection[{meta}]{\setlength{\rightskip}{0pt plus 5cm}dictionary memoryoracle.\+tracked.\+Tracked.\+meta = \{\textquotesingle{}allow\+\_\+inheritance\textquotesingle{}\+: True\}\hspace{0.3cm}{\ttfamily [static]}}\label{classmemoryoracle_1_1tracked_1_1Tracked_a96c321cbc762ace556e0f3fb2650c707}
+
+
+Definition at line 27 of file tracked.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memoryoracle/\hyperlink{tracked_8py}{tracked.\+py}\end{DoxyCompactItemize}

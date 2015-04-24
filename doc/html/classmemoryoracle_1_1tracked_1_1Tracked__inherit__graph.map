@@ -1,0 +1,39 @@
+<map id="memoryoracle.tracked.Tracked" name="memoryoracle.tracked.Tracked">
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1tracked_1_1Owner.html" title="{memoryoracle.tracked.Owner\n||}" alt="" coords="513,285,724,363"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1tracked_1_1ProgramFile.html" title="{memoryoracle.tracked.ProgramFile\n||}" alt="" coords="747,285,994,363"/>
+<area shape="rect" id="node7" href="$classmemoryoracle_1_1tracked_1_1Reference.html" title="{memoryoracle.tracked.Reference\n|+ target\l|}" alt="" coords="1017,285,1252,363"/>
+<area shape="rect" id="node8" href="$classmemoryoracle_1_1tracked_1_1UntrackedDecorator.html" title="{memoryoracle.tracked.Untracked\lDecorator\n||+ __init__()\l+ track()\l}" alt="" coords="1276,271,1513,377"/>
+<area shape="rect" id="node9" href="$classmemoryoracle_1_1typed_1_1Typed.html" title="{memoryoracle.typed.Typed\n||+ type_code()\l+ gdb_type()\l+ object()\l}" alt="" coords="1537,271,1732,377"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1tracked_1_1ObjectFile.html" title="{memoryoracle.tracked.ObjectFile\n|+ source_file\l|}" alt="" coords="625,623,857,701"/>
+<area shape="rect" id="node6" href="$classmemoryoracle_1_1tracked_1_1SourceFile.html" title="{memoryoracle.tracked.SourceFile\n|+ object_file\l|}" alt="" coords="882,623,1118,701"/>
+<area shape="rect" id="node10" href="$classmemoryoracle_1_1instance_1_1Memory.html" title="{memoryoracle.instance.Memory\n|+ unaliased_type\l+ dynamic_type\l+ address\l+ name\l+ frame\l+ execution\l+ type\l+ dynamic_type\l+ unaliased_type\l+ parent\l+ meta\l&#45; _description\l&#45; _object\l&#45; _addressFixer\l&#45; _updatedNames\l&#45; _watchers\l&#45; _execution\l&#45; _updateTracker\l|+ __init__()\l+ index()\l+ factory()\l+ track()\l+ update()\l+ watchers()\l+ extract_dynamic_type()\l&#45; _fetch()\l&#45; _basic_track()\l&#45; _clear_updated()\l&#45; _set_execution()\l}" alt="" coords="1331,425,1560,899"/>
+<area shape="rect" id="node26" href="$classmemoryoracle_1_1symbol_1_1Symbol.html" title="{memoryoracle.symbol.Symbol\n||}" alt="" coords="3171,623,3389,701"/>
+<area shape="rect" id="node11" href="$classmemoryoracle_1_1instance_1_1Array.html" title="{memoryoracle.instance.Array\n|+ range\l+ target_type\l+ repository\l+ range\l+ target_type\l&#45; _updateTracker\l&#45; _watchers\l&#45; _typeHandlerCode\l|&#45; _track()\l}" alt="" coords="5,947,216,1127"/>
+<area shape="rect" id="node12" href="$classmemoryoracle_1_1instance_1_1Call.html" title="{memoryoracle.instance.Call\n|+ repository\l&#45; _typeHandlerCode\l&#45; _updateTracker\l&#45; _watchers\l|}" alt="" coords="240,976,440,1097"/>
+<area shape="rect" id="node13" href="$classmemoryoracle_1_1instance_1_1ConstDecorator.html" title="{memoryoracle.instance.Const\lDecorator\n||}" alt="" coords="465,991,679,1083"/>
+<area shape="rect" id="node14" href="$classmemoryoracle_1_1instance_1_1ExternDecorator.html" title="{memoryoracle.instance.Extern\lDecorator\n||}" alt="" coords="704,991,923,1083"/>
+<area shape="rect" id="node15" href="$classmemoryoracle_1_1instance_1_1MemberDecorator.html" title="{memoryoracle.instance.Member\lDecorator\n||}" alt="" coords="947,991,1178,1083"/>
+<area shape="rect" id="node16" href="$classmemoryoracle_1_1instance_1_1Primitive.html" title="{memoryoracle.instance.Primitive\n|+ value\l+ value\l|+ val_string()\l&#45; _track()\l}" alt="" coords="1203,983,1435,1090"/>
+<area shape="rect" id="node21" href="$classmemoryoracle_1_1instance_1_1RegisterDecorator.html" title="{memoryoracle.instance.Register\lDecorator\n||}" alt="" coords="1459,991,1687,1083"/>
+<area shape="rect" id="node22" href="$classmemoryoracle_1_1instance_1_1StaticDecorator.html" title="{memoryoracle.instance.Static\lDecorator\n||}" alt="" coords="1711,991,1926,1083"/>
+<area shape="rect" id="node23" href="$classmemoryoracle_1_1instance_1_1Structure.html" title="{memoryoracle.instance.Structure\n|+ children\l+ children\l+ repository\l&#45; _typeHandlerCode\l&#45; _updateTracker\l&#45; _watchers\l|&#45; _track()\l}" alt="" coords="1951,961,2188,1112"/>
+<area shape="rect" id="node24" href="$classmemoryoracle_1_1instance_1_1Void.html" title="{memoryoracle.instance.Void\n||}" alt="" coords="2213,998,2417,1075"/>
+<area shape="rect" id="node25" href="$classmemoryoracle_1_1instance_1_1VolatileDecorator.html" title="{memoryoracle.instance.Volatile\lDecorator\n||}" alt="" coords="2441,991,2663,1083"/>
+<area shape="rect" id="node17" href="$classmemoryoracle_1_1instance_1_1Float.html" title="{memoryoracle.instance.Float\n|+ repository\l&#45; _updateTracker\l&#45; _watchers\l&#45; _typeHandlerCode\l|}" alt="" coords="989,1219,1197,1340"/>
+<area shape="rect" id="node18" href="$classmemoryoracle_1_1instance_1_1Int.html" title="{memoryoracle.instance.Int\n|+ value\l+ type\l+ repository\l&#45; _updateTracker\l&#45; _watchers\l&#45; _arrayFinder\l&#45; _pointerFinder\l&#45; _spaceFixer\l&#45; _typeHandlerCode\l|&#45; _find_hidden_type()\l&#45; _track()\l}" alt="" coords="1222,1175,1415,1384"/>
+<area shape="rect" id="node19" href="$classmemoryoracle_1_1instance_1_1Pointer.html" title="{memoryoracle.instance.Pointer\n|+ repository\l&#45; _updateTracker\l&#45; _watchers\l&#45; _typeHandlerCode\l|&#45; _track()\l}" alt="" coords="1439,1219,1662,1340"/>
+<area shape="rect" id="node20" href="$classmemoryoracle_1_1instance_1_1CharString.html" title="{memoryoracle.instance.Char\lString\n||}" alt="" coords="1447,1432,1654,1524"/>
+<area shape="rect" id="node27" href="$classmemoryoracle_1_1symbol_1_1Alias.html" title="{memoryoracle.symbol.Alias\n||}" alt="" coords="2687,998,2886,1075"/>
+<area shape="rect" id="node29" href="$classmemoryoracle_1_1symbol_1_1Function.html" title="{memoryoracle.symbol.Function\n||}" alt="" coords="2910,998,3133,1075"/>
+<area shape="rect" id="node30" href="$classmemoryoracle_1_1symbol_1_1Namespace.html" title="{memoryoracle.symbol.Namespace\n||}" alt="" coords="3157,998,3403,1075"/>
+<area shape="rect" id="node31" href="$classmemoryoracle_1_1symbol_1_1TemplateDecorator.html" title="{memoryoracle.symbol.Template\lDecorator\n||}" alt="" coords="3428,991,3655,1083"/>
+<area shape="rect" id="node33" href="$classmemoryoracle_1_1symbol_1_1Type.html" title="{memoryoracle.symbol.Type\n||}" alt="" coords="3679,998,3876,1075"/>
+<area shape="rect" id="node39" href="$classmemoryoracle_1_1symbol_1_1Variable.html" title="{memoryoracle.symbol.Variable\n||}" alt="" coords="3901,998,4121,1075"/>
+<area shape="rect" id="node28" href="$classmemoryoracle_1_1symbol_1_1Typedef.html" title="{memoryoracle.symbol.Typedef\n||}" alt="" coords="2678,1241,2895,1318"/>
+<area shape="rect" id="node32" href="$classmemoryoracle_1_1symbol_1_1TemplatedDecorator.html" title="{memoryoracle.symbol.Templated\lDecorator\n||}" alt="" coords="3167,1233,3401,1325"/>
+<area shape="rect" id="node34" href="$classmemoryoracle_1_1symbol_1_1Enum.html" title="{memoryoracle.symbol.Enum\n||}" alt="" coords="3426,1241,3633,1318"/>
+<area shape="rect" id="node35" href="$classmemoryoracle_1_1symbol_1_1SimpleType.html" title="{memoryoracle.symbol.SimpleType\n||}" alt="" coords="3657,1241,3898,1318"/>
+<area shape="rect" id="node36" href="$classmemoryoracle_1_1symbol_1_1Structure.html" title="{memoryoracle.symbol.Structure\n||}" alt="" coords="3923,1241,4152,1318"/>
+<area shape="rect" id="node38" href="$classmemoryoracle_1_1symbol_1_1Union.html" title="{memoryoracle.symbol.Union\n||}" alt="" coords="4177,1241,4383,1318"/>
+<area shape="rect" id="node37" href="$classmemoryoracle_1_1symbol_1_1StronglyTypedEnum.html" title="{memoryoracle.symbol.Strongly\lTypedEnum\n||}" alt="" coords="3926,1432,4149,1524"/>
+</map>

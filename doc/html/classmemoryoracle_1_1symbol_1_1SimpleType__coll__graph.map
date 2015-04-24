@@ -1,0 +1,6 @@
+<map id="memoryoracle.symbol.SimpleType" name="memoryoracle.symbol.SimpleType">
+<area shape="rect" id="node2" href="$classmemoryoracle_1_1symbol_1_1Type.html" title="{memoryoracle.symbol.Type\n||}" alt="" coords="27,551,225,628"/>
+<area shape="rect" id="node3" href="$classmemoryoracle_1_1symbol_1_1Symbol.html" title="{memoryoracle.symbol.Symbol\n||}" alt="" coords="17,425,235,503"/>
+<area shape="rect" id="node4" href="$classmemoryoracle_1_1typed_1_1Typed.html" title="{memoryoracle.typed.Typed\n||+ type_code()\l+ gdb_type()\l+ object()\l}" alt="" coords="29,271,223,377"/>
+<area shape="rect" id="node5" href="$classmemoryoracle_1_1tracked_1_1Tracked.html" title="{memoryoracle.tracked.Tracked\n|+ meta\l|+ track()\l+ description()\l}" alt="" coords="17,131,235,223"/>
+</map>
