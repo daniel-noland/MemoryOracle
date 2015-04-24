@@ -51,7 +51,7 @@ class Memory(typed.Typed):
     type = mongoengine.StringField()
     dynamic_type = mongoengine.StringField()
     unaliased_type = mongoengine.StringField()
-    parent = mongoengine.ReferenceField('Memory')
+    children = mongoengine.ListField(mongoengine.ReferenceField('Memory'))
 
     _watchers = dict()
 
@@ -122,6 +122,9 @@ class Memory(typed.Typed):
         else:
             self._updatedNames.add(self.name)
 
+        if (self.address is None) or (self.address == "?"):
+            return False
+
         if self.index not in self._updateTracker:
             self._updateTracker.add(self.index)
             self.extract_dynamic_type()
@@ -134,8 +137,8 @@ class Memory(typed.Typed):
             self._track()
             ## TODO: enable memory watchers
             # self._watchers[self.index] = MemoryWatcher(self)
+            print("Address: ", self.object.address, type(self.object.address), self.address, type(self.address))
             self.save()
-            print(self.to_json()) ## DEBUG
 
     def update(self):
         self._clear_updated()
@@ -217,9 +220,7 @@ class Structure(Memory):
         for f in self.object.type.fields():
             desc = descriptions.MemoryDescription(
                 name + f.name,
-                relativeName=(marker, f.name),
-                parent=self,
-                parent_class="struct")
+                relativeName=marker)
             # TODO: Use member decorator
             # childObj = MemberDecorator(addressable_factory(desc))
             childObj = addressable_factory(desc)
@@ -285,7 +286,8 @@ class Array(Memory):
         # compute the type of data the array contains
         # e.g. for float[2] the answer is float
         # for float[3][2][7] the answer is float
-        self.target_type = target_type_name(self.type)
+        print(self.type, type(self.type))
+        self.target_type = target_type_name(self.object.type)
 
         # compute the immediate type of data the array
         # contains.  e.g. for float[2] the answer is float.
@@ -312,17 +314,19 @@ class Array(Memory):
         # range would be non zero.  Still, this costs
         # very little, and if we support some "1 indexed"
         # langauge, then the algorithm should still work.
+        children = []
         for i in range(arrayRange[0], arrayRange[1] + 1):
-            relativeName = "[" + str(i) + "]",
+            relativeName = "[" + str(i) + "]"
+            print(self.name, relativeName)
             childName = self.name + relativeName
             childDesc = descriptions.MemoryDescription(
-                        childName,
-                        relativeName = relativeName,
-                        parent = self,
-                        parent_class = "array")
+                childName,
+                relativeName=relativeName)
 
             childObj = addressable_factory(childDesc)
             childObj.track()
+            children.append(childObj)
+        self.children = children
 
 
 # Register the Array class with the type handler
@@ -349,11 +353,9 @@ class Primitive(Memory):
         Get the printed value of a primitive object
         """
         with frame.Selector(self.frame) as s:
-
             ## TODO: Find a way to print values without messing with the $# var
             # in the gdb interface.
             gdbPrint = gdb.execute("print " + self.name, False, True)
-            print(s.frame.read_var(self.name)) ## DEBUG
             ## TODO: If we can't fix the $# var, we may as well use it.
             ## this is free information we may as well store for the user's use.
             ansSections = gdbPrint[:-1].split(" = ")[1:]
@@ -377,16 +379,14 @@ class Pointer(Primitive):
         targetName = relativeName + self.name
         desc = descriptions.MemoryDescription(
             targetName,
-            relativeName=(relativeName, None),
-            parent=self,
-            parent_class="pointer"
-        )
+            relativeName=relativeName)
+        target = addressable_factory(desc)
+
         try:
-            target = addressable_factory(desc)
             target.track()
+            self.children = [target]
         except gdb.MemoryError as e:
             # TODO: Decorate target as invalid in this case.
-            print("Found invalid target")
             pass
 
 
@@ -522,12 +522,13 @@ def addressable_factory(description):
     _stdLibChecker = re.compile("^std::.*")
     s = description.object
     if s is not None:
-        standardLib = _stdLibChecker.match(descriptions.type_name(s.type))
-        description._address = s.address
-        handler = typed.type_lookup(s.type.strip_typedefs().code)
+        standardLib = _stdLibChecker.match(
+            descriptions.MemoryDescription.find_true_type_name(s.type))
+        description._address = str(s.address)
+        handler = registry.handler_lookup(s.type.strip_typedefs().code)
         if standardLib:
-            return tracked.StandardDecorator(handler(description), toTrack = False)
-        return handler(description)
+            return tracked.StandardDecorator(handler(descript=description), toTrack = False)
+        return handler(descript=description)
     else:
         return Untracked()
 
@@ -620,7 +621,15 @@ e.save()
 d = descriptions.MemoryDescription("a", address="1", execution=e)
 x = Float.factory(descript=d)
 if x:
-    print(x)
     x.save()
 x.track()
-print(x.to_json())
+
+dStruct = descriptions.MemoryDescription("exx", address="2", execution=e)
+xStruct = Structure.factory(descript=dStruct)
+xStruct.track()
+
+dArray = descriptions.MemoryDescription("b", address="3", execution=e)
+xArray = Array.factory(descript=dArray)
+xArray.track()
+
+

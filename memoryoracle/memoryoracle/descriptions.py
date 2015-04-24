@@ -135,26 +135,19 @@ class MemoryDescription(Description):
     A description of a memory addressable object.
     """
 
-    _parent_classifications = \
-            { "array": dict(), "struct": dict(), "pointer": dict() }
+    # _parent_classifications = \
+    #         { "array": dict(), "struct": dict(), "pointer": dict() }
 
     def __init__(self, name, **kwargs):
+        self._init()
         self._name = name
-        self._address = kwargs.get("address")
-        self._parent = kwargs.get("parent")
+        # self._parent = kwargs.get("parent")
         self._symbol = kwargs.get("symbol")
         self._execution = kwargs.get("execution")
         self._relativeName = kwargs.get("relativeName")
-        # self._parents = \
-        #         deepcopy(AddressableDescription._parent_classifications)
-        self._parentClass = kwargs.get("parent_class")
-        # self._parents[self.parent_class] = self.parent
         self._frame = kwargs.get("frame", gdb.selected_frame())
-
-        if self.parent is not None and self.parent_class is None:
-            raise ValueError("Parent supplied but no parent class!")
-        elif self.parent is None and self.parent_class is not None:
-            raise ValueError("parent_class supplied but no parent!")
+        print("Type of _address: ", type(kwargs.get("address")))
+        self._address = kwargs.get("address")
 
         with frame.Selector(self.frame) as fs:
             sym = self._symbol
@@ -190,9 +183,16 @@ class MemoryDescription(Description):
             self._type_name = "void"
             # raise Exception("Untyped memory", self)
 
+        if self._address is None:
+            if self.object is None:
+                self._address = "?"
+            else:
+                self._address = str(self.object.address)
+            print(self._address)
+
     @property
     def dict(self):
-        return { "name": self.name, "parent": self.parent, "address": self.address,
+        return { "name": self.name, "address": self.address,
                 "frame": str(self.frame), "type": self.type_name }
 
     @property
@@ -207,17 +207,17 @@ class MemoryDescription(Description):
     def address(self):
         return self._address
 
-    @property
-    def parent(self):
-        return self._parent
+    # @property
+    # def parent(self):
+    #     return self._parent
 
     # @property
     # def parents(self):
     #     return self._parents
 
-    @property
-    def parent_class(self):
-        return self._parentClass
+    # @property
+    # def parent_class(self):
+    #     return self._parentClass
 
     @property
     def object(self):

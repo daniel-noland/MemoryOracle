@@ -43,9 +43,9 @@ class TypeRegistration(object):
     def __init__(self, handler):
         self.register_handler(handler)
 
-    @property
-    def lookup(self):
-        return self._lookup
+    @classmethod
+    def lookup(cls, code):
+        return cls._typeCodeMap.get(code)
 
     @classmethod
     def register_handler(cls, handler):
@@ -67,3 +67,5 @@ class TypeRegistration(object):
     #     return Typed._type_lookup(Typed._typeHandlerCode)
 
 
+def handler_lookup(code):
+    return TypeRegistration.lookup(code)

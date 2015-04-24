@@ -21,9 +21,9 @@ class Typed(tracked.Tracked):
     def type_code(self):
         raise NotImplementedError("Abstract class Typed has no type code")
 
-    @property
-    def gdb_type(self):
-        return self.object.type
+    # @property
+    # def gdb_type(self):
+    #     return self.object.type
 
     @property
     def object(self):
