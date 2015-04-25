@@ -6,7 +6,7 @@ import traceback
 from copy import deepcopy
 from uuid import uuid4 as uuid
 import mongoengine
-import frame
+# import frame
 import registry
 import tracked
 
@@ -144,7 +144,6 @@ class MemoryDescription(Description):
         self._execution = kwargs.get("execution")
         self._relativeName = kwargs.get("relativeName")
         self._frame = kwargs.get("frame", gdb.selected_frame())
-        print("Type of _address: ", type(kwargs.get("address")))
         self._address = kwargs.get("address")
 
     @property

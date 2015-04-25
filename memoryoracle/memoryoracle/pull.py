@@ -9,6 +9,7 @@ import models
 import typed
 import frame
 import traceback
+import mongoengine
 from copy import deepcopy
 
 """
@@ -73,6 +74,10 @@ class Pull(typed.Typed):
     def unaliased_type(self):
         return self._unaliased_type
 
+    @property
+    def doc(self):
+        return self._doc
+
     def __init__(self, description):
         self._description = description
         # self._object = self.description.object
@@ -89,6 +94,9 @@ class Pull(typed.Typed):
         self._unaliased_type = None
         self._relativeName = None
         self._frame = None
+        self._object = None
+        self._paramDict = dict()
+        self._doc = None
 
     @classmethod
     def get_true_type_name(cls, t, nameDecorators = ""):
@@ -117,23 +125,19 @@ class Pull(typed.Typed):
         if update:
             self.pull()
 
-        for child in self.children:
-            child.save(update=update)
-
-        doc = models.Memory(
-            address=str(self.index),
-            name=str(self.name),
-            frame=str(self.frame),
-            execution=self.execution,
-            type=str(self.type),
-            dynamic_type=str(self.dynamic_type),
-            unaliased_type=str(self.unaliased_type),
-            range_start=int(self.range[0]),
-            range_end=int(self.range[1]),
-            children=self.children
-        )
-        doc.save()
-
+        self.paramDict = {
+            "address": str(self.index),
+            "name": str(self.name),
+            "execution": self.execution,
+            "type": str(self.type),
+            "dynamic_type": str(self.dynamic_type),
+            "unaliased_type": str(self.unaliased_type),
+            "range_start": int(self.range[0]),
+            "range_end": int(self.range[1])
+        }
+        self._save()
+        self._doc = models.Memory(**self.paramDict)
+        self._doc.save()
 
     def _basic_pull(self):
         if self.name in self._updatedNames:
@@ -155,35 +159,26 @@ class Pull(typed.Typed):
     #     self.track()
 
     def _clear_updated(self):
-        self._updateTracker.discard(self.address)
+        self._updateTracker.discard(self.index)
 
     @staticmethod
-    def factory(description):
-        s = description.object
-        standardLib = Pull._stdLibChecker.match(
-            Pull.get_true_type_name(s.type))
-        # TODO: Find a way to avoid modifing the description.
-        # This should not be needed at all!
-        # description._address = str(s.address)
-        handler = registry.handler_lookup(s.type.strip_typedefs().code)
-        # TODO: make StandardDecorator work here
-        # if standardLib:
-        #     return tracked.StandardDecorator(
-        #             handler.factory(description), toTrack = False)
-        return handler.factory(description)
+    def handler_factory(typ):
+        # standardLib = Pull._stdLibChecker.match(
+        #     Pull.get_true_type_name(typ))
+        return registry.handler_lookup(typ.strip_typedefs().code)
 
 
-class AddressedPull(Pull):
+class MemoryPull(Pull):
 
     _addressFixer = re.compile(r" .*")
 
     def __init__(self, description):
-        super(AddressedPull, self).__init__(description)
+        super(MemoryPull, self).__init__(description)
+        self._relativeName = description.relative_name
+        self._frame = frame.Frame(description.frame)
+        self._object = None
 
-        self._relativeName = str(description.relative_name)
-        self._frame = str(description.frame)
-
-        with frame.Selector(self.frame) as fs:
+        with frame.Selector(self.frame.frame) as fs:
             sym = self.description.symbol
             if sym is not None:
                 typ = sym.type
@@ -197,15 +192,14 @@ class AddressedPull(Pull):
                     try:
                         self._object = sym.value(fs.frame.frame)
                     except TypeError:
-                        self._object = None
-                else:
-                    self._object = None
+                        print("DEBUG: TypeError detected!")
             else:
                 try:
                     self._object = gdb.parse_and_eval(self.name)
                 except gdb.error as e:
+                    print("DEBUG:")
                     traceback.print_exc()
-                    self._object = None
+                    # pass
 
         if self.description.symbol and self.description.symbol.type:
             self._type_name = str(self.description.symbol.type)
@@ -229,6 +223,10 @@ class AddressedPull(Pull):
         # else:
         #     self._dynamic_type = "?"
         #     self._stripped_type = "?"
+
+    def _save(self):
+        if self.frame:
+            self._paramDict["frame"] = self.frame
 
     @property
     def dict(self):
@@ -270,7 +268,7 @@ class AddressedPull(Pull):
         return self._dynamic_type
 
 
-class StructurePull(AddressedPull):
+class StructurePull(MemoryPull):
     """
     *Concrete" class representing a specific memory structure.
 
@@ -284,7 +282,6 @@ class StructurePull(AddressedPull):
     _updateTracker = set()
     _watchers = dict()
 
-
     def _pull(self):
         name = deepcopy(str(self.name))
         if name[0] == "*":
@@ -294,17 +291,25 @@ class StructurePull(AddressedPull):
             marker = "."
         name += marker
         for f in self.object.type.fields():
-            desc = descriptions.MemoryDescription(
+            childDescription= descriptions.MemoryDescription(
                 name + f.name,
                 relativeName=marker)
-            # TODO: Use member decorator
-            # childObj = MemberDecorator(Pull.factory(desc))
-            childObj = Pull.factory(desc)
-            childObj.pull()
-            self._children.append(childObj)
+            childHandler = Pull.handler_factory(f.type)
+            childObj = childHandler(childDescription)
+            childObj.save()
+            self._children.append(childObj.doc)
 
 
-class ArrayPull(AddressedPull):
+    def _save(self, update=True):
+        super(StructurePull, self)._save()
+        if len(self.children) > 0:
+            # TODO: This needs cyclic memory torture testing.
+            for child in self.children:
+                child.save(update=update)
+            self.paramDict["children"] = self.children
+
+
+class ArrayPull(MemoryPull):
 
     repository = dict()
     _updateTracker = set()
@@ -316,12 +321,12 @@ class ArrayPull(AddressedPull):
         s = self.object
 
         # compute range of array in C sizeof(type) units
-        self.range = s.type.range()
+        self._range = s.type.range()
 
         # compute the type of data the array contains e.g. for float[2] the
         # answer is float for float[3][2][7] the answer is float
         print(self.type, type(self.type))
-        self.target_type = target_type_name(s.type)
+        self._target_type = target_type_name(s.type)
 
         # compute the immediate type of data the array contains.  e.g. for
         # float[2] the answer is float.  for float[3][2][7] the answer is
@@ -345,15 +350,27 @@ class ArrayPull(AddressedPull):
         # very little, and if we support some "1 indexed"
         # langauge, then the algorithm should still work.
         children = []
+        childHandler = Pull.handler_factory(immediateTarget)
         for i in range(self.range[0], self.range[1] + 1):
             relativeName = "[" + str(i) + "]"
             childName = self.name + relativeName
             childDesc = descriptions.MemoryDescription(
                 childName,
                 relativeName=relativeName)
-            self._children.append(Pull.factory(childDesc))
+            childObj = childHandler(childDesc)
+            childObj.save()
+            self._children.append(childObj.doc)
 
-class PrimitivePull(AddressedPull):
+    def _save(self, update=True):
+
+        if len(self.children) > 0:
+            # TODO: This needs cyclic memory torture testing.
+            # for child in self.children:
+            #     child.save(update=update)
+            self.paramDict["children"] = self.children
+
+
+class PrimitivePull(MemoryPull):
     """
     *Abstract* class to represent a primitive data type in the debugge.
 
@@ -369,7 +386,7 @@ class PrimitivePull(AddressedPull):
         """
         Get the printed value of a primitive object
         """
-        with frame.Selector(self.frame) as s:
+        with frame.Selector(self.frame.frame) as s:
             ## TODO: Find a way to print values without messing with the $# vars
             # in the gdb interface.
             gdbPrint = gdb.execute("print " + self.name, False, True)
@@ -387,22 +404,45 @@ class PointerPull(PrimitivePull):
     _watchers = dict()
     _typeHandlerCode = gdb.TYPE_CODE_PTR
 
+    def __init__(self, description):
+        super(PointerPull, self).__init__(description)
+        self.target = None
+        self._validTarget = False
+
     def _pull(self):
-        super(PointerPull, self)._pull()
         relativeName = "*"
         targetName = relativeName + self.name
         desc = descriptions.MemoryDescription(
             targetName,
             relativeName=relativeName)
-        target = Pull.factory(desc)
+        targetHandler = Pull.handler_factory(self.object.type.target())
+        if targetHandler:
+            self.target = targetHandler(desc)
+        else:
+            print("DEBUG: Unhandled obj type for ", str(self.object.type.target()))
+            return
 
         try:
-            target.pull()
-            self._children = [target]
+            self.target.pull()
+            self._validTarget = True
         except gdb.MemoryError as e:
             # TODO: Decorate target as invalid in this case.
+            print("MEMORY ACCESS ERROR")
             print(e)
             pass
+
+    def _save(self, update=True):
+        super(PointerPull, self)._save()
+        print("valid target:", self._validTarget)
+        if self._validTarget:
+            print("Target = ", self.target)
+            if self.target.index == self.index:
+                print("SELF LOOP FOUND")
+            print(self.target.index, self.index)
+            print("self.target = ", self.target)
+            print("self.target.children = ", self.target.children)
+            self.target.save()
+            self.paramDict["children"] = [self.target.doc]
 
 
 class IntPull(PrimitivePull):
@@ -460,6 +500,9 @@ class FloatPull(PrimitivePull):
     _watchers = dict()
 
     _typeHandlerCode = gdb.TYPE_CODE_FLT
+
+    def _pull(self):
+        self._value = self.val_string()
 
 # registry.TypeRegistration(CallPull)
 registry.TypeRegistration(StructurePull)
@@ -524,16 +567,20 @@ def serialize_upward(baseBlock = None):
         f = f.older()
 
 def serialize_block_locals(blk = None):
-    Memory._updatedNames.clear()
+    Pull._updatedNames.clear()
     block = blk if blk is not None else gdb.selected_frame().block()
     for sym in block:
         if sym.is_constant:
             continue
         desc = descriptions.MemoryDescription(sym.name, symbol = sym)
-        if isinstance(desc.object, gdb.Symbol):
+        objHandler = Pull.handler_factory(sym.type)
+        if not objHandler:
             continue
-        obj = addressable_factory(desc)
-        obj.track()
+        obj = objHandler(desc)
+        obj.pull()
+        if isinstance(obj.object, gdb.Symbol):
+            continue
+        obj.save()
 
 def serialize_frame_locals(frm = None):
     Memory._updatedNames.clear()
@@ -583,21 +630,33 @@ def target_type_name(t):
 
 # gdb.events.stop.connect(stopped)
 
-frameDescription = descriptions.MemoryDescription("yourframe")
-f = frame.Frame(gdb.selected_frame())
-e = models.Execution()
-e.save()
-d = descriptions.MemoryDescription("aa", address="1", execution=e)
-x = IntPull(d)
-x.save()
+# frameDescription = descriptions.MemoryDescription("yourframe")
+# f = frame.Frame(gdb.selected_frame())
+# e = models.Execution()
+# e.save()
+# d = descriptions.MemoryDescription("aa", address="1", execution=e)
+# x = IntPull(d)
+# x.save()
 
 
-dStruct = descriptions.MemoryDescription("exx", address="2", execution=e)
-xStruct = StructurePull(dStruct)
-xStruct.track()
+# dStruct = descriptions.MemoryDescription("exx")
+# xStruct = StructurePull(dStruct)
+# xStruct.save()
 
-dArray = descriptions.MemoryDescription("b", address="3", execution=e)
-xArray = Array.factory(descript=dArray)
-xArray.track()
+# dArray = descriptions.MemoryDescription("b", execution=e)
+# xArray = ArrayPull(dArray)
+import pymongo
 
-print(tracked.Tracked.objects().all())
+# NOTE: The read_preference should not be needed.  This is a workaround for a
+# bug in pymongo.  (http://goo.gl/Somoeu)
+connection = mongoengine.connect('memoryoracle',
+                    read_preference=\
+                            pymongo.read_preferences.ReadPreference.PRIMARY)
+
+db = connection.memoryoracle
+# xArray.save()
+print(typed.Typed.objects().all())
+print(get_frame_symbols(gdb.selected_frame()))
+print(serialize_frame_globals(gdb.selected_frame()))
+for obj in typed.Typed.objects(execution="553c14c928e1e12584f4770d"):
+    print(obj.to_json())

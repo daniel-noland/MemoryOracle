@@ -90,9 +90,9 @@ class Memory(typed.Typed):
     type = mongoengine.StringField()
     dynamic_type = mongoengine.StringField()
     unaliased_type = mongoengine.StringField()
-    children = mongoengine.ListField(mongoengine.ReferenceField('Memory'))
     range_start = mongoengine.IntField()
     range_end = mongoengine.IntField()
+    children = mongoengine.ListField(mongoengine.ReferenceField('Memory'))
 
     meta = {
         'allow_inheritance': True,
@@ -153,8 +153,6 @@ class Memory(typed.Typed):
             return cls(**otherArgs)
 
 
-
-
 class Call(Memory):
     """
     *Concrete* class representing a particaular call to a function.
@@ -213,7 +211,6 @@ class Array(Memory):
     """
     *Concrete* class to represent an array in the debugge.
     """
-    range = mongoengine.ListField()
     target_type = mongoengine.StringField() ## TODO: upgrade this to ref field
 
 
@@ -253,6 +250,8 @@ class Pointer(Primitive):
     """
     *Concrete* class to represent a pointer in the debugge.
     """
+    target = mongoengine.ReferenceField('Memory')
+
     _typeHandlerCode = gdb.TYPE_CODE_PTR
 
 
