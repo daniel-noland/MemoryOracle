@@ -7,6 +7,8 @@ from copy import deepcopy
 from uuid import uuid4 as uuid
 import mongoengine
 import frame
+import registry
+import tracked
 
 
 class Description(object):
@@ -16,9 +18,6 @@ class Description(object):
     This is the superclass of all the different kinds of
     descriptions used by the subclasses of Tracked.
     """
-
-    def _init(self):
-        self._id = str(uuid())
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError(
@@ -139,7 +138,6 @@ class MemoryDescription(Description):
     #         { "array": dict(), "struct": dict(), "pointer": dict() }
 
     def __init__(self, name, **kwargs):
-        self._init()
         self._name = name
         # self._parent = kwargs.get("parent")
         self._symbol = kwargs.get("symbol")
@@ -148,54 +146,6 @@ class MemoryDescription(Description):
         self._frame = kwargs.get("frame", gdb.selected_frame())
         print("Type of _address: ", type(kwargs.get("address")))
         self._address = kwargs.get("address")
-
-        with frame.Selector(self.frame) as fs:
-            sym = self._symbol
-            if sym is not None:
-                typ = sym.type
-                print(sym.name, str(sym.type))
-                if typ.code in {
-                        gdb.TYPE_CODE_PTR,
-                        gdb.TYPE_CODE_ARRAY,
-                        gdb.TYPE_CODE_STRUCT,
-                        gdb.TYPE_CODE_INT,
-                        gdb.TYPE_CODE_FUNC,
-                        }:
-                    try:
-                        self._object = sym.value(fs.frame.frame)
-                    except TypeError:
-                        self._object = None
-                else:
-                    self._object = None
-            else:
-                try:
-                    self._object = gdb.parse_and_eval(self.name)
-                except gdb.error as e:
-                    # traceback.print_exc()
-                    self._object = None
-
-        if self._symbol and self._symbol.type:
-            self._type_name = str(self._symbol.type)
-        elif isinstance(self.object, gdb.Value):
-            self._type_name = MemoryDescription.find_true_type_name(self.object.type)
-        else:
-            # TODO: This is for dev.  Remove in production code.
-            self._type_name = "void"
-            # raise Exception("Untyped memory", self)
-
-        if self._address is None:
-            if self.object is None:
-                self._address = "?"
-            else:
-                self._address = str(self.object.address)
-            print(self._address)
-
-        # if self.object is not None:
-        #     self._dynamic_type, self._stripped_type = \
-        #             self.extract_extra_type_info()
-        # else:
-        #     self._dynamic_type = "?"
-        #     self._stripped_type = "?"
 
     @property
     def dict(self):
@@ -236,20 +186,7 @@ class MemoryDescription(Description):
     def dynamic_type(self):
         return self._dynamic_type
 
-    @classmethod
-    def find_true_type_name(cls, t, nameDecorators = ""):
-        if t.code == gdb.TYPE_CODE_PTR:
-            return cls.find_true_type_name(t.target(), nameDecorators + "*")
-        elif t.code == gdb.TYPE_CODE_ARRAY:
-            length = str(t.range()[1] - t.range()[0] + 1)
-            return cls.find_true_type_name(t.target(), nameDecorators + "[" + length + "]")
-        else:
-            if isinstance(t.name, str):
-                return t.name + nameDecorators
-            else:
-                return "<## unknown type ##>"
+    @property
+    def symbol(self):
+        return self._symbol
 
-    def extract_extra_type_info(self):
-        s = self.object
-        strip = self.object.type.strip_typedefs()
-        return (strip.name, s.dynamic_type)

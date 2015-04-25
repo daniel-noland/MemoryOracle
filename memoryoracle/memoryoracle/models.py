@@ -1,241 +1,304 @@
-from __future__ import unicode_literals
+#!/usr/bin/env python# -*- encoding UTF-8 -*-
+"""
+File containing all classes representing memory addressable
+objects in the debugged program.
+"""
 
 import gdb
-from django.db import models
-from jsonfield import JSONField
+import tracked
+import typed
+import registry
+import frame
+# import templatable
 from copy import deepcopy
+import re
+import descriptions
+# import weakref
+import traceback
+import json
+# from uuid import uuid4 as uuid
 
-from uuid import uuid4 as uuid
+import pymongo
 
-class Schema(object):
+import mongoengine
 
-    _ID_LENGTH = 36
+# NOTE: The read_preference should not be needed.  This is a workaround for a
+# bug in pymongo.  (http://goo.gl/Somoeu)
+connection = mongoengine.connect('memoryoracle',
+                    read_preference=\
+                            pymongo.read_preferences.ReadPreference.PRIMARY)
 
-    _MAX_NAME_LENGTH = 200
+db = connection.memoryoracle
 
-    _ADDRESS_LENGTH = 64
+class Instance(mongoengine.Document):
 
-    @staticmethod
-    def ID_LENGTH():
-        return Schema._ID_LENGTH
+    name = mongoengine.StringField()
 
-    @staticmethod
-    @property
-    def MAX_NAME_LENGTH():
-        return Schema._MAX_NAME_LENGTH
-
-    @staticmethod
-    @property
-    def ADDRESS_LENGTH():
-        return Schema._ADDRESS_LENGTH
-
-    @staticmethod
-    def gen_id():
-        return str(uuid())
-
-
-class Tracked(models.Model):
-
-    # id = models.CharField(primary_key=True, max_length=36, default=Schema.gen_id)
-    name = models.TextField(default=None)
-
-    class Meta:
-        abstract = True
-
-
-class Program(Tracked):
-
-    class Meta:
-        db_table = 'program'
-
-
-class Commit(Tracked):
-
-    id_program = models.ForeignKey(Program)
-    vcs_hash = models.CharField(unique=True, max_length=200)
-    branch_name = models.CharField(max_length=200)
-
-    class Meta:
-        db_table = 'commit'
-
-
-class Executable(Tracked):
-
-    path = models.TextField(default="./a.out")
-    id_commit = models.ForeignKey(Commit)
-
-    class Meta:
-        db_table = 'executable'
-
-
-class Execution(Tracked):
-
-    id_executable = models.ForeignKey(Executable, default=None)
-
-    class Meta:
-        db_table = 'execution'
-
-
-class Typed(Tracked):
-
-    id_execution = models.ForeignKey(Execution)
-    type = models.TextField()
-    description = models.JSONField(default=None)
-    data = models.JSONField(default=None)
-
-    _updatedNames = set()
-
-    class Meta:
-        abstract = True
-
-    class DetectionError(Exception):
-        pass
-
-    class DataError(Exception):
-        pass
-
-    _typeCodeMap = {
-            gdb.TYPE_CODE_ERROR: TypeDetectionError,
-    }
-
-    _typeHandlerCode = gdb.TYPE_CODE_ERROR
-
-    def _basic_track(self, **kwargs):
-
-        self.args = deepcopy(kwargs)
-
-        if kwargs["name"] in self._updatedNames:
-            self.args["update"] = False
-            return self.args["update"]
-
-        self._updatedNames.add(kwargs["name"])
-
-        if isinstance(kwargs["type"], gdb.Type):
-            self.args["type"] = str(typ)
-
-        if isinstance(kwargs["description"], Description):
-            self.args["description"] = kwargs["description"].dict
-
-        if isinstance(kwargs["data"], gdb.Value):
-            self.args["data"] = dict()
-            self.debugee_data = kwargs["data"]
-
-        if isinstance(self.args["data"], dict):
-            self.debugee_data = None
-        else:
-            raise DataError(
-                    "Invalid data field!  Must be dictionary or gdb.Value")
-
-        if self.index(self.args) not in self._updateTracker:
-            self._updateTracker.add(self.args["index"])
-            # self.repository[self.index][self.name] = self.description.dict
-            self.args["description"] = self.args["description"].dict
-            self.args["update"] = True
-        else:
-            self.args["update"] = False
-
-        return self.args["update"]
-
-    def track(self, **kwargs):
-        if self._basic_track(**kwargs):
-            self._track()
-
-    def __init__(self, *args, **kwargs):
-
-        if len(args) > 0:
-            raise Exception("Only keyword values allowed in __init__!")
-
-        self.track(self, **kwargs)
-        super(Typed, self).__init__(*args, **self.args)
-        self._watchers[self.index] = InstanceWatcher(self)
-
-    @staticmethod
-    def type_handler():
-        return Typed._type_lookup(self._typeHandlerCode)
-
-    @property
-    def type_code(self):
-        raise NotImplementedError("Abstract class Typed has no type code")
-
-    @property
-    def gdb_type(self):
-        return json.loads(self.data)["type"]
-
-
-class Memory(Typed):
+class Execution(mongoengine.Document):
     """
-    Model representing an instance of an addressable object with a type from
-    the debugee.
+    *Concrete* class representing a particular call to an executable.
+    """
+    arguments = mongoengine.StringField()
+    start_time = mongoengine.ComplexDateTimeField()
+    end_time = mongoengine.ComplexDateTimeField()
+    objects = mongoengine.ListField(mongoengine.ReferenceField('Memory'))
+
+    @staticmethod
+    def set_execution(execution):
+        Execution._current = execution
+
+    @classmethod
+    def current(cls):
+        return cls._current
+
+
+class Executable(mongoengine.EmbeddedDocument):
+    """
+    *Concrete* class representing a executable file generated by running
+    build on a commit
+    """
+    name = mongoengine.StringField()
+    path = mongoengine.StringField()
+    hash_sha256 = mongoengine.StringField()
+    hash_sha384 = mongoengine.StringField()
+    hash_sha512 = mongoengine.StringField()
+    version = mongoengine.StringField()
+    executions = mongoengine.ListField(mongoengine.ReferenceField(Execution))
+
+
+class Commit(mongoengine.Document):
+    """
+    *Concrete* class representing a version control system commit.
+    """
+    vcs_hash = mongoengine.StringField()
+    executables = mongoengine.EmbeddedDocumentListField(Executable)
+
+
+class Memory(typed.Typed):
+    """
+    *Abstract* class representing a instance of an object with a type.
 
     This class enforces that the object have a memory address
     in the debugge, or that an appropriate address is specified.
     """
 
-    address = models.CharField(max_length=64)
-    has_symbol = models.BooleanField(default=False)
-    parent = models.ForeignKey('self', null=True, blank=True, related_name="children")
+    address = mongoengine.StringField()
+    name = mongoengine.StringField()
+    frame = mongoengine.StringField()
+    execution = mongoengine.ReferenceField(Execution)
+    # description = mongoengine.ReferenceField(descriptions.Description)
+    type = mongoengine.StringField()
+    dynamic_type = mongoengine.StringField()
+    unaliased_type = mongoengine.StringField()
+    children = mongoengine.ListField(mongoengine.ReferenceField('Memory'))
+    range_start = mongoengine.IntField()
+    range_end = mongoengine.IntField()
 
-    _updateTracker = set()
-    _watchers = dict()
-    _addressFixer = re.compile(r" .*")
+    meta = {
+        'allow_inheritance': True,
+        'indexes': [
+            'address',
+            'frame'
+        ]
+    }
 
-    def update(self):
-        self._clear_updated()
-        self.track()
-
-    def _clear_updated(self):
-        self._updateTracker.discard(self.index)
+    class DuplicateAddress(Exception):
+        pass
 
     @property
-    def watchers(self):
-        return self._watchers
+    def index(self):
+        return str(self.address)
 
-    def _compute_index(self):
-        return self._addressFixer.sub("", str(self.address))
+    class NewObject(Exception):
+        pass
 
-    # @property
-    # def frame(self):
-    #     return self.description.frame
+    @classmethod
+    def _fetch(cls, description):
+        if description is None:
+            raise Exception("Description required to fetch object!")
 
-    def __init__(self, *args, **kwargs):
-        super(Memory, self).__init__(*args, **kwargs)
-        self.track()
+        execution = description.execution
+        frameDescription = descriptions.MemoryDescription("myframe", address=str(gdb.selected_frame()))
 
-    class Meta:
-        db_table = 'memory'
+        # TODO: replace selected_frame call with something more flexible
+        frm = frame.Frame(gdb.selected_frame())
+        address = description.address
+        memories = cls.objects(
+            execution=execution,
+            frame=str(frm),
+            address=address
+        )
+        if len(memories) > 1:
+            raise Memory.DuplicateAddress("Duplicate address for memory!")
+        elif len(memories) == 0:
+            raise Memory.NewObject("New object found")
+        return memories[0]
 
+    @classmethod
+    def factory(cls, **kwargs):
+        """
+        build an object based on a description, or fetch that object
+        from the database if it already exists.
+        """
+        desc = kwargs["descript"]
 
-class ProgramFile(Tracked):
+        if desc.execution is not None:
+            Memory._set_execution(desc.execution)
 
-    id_commit = models.ForeignKey(Commit)
-    path = models.CharField(max_length=200)
-    size = models.BigIntegerField()
-
-    class Meta:
-        abstract = True
-
-
-class ObjectFile(ProgramFile):
-
-    class Meta:
-        db_table = 'object_file'
-
-
-class SourceFile(ProgramFile):
-
-    lines = models.BigIntegerField()
-
-    class Meta:
-        db_table = 'source_file'
-
-
-class Symbol(Typed):
-
-    class Meta:
-        db_table = 'symbol'
+        try:
+            return cls._fetch(desc)
+        except Memory.NewObject:
+            otherArgs = {k: v for k, v in kwargs.items() if k != "descript"}
+            otherArgs.update(desc.dict)
+            return cls(**otherArgs)
 
 
-class Type(Tracked):
 
-    class Meta:
-        db_table = 'type'
+
+class Call(Memory):
+    """
+    *Concrete* class representing a particaular call to a function.
+
+    This includes class / struct member functions, but does not
+    include gdb Xmethods or similar.
+    """
+    repository = dict()
+    _typeHandlerCode = gdb.TYPE_CODE_FUNC
+    _updateTracker = set()
+    _watchers = dict()
+
+
+class Structure(Memory):
+    """
+    *Concrete" class representing a specific memory structure.
+
+    This includes all instances of classes and structs in C++.
+    It is worth noting that the first member variable of a
+    memory structure has the same address as the memory structure,
+    and may thus share a node in the memory topology.
+    """
+    _typeHandlerCode = gdb.TYPE_CODE_STRUCT
+
+
+class VolatileDecorator(Memory):
+    """
+    *Decorator* class to indicate an addressable is volatile.
+    """
+    pass
+
+
+class RegisterDecorator(Memory):
+    """
+    *Decorator* class to decorate an addressable as being marked register.
+    """
+    pass
+
+
+class ExternDecorator(Memory):
+    """
+    *Decorator* class to decorate an addressable as being marked extern.
+    """
+    pass
+
+
+class MemberDecorator(Memory):
+    """
+    *Decorator* class to decorate an addressable as being a member value
+    of another class.
+    """
+    pass
+
+
+class Array(Memory):
+    """
+    *Concrete* class to represent an array in the debugge.
+    """
+    range = mongoengine.ListField()
+    target_type = mongoengine.StringField() ## TODO: upgrade this to ref field
+
+
+
+
+
+class Primitive(Memory):
+    """
+    *Abstract* class to represent a primitive data type in the debugge.
+
+    Primitive data types are directly printable types such as int and double.
+    """
+
+    # repository = dict()
+    # _updateTracker = dict()
+
+    value = mongoengine.StringField()
+
+    def _track(self):
+        self.value = self.val_string()
+
+    def val_string(self):
+        """
+        Get the printed value of a primitive object
+        """
+        with frame.Selector(self.frame) as s:
+            ## TODO: Find a way to print values without messing with the $# var
+            # in the gdb interface.
+            gdbPrint = gdb.execute("print " + self.name, False, True)
+            ## TODO: If we can't fix the $# var, we may as well use it.
+            ## this is free information we may as well store for the user's use.
+            ansSections = gdbPrint[:-1].split(" = ")[1:]
+            return " ".join(ansSections)
+
+
+class Pointer(Primitive):
+    """
+    *Concrete* class to represent a pointer in the debugge.
+    """
+    _typeHandlerCode = gdb.TYPE_CODE_PTR
+
+
+class Int(Primitive):
+    """
+    *Concrete* class to represent integral types.
+    """
+    _typeHandlerCode = gdb.TYPE_CODE_INT
+
+
+
+class Float(Primitive):
+    """
+    *Concrete* class to represent floating point primitivies.
+    """
+    _typeHandlerCode = gdb.TYPE_CODE_FLT
+
+
+
+class CharString(Pointer):
+    """
+    *Concrete* class to represent an old style null terminated C string.
+    """
+    pass
+
+
+class ConstDecorator(Memory):
+    """
+    *Decorator* class to decorate an addressable as being marked const.
+    """
+    pass
+
+
+class StaticDecorator(Memory):
+    """
+    *Decorator* class to decorate an addressable as being marked static.
+    """
+    pass
+
+
+class Void(Memory):
+    """
+    *Concrete* class to describe an object of the type void
+    """
+    pass
+
+
+
+
