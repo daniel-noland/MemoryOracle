@@ -98,6 +98,7 @@ class Pull(typed.Typed):
         self._object = None
         self._paramDict = dict()
         self._doc = None
+        self._relativeName = self.description.relative_name
 
     @classmethod
     def get_true_type_name(cls, t, nameDecorators = ""):
@@ -135,7 +136,8 @@ class Pull(typed.Typed):
             "unaliased_type": str(self.unaliased_type),
             "range_start": int(self.range[0]),
             "range_end": int(self.range[1]),
-            "value": str(self.object)
+            "value": str(self.object),
+            "relative_name": str(self._relativeName)
         }
         self._save()
         self._doc = models.Memory(**self.paramDict)
@@ -292,7 +294,7 @@ class StructurePull(MemoryPull):
         for f in self.object.type.fields():
             childDescription= descriptions.MemoryDescription(
                 name + f.name,
-                relativeName=marker)
+                relativeName=marker + f.name)
             childHandler = Pull.handler_factory(f.type)
             childObj = childHandler(childDescription)
             childObj.save()

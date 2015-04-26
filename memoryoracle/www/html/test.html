@@ -39,9 +39,16 @@ ws.onmessage = function (event) {
 }
 
 function add_node_to_graph(node) {
+   var nodeLabel;
+   if (node.relative_name == "None") {
+      nodeLabel = node.name
+   } else {
+      nodeLabel = node.relative_name;
+   }
+
    nodes.add({
       id: node._id.$oid,
-      label: node.name,
+      label: nodeLabel,
       title: node.value
    });
    nodeData.set(node._id.$oid, node);
@@ -56,7 +63,7 @@ var data = {
    edges: edges
 };
 var options = {
-   width: '1920px',
+   width: '1620px',
    height: '1080px',
    clustering: true,
    edges: {
@@ -68,6 +75,9 @@ var options = {
       repulsion: {
          springConstant: 0.15
       }
+   },
+   hierarchicalLayout: {
+      enabled: true
    }
 };
 var network = new vis.Network(container, data, options);

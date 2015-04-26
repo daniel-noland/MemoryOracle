@@ -84,6 +84,7 @@ class Memory(typed.Typed):
 
     address = mongoengine.StringField()
     name = mongoengine.StringField()
+    relative_name = mongoengine.StringField()
     frame = mongoengine.StringField()
     execution = mongoengine.ReferenceField(Execution)
     # description = mongoengine.ReferenceField(descriptions.Description)
