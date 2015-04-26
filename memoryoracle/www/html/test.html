@@ -26,24 +26,25 @@
    <div id="memory-graph"></div>
     <script>
 
-var ws = new WebSocket("ws://192.168.1.190:8765");
+var ws = new WebSocket("ws://localhost:8765");
 
+var nodeData = new Map();
 var nodes = new vis.DataSet();
 var edges = new vis.DataSet();
 
 ws.onmessage = function (event) {
    var data = $.parseJSON(event.data);
-   console.log(data);
    add_node_to_graph(data);
-   console.log("added node");
    ws.send("next");
 }
 
 function add_node_to_graph(node) {
    nodes.add({
       id: node._id.$oid,
-      label: node.name
+      label: node.name,
+      title: node.value
    });
+   nodeData.set(node._id.$oid, node);
    node.children.forEach(function(child) {
       edges.add({from: node._id.$oid, to: child.$oid});
    });
@@ -57,9 +58,25 @@ var data = {
 var options = {
    width: '1920px',
    height: '1080px',
-   clustering: true
+   clustering: true,
+   edges: {
+      color: 'black',
+      width: 3,
+      style: 'arrow'
+   },
+   physics: {
+      repulsion: {
+         springConstant: 0.15
+      }
+   }
 };
 var network = new vis.Network(container, data, options);
+
+network.on("select", function(properties) {
+   properties.nodes.forEach(function(nodeID, index, arr) {
+      console.log(nodeData.get(nodeID));
+   });
+});
       </script>
    </body>
 

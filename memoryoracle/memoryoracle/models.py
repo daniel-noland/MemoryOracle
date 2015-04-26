@@ -93,6 +93,7 @@ class Memory(typed.Typed):
     range_start = mongoengine.IntField()
     range_end = mongoengine.IntField()
     children = mongoengine.ListField(mongoengine.ReferenceField('Memory'))
+    value = mongoengine.StringField()
 
     meta = {
         'allow_inheritance': True,
@@ -227,9 +228,7 @@ class Primitive(Memory):
     # repository = dict()
     # _updateTracker = dict()
 
-    value = mongoengine.StringField()
-
-    def _track(self):
+    def _pull(self):
         self.value = self.val_string()
 
     def val_string(self):

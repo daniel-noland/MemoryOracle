@@ -134,7 +134,8 @@ class Pull(typed.Typed):
             "dynamic_type": str(self.dynamic_type),
             "unaliased_type": str(self.unaliased_type),
             "range_start": int(self.range[0]),
-            "range_end": int(self.range[1])
+            "range_end": int(self.range[1]),
+            "value": str(self.object)
         }
         self._save()
         self._doc = models.Memory(**self.paramDict)
@@ -192,6 +193,7 @@ class MemoryPull(Pull):
                         }:
                     try:
                         self._object = sym.value(fs.frame.frame)
+                        self._value = str(self.object)
                     except TypeError:
                         print("DEBUG: TypeError detected!")
             else:
@@ -699,8 +701,9 @@ def pingpong(websocket, path):
         yield from websocket.send(messages[i].to_json())
         greeting = yield from websocket.recv()
 
-serialize_upward()
 
-start_server = websockets.serve(pingpong, '192.168.1.190', 8765)
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+def serialize():
+    serialize_upward()
+    start_server = websockets.serve(pingpong, '', 8765)
+    asyncio.get_event_loop().run_until_complete(start_server)
+    asyncio.get_event_loop().run_forever()
