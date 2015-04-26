@@ -1,0 +1,175 @@
+<h1>CSCI3308 Final Presentation</h1>
+
+<h2>Spring 2015</h2>
+
+<h3>Methods</h3>
+
+<ul>
+<li>Agile: only option for this project.</li>
+</ul>
+
+<p>It was not clear that our goal was attainable when we started, and so waterfall made no sense.</p>
+
+<p>Overall score: 5 (I suppose, since we could not really have done anything else)</p>
+
+<ul>
+<li>Test driven development: this was useful, but had limited application in a project so experimental.</li>
+</ul>
+
+<p>Question: How do you write tests to specify functionality when the characteristics of your tools are unknown?</p>
+
+<p>Answer: you iterate more frequently, experiment -> write test -> write code -> repeat <!-- make a graphic of this procedure --></p>
+
+<p>Overall score: 3 (writing tests for experimental functions can be a waste of time)</p>
+
+<p>Pair programming:</p>
+
+<p>Learning the tools was half the battle!  Pair programming helps a lot.</p>
+
+<p>Overall score 4 (sometimes this devolves into a time wasting exercise)</p>
+
+<h3>Tools</h3>
+
+<p>We used MANY tools for this project.  Here are some of the most important ones:</p>
+
+<h4>Development tools:</h4>
+
+<h5>Text editor / IDE</h5>
+
+<ul>
+<li>Vim</li>
+</ul>
+
+<p>Score 5/5 (but it is a 6 in our hearts)</p>
+
+<ul>
+<li>Webstorm</li>
+</ul>
+
+<p>Score ? (I didn't really use it)</p>
+
+<ul>
+<li>Vim python mode</li>
+</ul>
+
+<p>This is a big help to python vets.  Pulls up python documentation from inside vim!</p>
+
+<h5>VCS</h5>
+
+<ul>
+<li>Git</li>
+</ul>
+
+<p>Score 5 (also a 6 in our hearts)</p>
+
+<ul>
+<li>Github</li>
+</ul>
+
+<p>Score 5 (nearly perfect for our needs)</p>
+
+<ul>
+<li>Fugitive</li>
+</ul>
+
+<p>Vim plugin to control git!.</p>
+
+<p>Score 5 (All hail Tim!)</p>
+
+<h5>Communication / organization aids:</h5>
+
+<ul>
+<li>Trac</li>
+</ul>
+
+<p>This is total overkill for a project of our size.  Filling out a ticket is slower than jumping into chat or mumble.  That said, the tool works quite well for larger projects / teams. <!-- show graph from trac here --></p>
+
+<p>Score 3</p>
+
+<ul>
+<li>Skype</li>
+</ul>
+
+<p>Skype fails constantly.  Might work better on a less bandwidth constrained network.</p>
+
+<p>Score 2</p>
+
+<ul>
+<li>Mumble</li>
+</ul>
+
+<p>Mumble is where the real communication happed.  Perfect tool.</p>
+
+<p>Score 5</p>
+
+<ul>
+<li>ssh + tmux</li>
+</ul>
+
+<p>Allowed us to share a terminal so we could share ideas and teach each other.</p>
+
+<p>Score 5</p>
+
+<h5>Programming languages / Libraries / compilers</h5>
+
+<ul>
+<li>GCC</li>
+</ul>
+
+<p>Provides an abundance of debugging information if you compile with -ggdb3 flag.  This fact is poorly documented and little known.</p>
+
+<p>Score 4</p>
+
+<ul>
+<li>Python 3.4</li>
+</ul>
+
+<p>Our favorite interpreted language, and the only one sporting GDB api.  Perfect in almost every way.</p>
+
+<p>Score 5 </p>
+
+<ul>
+<li>GDB Python api</li>
+</ul>
+
+<p>This is insanely powerful, but documentation is sparse / out of date.  We sometimes needed to look at source code to figure out functionality.  Very ill suited to mass data serialization, resulting in ponderously complex code base (2-3k lines of highly recursive python required).  To be fair, these features are new, and the problem they are meant to solve is very difficult.</p>
+
+<p>Score 3</p>
+
+<ul>
+<li>LESS</li>
+</ul>
+
+<p>Can't do css theming efficiently without this!</p>
+
+<p>Score 4</p>
+
+<ul>
+<li>jQuery / jQuery UI</li>
+</ul>
+
+<p>Not an optional part of web development these days.  You simply must use it.</p>
+
+<p>Score 5</p>
+
+<ul>
+<li>d3</li>
+</ul>
+
+<p>With the exception of jQuery, this is the highest quality javascript library we have ever seen.  Can produce stunning graphs.</p>
+
+<p>Score 5</p>
+
+<ul>
+<li>Mongoengine / pymongo</li>
+</ul>
+
+<p>Far simpler than django, and more effective when ODM is a better option than ORM.  We hope to see these two projects merge in the future.  Missing a few field types, and required significant work to install.</p>
+
+<p>Score 4</p>
+
+<h5>Databases</h5>
+
+<p>We considered MySQL, PostgreSQL, sqlite, and Mongodb for this project, and settled on Mongodb.  SQL essentially insists on a data schema and we simply don't / can't have one.  Unfortunately, far more support is available for SQL than NoSQL.</p>
+
+<p>Mongodb: 4</p>

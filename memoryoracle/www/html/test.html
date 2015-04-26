@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+   <meta charset="utf-8">
+   <head>
+      <style>
+
+      .link {
+         stroke: #000;
+         stroke-width: 1.5px;
+         fill: none;
+      }
+
+      .node {
+         fill: #000;
+         stroke: #fff;
+         stroke-width: 1.5px;
+      }
+
+      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script type="text/javascript" src="/lib/vis/dist/vis.js"></script>
+      <script type="text/javascript">
+      </script>
+   </head>
+   <body>
+   <div id="memory-graph"></div>
+    <script>
+
+var ws = new WebSocket("ws://192.168.1.190:8765");
+
+var nodes = new vis.DataSet();
+var edges = new vis.DataSet();
+
+ws.onmessage = function (event) {
+   var data = $.parseJSON(event.data);
+   console.log(data);
+   add_node_to_graph(data);
+   console.log("added node");
+   ws.send("next");
+}
+
+function add_node_to_graph(node) {
+   nodes.add({
+      id: node._id.$oid,
+      label: node.name
+   });
+   node.children.forEach(function(child) {
+      edges.add({from: node._id.$oid, to: child.$oid});
+   });
+}
+
+container = document.getElementById("memory-graph");
+var data = {
+   nodes: nodes,
+   edges: edges
+};
+var options = {
+   width: '1920px',
+   height: '1080px',
+   clustering: true
+};
+var network = new vis.Network(container, data, options);
+      </script>
+   </body>
+
+</html>

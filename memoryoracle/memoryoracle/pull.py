@@ -11,7 +11,13 @@ import frame
 import traceback
 import mongoengine
 from copy import deepcopy
-
+import asyncio
+import websockets
+import pymongo
+import logging
+logger = logging.getLogger('websockets.server')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler())
 """
 Classes and functions relating to extracting (pulling) data from the debugee
 """
@@ -19,12 +25,11 @@ Classes and functions relating to extracting (pulling) data from the debugee
 class Pull(typed.Typed):
 
     _stdLibChecker = re.compile("^std::.*")
-    _updateTracker = set()
     _updatedNames = set()
     _watchers = dict()
 
-    _execution = models.Execution()
-    _execution.save()
+    execution = models.Execution()
+    execution.save()
 
     @property
     def description(self):
@@ -63,10 +68,6 @@ class Pull(typed.Typed):
         return self._type
 
     @property
-    def execution(self):
-        return self._execution
-
-    @property
     def dynamic_type(self):
         return self._dynamic_type
 
@@ -88,7 +89,7 @@ class Pull(typed.Typed):
         self._target_type = None
         self._value = None
         self._frame = None
-        self._execution = Pull._execution
+        self._execution = Pull.execution
         self._type = None
         self._dynamic_type = None
         self._unaliased_type = None
@@ -256,10 +257,6 @@ class MemoryPull(Pull):
         return self._frame
 
     @property
-    def execution(self):
-        return self._execution
-
-    @property
     def stripped_type(self):
         return self._stripped_type
 
@@ -305,7 +302,9 @@ class StructurePull(MemoryPull):
         if len(self.children) > 0:
             # TODO: This needs cyclic memory torture testing.
             for child in self.children:
-                child.save(update=update)
+                # TODO: find bug which makes this check necessary
+                if child is not None:
+                    child.save(update=update)
             self.paramDict["children"] = self.children
 
 
@@ -423,7 +422,7 @@ class PointerPull(PrimitivePull):
             return
 
         try:
-            self.target.pull()
+            self.target.save()
             self._validTarget = True
         except gdb.MemoryError as e:
             # TODO: Decorate target as invalid in this case.
@@ -559,11 +558,12 @@ def serialize_frame_globals(frm=None):
     serialize_block_locals(block)
 
 def serialize_upward(baseBlock = None):
+
     if baseBlock is None:
         f = gdb.newest_frame()
 
     while f is not None:
-        serialize_frame_locals(f)
+        serialize_block_locals(f.block())
         f = f.older()
 
 def serialize_block_locals(blk = None):
@@ -583,11 +583,15 @@ def serialize_block_locals(blk = None):
         obj.save()
 
 def serialize_frame_locals(frm = None):
-    Memory._updatedNames.clear()
-    for k in get_frame_symbols(frm = frm):
-        desc = descriptions.MemoryDescription(k)
-        obj = addressable_factory(desc)
-        obj.track()
+    Pull._updatedNames.clear()
+    with frame.Selector(frm) as fs:
+        f = fs.frame
+        if f.is_valid():
+            for sym in f.block():
+                desc = descriptions.MemoryDescription(sym.name)
+                handler = Pull.handler_factory(sym.type)
+                obj = handler(desc)
+                obj.save()
 
 # def type_name(t, nameDecorators = ""):
 #     if t.code == gdb.TYPE_CODE_PTR:
@@ -645,7 +649,6 @@ def target_type_name(t):
 
 # dArray = descriptions.MemoryDescription("b", execution=e)
 # xArray = ArrayPull(dArray)
-import pymongo
 
 # NOTE: The read_preference should not be needed.  This is a workaround for a
 # bug in pymongo.  (http://goo.gl/Somoeu)
@@ -654,9 +657,50 @@ connection = mongoengine.connect('memoryoracle',
                             pymongo.read_preferences.ReadPreference.PRIMARY)
 
 db = connection.memoryoracle
-# xArray.save()
-print(typed.Typed.objects().all())
-print(get_frame_symbols(gdb.selected_frame()))
-print(serialize_frame_globals(gdb.selected_frame()))
-for obj in typed.Typed.objects(execution="553c14c928e1e12584f4770d"):
-    print(obj.to_json())
+
+class MemoryOracle(object):
+
+    messageQueue = []
+
+    host = "localhost"
+
+    port = 8765
+
+    active = True
+
+
+    def __init__(self):
+        self._server = None
+
+    def start(self):
+
+        if not self._server:
+            self._server = websockets.serve(pingpong, MemoryOracle.host, MemoryOracle.port)
+            asyncio.get_event_loop().run_until_complete(self._server)
+
+
+messages = typed.Typed.objects(execution=Pull.execution)
+i = -1
+
+@asyncio.coroutine
+def send(message):
+    yield from asyncio.sleep(1.0)
+    return message
+
+@asyncio.coroutine
+def pingpong(websocket, path):
+    global i
+    global messages
+    while MemoryOracle.active and i < len(messages) - 1:
+        if not websocket.open:
+            print("websocket closed")
+            break
+        i += 1
+        yield from websocket.send(messages[i].to_json())
+        greeting = yield from websocket.recv()
+
+serialize_upward()
+
+start_server = websockets.serve(pingpong, '192.168.1.190', 8765)
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
