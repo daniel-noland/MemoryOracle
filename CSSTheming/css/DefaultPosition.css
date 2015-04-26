@@ -1,0 +1,110 @@
+.source-code {
+    height: 70%;
+    max-height: 70%;
+    width: 50%;
+    float: left;
+}
+#header-bar {
+    position:absolute;
+    top:0px;
+    height: 40px;
+}
+#style-menu{
+    position: absolute;
+    right:0px;
+    top:20px;
+}
+
+
+.settings-section-title, #title-mem-or{
+    left:0;
+}
+
+#memory-graph{
+    width:100%;
+    height:100%;
+}
+
+#callTree{
+    height:100%;
+    width: 100%;
+}
+
+#callTreeHeading{
+    width: 100%;
+}
+
+#main {
+    position: relative;
+    top:40px;
+}
+
+.left {
+   float: left;
+   left: 0;
+   width: 60%;
+   height: 100%;
+   display: inline;
+}
+
+.right {
+   float: right;
+   right: 0;
+   width: 38%;
+   height: 100%;
+   display: inline;
+}
+
+.top {
+   top: 0;
+}
+
+.bottom {
+   bottom: 0;
+}
+
+/*----- Accordion -----*/
+
+.accordion {
+    width: 100%;
+    float:right;
+}
+
+/*----- Section Titles -----*/
+.accordion-section-title {
+    width:100%;
+
+}
+
+/*----- Section Content -----*/
+.settings {
+    position:absolute;
+    top:0em;
+    width:100%;
+    display:inline;
+}
+.settings-menu-button{
+    position: absolute;
+    top:10px;
+    text-align:center;
+}
+.settings-section-title {
+    width:100%;
+
+}
+.settings-section-content {
+    height: 55em;
+    max-height: 100%;
+}
+
+/* --- jQuery UI mods --- */
+
+body {
+   marign: 0%;
+}
+
+.ui-accordion .ui-accordion-content {
+   padding: 0%;
+}
+
+

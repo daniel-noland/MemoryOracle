@@ -1,0 +1,79 @@
+.source-code {
+    height: 70%;
+    max-height: 70%;
+    width: 50%;
+    float: left;
+}
+#header-bar {
+    position:absolute;
+    top:0px;
+    height: 40px;
+}
+#header-bar, #style-menu{
+    position: absolute;
+    right:0px;
+    top:20px;
+}
+#header-bar, #title-mem-or{
+    left:0;
+}
+#header-bar, #title-theme{
+    right:0px;
+    top:0px;
+}
+.memory-graph{
+    display:none;
+    float:left;
+    width:68%;
+    height:500px;
+}
+.callTree{
+    position: absolute;
+    top:0px;
+    left:0px;
+    height:44em;
+    width:50%;
+}
+.callTreeHeading{
+    width: 97%;
+}
+
+.main{
+    position: relative;
+    top:40px;
+}
+/*----- Accordion -----*/
+
+.accordion {
+    right:0px;
+    top:0px;
+    width:48%;
+    display:inline;
+}
+
+/*----- Section Titles -----*/
+.accordion-section-title {
+    width:100%;
+
+}
+
+/*----- Section Content -----*/
+.accordion-section-content {
+    padding: 15px;
+    height: 44em;
+    max-height: 60%;
+}
+
+.settings {
+    width:100%;
+}
+
+.settings-section-title {
+    width:100%;
+
+}
+.settings-section-content {
+    height: 44em;
+    max-height: 60%;
+}
+

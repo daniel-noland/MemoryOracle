@@ -1,0 +1,69 @@
+body {
+  background-color: #383838;
+  color: #f8f8f8;
+}
+select {
+  color: #f8f8f8;
+}
+h1 {
+  color: Black;
+}
+p {
+  color: #f8f8f8;
+}
+select {
+  background: #383838;
+}
+#header-bar {
+  background: #c0c0c0;
+  color: Black;
+}
+#header-bar,
+#title-mem-or {
+  color: Black;
+}
+#header-bar,
+#title-theme {
+  color: Black;
+}
+.memory-graph {
+  border: 3px solid #c0c0c0;
+}
+.callTree {
+  background: #383838;
+}
+.callTreeHeading {
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
+/*----- Accordion -----*/
+.accordion {
+  background: #383838;
+}
+/*----- Section Titles -----*/
+.accordion-section-title {
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
+.accordion-section-title.active,
+.accordion-section-title:hover {
+  background: #c0c0c0;
+}
+.settings {
+  background: #383838;
+}
+/*----- Section Titles -----*/
+.settings-section-title {
+  border-bottom: 1px solid #c0c0c0;
+  background: #c0c0c0;
+  text-shadow: 0px 1px 0px #c0c0c0;
+  color: Black;
+}
+.settings-section-title.active,
+.settings-section-title:hover {
+  background: #c0c0c0;
+}

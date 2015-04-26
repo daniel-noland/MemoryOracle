@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Theme</title>
+    <link id="jquery-ui-theme" rel="stylesheet" href="/js/lib/jquery-ui/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link id="syntaxHighlight-theme" rel="stylesheet" href="../node_modules/highlight.js/styles/solarized_dark.css" />
+    <!--<link id="syntaxHighlight-theme" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">-->
+
+    <script src="/js/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/call_tree.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- Give most things you change with javascript a class or id.  It is much more manageable -->
+    <link id="main-style" rel="stylesheet" href="../css/global.css"/>
+    <link id="color-theme" rel="stylesheet" href="../css/DefaultTheme.css"/>
+    <link id="layout-theme" rel="stylesheet" href="../css/DefaultPosition.css"/>
+    <script>
+        $(function() {
+           $("#views").accordion({
+               collapsible: true
+           });
+        });
+        function close_settings_section() {
+            $('#settings .settings-section-title').removeClass('active');
+            $('#settings .settings-section-content').slideUp(300).removeClass('open');
+            document.getElementById("main").style.visibility = "visible";
+        }
+        $(function() {
+            $('.settings-section-title').click(function(e) {
+                var currentAttrValue = $(this).attr('href');
+                if ($(e.target).is('.active')) {
+                    close_settings_section();
+                } else {
+                    $(this).addClass('active');
+                    $('.settings-section-content').slideUp(300).removeClass('open');
+                    $('.settings ' + currentAttrValue).slideDown(300).addClass('open');
+                    document.getElementById("main").style.visibility = "hidden";
+                }
+                e.preventDefault();
+            });
+        });
+
+    </script>
+
+
+</head>
+<body>
+
+<!--<div id="header-bar">
+    <h1 id="title-mem-or">Memory Oracle</h1>
+    <h1 id="title-theme"></h1>
+
+</div>-->
+
+<!-- no spaces in attributes -->
+<!--<h1> This is some test text to test the theme</h1>
+<p>
+</p>-->
+<div class="settings" id="settings">
+    <div class="settings-section"></div>
+    <div id="heading">
+        <a class="settings-section-title" href="#settings-menu">Memory Oracle Settings</a>
+    </div>
+         <div id="settings-menu" class="settings-section-content">
+            <!--<form name="chooseTheme">-->
+                <!--<select onChange="themeChoice()" name="style-menu" id="style-menu">-->
+                    <!--<option selected value = "default">Select A Theme</option>-->
+                    <!--<option value="light">Light Theme</option>-->
+                    <!--<option value="dark">Dark Theme</option>-->
+                    <!--<option value="pink">Pink Theme</option>-->
+                    <!--<option value="volcano">Volcano</option>-->
+                    <!--<option value="green">Green Theme</option>-->
+                    <!--<option value="orange">Orange Theme</option>-->
+                <!--</select>-->
+            <!--</form>-->
+            <!--<form name="chooseLayout">-->
+                <!--<select onChange="layoutChoice()" name="layout-menu" id="layout-menu">-->
+                    <!--<option selected value = "default">Select A Layout</option>-->
+                    <!--<option value = "noGraph">No Graph</option>-->
+                <!--</select>-->
+            <!--</form>-->
+            <table class="colorTable" cellspacing="20">
+               <tr>
+                   <td>
+                       <div class="colorHeading"> Choose A </BR> Color Theme </div>
+                   </td>
+                   <td>
+                       <img src="../img/default.png" alt="" class="theme-preview" onclick="changeDefault()"/>
+                   </td>
+                  <td>
+                     <img src="../img/light.png" alt="" class="theme-preview" onclick="changeLight()"/>
+                  </td>
+                  <td>
+                     <img src="../img/dark.png" alt="" class="theme-preview" onclick="changeDark()"/>
+                  </td>
+               </tr>
+                <tr class="colorTableRow">
+                  <td>
+                     <img src="../img/pink.png" alt="" class="theme-preview" onclick="changePink()"/>
+                  </td>
+                   <td>
+                       <img src="../img/green.png" alt="" class="theme-preview" onclick="changeGreen()"/>
+                   </td>
+                   <td>
+                       <img src="../img/orange.png" alt="" class="theme-preview" onclick="changeOrange()"/>
+                   </td>
+                   <td>
+                       <img src="../img/volcano.png" alt="" class="theme-preview" onclick="changeVolcano()"/>
+                   </td>
+               </tr>
+                <tr>
+                    <td>
+                        <div class="colorHeading" > Choose A </BR> Layout </div>
+                    </td>
+                    <td>
+                        <img src="../img/defaultLayout.png" alt="" class="theme-preview" onclick="changeDefaultLayout()"/>
+                    </td>
+                    <td>
+                        <img src="../img/noGraph.png" alt="" class="theme-preview" onclick="changeNoGraph()"/>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- <div class="imgThemeMenu">Select From A Following Color Scheme</div> -->
+            <!-- <div class="imgThemeMenu">Select Your Preferred Layout</div> -->
+            <!-- <div class="imgDefault-Theme"> -->
+            <!--     Default -->
+            <!-- </div> -->
+            <!-- <div class="imgLight-Theme"> -->
+            <!--     Light -->
+            <!-- </div> -->
+            <!-- <div class="imgDark-Theme"> -->
+            <!--     Dark</div> -->
+            <!-- <div class="imgPink-Theme">Pink -->
+            <!-- </div> -->
+            <!-- <div class="imgVolcano-Theme"> -->
+            <!--     Volcano -->
+            <!-- </div> -->
+            <!-- <div class="imgDefault-Position"> -->
+            <!--     DefaultPos -->
+            <!-- </div> -->
+            <!-- <div class="imgNo-Graph"> -->
+            <!--     No Graph -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+<div class="main" id="main">
+    <span class="left">
+      <div class="top">
+         <div id="memory-graph" class="shown">
+               Lorem ipsum dolor sit amet, augue purus fames molestie ante ac sed, urna hendrerit commodo porta sed erat vitae, quis morbi sit, suspendisse dolor laoreet,
+               lacus quis phasellus porta convallis vel placerat. Praesent sem, dignissim ridiculus habitant, donec tellus nonummy. Sem vitae amet, suspendisse fusce parturient posuere.
+               Eu wisi phasellus quis tellus, molestie arcu ligula tempus facilisis vestibulum. Vestibulum ullamcorper eros aliquam sollicitudin nunc ut, bibendum fusce condimentum amet,
+               consectetuer sodales congue in, penatibus eros. Sit wisi nulla cursus, ante dictum erat quis interdum nulla, ultricies vitae, sociis quam dui. Bibendum non imperdiet nullam,
+               purus nullam tristique dis vulputate suspendisse pulvinar. Vestibulum sodales suspendisse quis tincidunt, aliquam suspendisse. Cras at a, et in curabitur ut in odio tellus.
+               In nec suspendisse nec quam, eget ut, mauris ut in ligula, donec eleifend diam, mauris elit neque vel adipiscing. Feugiat ac vestibulum in in quia, neque nam nisl sapien,
+               aliquet pharetra magna, morbi nunc amet. Vestibulum sapien ut vivamus pharetra lacinia sed, pede luctus sit ac luctus.
+               THIS IS WHERE THE SVG STUFF GOES
+         </div>
+      </div>
+      <div class="bottom">
+         <div id="callTree" class="shown">
+            <div id="callTreeHeading">Call Tree</div>
+            <div id="callTreeBody" >
+                <div id="tree-container">
+                </div>
+            </div>
+         </div>
+      </div>
+    </span>
+
+    <span class="right">
+    <div class="top">
+      <div id="views" class="accordion shown">
+            <h3 class="accordion-section-title">Source View</h3>
+            <div id="sourceView" class="accordion-section-content">
+               <p>
+<pre>
+<code>
+/* **************************************** */
+/* Deck of Cards                            */
+/* created by William Nevin                 */
+/* 12/12/05 20:12 PM                        */
+/*        **************************        */
+/* Shuffle(passes) - Iterates through the   */
+/*             deck echanging each card     */
+/*             with randomly chosen card    */
+/*             in the deck.                 */
+/* Deal()    - Deals a single card off of   */
+/*             the top of the deck.         */
+/* Collect() - Resets the deck size to a    */
+/*             full deck.                   */
+/* Deck Size - Number of decks being used   */
+/* **************************************** */
+
+#ifndef StdCardDeckH
+#define StdCardDeckH
+
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+#include &lt;algorithm&gt;
+
+const char HEART   = 0x03;   // May Not Work on
+const char DIAMOND = 0x04;   // certain systems
+const char CLUB    = 0x05;   // These are DOS standard
+const char SPADE   = 0x06;   // ASCII characters
+
+struct Card {
+char Suit;
+int trueVal;
+std::string faceVal;
+std::string fullName;
+};
+
+class Deck
+{
+public:
+Deck(int DeckSize);
+~Deck(void);
+
+void Shuffle(int passes);
+Card Deal(void);
+void Collect(void);
+
+private:
+Card *CardDeck;
+int CurrCard;
+const int DECK_SIZ;
+};
+
+Deck::Deck(int DeckSize = 1) : DECK_SIZ( DeckSize ) {
+std::ostringstream sConv;
+int CurrSuit, CurrDeck;
+
+CardDeck = new Card[52 * DECK_SIZ];
+for (CurrDeck = 0; CurrDeck < DECK_SIZ; CurrDeck++) {
+for (CurrSuit = 0; CurrSuit < 4; CurrSuit++) {
+for (CurrCard = 0; CurrCard < 13; CurrCard ++) {
+if ((CurrCard + 1) % 13 == 1) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'A';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Ace of ";
+}
+else if ((CurrCard + 1) % 13 == 11) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'J';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Jack of ";
+}
+else if ((CurrCard + 1) % 13 == 12) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'Q';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "Queen of ";
+}
+else if ((CurrCard + 1) % 13 == 0) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = 'K';
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = "King of ";
+}
+else {
+sConv << (CurrCard + 1) % 13;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].faceVal = sConv.str();
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName = sConv.str() + " of ";
+sConv.str("");
+}
+if (CurrSuit == 0) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = HEART;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Hearts";
+}
+else if (CurrSuit == 1) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = DIAMOND;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Diamonds";
+}
+else if (CurrSuit == 2) {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = CLUB;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Clubs";
+}
+else {
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].Suit = SPADE;
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].fullName += "Spades";
+}
+if ((CurrCard + 1) % 13 < 10)
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal = (CurrCard + 1) % 13;
+else
+CardDeck[CurrCard + (CurrSuit * 13) + (CurrDeck * 52)].trueVal =  10;
+}
+}
+}
+CurrCard = 0;
+}
+
+Deck::~Deck(void) {
+delete[] CardDeck;
+}
+
+void Deck::Shuffle(int passes = 1) {
+int currShuffle;
+for (currShuffle = 0; currShuffle < passes; currShuffle++)
+std::random_shuffle(CardDeck, CardDeck+DECK_SIZ*52);
+}
+
+Card Deck::Deal(void) {
+if ( CurrCard < DECK_SIZ * 52)
+return CardDeck[CurrCard++];
+}
+
+void Deck::Collect(void) {
+CurrCard = 0;
+}
+
+#endif /* StdCardDeckH */
+</code>
+</pre>
+               </p>
+            </div>
+            <h3 class="accordion-section-title">Local View</h3>
+            <div id="localView" class="accordion-section-content">
+            </div>
+            <h3 class="accordion-section-title">Stack View</h3>
+            <div id="stackView" class="accordion-section-content">
+                <p> address     -    contents</p>
+                <p>0x01234567   -   0x01234567</p>
+                <p>0x01234567   -   0x01234567</p>
+                <p>0x01234567   -   0x01234567</p>
+                <p>0x01234567   -   0x01234567</p>
+                <p>0x01234567   -   0x01234567</p>
+
+            </div>
+            <h3 class="accordion-section-title">Trace View</h3>
+            <div id="traceView" class="accordion-section-content">
+                <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nulla mi, rutrum ut feugiat at, vestibulum ut neque? Cras tincidunt enim vel aliquet facilisis. Duis congue ullamcorper vehicula. Proin nunc lacus, semper sit amet elit sit amet, aliquet pulvinar erat. Nunc pretium quis sapien eu rhoncus. Suspendisse ornare gravida mi, et placerat tellus tempor vitae.</p>
+            </div>
+    </div>
+   </div>
+   <div class="bottom">Controls live here</div>
+    </span>
+</div>
+<script>
+    function changeSyntaxHighlightTheme(cssFile) {
+        // Why is this better
+        $("#syntaxHighlight-theme").attr("href", "../node_modules/highlight.js/styles/" + cssFile);
+    }
+    function changeColorTheme(cssFile) {
+        // Why is this better
+        $("#color-theme").attr("href", "../css/" + cssFile);
+    }
+    function changeLight(){
+        changeColorTheme('LightTheme.css');
+        changeSyntaxHighlightTheme("solarized_light.css");
+    }
+    function changeDark(){
+        changeColorTheme('DarkTheme.css');
+        changeSyntaxHighlightTheme("agate.css");
+    }
+    function changeDefault(){
+        changeColorTheme('DefaultTheme.css');
+        changeSyntaxHighlightTheme("github.css");
+    }
+    function changeOrange(){
+        changeColorTheme('OrangeTheme.css');
+        changeSyntaxHighlightTheme("github.css");
+    }
+    function changePink(){
+        changeColorTheme('PinkTheme.css');
+        changeSyntaxHighlightTheme("school_book.css");
+    }
+    function changeGreen(){
+        changeColorTheme('GreenTheme.css');
+        changeSyntaxHighlightTheme("agate.css");
+    }
+    function changeVolcano(){
+        changeColorTheme('VolcanoTheme.css');
+        changeSyntaxHighlightTheme("school_book.css");
+    }
+    function changeDefaultLayout(){
+        changeLayout('DefaultPosition.css');
+    }
+    function changeNoGraph(){
+        changeLayout('noGraph.css');
+    }
+
+    function changeLayout(cssFile) {
+        $("#layout-theme").attr("href", "../css/" + cssFile);
+    }
+    function layoutChoice() {
+        switch (document.getElementById("layout-menu").value) {
+            case 'noGraph':
+                changeLayout('noGraph.css');
+                break;
+            default:
+                changeLayout('DefaultPosition.css');
+        }
+    }
+
+</script>
+</body>
+
+</html>
+

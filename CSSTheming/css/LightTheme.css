@@ -1,0 +1,69 @@
+body {
+  background-color: #fdf6e3;
+  color: #383838;
+}
+select {
+  color: #383838;
+}
+h1 {
+  color: white;
+}
+p {
+  color: #383838;
+}
+select {
+  background: #fdf6e3;
+}
+#header-bar {
+  background: #383838;
+  color: white;
+}
+#header-bar,
+#title-mem-or {
+  color: white;
+}
+#header-bar,
+#title-theme {
+  color: white;
+}
+.memory-graph {
+  border: 3px solid #383838;
+}
+.callTree {
+  background: #fdf6e3;
+}
+.callTreeHeading {
+  border-bottom: 1px solid #383838;
+  background: #383838;
+  text-shadow: 0px 1px 0px #383838;
+  color: white;
+}
+/*----- Accordion -----*/
+.accordion {
+  background: #fdf6e3;
+}
+/*----- Section Titles -----*/
+.accordion-section-title {
+  border-bottom: 1px solid #383838;
+  background: #383838;
+  text-shadow: 0px 1px 0px #383838;
+  color: white;
+}
+.accordion-section-title.active,
+.accordion-section-title:hover {
+  background: #383838;
+}
+.settings {
+  background: #fdf6e3;
+}
+/*----- Section Titles -----*/
+.settings-section-title {
+  border-bottom: 1px solid #383838;
+  background: #383838;
+  text-shadow: 0px 1px 0px #383838;
+  color: white;
+}
+.settings-section-title.active,
+.settings-section-title:hover {
+  background: #383838;
+}
