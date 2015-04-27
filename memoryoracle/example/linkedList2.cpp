@@ -225,27 +225,10 @@ int main()
 	list::node* ptr;
 
 	// add
-	ptr = myList.initNode( "s1", 1 );
-	myList.addNode(ptr);
-	ptr = myList.initNode( "s2", 2 );
-	myList.addNode(ptr);
-	ptr = myList.initNode( "s3", 3 );
-	myList.addNode(ptr);
-	ptr = myList.initNode( "s4", 4 );
-	myList.addNode(ptr);
-	ptr = myList.initNode( "s5", 5 );
-	myList.addNode(ptr);
-	myList.displayList(myList.head);
-	ptr = myList.initNode( "s6", 6 );
-	myList.addNode(ptr);
-	myList.displayList(myList.head);
-	ptr = myList.initNode( "s7", 7 );
-	myList.addNode(ptr);
-	myList.displayList(myList.head);
-	ptr = myList.initNode( "s8", 8 );
-	myList.addNode(ptr);
-	myList.displayList(myList.head);
-
+   for (int i = 0; i < 50; ++i) {
+      ptr = myList.initNode( "s1", i );
+      myList.addNode(ptr);
+   }
 	// delete
 	name = "s2";
 	ptr = myList.searchName( myList.head, name );

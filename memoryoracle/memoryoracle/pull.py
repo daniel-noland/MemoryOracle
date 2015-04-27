@@ -15,6 +15,7 @@ import asyncio
 import websockets
 import pymongo
 import logging
+import sys
 logger = logging.getLogger('websockets.server')
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler())
@@ -27,6 +28,7 @@ class Pull(typed.Typed):
     _stdLibChecker = re.compile("^std::.*")
     _updatedNames = set()
     _watchers = dict()
+    _childIsPointer = False
 
     execution = models.Execution()
     execution.save()
@@ -120,43 +122,60 @@ class Pull(typed.Typed):
     def pull(self):
         if self._basic_pull():
             self._pull()
+            Pull._parentWasPointer = False
+            return True
             ## TODO: enable memory watchers
             # self._watchers[self.index] = MemoryWatcher(self)
+        else:
+            return False
 
     def save(self, update=True):
-        if update:
-            self.pull()
+        p = self.pull()
+        if not p:
+            print("PULL RETURNED: ", p, " FOR ", self.name)
+        if p:
 
-        self.paramDict = {
-            "address": str(self.index),
-            "name": str(self.name),
-            "execution": self.execution,
-            "type": self._type_name,
-            "dynamic_type": str(self.dynamic_type),
-            "unaliased_type": str(self.unaliased_type),
-            "range_start": int(self.range[0]),
-            "range_end": int(self.range[1]),
-            "value": str(self.object),
-            "relative_name": str(self._relativeName)
-        }
-        self._save()
-        self._doc = models.Memory(**self.paramDict)
-        self._doc.save()
-
-    def _basic_pull(self):
-        if self.name in self._updatedNames:
-            return False
-        else:
-            self._updatedNames.add(self.name)
-
-        if (self.index is None) or (self.index == "?"):
-            return False
-
-        if self.index not in self._updateTracker:
-            self._updateTracker.add(self.index)
+            self.paramDict = {
+                "address": str(self.index),
+                "name": str(self.name),
+                "execution": self.execution,
+                "type": self._type_name,
+                "dynamic_type": str(self.dynamic_type),
+                "unaliased_type": str(self.unaliased_type),
+                "range_start": int(self.range[0]),
+                "range_end": int(self.range[1]),
+                "value": str(self.object),
+                "relative_name": str(self._relativeName),
+                "frame": str(self.frame)
+            }
+            print("Saving ", self.name)
+            self._save()
+            self._doc = models.Memory(**self.paramDict)
+            self._doc.save()
             return True
         else:
+            print("Not saving ", self.name)
             return False
+
+    def _basic_pull(self):
+        newlyDiscoveredName = not (self.name in self._updatedNames)
+        if newlyDiscoveredName:
+            self._updatedNames.add(self.name)
+            print("added ", self.name)
+        else:
+            return False
+        noIndex = (self.index is None) or (self.index == "?")
+        newlyDiscoveredIndex = not (self.index in self._updateTracker)
+        if newlyDiscoveredIndex:
+            print("Discovered index: ", self.index)
+        if newlyDiscoveredIndex and not noIndex:
+            self._updateTracker.add(self.index)
+        basic = (newlyDiscoveredIndex and newlyDiscoveredName) or noIndex
+        print(isinstance(self, PointerPull))
+        basic = newlyDiscoveredIndex or noIndex
+        print(self.name, "is newly discovered: ", basic)
+        print("basic_pull returned {} for {}".format(basic, self.name))
+        return basic
 
     # def update(self):
     #     self._clear_updated()
@@ -194,10 +213,13 @@ class MemoryPull(Pull):
                         gdb.TYPE_CODE_FUNC,
                         }:
                     try:
-                        self._object = sym.value(fs.frame.frame)
-                        self._value = str(self.object)
+                        self._object = gdb.parse_and_eval(self.name)
                     except TypeError:
-                        print("DEBUG: TypeError detected!")
+                        try:
+                            self._object = sym.value(fs.frame.frame)
+                            self._value = str(self.object)
+                        except TypeError:
+                            print("DEBUG: TypeError detected!")
             else:
                 try:
                     self._object = gdb.parse_and_eval(self.name)
@@ -220,7 +242,6 @@ class MemoryPull(Pull):
                 self._index = "?"
             else:
                 self._index = str(self.object.address)
-            print(self._index)
 
         # if self.object is not None:
         #     self._dynamic_type, self._stripped_type = \
@@ -285,19 +306,26 @@ class StructurePull(MemoryPull):
 
     def _pull(self):
         name = deepcopy(str(self.name))
+        if name == "myList":
+            print("=======================================!!!")
         if name[0] == "*":
             name = name[1:]
             marker = "->"
         else:
             marker = "."
         name += marker
+        if self.object is None:
+            return
         for f in self.object.type.fields():
             childDescription= descriptions.MemoryDescription(
                 name + f.name,
                 relativeName=marker + f.name)
             childHandler = Pull.handler_factory(f.type)
             childObj = childHandler(childDescription)
-            childObj.save()
+            try:
+                childObj.save()
+            except Exception as e:
+                print(e)
             self._children.append(childObj.doc)
 
 
@@ -328,7 +356,6 @@ class ArrayPull(MemoryPull):
 
         # compute the type of data the array contains e.g. for float[2] the
         # answer is float for float[3][2][7] the answer is float
-        print(self.type, type(self.type))
         self._target_type = target_type_name(s.type)
 
         # compute the immediate type of data the array contains.  e.g. for
@@ -426,6 +453,7 @@ class PointerPull(PrimitivePull):
             return
 
         try:
+            Pull._parentWasPointer = True
             self.target.save()
             self._validTarget = True
         except gdb.MemoryError as e:
@@ -436,14 +464,9 @@ class PointerPull(PrimitivePull):
 
     def _save(self, update=True):
         super(PointerPull, self)._save()
-        print("valid target:", self._validTarget)
         if self._validTarget:
-            print("Target = ", self.target)
             if self.target.index == self.index:
                 print("SELF LOOP FOUND")
-            print(self.target.index, self.index)
-            print("self.target = ", self.target)
-            print("self.target.children = ", self.target.children)
             self.target.save()
             self.paramDict["children"] = [self.target.doc]
 
@@ -562,6 +585,7 @@ def serialize_frame_globals(frm=None):
     serialize_block_locals(block)
 
 def serialize_upward(baseBlock = None):
+    Pull._updatedNames.clear()
 
     if baseBlock is None:
         f = gdb.newest_frame()
@@ -571,8 +595,9 @@ def serialize_upward(baseBlock = None):
         f = f.older()
 
 def serialize_block_locals(blk = None):
-    Pull._updatedNames.clear()
-    block = blk if blk is not None else gdb.selected_frame().block()
+    # Pull._updatedNames.clear()
+    # block = blk if blk is not None else gdb.selected_frame().block()
+    block = blk
     for sym in block:
         if sym.is_constant:
             continue
@@ -581,7 +606,7 @@ def serialize_block_locals(blk = None):
         if not objHandler:
             continue
         obj = objHandler(desc)
-        obj.pull()
+        # obj.pull()
         if isinstance(obj.object, gdb.Symbol):
             continue
         obj.save()
