@@ -131,7 +131,7 @@ class Pull(typed.Typed):
             "address": str(self.index),
             "name": str(self.name),
             "execution": self.execution,
-            "type": str(self.type),
+            "type": self._type_name,
             "dynamic_type": str(self.dynamic_type),
             "unaliased_type": str(self.unaliased_type),
             "range_start": int(self.range[0]),

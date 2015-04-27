@@ -236,6 +236,15 @@ int main()
 	ptr = myList.initNode( "s5", 5 );
 	myList.addNode(ptr);
 	myList.displayList(myList.head);
+	ptr = myList.initNode( "s6", 6 );
+	myList.addNode(ptr);
+	myList.displayList(myList.head);
+	ptr = myList.initNode( "s7", 7 );
+	myList.addNode(ptr);
+	myList.displayList(myList.head);
+	ptr = myList.initNode( "s8", 8 );
+	myList.addNode(ptr);
+	myList.displayList(myList.head);
 
 	// delete
 	name = "s2";
